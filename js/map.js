@@ -483,7 +483,7 @@ function initialize() {
 						 //On initialise l'image à null, on l'a crée ligne 789
 						 bounds : null,
 						 Overlay : null,
-						 content :  '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>GI</b><br/></center>			<button class="checkin" disabled>Check-in</button><button class="info">Informations</button></div><a href="#popupent" data-rel="popup" data-role="button">Popup with padding</a>'
+						 content :  '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>GI</b><br/></center>			<button class="checkin" disabled>Check-in</button><button class="info">Informations</button></div>'
 						 };
 		Entreprise[1] = {Objet :BMC,
 						 nom : "Bibliothèque Marie Curie",
@@ -906,7 +906,6 @@ function initialize() {
 				document.getElementsByClassName("checkin")[0].disabled = false; 
 			}
 			infowindow.open(map);
-			$( "#popupent" ).popup( "open" )
 			
 			
 			
@@ -1075,6 +1074,7 @@ function initialize() {
 			
 			document.getElementById('image_entreprise').setAttribute('src',entreprise.srcImage)
 			$('#nom_entreprise').html(entreprise.nom);
+			$('#entreprise_active').html(entreprise.nom);
 			$.mobile.changePage("#Entreprise");
 			infowindow.close(map);
 		}

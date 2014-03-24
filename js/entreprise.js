@@ -1,5 +1,5 @@
 // JavaScript Document
-$(document).ready(function(){
+$(document).on("pageshow", "#Entreprise", function() {
           
               //Champ désactivé lors du chargement de la page
               $( "#saisiedate" ).prop( "disabled", true );
@@ -42,24 +42,26 @@ $(document).ready(function(){
                  
               // Envoi et réinitialisation du formulaire
               
-              $(document).on("click","#envoyer", function(){
+              $('#commentForm').submit(function() {
                   if ( !$('#Prix').val()) {
-                  $('#requis').text('Il faut saisir un prix !');}
+                  	$('#requis').text('Il faut saisir un prix !');}
                   else {
-                  $('#commentForm').submit();
-                  var myselectun = $( "#select-custom-17" );
-                  myselectun[0].selectedIndex = 0;
-                  myselectun.selectmenu( "refresh" );
-                  var myselectdeux = $( "#select-custom-18" );
-                  myselectdeux[0].selectedIndex = 0;
-                  myselectdeux.selectmenu( "refresh" );
-                  $("#Prix").val('');
-                  $('#requis').text();
-                  $('#Nombre').val(1).slider("refresh");
-                  $("#validite input").prop("checked",false).checkboxradio("refresh");
-                  $("#radio-choice-1").prop("checked",true).checkboxradio("refresh");
+					  var myselectun = $( "#select-custom-17" );
+					  myselectun[0].selectedIndex = 0;
+					  myselectun.selectmenu( "refresh" );
+					  var myselectdeux = $( "#select-custom-18" );
+					  myselectdeux[0].selectedIndex = 0;
+					  myselectdeux.selectmenu( "refresh" );
+					  $("#Prix").val('');
+					  $('#requis').text();
+					  $('#Nombre').val(1).slider("refresh");
+					  $("#validite input").prop("checked",false).checkboxradio("refresh");
+					  $("#radio-choice-1").prop("checked",true).checkboxradio("refresh");
                   }
                   $('#saisiedate').datepicker("setDate", new Date()).datepicker("refresh");
-                  }); 
+				  return false;
+				});		
+              
+
   
 }); 

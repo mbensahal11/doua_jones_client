@@ -119,7 +119,7 @@
               
   <!-- onglet PROFIL -->
               
-              <div id="Profil" data-role="content"> 
+              <div id="Profil"> 
               <img id='image_entreprise' alt="">
                   <div data-role="collapsibleset" data-theme="a" data-content-theme="a">
                       <div data-role="collapsible" data-collapsed="false">
@@ -157,7 +157,7 @@
               
   <!-- onglet PERFORMANCE -->
             
-              <div id="Performance" data-role="content">
+              <div id="Performance">
                   <p>Capacité d'accueil</p>
                   <p>Actionnaire majoritaire</p>
                   <p>Fréquentation hebdomadaire</p>
@@ -167,12 +167,20 @@
               
   <!-- Onglet PASSER UN ORDRE -->
               
-              <div id="Passer_un_ordre" data-role="content">
+              <div id="Passer_un_ordre">
                   <form id="commentForm" data-ajax="false">
+                      
+                      
+                  <!-- Nom de l'entreprise -->     
+                      
                       <div class="ui-field-contain">
+      					<label for="select-custom-16">Entreprise</label>
+                        <a href="#" data-role="button" id="entreprise_active"></a>
+                       </div>
+      
                       
       <!-- Sens de l'ordre -->
-                    
+                    <div class="ui-field-contain">
                           <label for="select-custom-17">Sens de l'ordre</label>
                           <select name="select-custom-17" id="select-custom-17" data-native-menu="false">
                               <option value="1" selected="selected">Achat</option>
@@ -211,7 +219,7 @@
       <!--Date de validite-->
                           
                           <li class="ui-field-contain">                 
-                              <fieldset data-role="controlgroup" data-type="horizontal" data-mini="false" id="validite">
+                              <fieldset data-role="controlgroup" data-type="horizontal" data-mini="false" id="validite" style="border:none">
                                   <legend>Date de validité</legend>
                                   <input type="radio" name="radio-choice-b" id="radio-choice-1" value="Aujourdhui" checked="true" >
                                   <label for="radio-choice-1">Aujourd'hui</label>
@@ -233,7 +241,8 @@
       <!-- Bouton d'envoi -->
                       
                        <div class="ui-field-contain">
-                          <button class="ui-btn ui-corner-all" id="envoyer">Envoyer</button>
+                       		<input type="submit" value="Valider" />
+                       
                       </div>
                   </form>
               </div>
