@@ -1,0 +1,25 @@
+Génie Industriel;img/carrefour.png;0;0;1;1;#00F12F;0.8;2;#10FF3F;0.35
+Bibliothèque Marie Curie;img/logoloreal.png;45.7823848;4.8766084;45.7827290;4.8769196;#00F12F;0.8;2;#10FF3F;0.35
+b;img/BMC2.png;0;0;1;1;#00F12F;0.8;2;#10FF3F;0.35
+c;img/BMC2.png;0;0;1;1;#00F12F;0.8;2;#10FF3F;0.35
+d;img/BMC2.png;0;0;1;1;#00F12F;0.8;2;#10FF3F;0.35
+e;img/BMC2.png;0;0;1;1;#00F12F;0.8;2;#10FF3F;0.35
+f;img/BMC2.png;0;0;1;1;#00F12F;0.8;2;#10FF3F;0.35
+g;img/BMC2.png;0;0;1;1;#00F12F;0.8;2;#10FF3F;0.35
+h;img/BMC2.png;0;0;1;1;#00F12F;0.8;2;#10FF3F;0.35
+i;img/BMC2.png;0;0;1;1;#00F12F;0.8;2;#10FF3F;0.35
+j;img/BMC2.png;0;0;1;1;#00F12F;0.8;2;#10FF3F;0.35
+l;img/BMC2.png;0;0;1;1;#00F12F;0.8;2;#10FF3F;0.35
+m;img/BMC2.png;0;0;1;1;#00F12F;0.8;2;#10FF3F;0.35
+n;img/BMC2.png;0;0;1;1;#00F12F;0.8;2;#10FF3F;0.35
+o;img/BMC2.png;0;0;1;1;#00F12F;0.8;2;#10FF3F;0.35
+p;img/BMC2.png;0;0;1;1;#00F12F;0.8;2;#10FF3F;0.35
+q;img/BMC2.png;0;0;1;1;#00F12F;0.8;2;#10FF3F;0.35
+r;img/BMC2.png;0;0;1;1;#00F12F;0.8;2;#10FF3F;0.35
+s;img/BMC2.png;0;0;1;1;#00F12F;0.8;2;#10FF3F;0.35
+t;img/BMC2.png;0;0;1;1;#00F12F;0.8;2;#10FF3F;0.35
+u;img/BMC2.png;0;0;1;1;#00F12F;0.8;2;#10FF3F;0.35
+v;img/BMC2.png;0;0;1;1;#00F12F;0.8;2;#10FF3F;0.35
+w;img/BMC2.png;0;0;1;1;#00F12F;0.8;2;#10FF3F;0.35
+x;img/BMC2.png;0;0;1;1;#00F12F;0.8;2;#10FF3F;0.35
+y;img/BMC2.png;0;0;1;1;#00F12F;0.8;2;#10FF3F;0.35

@@ -1,0 +1,247 @@
+<!doctype html>
+<html>
+  <head>
+  	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  	<title>Doua Jones</title>
+  
+<!--Jquery mobile -->
+	<link href="jquery.mobile-1.4.0/jquery.mobile.theme-1.4.0.min.css" rel="stylesheet" type="text/css">
+  	<link href="jquery.mobile-1.4.0/jquery.mobile.structure-1.4.0.min.css" rel="stylesheet" type="text/css">
+  	<script src="jquery.mobile-1.4.0/jquery-1.10.1.min.js" type="text/javascript"></script>
+  	<script src="jquery.mobile-1.4.0/jquery.mobile-1.4.0.min.js" type="text/javascript"></script>
+  	<link href="jquery.mobile-1.4.0/jquery.mobile.icons-1.4.0.min.css" rel="stylesheet" type="text/css">
+  	<script src="jquery-ui-1.10.4.custom/jquery.mobile.datepicker.js"></script>
+  	<script src="jquery-ui-1.10.4.custom/jquery.ui.datepicker.js"></script>
+    <link href="jquery-ui-1.10.4.custom/jquery.mobile.datepicker.css">
+
+ <!--Thème Stanford -->
+ 
+ 	<link href="ressources/ThemeStanford.min.css" rel="stylesheet" type="text/css">
+    
+<!--Google maps -->
+
+   	<access origin="*.google.com"/>
+    <access origin="*.googleapis.com"/>
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJlHjI0-FDt6luCNx4dtoI52CCShDn99Y&libraries=geometry,poly&sensor=true">
+    </script>
+  
+<!--Phonegap -->  	
+ 	<script src="phonegap.js"></script> 
+    
+<!--Code Javascript externe -->  	 
+   	<script src="js/map.js"> </script>
+    <script src="js/entreprise.js"></script>
+    
+    
+ <!-- Fichiers css -->
+    <link rel="stylesheet" href="css/douajones.css"/>
+
+  </head>
+
+
+	<body>
+<!--Page d'accueil -->
+    
+    
+        <div data-role="page" id="Accueil_jeu" style=" background:-webkit-radial-gradient(#e65858,#8c1515); background:-moz-radial-gradient(#e65858,#8c1515); background:-o-radial-gradient(#e65858,#8c1515); background:radial-gradient(#e65858,#8c1515);">
+        
+                <div>
+                    <marquee direction="left" scrollamount="5" >
+                   Bienvenue apprentis traders !
+                    </marquee>
+                </div>
+                <div style="text-align:right"><a href="#"><img src="img/Aide bouton.png" alt="aide" style="width:48px; height:48px;"/></a></div>
+                    <div id="finance">
+                        <p style="text-align:center;color:#ffffff;margin-bottom:4px;margin-top:0px;">Bienvenue dans</p>
+                        <img src="img/Doua Jones Logo 1 (1).png" alt="curve">
+                    </div>
+                    <div data-role="content" style="padding-top:8px">
+                    <div id="menu" style="width:80%; margin-right: auto; margin-left: auto; color:#ffffff">
+                    <div class="ui-grid-a">
+                    <div class="ui-block-a" style="height:70px;"><a href="#"><img src="img/tutoriel icone.png" class="bouton_acc"></a></div>
+                    <div class="ui-block-b" style="height:70px;"><a href="#map"><img src="img/carte icone.png" class="bouton_acc"></a></div>
+                    <div class="ui-block-a" style="text-align:center; margin-bottom:5px;">Tutoriel</div>
+                    <div class="ui-block-b" style="text-align:center;  margin-bottom:5px;">Carte</div>
+                
+                    <div class="ui-block-a" style="height:70px;"><a href="#"><img src="img/missions icone.png"class="bouton_acc"></a></div>
+                    <div class="ui-block-b" style="height:70px;"><a href="#"><img src="img/mon compte icone.png" class="bouton_acc"></a></div>
+                    <div class="ui-block-a" style="text-align:center ; margin-bottom:5px;">Missions</div>
+                    <div class="ui-block-b" style="text-align:center; margin-bottom:5px;">Mon Profil</div>
+                    <div class="ui-block-a" style="height:70px;"><a href="#"><img src="img/social icone.png" class="bouton_acc"></a></div>
+                    <div class="ui-block-b" style="height:70px;"><a href="#"><img src="img/Classement.png" class="bouton_acc"></a></div>
+                    <div class="ui-block-a" style="text-align:center; margin-bottom:5px;">Social</div>
+                    <div class="ui-block-b" style="text-align:center; margin-bottom:5px;">Classement</div>
+    
+    
+    			</div><!-- /grid-a -->
+    
+       		</div>
+           
+    	</div>
+    </div>
+      
+<!-- Carte -->
+
+	<div data-role="page" id="map" style = "html { height: 100% } ;body { height: 50%; margin: 20; padding: 20 }"> 
+		<div data-role="header">
+        	<a href='#' data-rel="back" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-notext"></a>
+        	<a href="#" class="ui-icon-info ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-notext">No text</a>    
+            <h1>Carte du campus</h1>
+        </div>
+        <div data-role="content" id="map-canvas"></div>
+	</div>
+      
+<!-- Page Entreprise -->
+
+  
+      <div data-role="page" id="Entreprise">
+      
+  <!-- Header Entreprise -->
+      
+          <div data-role="header" style="border-bottom-width: 0px;">
+              <h1 id="nom_entreprise">Génie Industriel</h1>
+              <a href='#' data-rel="back" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-notext"></a> <a href='#'class="ui-btn ui-btn-right ui-corner-all ui-icon-info ui-btn-icon-notext"></a> 
+          </div>
+          
+  <!-- TABS Entreprise -->
+          
+          <div data-role="tabs" id="tabs" style="padding-bottom: 3.2;
+  padding-top: 0px;padding-right: 0px;padding-left: 0px;" >
+              <div data-role="navbar">
+                  <ul>
+                      <li><a href="#Profil" data-ajax="false">Profil</a></li>
+                      <li><a href="#Performance" data-ajax="false">Performance</a></li>
+                      <li><a href="#Passer_un_ordre" data-ajax="false">Passer un ordre</a></li>
+                  </ul>
+              </div>
+              
+  <!-- onglet PROFIL -->
+              
+              <div id="Profil" data-role="content"> 
+              <img id='image_entreprise' alt="">
+                  <div data-role="collapsibleset" data-theme="a" data-content-theme="a">
+                      <div data-role="collapsible" data-collapsed="false">
+                          <h3>Fiche de l'entreprise</h3>
+                          <p>
+                              <h4>Domaine d'activité</h4>
+                              <ul>
+                                  <li>Pétanque</li>
+                                  <li>Logistique</li>
+                                  <li>GP2</li>
+                              </ul>
+                          </p>
+                      </div>
+                      <div data-role="collapsible">
+                          <h3>Actualités</h3>
+                          <p>
+                              <table>
+                                  <tr>
+                                      <th>Date</th>
+                                      <th>Evènement</th>
+                                  </tr>
+                                  <tr>
+                                      <td>21/02</td>
+                                      <td>Journée des métiers</td>
+                                  </tr>
+                                  <tr>
+                                      <td>17/12</td>
+                                      <td>Vente de gâteaux</td>
+                                  </tr>
+                              </table>
+                          </p>
+                      </div>
+                  </div>
+              </div>
+              
+  <!-- onglet PERFORMANCE -->
+            
+              <div id="Performance" data-role="content">
+                  <p>Capacité d'accueil</p>
+                  <p>Actionnaire majoritaire</p>
+                  <p>Fréquentation hebdomadaire</p>
+                  <p>Gains par passage</p>
+                  <p>Date du prochain bilan</p>
+              </div>
+              
+  <!-- Onglet PASSER UN ORDRE -->
+              
+              <div id="Passer_un_ordre" data-role="content">
+                  <form id="commentForm" data-ajax="false">
+                      <div class="ui-field-contain">
+                      
+      <!-- Sens de l'ordre -->
+                    
+                          <label for="select-custom-17">Sens de l'ordre</label>
+                          <select name="select-custom-17" id="select-custom-17" data-native-menu="false">
+                              <option value="1" selected="selected">Achat</option>
+                              <option value="2">Vente</option>
+                          </select>
+                      </div>
+                      
+  <!-- Type d'ordre  -->
+  
+                      
+                      <div class="ui-field-contain">
+                          <label for="select-custom-18">Type d'ordre</label>
+                          <select name="select-custom-18" id="select-custom-18" data-native-menu="false">
+                              <option value="1" selected="selected">Ordre à cours limité</option>
+                              <option value="2">Ordre au marché </option>
+                          </select>
+                      </div>
+                      
+  <!-- Listview qui contient PRIX, NOMBRE et DATE DE VALIDITE  -->
+                      
+                      <ul data-role="listview" data-inset="true">
+                          <li class="ui-field-contain">
+                              <label for="Prix">Prix</label>
+                              <textarea cols="40" rows="8" name="textarea" id="Prix" class="required" style="width:80px; height:40px; display:inline-block; resize:none;"></textarea>
+                              <p style="display:inline-block ; font-size:16px; margin-left:5px">BMC Flouz</p>
+                              <div id="requis">
+                              </div>
+                          </li>  
+      <!--NOMBRE-->
+                      
+                          <li class="ui-field-contain">
+                              <label for="Nombre">Nombre</label>
+                              <input type="range" name="slider" id="Nombre" value="1" min="0" max="100"  />
+                          </li>
+                          
+      <!--Date de validite-->
+                          
+                          <li class="ui-field-contain">                 
+                              <fieldset data-role="controlgroup" data-type="horizontal" data-mini="false" id="validite">
+                                  <legend>Date de validité</legend>
+                                  <input type="radio" name="radio-choice-b" id="radio-choice-1" value="Aujourdhui" checked="true" >
+                                  <label for="radio-choice-1">Aujourd'hui</label>
+                                  <input type="radio" name="radio-choice-b" id="radio-choice-2" value="Date">
+                                  <label for="radio-choice-2">Date</label>
+                                  <input type="radio" name="radio-choice-b" id="radio-choice-3" value="Révocation">
+                                  <label for="radio-choice-3">Révocation</label>
+                              </fieldset>
+                              
+      <!-- Date Picker -->
+                              
+                              <div style="margin-top:10px">
+                                  <label for="saisiedate" id="legendedate"></label>
+                                  <input type="text" id="saisiedate" data-inline="false"  data-role="date">
+                              </div>
+                          </li>
+                      </ul>
+                      
+      <!-- Bouton d'envoi -->
+                      
+                       <div class="ui-field-contain">
+                          <button class="ui-btn ui-corner-all" id="envoyer">Envoyer</button>
+                      </div>
+                  </form>
+              </div>
+          </div >
+          <div data-role="footer">
+              <h4>Pied de page</h4>
+          </div>
+      </div>
+
+  </body>
+</html>
