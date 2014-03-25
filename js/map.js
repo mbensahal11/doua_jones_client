@@ -473,8 +473,7 @@ function initialize() {
   		//On stocke toutes les entreprises dans un tableau d'objets possédant des informations propres aux zones
 		var Entreprise = [];
 		Entreprise[0] = {Objet :GI,
-						 nom : "Génie Industriel",
-						 Chemin : "GI.html",
+						 nom : "INSA Logistics",
 						 srcImage : 'img/carrefour.png',
 						 //Coordonnées sud-ouest de l'image
 						 swBound : new google.maps.LatLng(0, 0),
@@ -483,277 +482,228 @@ function initialize() {
 						 //On initialise l'image à null, on l'a crée ligne 789
 						 bounds : null,
 						 Overlay : null,
-						 content :  '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>GI</b><br/></center>			<button class="checkin" disabled>Check-in</button><button class="info">Informations</button></div>'
 						 };
 		Entreprise[1] = {Objet :BMC,
-						 nom : "Bibliothèque Marie Curie",
-						 Chemin : "BMC_2.html",
+						 nom : "Banque Mondiale du Commerce",
 						 srcImage : 'img/logoloreal.png',
 						 swBound : new google.maps.LatLng(45.7823848, 4.8766084),
 						 neBound : new google.maps.LatLng(45.7827290, 4.8769196),
 						 bounds : null,
 						 Overlay : null,
-						 content : '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>BMC</b><br/></center>			<button class="checkin" disabled>Check-in</button><button class="info">Informations</button></div>'
 						 };
 		Entreprise[2] = {Objet :GEN,
-						 Chemin : "GEN.html",
-						 nom : "Génie Energétique et Environnement",
+						 nom : "Green Energy & Co",
 						 srcImage : 'img/BMC2.png',
 						 swBound : new google.maps.LatLng(0, 0),
 						 neBound : new google.maps.LatLng(1, 1),
 						 bounds : null,
 						 Overlay : null,
-						 content : '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>GEN</b><br/></center>			<button class="checkin" disabled>Check-in</button><button class="info">Informations</button></div>'
 						 };
 		Entreprise[3] = {Objet :TC,
-						 Chemin : "TC.html",
-						 nom : "Bibliothèque Marie Curie",
+						 nom : "Blue Telecom",
 						 srcImage : 'img/BMC2.png',
 						 swBound : new google.maps.LatLng(0, 0),
 						 neBound : new google.maps.LatLng(1, 1),
 						 bounds : null,
 						 Overlay : null,
-						 content : '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>TC</b><br/></center>			<button class="checkin" disabled>Check-in</button><button class="info">Informations</button></div>'
 						 };
 		Entreprise[4] = {Objet :GE,
-						 Chemin : "GE.html",
-						 nom : "Bibliothèque Marie Curie",
+						 nom : "Genius Electrics",
 						 srcImage : 'img/BMC2.png',
 						 swBound : new google.maps.LatLng(0, 0),
 						 neBound : new google.maps.LatLng(1, 1),
 						 bounds : null,
 						 Overlay : null,
-						 content : '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>GE</b><br/></center>			<button class="checkin" disabled>Check-in</button><button class="info">Informations</button></div>'
 						 };
 		Entreprise[5] = {Objet :Rotonde,
-						 Chemin : "Rotonde.html",
-						 nom : "Bibliothèque Marie Curie",
+						 nom : "Brodewei",
 						 srcImage : 'img/BMC2.png',
 						 swBound : new google.maps.LatLng(0, 0),
 						 neBound : new google.maps.LatLng(1, 1),
 						 bounds : null,
 						 Overlay : null,
-						 content : '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>Rotonde</b><br/></center>			<button class="checkin" disabled>Check-in</button><button class="info">Informations</button></div>'
 						 };
 		Entreprise[6] = {Objet :EFI,
-						 Chemin : "EFI.html",
-						 nom : "Bibliothèque Marie Curie",
+						 nom : "Hill Tone",
 						 srcImage : 'img/BMC2.png',
 						 swBound : new google.maps.LatLng(0, 0),
 						 neBound : new google.maps.LatLng(1, 1),
 						 bounds : null,
 						 Overlay : null,
-						 content : '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>Batiments E, F et I</b><br/></center>			<button class="checkin" disabled>Check-in</button><button class="info">Informations</button></div>'
 						 };
 						 
 		Entreprise[7] = {Objet :CB,
-						 Chemin : "CB.html",
 						 srcImage : 'img/BMC2.png',
-						 nom : "Bibliothèque Marie Curie",
+						 nom : "Wilbedon & Co",
 						 swBound : new google.maps.LatLng(45.7844124, 4.8739048),
 						 neBound : new google.maps.LatLng(45.7854299, 4.8749133),
 						 bounds : null,
 						 Overlay : null,
-						 content : '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>Colette Besson</b><br/></center>			<button class="checkin" disabled>Check-in</button><button class="info">Informations</button></div>'
 						 };
 						 
 		Entreprise[8] = {Objet :Humas,
-						 Chemin : "Humas.html",
 						 srcImage : 'img/BMC2.png',
-						 nom : "Bibliothèque Marie Curie",
+						 nom : "Center Park",
 						 swBound : new google.maps.LatLng(0, 0),
 						 neBound : new google.maps.LatLng(1, 1),
 						 bounds : null,
 						 Overlay : null,
-						 content : '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>Humanités</b><br/></center>			<button class="checkin" disabled>Check-in</button><button class="info">Informations</button></div>'
 						 };
 						 
 		Entreprise[9] = {Objet :Kfet,
-						 Chemin : "Kfet.html",
 						 srcImage : 'img/BMC2.png',
-						 nom : "Bibliothèque Marie Curie",
+						 nom : "Club Made",
 						 swBound : new google.maps.LatLng(0, 0),
 						 neBound : new google.maps.LatLng(1, 1),
 						 bounds : null,
 						 Overlay : null,
-						 content : '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>Kfet</b><br/></center>			<button class="checkin" disabled>Check-in</button><button class="info">Informations</button></div>'
 						 };
 						 
 		Entreprise[10] = {Objet :BS,
-						 Chemin : "BS.html",
 						 srcImage : 'img/BMC2.png',
-						 nom : "Bibliothèque Marie Curie",
+						 nom : "Biotech",
 						 swBound : new google.maps.LatLng(0, 0),
 						 neBound : new google.maps.LatLng(1, 1),
 						 bounds : null,
 						 Overlay : null,
-						 content : '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>BS/BIM</b><br/></center>			<button class="checkin" disabled>Check-in</button><button class="info">Informations</button></div>'
 						 };
 						 
 		Entreprise[11] = {Objet :IF,
-						 Chemin : "IF.html",
 						 srcImage : 'img/BMC2.png',
-						 nom : "Bibliothèque Marie Curie",
+						 nom : "Banana IT",
 						 swBound : new google.maps.LatLng(0, 0),
 						 neBound : new google.maps.LatLng(1, 1),
 						 bounds : null,
 						 Overlay : null,
-						 content : '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>IF</b><br/></center>			<button class="checkin" disabled>Check-in</button><button class="info">Informations</button></div>'
 						 };
 						 
 		Entreprise[12] = {Objet :Beurk,
-						 Chemin : "Beurk.html",
 						 srcImage : 'img/BMC2.png',
-						 nom : "Bibliothèque Marie Curie",
+						 nom : "Miam Inc.",
 						 swBound : new google.maps.LatLng(0, 0),
 						 neBound : new google.maps.LatLng(1, 1),
 						 bounds : null,
 						 Overlay : null,
-						 content : '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>castor et Pollux</b><br/></center>			<button class="checkin" disabled>Check-in</button><button class="info">Informations</button></div>'
 						 };
 						 
 		Entreprise[13] = {Objet :CD,
-						 Chemin : "CD.html",
-						 nom : "Bibliothèque Marie Curie",
+						 nom : "Campanule",
 						 srcImage : 'img/BMC2.png',
 						 swBound : new google.maps.LatLng(0, 0),
 						 neBound : new google.maps.LatLng(1, 1),
 						 bounds : null,
 						 Overlay : null,
-						 content : '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>Batiments C et D</b><br/></center>			<button class="checkin" disabled>Check-in</button><button class="info">Informations</button></div>'
 						 };
 						 
 		Entreprise[14] = {Objet :GCU,
-						 Chemin : "GCU.html",
-						 nom : "Bibliothèque Marie Curie",
+						 nom : "Leonard Construction",
 						 srcImage : 'img/BMC2.png',
 						 swBound : new google.maps.LatLng(0, 0),
 						 neBound : new google.maps.LatLng(1, 1),
 						 bounds : null,
 						 Overlay : null,
-						 content : '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>GCU</b><br/></center>			<button class="checkin" disabled>Check-in</button><button class="info">Informations</button></div>'
 						 };
 						 
 		Entreprise[15] = {Objet :GMC,
-						 Chemin : "GMC.html",
-						 nom : "Bibliothèque Marie Curie",
+						 nom : "Mech. Enterprise",
 						 srcImage : 'img/BMC2.png',
 						 swBound : new google.maps.LatLng(0, 0),
 						 neBound : new google.maps.LatLng(1, 1),
 						 bounds : null,
 						 Overlay : null,
-						 content : '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>GMC</b><br/></center>			<button class="checkin" disabled>Check-in</button><button class="info">Informations</button></div>'
 						 };
 						 
 		Entreprise[16] = {Objet :Dir,
 						 Chemin : "Dir.html",
-						 nom : "Bibliothèque Marie Curie",
+						 nom : "Doua Postal",
 						 srcImage : 'img/BMC2.png',
 						 swBound : new google.maps.LatLng(0, 0),
 						 neBound : new google.maps.LatLng(1, 1),
 						 bounds : null,
 						 Overlay : null,
-						 content : '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>Direction/Service courrier</b><br/></center>	<button class="checkin" disabled>Check-in</button><button class="info">Informations</button></div>'
 						 };
 						 
 		Entreprise[17] = {Objet :Capelle,
-						 Chemin : "Capelle.html",
-						 nom : "Bibliothèque Marie Curie",
+						 nom : "Palais des Congrès",
 						 srcImage : 'img/BMC2.png',
 						 swBound : new google.maps.LatLng(0, 0),
 						 neBound : new google.maps.LatLng(1, 1),
 						 bounds : null,
 						 Overlay : null,
-						 content : '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>Capelle</b><br/></center>			<button class="checkin" disabled>Check-in</button><button class="info">Informations</button></div>'
 						 };
 						 
 		Entreprise[18] = {Objet :CDS,
-						 Chemin : "CDS.html",
-						 nom : "Bibliothèque Marie Curie",
+						 nom : "Sports Center",
 						 srcImage : 'img/BMC2.png',
 						 swBound : new google.maps.LatLng(0, 0),
 						 neBound : new google.maps.LatLng(1, 1),
 						 bounds : null,
 						 Overlay : null,
-						 content : '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>Centre des sports</b><br/></center>			<button class="checkin" disabled>Check-in</button><button class="info">Informations</button></div>'
 						 };
 						 
 		Entreprise[19] = {Objet :GJ,
-						 Chemin : "GJ.html",
-						 nom : "Bibliothèque Marie Curie",
+						 nom : "ORPIste",
 						 srcImage : 'img/BMC2.png',
 						 swBound : new google.maps.LatLng(0, 0),
 						 neBound : new google.maps.LatLng(1, 1),
 						 bounds : null,
 						 Overlay : null,
-						 content : '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>Batiments G,J et DDR</b><br/></center>			<button class="checkin" disabled>Check-in</button><button class="info">Informations</button></div>'
 						 };
 						 
 		Entreprise[20] = {Objet :GMD,
-						 Chemin : "GMD.html",
-						 nom : "Bibliothèque Marie Curie",
+						 nom : "Airboost",
 						 srcImage : 'img/BMC2.png',
 						 swBound : new google.maps.LatLng(0, 0),
 						 neBound : new google.maps.LatLng(1, 1),
 						 bounds : null,
 						 Overlay : null,
-						 content : '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>GMD</b><br/></center>			<button class="checkin" disabled>Check-in</button><button class="info">Informations</button></div>'
 						 };
 						 
 		Entreprise[21] = {Objet :Trav,
-						 Chemin : "Trav.html",
-						 nom : "Bibliothèque Marie Curie",
+						 nom : "Lion Formation",
 						 srcImage : 'img/BMC2.png',
 						 swBound : new google.maps.LatLng(0, 0),
 						 neBound : new google.maps.LatLng(1, 1),
 						 bounds : null,
 						 Overlay : null,
-						 content : '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>Travées du 1er cycle</b><br/></center>	<button class="checkin" disabled>Check-in</button><button class="info">Informations</button></div>'
 						 }; 
 						 
 		Entreprise[22] = {Objet :Fermat,
 						 Chemin : "Fermat.html",
-						 nom : "Bibliothèque Marie Curie",
+						 nom : "Ecole Multitechnique",
 						 srcImage : 'img/BMC2.png',
 						 swBound : new google.maps.LatLng(0, 0),
 						 neBound : new google.maps.LatLng(1, 1),
 						 bounds : null,
 						 Overlay : null,
-						 content : '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>Batiment Pierre de Fermat</b><br/></center>	<button class="checkin" disabled>Check-in</button><button class="info">Informations</button></div>'
 						 }; 
 						 
 		Entreprise[23] = {Objet :batAB,
-						 Chemin : "batAB.html",
-						 nom : "Bibliothèque Marie Curie",
+						 nom : "Formula One",
 						 srcImage : 'img/BMC2.png',
 						 swBound : new google.maps.LatLng(0, 0),
 						 neBound : new google.maps.LatLng(1, 1),
 						 bounds : null,
 						 Overlay : null,
-						 content : '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>Batiments A et B</b><br/></center>	<button class="checkin" disabled>Check-in</button><button class="info">Informations</button></div>'
 						 };
 						 
 						 
 		Entreprise[24] = {Objet :gymB,
-						 Chemin : "gymB.html",
-						 nom : "Bibliothèque Marie Curie",
+						 nom : "Badison Square Garden",
 						 srcImage : 'img/BMC2.png',
 						 swBound : new google.maps.LatLng(0, 0),
 						 neBound : new google.maps.LatLng(1, 1),
 						 bounds : null,
 						 Overlay : null,
-						 content : '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>Gymnase B</b><br/></center>			<button class="checkin" disabled>Check-in</button><button class="info">Informations</button></div>'
 						 };
 						 
 		Entreprise[25] = {Objet :SGM,
-						 Chemin : "SGM.html",
-						 nom : "Bibliothèque Marie Curie",
+						 nom : "The Material Company",
 						 srcImage : 'img/BMC2.png',
 						 swBound : new google.maps.LatLng(0, 0),
 						 neBound : new google.maps.LatLng(1, 1),
 						 bounds : null,
 						 Overlay : null,
-						 content : '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>SGM</b><br/></center>			<button class="checkin" disabled>Check-in</button><button class="info">Informations</button></div>'
 						 };
 
 	 
@@ -826,7 +776,8 @@ function initialize() {
   			Entreprise[i].Objet.setMap(map);
 			Entreprise[i].bounds = new google.maps.LatLngBounds(Entreprise[i].swBound, Entreprise[i].neBound);
 			Entreprise[i].Overlay = new google.maps.GroundOverlay(Entreprise[i].srcImage,Entreprise[i].bounds);
-		/*	Entreprise[i].Overlay.setMap(map);*/
+			Entreprise[i].index = i;
+			Entreprise[i].Overlay.setMap(map);
 		};
 
 		//fin loadmap()
@@ -893,193 +844,201 @@ function initialize() {
 		//On crée une infowindow permettant le check-in ou la demande d'informations
 		var infowindow = new google.maps.InfoWindow();
 		
+		var content_infowindow
 		
 
 		function show_myInfowindow(entreprise,position) {
 			infowindow.close(map);
+			content_infowindow = '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>'+entreprise.nom+'</b><br/></center><button id="checkin" disabled>Check-in</button><button id="info">Informations</button></div>'
+			$('#infowindow_content').html(content_infowindow);
+			infowindow.setContent($('#infowindow_content').html());
 			// Replace our Info Window's position
-			infowindow.setContent(entreprise.content);
 			infowindow.setPosition(position);
-			//infowindow.setPosition(position);
+			
 			//Si la zone est accessible par le joueur, on autorise le check-in
-			if (location_contained_or_edge(entreprise.Objet)) {
-				document.getElementsByClassName("checkin")[0].disabled = false; 
-			}
 			infowindow.open(map);
-			
-			
+
+			if (location_contained_or_edge(entreprise.Objet)) {
+				document.getElementById('checkin').disabled = false;
+			}
 			
 		} 
 		
 		
 		// Lors d'un click sur une entreprise, on affiche l'infowindow et on écoute un click possible sur "informations" ou "checkin"
 		google.maps.event.addListener(Entreprise[0].Objet,'click', function(event) {
-			show_myInfowindow(Entreprise[0],event.latLng);	
-			google.maps.event.addDomListener(document.getElementsByClassName('info')[0], 'click', function(){openinfo(Entreprise[0])})
-			google.maps.event.addDomListener(document.getElementsByClassName('checkin')[0], 'click', function(){alert("Check-in réalisé́́!")})	
+			show_myInfowindow(Entreprise[0],event.latLng);
+			domlistener(Entreprise[0]);	
+			/*google.maps.event.addDomListener(document.getElementById('info'), 'click', function(){openinfo(Entreprise[0])})
+			google.maps.event.addDomListener(document.getElementById('checkin'), 'click', function(){alert("Check-in réalisé́́!")})*/	
   		})
 		
 		google.maps.event.addListener(Entreprise[1].Objet,'click', function(event) {
 			show_myInfowindow(Entreprise[1],event.latLng);
-			google.maps.event.addDomListener(document.getElementsByClassName('info')[0], 'click', function(){openinfo(Entreprise[1])})
-			google.maps.event.addDomListener(document.getElementsByClassName('checkin')[0], 'click', function(){alert("Check-in réalisé!")})	
+			domlistener(Entreprise[1]);	
   		})
 		
 		google.maps.event.addListener(Entreprise[2].Objet,'click', function(event) {
 			show_myInfowindow(Entreprise[2],event.latLng);	
-			google.maps.event.addDomListener(document.getElementsByClassName('info')[0], 'click', function(){openinfo(Entreprise[2])})
-			google.maps.event.addDomListener(document.getElementsByClassName('checkin')[0], 'click', function(){alert("Check-in réalisé́!")})	
+			domlistener(Entreprise[2]);	
   		})
 		
 		google.maps.event.addListener(Entreprise[3].Objet,'click', function(event) {
 			show_myInfowindow(Entreprise[3],event.latLng);	
-			google.maps.event.addDomListener(document.getElementsByClassName('info')[0], 'click', function(){openinfo(Entreprise[3])})
-			google.maps.event.addDomListener(document.getElementsByClassName('checkin')[0], 'click', function(){alert("Check-in réalisé!")})	
+			domlistener(Entreprise[3]);		
   		})
 		
 		google.maps.event.addListener(Entreprise[4].Objet,'click', function(event) {
 			show_myInfowindow(Entreprise[4],event.latLng);	
-			google.maps.event.addDomListener(document.getElementsByClassName('info')[0], 'click', function(){openinfo(Entreprise[4])})
-			google.maps.event.addDomListener(document.getElementsByClassName('checkin')[0], 'click', function(){alert("Check-in réalisé!")})	
+			domlistener(Entreprise[4]);	
   		})
 		
 		google.maps.event.addListener(Entreprise[5].Objet,'click', function(event) {
 			show_myInfowindow(Entreprise[5],event.latLng);	
-			google.maps.event.addDomListener(document.getElementsByClassName('info')[0], 'click', function(){openinfo(Entreprise[5])})
-			google.maps.event.addDomListener(document.getElementsByClassName('checkin')[0], 'click', function(){alert("Check-in réalisé!")})	
+			domlistener(Entreprise[5]);		
   		})
 		
 		google.maps.event.addListener(Entreprise[6].Objet,'click', function(event) {
 			show_myInfowindow(Entreprise[6],event.latLng);	
-			google.maps.event.addDomListener(document.getElementsByClassName('info')[0], 'click', function(){openinfo(Entreprise[6])})
-			google.maps.event.addDomListener(document.getElementsByClassName('checkin')[0], 'click', function(){alert("Check-in réalisé!")})	
+			domlistener(Entreprise[6]);	
   		})
 		
 		google.maps.event.addListener(Entreprise[7].Objet,'click', function(event) {
 			show_myInfowindow(Entreprise[7],event.latLng);	
-			google.maps.event.addDomListener(document.getElementsByClassName('info')[0], 'click', function(){openinfo(Entreprise[7])})
-			google.maps.event.addDomListener(document.getElementsByClassName('checkin')[0], 'click', function(){alert("Check-in réalisé!")})	
+			domlistener(Entreprise[7]);	
   		})
 		
 		google.maps.event.addListener(Entreprise[8].Objet,'click', function(event) {
 			show_myInfowindow(Entreprise[8],event.latLng);	
-			google.maps.event.addDomListener(document.getElementsByClassName('info')[0], 'click', function(){openinfo(Entreprise[8])})
-			google.maps.event.addDomListener(document.getElementsByClassName('checkin')[0], 'click', function(){alert("Check-in réalisé!")})	
+			domlistener(Entreprise[8]);		
   		})
 		
 		google.maps.event.addListener(Entreprise[9].Objet,'click', function(event) {
 			show_myInfowindow(Entreprise[9],event.latLng);	
-			google.maps.event.addDomListener(document.getElementsByClassName('info')[0], 'click', function(){openinfo(Entreprise[9])})
-			google.maps.event.addDomListener(document.getElementsByClassName('checkin')[0], 'click', function(){alert("Check-in réalisé!")})	
+			domlistener(Entreprise[9]);		
   		})
 		
 		google.maps.event.addListener(Entreprise[10].Objet,'click', function(event) {
 			show_myInfowindow(Entreprise[10],event.latLng);	
-			google.maps.event.addDomListener(document.getElementsByClassName('info')[0], 'click', function(){openinfo(Entreprise[10])})
-			google.maps.event.addDomListener(document.getElementsByClassName('checkin')[0], 'click', function(){alert("Check-in réalisé!")})	
+			domlistener(Entreprise[10]);		
   		})
 		
 		google.maps.event.addListener(Entreprise[11].Objet,'click', function(event) {
 			show_myInfowindow(Entreprise[11],event.latLng);	
-			google.maps.event.addDomListener(document.getElementsByClassName('info')[0], 'click', function(){openinfo(Entreprise[11])})
-			google.maps.event.addDomListener(document.getElementsByClassName('checkin')[0], 'click', function(){alert("Check-in réalisé!")})	
+			domlistener(Entreprise[11]);		
   		})
 		
 		google.maps.event.addListener(Entreprise[12].Objet,'click', function(event) {
 			show_myInfowindow(Entreprise[12],event.latLng);	
-			google.maps.event.addDomListener(document.getElementsByClassName('info')[0], 'click', function(){openinfo(Entreprise[12])})
-			google.maps.event.addDomListener(document.getElementsByClassName('checkin')[0], 'click', function(){alert("Check-in réalisé!")})	
+			domlistener(Entreprise[12]);		
   		})
 		
 		google.maps.event.addListener(Entreprise[13].Objet,'click', function(event) {
 			show_myInfowindow(Entreprise[13],event.latLng);	
-			google.maps.event.addDomListener(document.getElementsByClassName('info')[0], 'click', function(){openinfo(Entreprise[13])})
-			google.maps.event.addDomListener(document.getElementsByClassName('checkin')[0], 'click', function(){alert("Check-in réalisé!")})	
+			domlistener(Entreprise[13]);	
   		})
 		
 		google.maps.event.addListener(Entreprise[14].Objet,'click', function(event) {
 			show_myInfowindow(Entreprise[14],event.latLng);	
-			google.maps.event.addDomListener(document.getElementsByClassName('info')[0], 'click', function(){openinfo(Entreprise[14])})
-			google.maps.event.addDomListener(document.getElementsByClassName('checkin')[0], 'click', function(){alert("Check-in réalisé!")})	
+			domlistener(Entreprise[14]);		
   		})
 		
 		google.maps.event.addListener(Entreprise[15].Objet,'click', function(event) {
 			show_myInfowindow(Entreprise[15],event.latLng);	
-			google.maps.event.addDomListener(document.getElementsByClassName('info')[0], 'click', function(){openinfo(Entreprise[15])})
-			google.maps.event.addDomListener(document.getElementsByClassName('checkin')[0], 'click', function(){alert("Check-in réalisé!")})	
+			domlistener(Entreprise[15]);	
   		})
 		
 		google.maps.event.addListener(Entreprise[16].Objet,'click', function(event) {
 			show_myInfowindow(Entreprise[16],event.latLng);	
-			google.maps.event.addDomListener(document.getElementsByClassName('info')[0], 'click', function(){openinfo(Entreprise[16])})
-			google.maps.event.addDomListener(document.getElementsByClassName('checkin')[0], 'click', function(){alert("Check-in réalisé!")})	
+			domlistener(Entreprise[16]);		
   		})
 		
 		google.maps.event.addListener(Entreprise[17].Objet,'click', function(event) {
 			show_myInfowindow(Entreprise[17],event.latLng);	
-			google.maps.event.addDomListener(document.getElementsByClassName('info')[0], 'click', function(){openinfo(Entreprise[17])})
-			google.maps.event.addDomListener(document.getElementsByClassName('checkin')[0], 'click', function(){alert("Check-in réalisé!")})	
+			domlistener(Entreprise[17]);		
   		})
 		
 		google.maps.event.addListener(Entreprise[18].Objet,'click', function(event) {
 			show_myInfowindow(Entreprise[18],event.latLng);	
-			google.maps.event.addDomListener(document.getElementsByClassName('info')[0], 'click', function(){openinfo(Entreprise[18])})
-			google.maps.event.addDomListener(document.getElementsByClassName('checkin')[0], 'click', function(){alert("Check-in réalisé!")})	
+			domlistener(Entreprise[18]);	
   		})
 		
 		google.maps.event.addListener(Entreprise[19].Objet,'click', function(event) {
 			show_myInfowindow(Entreprise[19],event.latLng);	
-			google.maps.event.addDomListener(document.getElementsByClassName('info')[0], 'click', function(){openinfo(Entreprise[19])})
-			google.maps.event.addDomListener(document.getElementsByClassName('checkin')[0], 'click', function(){alert("Check-in réalisé!")})	
+			domlistener(Entreprise[19]);		
   		})
 		
 		google.maps.event.addListener(Entreprise[20].Objet,'click', function(event) {
 			show_myInfowindow(Entreprise[20],event.latLng);	
-			google.maps.event.addDomListener(document.getElementsByClassName('info')[0], 'click', function(){openinfo(Entreprise[20])})
-			google.maps.event.addDomListener(document.getElementsByClassName('checkin')[0], 'click', function(){alert("Check-in réalisé!")})	
+			domlistener(Entreprise[20]);	
   		})
 		
 		google.maps.event.addListener(Entreprise[21].Objet,'click', function(event) {
 			show_myInfowindow(Entreprise[21],event.latLng);	
-			google.maps.event.addDomListener(document.getElementsByClassName('info')[0], 'click', function(){openinfo(Entreprise[21])})
-			google.maps.event.addDomListener(document.getElementsByClassName('checkin')[0], 'click', function(){alert("Check-in réalisé!")})	
+			domlistener(Entreprise[21]);		
   		})
 		
 		google.maps.event.addListener(Entreprise[22].Objet,'click', function(event) {
 			show_myInfowindow(Entreprise[22],event.latLng);	
-			google.maps.event.addDomListener(document.getElementsByClassName('info')[0], 'click', function(){openinfo(Entreprise[22])})
-			google.maps.event.addDomListener(document.getElementsByClassName('checkin')[0], 'click', function(){alert("Check-in réalisé!")})	
+			domlistener(Entreprise[22]);	
   		})
 		
 		google.maps.event.addListener(Entreprise[23].Objet,'click', function(event) {
 			show_myInfowindow(Entreprise[23],event.latLng);	
-			google.maps.event.addDomListener(document.getElementsByClassName('info')[0], 'click', function(){openinfo(Entreprise[23])})
-			google.maps.event.addDomListener(document.getElementsByClassName('checkin')[0], 'click', function(){alert("Check-in réalisé!")})	
+			domlistener(Entreprise[23]);	
   		})
 		
 		google.maps.event.addListener(Entreprise[24].Objet,'click', function(event) {
 			show_myInfowindow(Entreprise[24],event.latLng);	
-			google.maps.event.addDomListener(document.getElementsByClassName('info')[0], 'click', function(){openinfo(Entreprise[24])})
-			google.maps.event.addDomListener(document.getElementsByClassName('checkin')[0], 'click', function(){alert("Check-in réalisé!")})	
+			domlistener(Entreprise[24]);		
   		})
 		
 		google.maps.event.addListener(Entreprise[25].Objet,'click', function(event) {
 			show_myInfowindow(Entreprise[25],event.latLng);	
-			google.maps.event.addDomListener(document.getElementsByClassName('info')[0], 'click', function(){openinfo(Entreprise[25])})
-			google.maps.event.addDomListener(document.getElementsByClassName('checkin')[0], 'click', function(){alert("Check-in réalisé!")})	
+			domlistener(Entreprise[25]);		
   		})
 		
-		
-		function openinfo(entreprise) {
-			
-			document.getElementById('image_entreprise').setAttribute('src',entreprise.srcImage)
-			$('#nom_entreprise').html(entreprise.nom);
-			$('#entreprise_active').html(entreprise.nom);
-			$.mobile.changePage("#Entreprise");
-			infowindow.close(map);
+		function domlistener(entreprise) {
+			google.maps.event.addDomListener(document.getElementById('info'), 'click', function(){openinfo(entreprise)})
+			google.maps.event.addDomListener(document.getElementById('checkin'), 'click', function(){alert("Check-in réalisé́́!")})	
 		}
-  	
 		
+		
+		var ok_ordre = false
+		function openinfo(entreprise) {
+			//On charge l'image de l'entreprise sur la page de l'entreprise
+			document.getElementById('image_entreprise').setAttribute('src',entreprise.srcImage)
+			//On écrit le nom de l'entreprise dans le header
+			$('#nom_entreprise').html(entreprise.nom);
+			//On écrit le nom de l'entreprise dans le champ nom où il faut passer l'ordre
+			$('#entreprise_active').html(entreprise.nom);
+			$('#index_entreprise').html(entreprise.index);
+			
+			//On vérifie que l'on puisse bien passer un ordre
+				ok_ordre = true;		
+			if (document.getElementById('checkin').disabled == true) {				
+				ok_ordre = false;
+			}
+			//On ferme l'infowindow	
+			infowindow.close(map);
+			//On affiche la page entreprise
+			$.mobile.changePage("#Entreprise");
+		}
+		 	
+			//On grise(respectivement dégrise) l'onglet passer un ordre si on est pas sur la zone
+			$(document).on("pagebeforeshow", "#Entreprise", function() {
+				if (ok_ordre==false) {	
+					$("#tabs").tabs("option", "disabled", [2]);
+				}
+				else {
+					$( "#tabs" ).tabs( "enable", 2 );
+				}
+				
+				//On affiche l'onglet profil par défaut
+				var idx = $('#tabs a[href="#Profil"]').parent().index();
+				$("#tabs").tabs( "option", "active", idx );
+				
+			});
 	
 //fin initialize
 }

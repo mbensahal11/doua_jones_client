@@ -33,6 +33,12 @@
 <!--Code Javascript externe -->  	 
    	<script src="js/map.js"> </script>
     <script src="js/entreprise.js"></script>
+    <script src="js/send.js"></script>
+    
+    
+ <!-- Socket io-->
+ 
+ 	<script type="text/javascript" src= "http://127.0.0.1:8080/socket.io/socket.io.js"></script>
     
     
  <!-- Fichiers css -->
@@ -91,6 +97,7 @@
             <h1>Carte du campus</h1>
         </div>
         <div data-role="content" id="map-canvas"></div>
+        <div id="infowindow_content" style="display:none"></div>
 	</div>
       
 <!-- Page Entreprise -->
@@ -113,7 +120,7 @@
                   <ul>
                       <li><a href="#Profil" data-ajax="false">Profil</a></li>
                       <li><a href="#Performance" data-ajax="false">Performance</a></li>
-                      <li><a href="#Passer_un_ordre" data-ajax="false">Passer un ordre</a></li>
+                      <li><a href="#Passer_un_ordre" data-ajax="false" disabled>Passer un ordre</a></li>
                   </ul>
               </div>
               
@@ -175,7 +182,9 @@
                       
                       <div class="ui-field-contain">
       					<label for="select-custom-16">Entreprise</label>
-                        <a href="#" data-role="button" id="entreprise_active"></a>
+                        <textarea cols="40" rows="1" name="textarea" id="entreprise_active" disabled style="resize:none; height:40px"></textarea>
+                        <textarea id="index_entreprise"  style="display:none;"></textarea>
+                        
                        </div>
       
                       
@@ -221,11 +230,11 @@
                           <li class="ui-field-contain">                 
                               <fieldset data-role="controlgroup" data-type="horizontal" data-mini="false" id="validite" style="border:none">
                                   <legend>Date de validité</legend>
-                                  <input type="radio" name="radio-choice-b" id="radio-choice-1" value="Aujourdhui" checked="true" >
+                                  <input type="radio" name="radio-choice-type-date" id="radio-choice-1" value="Aujourdhui" checked="true" >
                                   <label for="radio-choice-1">Aujourd'hui</label>
-                                  <input type="radio" name="radio-choice-b" id="radio-choice-2" value="Date">
+                                  <input type="radio" name="radio-choice-type-date" id="radio-choice-2" value="Date">
                                   <label for="radio-choice-2">Date</label>
-                                  <input type="radio" name="radio-choice-b" id="radio-choice-3" value="Révocation">
+                                  <input type="radio" name="radio-choice-type-date" id="radio-choice-3" value="Révocation">
                                   <label for="radio-choice-3">Révocation</label>
                               </fieldset>
                               
@@ -241,7 +250,7 @@
       <!-- Bouton d'envoi -->
                       
                        <div class="ui-field-contain">
-                       		<input type="submit" value="Valider" />
+                       		<input type="submit" value="Passer ordre" />
                        
                       </div>
                   </form>
