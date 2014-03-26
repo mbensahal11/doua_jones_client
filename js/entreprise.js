@@ -1,6 +1,6 @@
 // JavaScript Document
 $(document).on("pageshow", "#Entreprise", function() {
-			var socket = io.connect('http://localhost:8080');
+			
           //Champ désactivé lors du chargement de la page
               $( "#saisiedate" ).prop( "disabled", true );
               
@@ -26,20 +26,63 @@ $(document).on("pageshow", "#Entreprise", function() {
                   }
               });
               
-              /*Plug-in Validate
-              $("#commentForm").validate(); */
+			  //Gestion de l'affichage des champs en fonction du type d'ordre choisi 
+			  
+			  $("#selectordre").on("change",function() {
+			//Ordre à cours limité
+				   if ($(this).val() === '1') { 
+					  $("#declenchement").hide();
+					  $("#Prix").prop("disabled",false);
+				  }
+			//ordre au marché
+				  if ($(this).val() === '2') { 
+					  $("#declenchement").hide();
+					  $("#Prix").prop("disabled",true);
+				  }
+			//Ordre à déclenchement
+				  if ($(this).val() === '3') {
+					  $("#declenchement").show();
+					  $("#Prix").prop("disabled",true);
+
+				  }
+			//Ordre à la meilleure limite
+				  if ($(this).val() === '4') { 
+					  $("#declenchement").hide();
+					  $("#Prix").prop("disabled",true);
+				  }  
+				});
+			
+			//Valeur selon le type de déclenchement
+			$("#typedeclenchement input").on("click",function(event) { 				//seuil
+				if (event.target.id=="radio-choice-h-2a") {
+				$("#vplage").hide();
+				$("#vplagelabel").hide();
+				$("#vseuil").show();	
+				$("#vseuillabel").show();
+				}
+				//plage
+				if (event.target.id=="radio-choice-h-2b") {
+				$("#vseuil").hide();
+				$("#vseuillabel").hide();
+				$("#vplage").show();
+				$("#vplagelabel").show();					
+				}					
+			});
+	
+             
                  
               // Pas de texte dans des input nombres
-              $(document).on("keypress","#Prix, #Nombre",function (e){
+              $(document).on("keypress","#Prix, #Nombre,#vplage, #vseuil",function (e){
                   var ev= e||window.event;
                   var k=ev.keyCode || ev.which; 
-                  if (k>57 || k<46) {
+                  if ((k>57 || k<46) && (k!=8)) {
                       ev.returnValue=false; 
                       if (ev.preventDefault) 
                           ev.preventDefault(); 
                   }
               });	
                  
+				 
               // Envoi et réinitialisation du formulaire
               
               $('#commentForm').submit(function(event) {
@@ -48,18 +91,36 @@ $(document).on("pageshow", "#Entreprise", function() {
                   if ( !$('#Prix').val()) {
                   	$('#requis').text('Il faut saisir un prix !');}
                   else {
+					  
 					 //On récupère l'index actif du type de date
-					var radioButtons = $("input:radio[name='radio-choice-type-date']");
-					var selectedIndex = radioButtons.index(radioButtons.filter(':checked'));
+					var radio_type_date = $("input:radio[name='radio-choice-type-date']");
+					var index_type_date = radio_type_date.index(radio_type_date.filter(':checked'));
 					
+					//On récupère l'index actif du type de déclenchement
+					var radio_type_declenchement = $("input:radio[name='radio-choice-type-declenchement']");
+					var index_type_declenchement = radio_type_declenchement.index(radio_type_declenchement.filter(':checked'));
+					
+					var socket = io.connect('http://localhost:8080');
 					//On envoie les données de l'ordre
-					socket.emit('ordre',{entreprise:$('#index_entreprise').text(),sens:$('#select-custom-17').val(),type:$('#select-custom-18').val(),prix:$('#Prix').val(),nombre:$('#Nombre').val(),type_date:selectedIndex,date:$('#saisiedate').val()});
+					socket.emit('ordre',{
+						entreprise:parseFloat($('#index_entreprise').text()),
+						sens:parseFloat($('#select-custom-17').val()),
+						type_ordre:parseFloat($('#selectordre').val()),
+						prix:parseFloat($('#Prix').val()),
+						nombre:parseFloat($('#Nombre').val()),
+						type_declenchement: index_type_declenchement,
+						seuil:parseFloat($('#vseuil').val()),
+						plage_min:parseFloat($('#range-10a').val()),
+						plage_max:parseFloat($('#range-10b').val()),
+						type_date:index_type_date,
+						date:$('#saisiedate').val()
+						});
 					
 					//On remet le formulaire à zéro
 					  var myselectun = $( "#select-custom-17" );
 					  myselectun[0].selectedIndex = 0;
 					  myselectun.selectmenu( "refresh" );
-					  var myselectdeux = $( "#select-custom-18" );
+					  var myselectdeux = $( "#selectordre" );
 					  myselectdeux[0].selectedIndex = 0;
 					  myselectdeux.selectmenu( "refresh" );
 					  $("#Prix").val('');

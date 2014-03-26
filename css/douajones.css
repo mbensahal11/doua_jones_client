@@ -19,6 +19,7 @@ div.ui-datepicker, .ui-datepicker td a, ui-datepicker-calendar mobile-enhanced t
 	background-color: #b81c1c;
 }
 
+/* CSS de la carte */
 #map-canvas{
 padding-top:10%;
 padding-bottom:10%;
@@ -31,23 +32,41 @@ overflow:hidden;
 display:block;
 }
 
-#popupmodal {
 
+/* bouton checkin de l'infowindow */
+#checkin {
+	width: 200px;
+	height: 70px;
+	margin-left: 5px;
+	margin-top:20px;
+	background-color:#820000;
+	color:white;
+	font-size:16px;
+	font-weight:bold;
+	border:1px solid;
+	border-radius:15px;
 }
-
-
-.checkin {
-	width: 100px;
-	height: 30px;
-	margin: 5px;
+ /*bouton info de l'infowindow*/
+#info {
+	width: 200px;
+	height: 70px;
+	margin-left:5px;
+	margin-top:10px;
+	margin-bottom:15px;
+	background-color:#820000;
+	color:white;
+	font-size:16px;
+	font-weight:bold;
+	border:1px solid;
+	border-radius:15px;
 }
-
-.info {
-	width: 100px;
-	height: 30px;
-	margin: 5px;
-}
-
+ /* nom du département dans l'infowindow*/
 .departement {
-	font-size:14px;
+	font-size:18px;
+}
+
+#ecran_chat {
+	height:100%;
+	width:100%;
+	background-color:#CB2427;
 }

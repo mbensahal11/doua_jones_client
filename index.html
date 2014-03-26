@@ -75,7 +75,7 @@
                     <div class="ui-block-b" style="height:70px;"><a href="#"><img src="img/mon compte icone.png" class="bouton_acc"></a></div>
                     <div class="ui-block-a" style="text-align:center ; margin-bottom:5px;">Missions</div>
                     <div class="ui-block-b" style="text-align:center; margin-bottom:5px;">Mon Profil</div>
-                    <div class="ui-block-a" style="height:70px;"><a href="#"><img src="img/social icone.png" class="bouton_acc"></a></div>
+                    <div class="ui-block-a" style="height:70px;"><a href="#chat"><img src="img/social icone.png" class="bouton_acc"></a></div>
                     <div class="ui-block-b" style="height:70px;"><a href="#"><img src="img/Classement.png" class="bouton_acc"></a></div>
                     <div class="ui-block-a" style="text-align:center; margin-bottom:5px;">Social</div>
                     <div class="ui-block-b" style="text-align:center; margin-bottom:5px;">Classement</div>
@@ -99,6 +99,23 @@
         <div data-role="content" id="map-canvas"></div>
         <div id="infowindow_content" style="display:none"></div>
 	</div>
+    
+<!-- Chat -->
+    <div data-role="page" id="chat">
+      <div data-role="header">
+      	<a href='#' data-rel="back" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-notext"></a>
+        <a href="#" class="ui-icon-info ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-notext">No text</a>   
+        <h1>Chat</h1>
+      </div>
+      <div data-role="content" id="ecran_chat">
+      	
+      
+        
+      </div>
+    </div>
+
+
+        
       
 <!-- Page Entreprise -->
 
@@ -108,7 +125,7 @@
   <!-- Header Entreprise -->
       
           <div data-role="header" style="border-bottom-width: 0px;">
-              <h1 id="nom_entreprise">Génie Industriel</h1>
+              <h1 id="nom_entreprise"></h1>
               <a href='#' data-rel="back" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-notext"></a> <a href='#'class="ui-btn ui-btn-right ui-corner-all ui-icon-info ui-btn-icon-notext"></a> 
           </div>
           
@@ -202,22 +219,57 @@
                       
                       <div class="ui-field-contain">
                           <label for="select-custom-18">Type d'ordre</label>
-                          <select name="select-custom-18" id="select-custom-18" data-native-menu="false">
+                          <select name="select-custom-18" id="selectordre" data-native-menu="false">
                               <option value="1" selected="selected">Ordre à cours limité</option>
                               <option value="2">Ordre au marché </option>
+                              <option value="3">Ordre à déclenchement </option>
+                              <option value="4">Ordre à la meilleure limite</option>
                           </select>
                       </div>
                       
-  <!-- Listview qui contient PRIX, NOMBRE et DATE DE VALIDITE  -->
+ <!-- Listview qui contient PRIX, NOMBRE et DATE DE VALIDITE  -->
                       
                       <ul data-role="listview" data-inset="true">
+                      
+		<!--PRIX-->                   
                           <li class="ui-field-contain">
-                              <label for="Prix">Prix</label>
-                              <textarea cols="40" rows="8" name="textarea" id="Prix" class="required" style="width:80px; height:40px; display:inline-block; resize:none;"></textarea>
-                              <p style="display:inline-block ; font-size:16px; margin-left:5px">BMC Flouz</p>
+                              <label for="Prix">Prix (en BMC Flouz)</label>
+                              <textarea cols="40" rows="8" name="textarea" id="Prix" class="required" style="width:80px; height:40px; display:inline-block; resize:none;"></textarea>   
                               <div id="requis">
                               </div>
                           </li>  
+                          
+		<!--TYPE DE DECLENCHEMENT-->                   
+                          <li class="ui-field-contain" style="display:none;" id="declenchement">
+                            <fieldset data-role="controlgroup" data-type="horizontal" style="border:none;" id="typedeclenchement">
+                                <legend>Type de déclenchement</legend>
+                                <input type="radio" name="radio-choice-type-declenchement" id="radio-choice-h-2a" value="Seuil" checked="checked">
+                                <label for="radio-choice-h-2a">Seuil</label>
+                                <input type="radio" name="radio-choice-type-declenchement" id="radio-choice-h-2b" value="Plage">
+                                <label for="radio-choice-h-2b">Plage</label>
+                            </fieldset>  
+                                                  	
+      <!--SAISIE DU SEUIL OU DE LA PLAGE-->    
+
+      	<!--SAISIE DU SEUIL-->    
+      
+                            <label for="vseuil" style="margin-top:10px;"id="vseuillabel">Saisir le seuil
+                            </label>
+                            <textarea cols="40" rows="8" name="textarea" id="vseuil" style="width:80px; height:40px; resize:none;  margin-top:10px;">
+                            </textarea>  
+
+     <!--SAISIE DE LA PLAGE-->    
+                             
+                            <div data-role="rangeslider" style="margin-top:10px; display:none;" id="vplage">
+                            	<label for="range-10a" id="vplagelabel" style="display:none; margin-top:10px;">Saisir la plage
+                                </label>
+                                <input type="range" name="range-10a" id="range-10a" min="0" max="100" step=".01" value="0">
+                                <label for="range-10b">Saisir la plage
+                                </label>
+                                <input type="range" name="range-10b" id="range-10b" min="0" max="100" step=".01" value="100">
+                              </div>
+                          
+                          </li>
       <!--NOMBRE-->
                       
                           <li class="ui-field-contain">
