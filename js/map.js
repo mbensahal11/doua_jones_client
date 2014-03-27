@@ -1,17 +1,12 @@
 // JavaScript Document
-
+//On met la page en cache
+$.mobile.page.prototype.options.domCache = true
 //On attend le chargement de la page avant de lancer la fonction d'initialisation
-$(document).on("pageinit", "#map", function() {
+$(document).on("pageshow", "#map", function() {
 	if ($("#map-canvas").html() === '') {
 		initialize();
 	}
 });
-$(document).on("pageshow", "#map", function() {
-	if (!$("#map-canvas").html() === '') {
-		google.maps.event.trigger(currentMap, 'resize');
-	}
-});
-
 	
 function initialize() {
 	
@@ -34,7 +29,7 @@ function initialize() {
 		streetViewControl: false
   		};
 	
-	 map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	 var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 	 
 	 // On définit les coordonnées de chaque zone
   		var GICoords = [
