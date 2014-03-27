@@ -38,7 +38,7 @@
     
  <!-- Socket io-->
  
- 	<script type="text/javascript" src= "http://127.0.0.1:8080/socket.io/socket.io.js"></script>
+ 	<script type="text/javascript" src= "http://192.168.0.50:8080/socket.io/socket.io.js"></script>
     
     
  <!-- Fichiers css -->
@@ -48,6 +48,25 @@
 
 
 	<body>
+    
+<!-- Page connexion/Inscription  --> 
+<!--
+
+		<div data-role="page" id="Accueil_jeu" style=" background:-webkit-radial-gradient(#e65858,#8c1515); background:-moz-radial-gradient(#e65858,#8c1515); background:-o-radial-gradient(#e65858,#8c1515); background:radial-gradient(#e65858,#8c1515);">
+            <div data-role="header">    
+                <h1>Doua Jones</h1>
+            </div>
+			<form id="connexion" data-ajax="false">
+            	<label for="pseudo">Pseudo:</label>
+            	<input type="text" name="name" id="pseudo" value=""  />
+                
+                
+            </form>
+	
+
+		</div>
+ -->   
+    
 <!--Page d'accueil -->
     
     
@@ -209,8 +228,8 @@
                     <div class="ui-field-contain">
                           <label for="select-custom-17">Sens de l'ordre</label>
                           <select name="select-custom-17" id="select-custom-17" data-native-menu="false">
-                              <option value="1" selected="selected">Achat</option>
-                              <option value="2">Vente</option>
+                              <option value="achat" selected="selected">Achat</option>
+                              <option value="vente">Vente</option>
                           </select>
                       </div>
                       
@@ -220,10 +239,10 @@
                       <div class="ui-field-contain">
                           <label for="select-custom-18">Type d'ordre</label>
                           <select name="select-custom-18" id="selectordre" data-native-menu="false">
-                              <option value="1" selected="selected">Ordre à cours limité</option>
-                              <option value="2">Ordre au marché </option>
-                              <option value="3">Ordre à déclenchement </option>
-                              <option value="4">Ordre à la meilleure limite</option>
+                              <option value="cours_limite" selected="selected">Ordre à cours limité</option>
+                              <option value="au_marche">Ordre au marché </option>
+                              <option value="seuil_declenchement">Ordre à déclenchement </option>
+                              <option value="meilleure_limite">Ordre à la meilleure limite</option>
                           </select>
                       </div>
                       
@@ -233,7 +252,7 @@
                       
 		<!--PRIX-->                   
                           <li class="ui-field-contain">
-                              <label for="Prix">Prix (en BMC Flouz)</label>
+                              <label for="Prix">Prix (en ฿)</label>
                               <textarea cols="40" rows="8" name="textarea" id="Prix" class="required" style="width:80px; height:40px; display:inline-block; resize:none;"></textarea>   
                               <div id="requis">
                               </div>
@@ -257,6 +276,8 @@
                             </label>
                             <textarea cols="40" rows="8" name="textarea" id="vseuil" style="width:80px; height:40px; resize:none;  margin-top:10px;">
                             </textarea>  
+                            <div id="seuilrequis">
+                            </div>
 
      <!--SAISIE DE LA PLAGE-->    
                              

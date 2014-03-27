@@ -869,8 +869,6 @@ function initialize() {
 		google.maps.event.addListener(Entreprise[0].Objet,'click', function(event) {
 			show_myInfowindow(Entreprise[0],event.latLng);
 			domlistener(Entreprise[0]);	
-			/*google.maps.event.addDomListener(document.getElementById('info'), 'click', function(){openinfo(Entreprise[0])})
-			google.maps.event.addDomListener(document.getElementById('checkin'), 'click', function(){alert("Check-in réalisé́́!")})*/	
   		})
 		
 		google.maps.event.addListener(Entreprise[1].Objet,'click', function(event) {
@@ -1000,9 +998,18 @@ function initialize() {
 		
 		function domlistener(entreprise) {
 			google.maps.event.addDomListener(document.getElementById('info'), 'click', function(){openinfo(entreprise)})
-			google.maps.event.addDomListener(document.getElementById('checkin'), 'click', function(){alert("Check-in réalisé́́!")})	
+			google.maps.event.addDomListener(document.getElementById('checkin'), 'click', function(){checkin(entreprise)})	
 		}
 		
+		function checkin(entreprise) {
+			var socket = io.connect('http://localhost:8081');
+			//On envoie les données du checkin
+			socket.emit('checkin',{
+			entreprise : entreprise.nom,
+			joueur : "J'aime me battre",
+			});
+			alert('checkin réalisé');
+		}
 		
 		var ok_ordre = false
 		function openinfo(entreprise) {
@@ -1028,7 +1035,7 @@ function initialize() {
 			//On grise(respectivement dégrise) l'onglet passer un ordre si on est pas sur la zone
 			$(document).on("pagebeforeshow", "#Entreprise", function() {
 				if (ok_ordre==false) {	
-					$("#tabs").tabs("option", "disabled", [2]);
+				/*	$("#tabs").tabs("option", "disabled", [2]);*/
 				}
 				else {
 					$( "#tabs" ).tabs( "enable", 2 );
