@@ -7,6 +7,7 @@ $(document).on("pageshow", "#map", function() {
 		initialize();
 	}
 	google.maps.event.trigger(map, "resize");
+	map.setOptions(mapOptions);
 });
 
 	
@@ -24,14 +25,14 @@ function initialize() {
 	];
 	
 	//Les options de la carte
-	var mapOptions = {
+	 mapOptions = {
     	zoom: 14,
     	center: new google.maps.LatLng(45.7840383, 4.8776921),
 		styles : myStyles,
 		streetViewControl: false
   		};
 	
-	 var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 	 
 	 // On définit les coordonnées de chaque zone
   		var GICoords = [
