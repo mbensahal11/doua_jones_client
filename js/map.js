@@ -6,6 +6,12 @@ $(document).on("pageinit", "#map", function() {
 		initialize();
 	}
 });
+$(document).on("pageshow", "#map", function() {
+	if (!$("#map-canvas").html() === '') {
+		google.maps.event.trigger(currentMap, 'resize');
+	}
+});
+
 	
 function initialize() {
 	
