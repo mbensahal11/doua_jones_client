@@ -1,12 +1,14 @@
 // JavaScript Document
-//On met la page en cache
-$.mobile.page.prototype.options.domCache = true
+
+
 //On attend le chargement de la page avant de lancer la fonction d'initialisation
 $(document).on("pageshow", "#map", function() {
 	if ($("#map-canvas").html() === '') {
 		initialize();
 	}
+	google.maps.event.trigger(map, "resize");
 });
+
 	
 function initialize() {
 	
