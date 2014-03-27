@@ -28,7 +28,7 @@ function initialize() {
 		streetViewControl: false
   		};
 	
-	 var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	 map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 	 
 	 // On définit les coordonnées de chaque zone
   		var GICoords = [
