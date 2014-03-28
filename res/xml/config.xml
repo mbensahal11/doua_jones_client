@@ -7,5 +7,6 @@
     <content src="index.html" />
     <access origin="*" />
 </widget>
-<plugin name="Geolocation" value="org.apache.cordova.GeoBroker" />
+<plugin name="Geolocation" value="org.apache.cordova.GeoBroker">
+</plugin>
 
