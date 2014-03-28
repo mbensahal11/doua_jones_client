@@ -168,7 +168,7 @@ $(document).on("pageshow", "#Entreprise", function() {
 							prix_action = parseFloat($('#Prix').val());
 						}
 						
-						var socket = io.connect('http://192.168.0.50:8080');
+						var socket = io.connect('http://134.214.47.247:8080');
 						//On envoie les données de l'ordre
 						socket.emit('setOrdre',{
 							idJoueur:1,

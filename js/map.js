@@ -7,7 +7,6 @@ $(document).on("pageshow", "#map", function() {
 		initialize();
 	}
 	google.maps.event.trigger(map, "resize");
-	map.setOptions(mapOptions);
 });
 
 	
@@ -853,7 +852,7 @@ function initialize() {
 
 		function show_myInfowindow(entreprise,position) {
 			infowindow.close(map);
-			content_infowindow = '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>'+entreprise.nom+'</b><br/></center><button id="checkin" disabled>Check-in</button><button id="info">Informations</button></div>'
+			content_infowindow = '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>'+entreprise.nom+'</b><br/></center><button id="checkin" >Check-in</button><button id="info">Informations</button></div>'
 			$('#infowindow_content').html(content_infowindow);
 			infowindow.setContent($('#infowindow_content').html());
 			// Replace our Info Window's position
@@ -1004,17 +1003,19 @@ function initialize() {
 			google.maps.event.addDomListener(document.getElementById('info'), 'click', function(){openinfo(entreprise)})
 			google.maps.event.addDomListener(document.getElementById('checkin'), 'click', function(){checkin(entreprise)})	
 		}
-		
+		var socket = io.connect('http://134.214.47.247:8080');
 		function checkin(entreprise) {
-			var socket = io.connect('http://localhost:8081');
 			//On envoie les données du checkin
-			socket.emit('checkin',{
-			entreprise : entreprise.nom,
-			joueur : "J'aime me battre",
+			socket.emit('setCheckin',{
+			idEntreprise : entreprise.index,
+			idJoueur : 1,
 			});
-			alert('checkin réalisé');
+			
 		}
-		
+		socket.on('resultSetCheckin', function (result) {
+			alert(result);
+			});
+			
 		var ok_ordre = false
 		function openinfo(entreprise) {
 			//On charge l'image de l'entreprise sur la page de l'entreprise
