@@ -476,7 +476,7 @@ function initialize() {
   		//On stocke toutes les entreprises dans un tableau d'objets possédant des informations propres aux zones
 		var Entreprise = [];
 		Entreprise[0] = {Objet :GI,
-						 nom : "INSA Logistics",
+						 nom : "Total Logistics",
 						 srcImage : 'img/carrefour.png',
 						 //Coordonnées sud-ouest de l'image
 						 swBound : new google.maps.LatLng(0, 0),
