@@ -1,6 +1,83 @@
 // JavaScript Document
 $(document).on("pageshow", "#Entreprise", function() {
 			
+			//Graphe page performance
+			$(function() {
+		
+					
+		var btGetCours = document.getElementById("btGetCours");
+
+		var socket = io.connect('http://88.172.179.93:6060');
+
+		socket.emit("getCoursEntreprise", 1);
+
+		var values;
+	
+		socket.on("resultGetCoursEntreprise", function(datas){
+	
+			values = [{ data: datas, label: "Cours", }];
+
+			$.plot("#placeholder", values, {
+				xaxis: {
+					mode: "time",
+					min: (new Date(currentYear,currentMonth,currentDay)).getTime(),
+					max: (new Date(currentYear,currentMonth,currentDay+1)).getTime(),
+				},
+				lines: {fill:true},
+				legend: {position:"nw", backgroundOpacity:0.3}		
+				//	zoom: {interactive: true},
+				//	pan: {interactive: true}
+			});	
+		});
+			
+		var currentMonth=(new Date()).getMonth() ;
+		var currentDay=(new Date()).getDate();
+		var currentYear=(new Date()).getFullYear();
+				
+		$("#today").click(function () {
+			$.plot("#placeholder", values, {
+				xaxis: {
+					mode: "time",
+					min: (new Date(currentYear,currentMonth,currentDay)).getTime(),
+					max: (new Date(currentYear,currentMonth,currentDay+1)).getTime(),
+				},
+				lines: {fill:true},
+				legend: {position:"nw", backgroundOpacity:0.3},
+			});
+		});
+
+		
+		$("#lastweek").click(function () {
+			$.plot("#placeholder", values, {
+				xaxis: {
+					mode: "time",
+					minTickSize: [1, "day"],
+					min: (new Date(currentYear,currentMonth,currentDay-7)).getTime(),
+					max: (new Date(currentYear,currentMonth,currentDay+1)).getTime(),
+					timeformat: "%e/%m",
+				//	dayNames: ["dim", "lun", "mar", "mer", "jeu", "ven", "sam"]
+				},
+				lines: {fill:true},
+				legend: {position:"nw", backgroundOpacity:0.3},
+			});
+		});
+		
+		$("#lastmonth").click(function () {
+			$.plot("#placeholder", values, {
+				xaxis: {
+					mode: "time",
+					min: (new Date(currentYear, currentMonth-1, currentDay)).getTime(),
+					max: (new Date(currentYear, currentMonth, currentDay)).getTime(),
+				timeformat: "%e/%m",
+				},
+				lines: {fill:true},
+				legend: {position:"nw", backgroundOpacity:0.3},
+			});
+		});
+
+	});
+			
+			
           //Champ désactivé lors du chargement de la page
               $( "#saisiedate" ).prop( "disabled", true );
               
@@ -168,7 +245,7 @@ $(document).on("pageshow", "#Entreprise", function() {
 							prix_action = parseFloat($('#Prix').val());
 						}
 						
-						var socket = io.connect('http://134.214.47.247:8080');
+						var socket = io.connect('http://localhost:8080');
 						//On envoie les données de l'ordre
 						socket.emit('setOrdre',{
 							idJoueur:1,

@@ -13,6 +13,9 @@
   	<link href="jquery.mobile-1.4.0/jquery.mobile.icons-1.4.0.min.css" rel="stylesheet" type="text/css">
   	<script src="jquery-ui-1.10.4.custom/jquery.mobile.datepicker.js"></script>
   	<script src="jquery-ui-1.10.4.custom/jquery.ui.datepicker.js"></script>
+    <script src="flot/jquery.flot.min.js"></script>
+    <script src="flot/jquery.flot.navigate.min.js"></script>
+    <script src="flot/jquery.flot.time.min.js"></script>
     <link href="jquery-ui-1.10.4.custom/jquery.mobile.datepicker.css">
 
  <!--Thème Stanford -->
@@ -35,12 +38,13 @@
 <!--Code Javascript externe -->  	 
    	<script src="js/map.js"> </script>
     <script src="js/entreprise.js"></script>
+    <script src="js/chat.js"></script>
     <script src="js/send.js"></script>
     
     
  <!-- Socket io-->
  
- 	<script type="text/javascript" src= "http://134.214.47.247:8080/socket.io/socket.io.js"></script>
+ 	<script type="text/javascript" src= "http://127.0.0.1:8080/socket.io/socket.io.js"></script>
     
     
  <!-- Fichiers css -->
@@ -51,23 +55,7 @@
 
 	<body>
     
-<!-- Page connexion/Inscription  --> 
-<!--
-
-		<div data-role="page" id="Accueil_jeu" style=" background:-webkit-radial-gradient(#e65858,#8c1515); background:-moz-radial-gradient(#e65858,#8c1515); background:-o-radial-gradient(#e65858,#8c1515); background:radial-gradient(#e65858,#8c1515);">
-            <div data-role="header">    
-                <h1>Doua Jones</h1>
-            </div>
-			<form id="connexion" data-ajax="false">
-            	<label for="pseudo">Pseudo:</label>
-            	<input type="text" name="name" id="pseudo" value=""  />
-                
-                
-            </form>
-	
-
-		</div>
- -->   
+ 
     
 <!--Page d'accueil -->
     
@@ -96,7 +84,7 @@
                     <div class="ui-block-b" style="height:70px;"><a href="#"><img src="img/mon compte icone.png" class="bouton_acc"></a></div>
                     <div class="ui-block-a" style="text-align:center ; margin-bottom:5px;">Missions</div>
                     <div class="ui-block-b" style="text-align:center; margin-bottom:5px;">Mon Profil</div>
-                    <div class="ui-block-a" style="height:70px;"><a href="#chat"><img src="img/social icone.png" class="bouton_acc"></a></div>
+                    <div class="ui-block-a" style="height:70px;"><a href="#chat"><img src="img/social icone.png" id="bouton_chat" class="bouton_acc"></a></div>
                     <div class="ui-block-b" style="height:70px;"><a href="#"><img src="img/Classement.png" class="bouton_acc"></a></div>
                     <div class="ui-block-a" style="text-align:center; margin-bottom:5px;">Social</div>
                     <div class="ui-block-b" style="text-align:center; margin-bottom:5px;">Classement</div>
@@ -121,20 +109,86 @@
         <div id="infowindow_content" style="display:none"></div>
 	</div>
     
+    
 <!-- Chat -->
     <div data-role="page" id="chat">
-      <div data-role="header">
-      	<a href='#' data-rel="back" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-notext"></a>
-        <a href="#" class="ui-icon-info ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-notext">No text</a>   
-        <h1>Chat</h1>
-      </div>
-      <div data-role="content" id="ecran_chat">
-      	
-      
-        
-      </div>
-    </div>
+    	<div  data-role="header" data-position="fixed" data-tap-toggle="false" style="border-bottom-width: 0px;">
+      		<a href='#' data-rel="back" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-notext"></a>
+        	<a href="#" class="ui-icon-info ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-notext">No text</a>   
+        	<h1>Chat</h1>
+      	</div>
+  
+      		<!-- TABS Chat -->
+          
+         	<div data-role="tabs" id="tabs_chat" style="padding-bottom: 3.2; padding-top: 0px;padding-right: 0px;padding-left: 0px;" >
+              <div data-role="navbar" id="navbar_chat" style="z-index:1;width:100%">
+                  <ul>
+                      <li><a href="#Tchat_global" data-ajax="false">Tchat global</a></li>
+                      <li><a href="#Tchat_prive" data-ajax="false">Tchat privé</a></li>  
+                      <li><a href="#Tchat_societe" data-ajax="false">Tchat société d'investissement</a></li>  
+                  </ul>
+              </div>
+      			
+            
+            	<div id="Tchat_global">  
+                	<div id="div_champs_chat">
+                    	<div id='chat_blank' style="height : 40px"> 
+                        </div>
+                    </div>
+                    <div id="div_chat_send">
+                        <form id="send_chatmessage_form" data-ajax="false">
+                            <div id="champ_texte_chat">
+                                <input type="text" name="message_input" id="message_input" value="" /> 
+                            </div>
+                            <div id="send_icon">
+                            <input type="image" id="send_chatmessage"  src="img/send.png" /> 
+                            </div>   
+                        </form> 
+                    </div>
+            	</div>
+                
+            	<div id="Tchat_prive">
+                	<div data-role="popup" id="popupmess" data-overlay-theme="b" data-theme="b" data-corners="false" data-tolerance="15,15" style="padding:20px;width:1000px;height:500px">
+					<a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+                   	
+								<form id="search_destinataire" data-ajax="false">
+        							<input type="search"  id="destinataire_entre" value="" />
+            					</form>
+        						<div id="destinataire">
+            						Test
+            					</div>
+					</div>
+                	<div id='chat_blank' style="height : 40px"> 
+                    </div>
+                   
+                    	<a href="" id='new_mail' >
+                    		<img src="img/new_mail.png" style="height:50px;width:50px;">
+                        </a>
+               			<ul data-role="listview" data-theme="a" data-dividertheme="a" data-filter="true" data-filter-theme="a" data-filter-placeholder="Rechercher parmi les messages...">
 
+                            <li data-role="list-divider">
+                            	Friday, October 8, 2010 <span class="ui-li-count">2</span>
+                            </li>
+                            <li><a href="#">
+                            	<img src="img/logoloreal.png">
+                                <h3>Stephen Weber</h3>
+                            	<p>Hey Stephen, if you're available at 10am tomorrow, we've got a meeting with the jQuery team.</p>
+                                <p class="ui-li-aside"><strong>6:24</strong>PM</p>
+                            </a></li>
+                            
+                            <li><a href="#">
+                                <h3>jQuery Team</h3>
+                            	<p>In preparation for the upcoming conference in Boston, we need to start gathering a list of sponsors and speakers.</p>
+                                <p class="ui-li-aside"><strong>9:18</strong>AM</p>
+                            </a></li>
+                            
+                   	 	</ul>
+            	</div>
+                <div id="Tchat_societe">
+            		Société
+            	</div>
+      		</div>
+    </div>
 
         
       
@@ -152,7 +206,7 @@
           
   <!-- TABS Entreprise -->
           
-          <div data-role="tabs" id="tabs" style="padding-bottom: 3.2;
+          <div data-role="tabs" id="tabs_entreprise" style="padding-bottom: 3.2;
   padding-top: 0px;padding-right: 0px;padding-left: 0px;" >
               <div data-role="navbar">
                   <ul>
@@ -203,11 +257,28 @@
   <!-- onglet PERFORMANCE -->
             
               <div id="Performance">
-                  <p>Capacité d'accueil</p>
-                  <p>Actionnaire majoritaire</p>
-                  <p>Fréquentation hebdomadaire</p>
-                  <p>Gains par passage</p>
-                  <p>Date du prochain bilan</p>
+              	<div class="ui-grid-a">
+                	<div class="ui-block-a" style="height:30px; line-height:30px;">Capacité d'accueil : </div>
+                    <div class="ui-block-b" style="height:30px; line-height:30px;">                              
+                    
+                  	</div>
+					<div class="ui-block-a" style="height:30px; line-height:30px;">Valeur actuelle du cours : </div>
+                    <div class="ui-block-b" style="height:30px; line-height:30px;"></div>
+					<div class="ui-block-a" style="height:30px; line-height:30px;">Actionaire majoritaire : </div>
+                    <div class="ui-block-b" style="height:30px; line-height:30px;"></div>
+					<div class="ui-block-a" style="height:30px; line-height:30px;">Fréquentation : </div>
+                    <div class="ui-block-b" style="height:30px; line-height:30px;"></div>
+					<div class="ui-block-a" style="height:30px; line-height:30px;">Gain par passage : </div>
+                    <div class="ui-block-b" style="height:30px; line-height:30px;"></div>
+					<div class="ui-block-a" style="height:30px; line-height:30px;">Date prochain bilan : </div>
+                    <div class="ui-block-b" style="height:30px; line-height:30px;"></div>
+             	</div>
+  
+  				<div id="placeholder" style="width:90%;height:250px; margin-top:15px">
+  				</div>
+  				<button id="today">Aujourd'hui</button>
+  				<button id="lastweek">Dernière semaine</button>
+				<button id="lastmonth">Dernier mois</button>
               </div>
               
   <!-- Onglet PASSER UN ORDRE -->
@@ -335,6 +406,29 @@
               <h4>Pied de page</h4>
           </div>
       </div>
+
+	<!--page mentions légales	-->
+		<div data-role="page" id="MentionsLegales">
+			<div data-role="header">
+				<h1>Mentions légales</h1>
+			</div>
+			<div data-role="content">
+                <p>  Selon les termes de la loi française, les données contenues dans ce site Internet constituent une oeuvre de l'esprit (notamment par la loi N° 92-157 du 1er juillet 1992). A ce titre, les droits d'exploitation, même partiels, de cette oeuvre sont détenus par l'INSA de Lyon. </p>
+                <p> La reproduction de tout ou partie de ce site sur un support électronique quel qu'il soit est formellement interdite sauf autorisation expresse du directeur de la publication. La reproduction des textes de ce site sur support papier est autorisée, tout particulièrement dans le cadre pédagogique, sous réserve du respect des trois conditions suivantes : <p>
+                <p>1- Gratuité de la diffusion</p>
+                <p>2- Respect de l'intégrité des documents reproduits : pas de modification ni altération d'aucune sorte</p>
+                <p>3- Citation claire et lisible de la source sous la forme suivante - par exemple - "Ce document provient du site Internet <a href="http://m.scd.docinsa.insa-lyon.fr"> http://m.scd.docinsa.insa-lyon.fr</a>.</p>
+                <p>Les droits de reproduction sont réservés et strictement limités.</p>
+                <p>Directeur de la publication : Monique Joly, Directrice du SCD de l'INSA de Lyon.</p>
+                <p>Direction de projet : Guillemette Trognot et Marie-Paule Voïta, SCD Doc'INSA de l'INSA de Lyon.</p>
+                <p>Conception et développement : Equipe Bibacoeur, étudiants 4GI année 2013/2014.</p>
+                <p>Hébergement : Direction des Systèmes d'Informations de l'INSA de Lyon.</p>
+                <p>Crédits visuels : Direction de la Communication de l'INSA de Lyon</p>
+			</div>
+			<div data-role="footer">
+				<h4>Pied de page</h4>
+			</div>
+</div>
 
   </body>
 </html>

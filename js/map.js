@@ -1,6 +1,5 @@
 // JavaScript Document
 
-
 //On attend le chargement de la page avant de lancer la fonction d'initialisation
 $(document).on("pageshow", "#map", function() {
 	if ($("#map-canvas").html() === '') {
@@ -852,7 +851,7 @@ function initialize() {
 
 		function show_myInfowindow(entreprise,position) {
 			infowindow.close(map);
-			content_infowindow = '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>'+entreprise.nom+'</b><br/></center><button id="checkin" >Check-in</button><button id="info">Informations</button></div>'
+			content_infowindow = '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>'+entreprise.nom+'</b><br/></center><button id="checkin" disabled>Check-in</button><button id="info">Informations</button></div>'
 			$('#infowindow_content').html(content_infowindow);
 			infowindow.setContent($('#infowindow_content').html());
 			// Replace our Info Window's position
@@ -1039,18 +1038,23 @@ function initialize() {
 		 	
 			//On grise(respectivement dégrise) l'onglet passer un ordre si on est pas sur la zone
 			$(document).on("pagebeforeshow", "#Entreprise", function() {
+		
+				$( "#tabs_entreprise" ).tabs({ active: 1 });
+				
 				if (ok_ordre==false) {	
-				/*	$("#tabs").tabs("option", "disabled", [2]);*/
+					$("#tabs_entreprise").tabs("option", "disabled", [2]);
 				}
 				else {
-					$( "#tabs" ).tabs( "enable", 2 );
+					$( "#tabs_entreprise" ).tabs( "enable", 2 );
 				}
 				
 				//On affiche l'onglet profil par défaut
-				var idx = $('#tabs a[href="#Profil"]').parent().index();
-				$("#tabs").tabs( "option", "active", idx );
+				
+				/*var idx = $('#tabs_entreprise a[href="#Profil"]').parent().index();*/
+				$("#tabs_entreprise").tabs( "option", "active", 1 );
 				
 			});
 	
 //fin initialize
 }
+
