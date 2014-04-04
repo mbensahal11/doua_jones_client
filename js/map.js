@@ -238,25 +238,25 @@ function initialize() {
   		// On définit les zones
   		var GI = new google.maps.Polygon({
     		paths: GICoords,
-    		strokeColor: '#00F12F',
+    		strokeColor: '#000000',
     		strokeOpacity: 0.8,
     		strokeWeight: 2,
-    		fillColor: '#10FF3F',
+    		fillColor: '#D61818',
     		fillOpacity: 0.35
   		});
   
    		var BMC = new google.maps.Polygon({
     		paths: BMCCoords,
-    		strokeColor: '#00F12F',
+    		strokeColor: '#000000',
     		strokeOpacity: 0.8,
     		strokeWeight: 2,
-    		fillColor: '#10FF3F',
+    		fillColor: '#DB8B23',
     		fillOpacity: 0.35
   		});
 		
 		var GEN = new google.maps.Polygon({
     		paths: GENCoords,
-    		strokeColor: '#00F12F',
+    		strokeColor: '#000000',
     		strokeOpacity: 0.8,
     		strokeWeight: 2,
     		fillColor: '#10FF3F',
@@ -265,213 +265,212 @@ function initialize() {
 		
 		var TC = new google.maps.Polygon({
     		paths: TCCoords,
-    		strokeColor: '#00F12F',
+    		strokeColor: '#000000',
     		strokeOpacity: 0.8,
     		strokeWeight: 2,
-    		fillColor: '#10FF3F',
+    		fillColor: '#1E70FC',
     		fillOpacity: 0.35
   		});
 		
 		var GE = new google.maps.Polygon({
     		paths: GECoords,
-    		strokeColor: '#00F12F',
+    		strokeColor: '#000000',
     		strokeOpacity: 0.8,
     		strokeWeight: 2,
-    		fillColor: '#10FF3F',
+    		fillColor: '#EBD91C',
     		fillOpacity: 0.35
   		});
 		
 		var Rotonde = new google.maps.Polygon({
     		paths: RotondeCoords,
-    		strokeColor: '#00F12F',
+    		strokeColor: '#000000',
     		strokeOpacity: 0.8,
     		strokeWeight: 2,
-    		fillColor: '#10FF3F',
+    		fillColor: '#6B1CEB',
     		fillOpacity: 0.35
   		});
 		
 		var EFI = new google.maps.Polygon({
     		paths: EFICoords,
-    		strokeColor: '#00F12F',
+    		strokeColor: '#000000',
     		strokeOpacity: 0.8,
     		strokeWeight: 2,
-    		fillColor: '#10FF3F',
+    		fillColor: '#0E2380',
     		fillOpacity: 0.35
   		});
 		
 		var CB = new google.maps.Polygon({
     		paths: CBCoords,
-    		strokeColor: '#00F12F',
+    		strokeColor: '#000000',
     		strokeOpacity: 0.8,
     		strokeWeight: 2,
-    		fillColor: '#10FF3F',
+    		fillColor: '#09BD21',
     		fillOpacity: 0.35
   		});
 		
 		var Humas = new google.maps.Polygon({
     		paths: HumasCoords,
-    		strokeColor: '#00F12F',
+    		strokeColor: '#000000',
     		strokeOpacity: 0.8,
     		strokeWeight: 2,
-    		fillColor: '#10FF3F',
+    		fillColor: '#3B8223',
     		fillOpacity: 0.35
   		});
 		
 		var Kfet = new google.maps.Polygon({
     		paths: KfetCoords,
-    		strokeColor: '#00F12F',
+    		strokeColor: '#000000',
     		strokeOpacity: 0.8,
     		strokeWeight: 2,
-    		fillColor: '#10FF3F',
+    		fillColor: '#F70505',
     		fillOpacity: 0.35
   		});
 		
 		var BS = new google.maps.Polygon({
     		paths: BSCoords,
-    		strokeColor: '#00F12F',
+    		strokeColor: '#000000',
     		strokeOpacity: 0.8,
     		strokeWeight: 2,
-    		fillColor: '#10FF3F',
+    		fillColor: '#05CBF7',
     		fillOpacity: 0.35
   		});
 		
 		var IF = new google.maps.Polygon({
     		paths: IFCoords,
-    		strokeColor: '#00F12F',
+    		strokeColor: '#000000',
     		strokeOpacity: 0.8,
     		strokeWeight: 2,
-    		fillColor: '#10FF3F',
+    		fillColor: '#FFFFFF',
     		fillOpacity: 0.35
   		});
 		
 		var Beurk = new google.maps.Polygon({
     		paths: BeurkCoords,
-    		strokeColor: '#00F12F',
+    		strokeColor: '#000000',
     		strokeOpacity: 0.8,
     		strokeWeight: 2,
-    		fillColor: '#10FF3F',
+    		fillColor: '#EDDE11',
     		fillOpacity: 0.35
   		});
 		
 		var CD = new google.maps.Polygon({
     		paths: CDCoords,
-    		strokeColor: '#00F12F',
+    		strokeColor: '#000000',
     		strokeOpacity: 0.8,
     		strokeWeight: 2,
-    		fillColor: '#10FF3F',
+    		fillColor: '#6DDE47',
     		fillOpacity: 0.35
   		});
 		
 		var GCU = new google.maps.Polygon({
     		paths: GCUCoords,
-    		strokeColor: '#00F12F',
+    		strokeColor: '#000000',
     		strokeOpacity: 0.8,
     		strokeWeight: 2,
-    		fillColor: '#10FF3F',
+    		fillColor: '#505250',
     		fillOpacity: 0.35
   		});
 		
 		var GMC = new google.maps.Polygon({
     		paths: GMCCoords,
-    		strokeColor: '#00F12F',
+    		strokeColor: '#000000',
     		strokeOpacity: 0.8,
     		strokeWeight: 2,
-    		fillColor: '#10FF3F',
+    		fillColor: '#000000',
     		fillOpacity: 0.35
   		});
 		
 		var Dir = new google.maps.Polygon({
     		paths: DirCoords,
-    		strokeColor: '#00F12F',
+    		strokeColor: '#000000',
     		strokeOpacity: 0.8,
     		strokeWeight: 2,
-    		fillColor: '#10FF3F',
+    		fillColor: '#3A15BF',
     		fillOpacity: 0.35
   		});
 		
 		var Capelle = new google.maps.Polygon({
     		paths: CapelleCoords,
-    		strokeColor: '#00F12F',
+    		strokeColor: '#000000',
     		strokeOpacity: 0.8,
     		strokeWeight: 2,
-    		fillColor: '#10FF3F',
+    		fillColor: '#F5D442',
     		fillOpacity: 0.35
   		});
 		
 		var CDS = new google.maps.Polygon({
     		paths: CDSCoords,
-    		strokeColor: '#00F12F',
+    		strokeColor: '#000000',
     		strokeOpacity: 0.8,
     		strokeWeight: 2,
-    		fillColor: '#10FF3F',
+    		fillColor: '#2B52ED',
     		fillOpacity: 0.35
   		});
 		
 		var GJ = new google.maps.Polygon({
     		paths: GJCoords,
-    		strokeColor: '#00F12F',
+    		strokeColor: '#000000',
     		strokeOpacity: 0.8,
     		strokeWeight: 2,
-    		fillColor: '#10FF3F',
+    		fillColor: '#C90404',
     		fillOpacity: 0.35
   		});
 		
 		var GMD = new google.maps.Polygon({
     		paths: GMDCoords,
-    		strokeColor: '#00F12F',
+    		strokeColor: '#000000',
     		strokeOpacity: 0.8,
     		strokeWeight: 2,
-    		fillColor: '#10FF3F',
+    		fillColor: '#0404C9',
     		fillOpacity: 0.35
   		});
 		
 		var Trav = new google.maps.Polygon({
     		paths: TravCoords,
-    		strokeColor: '#00F12F',
+    		strokeColor: '#000000',
     		strokeOpacity: 0.8,
     		strokeWeight: 2,
-    		fillColor: '#10FF3F',
+    		fillColor: '#575757',
     		fillOpacity: 0.35
   		});
 		
 		var Fermat = new google.maps.Polygon({
     		paths: FermatCoords,
-    		strokeColor: '#00F12F',
+    		strokeColor: '#000000',
     		strokeOpacity: 0.8,
     		strokeWeight: 2,
-    		fillColor: '#10FF3F',
+    		fillColor: '#BD84C4',
     		fillOpacity: 0.35
   		});
 		
 		var batAB = new google.maps.Polygon({
     		paths: batABCoords,
-    		strokeColor: '#00F12F',
+    		strokeColor: '#000000',
     		strokeOpacity: 0.8,
     		strokeWeight: 2,
-    		fillColor: '#10FF3F',
+    		fillColor: '#F23F2C',
     		fillOpacity: 0.35
   		});
 		
 		
 		var gymB = new google.maps.Polygon({
     		paths: gymBCoords,
-    		strokeColor: '#00F12F',
+    		strokeColor: '#000000',
     		strokeOpacity: 0.8,
     		strokeWeight: 2,
-    		fillColor: '#10FF3F',
+    		fillColor: '#2451E3',
     		fillOpacity: 0.35
   		});
 		
 		var SGM = new google.maps.Polygon({
     		paths: SGMCoords,
-    		strokeColor: '#00F12F',
+    		strokeColor: '#000000',
     		strokeOpacity: 0.8,
     		strokeWeight: 2,
-    		fillColor: '#10FF3F',
+    		fillColor: '#D41E69',
     		fillOpacity: 0.35
   		});
-		
-		
+
   		//On stocke toutes les entreprises dans un tableau d'objets possédant des informations propres aux zones
 		var Entreprise = [];
 		Entreprise[0] = {Objet :GI,
@@ -554,7 +553,7 @@ function initialize() {
 						 
 		Entreprise[9] = {Objet :Kfet,
 						 srcImage : 'img/BMC2.png',
-						 nom : "Club Made",
+						 nom : "Club Mad",
 						 swBound : new google.maps.LatLng(0, 0),
 						 neBound : new google.maps.LatLng(1, 1),
 						 bounds : null,
@@ -700,7 +699,7 @@ function initialize() {
 						 };
 						 
 		Entreprise[25] = {Objet :SGM,
-						 nom : "The Material Company",
+						 nom : "The SoTech Company",
 						 srcImage : 'img/BMC2.png',
 						 swBound : new google.maps.LatLng(0, 0),
 						 neBound : new google.maps.LatLng(1, 1),
@@ -851,7 +850,7 @@ function initialize() {
 
 		function show_myInfowindow(entreprise,position) {
 			infowindow.close(map);
-			content_infowindow = '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>'+entreprise.nom+'</b><br/></center><button id="checkin" disabled>Check-in</button><button id="info">Informations</button></div>'
+			content_infowindow = '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>'+entreprise.nom+'</b><br/></center><button id="checkin" >Check-in</button><button id="info">Informations</button></div>'
 			$('#infowindow_content').html(content_infowindow);
 			infowindow.setContent($('#infowindow_content').html());
 			// Replace our Info Window's position
@@ -1023,7 +1022,8 @@ function initialize() {
 			$('#nom_entreprise').html(entreprise.nom);
 			//On écrit le nom de l'entreprise dans le champ nom où il faut passer l'ordre
 			$('#entreprise_active').html(entreprise.nom);
-			$('#index_entreprise').html(entreprise.index);
+			//On stocke l'id de l'entreprise sélectionnée
+			$('#entreprise_active').data("id_entreprise", entreprise.index);
 			
 			//On vérifie que l'on puisse bien passer un ordre
 				ok_ordre = true;		

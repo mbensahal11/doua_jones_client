@@ -39,6 +39,7 @@
    	<script src="js/map.js"> </script>
     <script src="js/entreprise.js"></script>
     <script src="js/chat.js"></script>
+    <script src="js/messagerie.js"></script>
     <script src="js/send.js"></script>
     
     
@@ -129,17 +130,22 @@
                   </ul>
               </div>
       			
-            
-            	<div id="Tchat_global">  
+            <!--  Chat  Global-->
+            	<div id="Tchat_global">
+                  	<!--  Div où les messages vont s'afficher-->
                 	<div id="div_champs_chat">
+                    	<!-- div invisible pour régler le problème de padding ne fonctionnant pas (le texte s'affiche sous les tabs) -->
                     	<div id='chat_blank' style="height : 40px"> 
                         </div>
                     </div>
+                    <!-- Bas de l'écran  -->
                     <div id="div_chat_send">
                         <form id="send_chatmessage_form" data-ajax="false">
+                       		<!-- zonne de saisie du texte -->
                             <div id="champ_texte_chat">
                                 <input type="text" name="message_input" id="message_input" value="" /> 
                             </div>
+                            <!-- icône d'envoi -->
                             <div id="send_icon">
                             <input type="image" id="send_chatmessage"  src="img/send.png" /> 
                             </div>   
@@ -147,16 +153,29 @@
                     </div>
             	</div>
                 
+                <!-- Messagerie privée -->
             	<div id="Tchat_prive">
+                	<!-- Popup s'ouvrant lors de la création d'un nouveau fil de conversation -->
                 	<div data-role="popup" id="popupmess" data-overlay-theme="b" data-theme="b" data-corners="false" data-tolerance="15,15" style="padding:20px;width:1000px;height:500px">
 					<a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
-                   	
+                   				<!-- Champs de recherche du destinataire -->
 								<form id="search_destinataire" data-ajax="false">
         							<input type="search"  id="destinataire_entre" value="" />
             					</form>
-        						<div id="destinataire">
-            						Test
+                                <!-- Endroit où l'on affiche le destinataire -->
+        						<div id="div_destinataire">
+            						<b>Destinataire :</b>  <div id="destinataire"></div>
+                                    <br/>
             					</div>
+                                 <!-- Champs texte pour le message privé -->
+                                <form id="send_private_message" data-ajax="false" style="height:inherit;">
+                                	<div id="div_message">                		
+            							<label for="private_message">Message :</label>
+                                        <textarea name="message" id="private_message" maxlength="4000"></textarea>
+            						</div>
+                                     <input type="image" id="send_chatmessage_icon"  src="img/send.png"/>
+                                </form>
+                                
 					</div>
                 	<div id='chat_blank' style="height : 40px"> 
                     </div>
@@ -164,26 +183,14 @@
                     	<a href="" id='new_mail' >
                     		<img src="img/new_mail.png" style="height:50px;width:50px;">
                         </a>
-               			<ul data-role="listview" data-theme="a" data-dividertheme="a" data-filter="true" data-filter-theme="a" data-filter-placeholder="Rechercher parmi les messages...">
+                         <!-- Liste des fils de conversation -->
+               			<ul id="liste_messages_persos" data-role="listview" data-theme="a" data-dividertheme="a" data-filter="true" data-filter-theme="a" data-filter-placeholder="Rechercher parmi les messages...">
 
-                            <li data-role="list-divider">
-                            	Friday, October 8, 2010 <span class="ui-li-count">2</span>
-                            </li>
-                            <li><a href="#">
-                            	<img src="img/logoloreal.png">
-                                <h3>Stephen Weber</h3>
-                            	<p>Hey Stephen, if you're available at 10am tomorrow, we've got a meeting with the jQuery team.</p>
-                                <p class="ui-li-aside"><strong>6:24</strong>PM</p>
-                            </a></li>
+                          </ul>
                             
-                            <li><a href="#">
-                                <h3>jQuery Team</h3>
-                            	<p>In preparation for the upcoming conference in Boston, we need to start gathering a list of sponsors and speakers.</p>
-                                <p class="ui-li-aside"><strong>9:18</strong>AM</p>
-                            </a></li>
-                            
-                   	 	</ul>
-            	</div>
+                        </div>
+            	
+                 <!-- Tchat société -->
                 <div id="Tchat_societe">
             		Société
             	</div>
@@ -292,7 +299,7 @@
                       <div class="ui-field-contain">
       					<label for="select-custom-16">Entreprise</label>
                         <textarea cols="40" rows="1" name="textarea" id="entreprise_active" disabled style="resize:none; height:40px"></textarea>
-                        <textarea id="index_entreprise"  style="display:none;"></textarea>
+                        
                         
                        </div>
       

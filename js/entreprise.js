@@ -7,9 +7,9 @@ $(document).on("pageshow", "#Entreprise", function() {
 					
 		var btGetCours = document.getElementById("btGetCours");
 
-		var socket = io.connect('http://88.172.179.93:6060');
+		var socket = io.connect('http://localhost:8080');
 
-		socket.emit("getCoursEntreprise", 1);
+		/*socket.emit("getCoursEntreprise", 1);*/
 
 		var values;
 	
@@ -249,7 +249,7 @@ $(document).on("pageshow", "#Entreprise", function() {
 						//On envoie les données de l'ordre
 						socket.emit('setOrdre',{
 							idJoueur:1,
-							idEntreprise:parseFloat($('#index_entreprise').text()),
+							idEntreprise:parseFloat($('#entreprise_active').data("id_entreprise")),
 							sens:$('#select-custom-17').val(),
 							typeOrdre:$('#selectordre').val(),
 							prix:prix_action,

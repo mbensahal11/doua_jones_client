@@ -65,7 +65,7 @@ display:block;
 	font-size:18px;
 }
 
-
+/* Zone en bas de l'écran de chat pour envoyer le message*/
 #div_chat_send{
 	bottom:0;
 	position:fixed;
@@ -75,35 +75,46 @@ display:block;
 	
 }
 
+
+ /*Chat global */
+ 
+/*Champs texte dans la page chat globale*/
 #champ_texte_chat{
 	width : 85%;
 	float:left;
 }
 
-#navbar_chat {
-	position:fixed;
-	top : 44px;
-	width:100%;
-}
 
-
-#send_icon {
-	width : 14%;
-	right:0;
-	float:left;
-	height:50px;
-}
-#send_chatmessage {
-	height:90%;
-	padding-left:40px;
-}
-
+/* Zone dans le chat global où les div champs texte sont affichées */
 #div_champs_chat {
 	width : 100%;
 	bottom : 100px;
 	padding-bottom: 100px;
 }
 
+
+/* div correspondant à l'Icone d'envoi dans la page chat global */
+#send_icon {
+	width : 14%;
+	right:0;
+	float:right;
+	height:50px;
+}
+
+/*Icone d'envoi dans la page chat global */
+#send_chatmessage {
+	height:90%;
+	padding-left:40px;
+}
+
+/* Barre d'onglets dans la page générale chat */
+#navbar_chat {
+	position:fixed;
+	top : 44px;
+	width:100%;
+}
+
+/*Message venant de l'extérieur */
 .line_gauche {
 	padding : 5px;
 	background-color:#B6C8D3;
@@ -114,6 +125,7 @@ display:block;
 	border-width:1px;
 }
 
+/* Message écrit par le joueur */
 .line_droite {
 	padding : 5px;
 	background-color:#5DFC85;
@@ -124,32 +136,70 @@ display:block;
 	border-width:1px;
 }
 
-
+/* Pseudo du joueur */
 .pseudo {
 	padding-bottom:10px;
 }
 
 
-
+/* Icone de fleche bulle à gauche */
 .fleche_bulle_gauche {
     position: absolute;
     left: 0%;
 	z-index:0;
 }
 
+/* Icone de fleche bulle à droite */
 .fleche_bulle_droite {
     position: absolute;
     right: 0%;
 	z-index:0;
 }
 
+
+/* Messagerie privée */
+
+/* Message dans le popup de la messagerie privée */
 .message {
 	text-align:justify;
 	word-wrap:break-word;
 	max-width:inherit;
+	height:10%;
 }
 
-#destinataire {
+/* div contenant le message dans la popup */
+#div_message {
 	border-style:solid;
 	border-width:1px;
+	text-align:justify;
+	word-wrap:break-word;
+	max-width:inherit;
+	height:70%;
 }
+
+/* Destinataire dans la messagerie privée */
+#div_destinataire {
+	border-style:solid;
+	border-width:1px;
+	max-width:inherit;
+	word-break:break-all;
+	height:10%;
+}
+
+
+/* Saisie du message -- messagerie privée */
+#private_message {
+	height:100px; 
+	resize:none;
+	max-height:85%;
+}
+
+/* Icone pour envoyer le message privé */
+#send_chatmessage_icon {
+	width:50px;
+	height:50px;
+	position:absolute;
+	bottom:5px;
+	right:10px;
+}
+	
