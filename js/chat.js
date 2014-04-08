@@ -1,12 +1,14 @@
 // JavaScript Document
 var id_joueur = 1;
+var pseudo= 'Quentin';
 var pseudo_color = "#032f55";
+var hasscrolledchatglobal;
 $(document).on("pageinit", "#chat", function() {
 	
 	var socket = io.connect('http://localhost:8080');
 	
 	//On initialise la page en disant qu'il n'y a pas eu de scroll
-	var hasscrolled = false
+	hasscrolledchatglobal = false;
 	
 	/*socket.emit('getChatGlobalMessages');
 	socket.on('resultGetChatGlobalMessages', function (value) {
@@ -31,7 +33,7 @@ $(document).on("pageinit", "#chat", function() {
 				message: $('#message_input').val()
 			});
 			// On écrit le message côté client
-			$('#div_champs_chat').append("<div class='line_droite'><img src='img/bulle_droite.png' alt='' class='fleche_bulle_droite'/><div class='pseudo'> <b>" + "<font color="+pseudo_color +">" + "j aime me battre" + "</font>" + "</b> </div> " + "<div class='message'>" + mess + "</div> </div>");
+			$('#div_champs_chat').append("<div class='line_droite'><img src='img/bulle_droite.png' alt='' class='fleche_bulle_droite'/><div class='pseudo'> <b>" + "<font color="+pseudo_color +">" + pseudo + "</font>" + "</b> </div> " + "<div class='message'>" + mess + "</div> </div>");
 			//Le champs texte est remis à zéro
 			$('#message_input').val('');
 			//On scroll vers le bas
@@ -45,7 +47,7 @@ $(document).on("pageinit", "#chat", function() {
 	socket.on('Message', function (message) {
 		var scrolleddown = true
 		
-		if ($(window).scrollTop() + $(window).height() != $(document).height() && hasscrolled==true) {
+		if ($(window).scrollTop() + $(window).height() != $(document).height() && hasscrolledchatglobal==true) {
 			scrolleddown = false;
 		}
 		//On écrit le message reçu
@@ -58,10 +60,10 @@ $(document).on("pageinit", "#chat", function() {
 
 	});
 	
-	//La variable hasscrolled est initialisé à false, si le joueur ne scrolle pas et qu'il reçois des messages, la page scrollera automatiquement
-	$( window ).scroll(function() {
-		hasscrolled = true;
-	});
+	//La variable hasscrolled est initialisé à false, si le joueur ne scrolle pas et qu'il reçoit des messages, la page scrollera automatiquement
+	window.onscroll = function (e) {  
+		hasscrolledchatglobal = true;  
+	} 
 	
 	
 	//Onglet messagerie
@@ -220,7 +222,6 @@ $(document).on("pageinit", "#chat", function() {
 			}
 			//si la conversation existe déjà
 			else {
-				$(".content_list_divider").eq(destinataire_index).remove();
 				//Si le joueur a déjà reçu un message ce jour
 				if (day + '/' + month + '/' + year == $('.date_message_prive').eq(0).html()) {
 					content = '<li class="content_list_divider"><a href="#"><img src="img/logoloreal.png"><h3 class="destinataire_liste" data-pseudo='+destinataire+' data-id='+id+'>'+
@@ -228,12 +229,20 @@ $(document).on("pageinit", "#chat", function() {
 								'</h3><p class="dernier_message">'+
 								contenu+
 								'</p><p class="ui-li-aside"><strong>'+ hour+':'+ minute + '</strong></p></a></li>';
+					//S'il n'y a qu'un seul élément entre les deux dates, on le remplace par content sinon on le supprime et on le replace en tête de liste		
 					
-					$('.content_list_divider').eq(0).before(content);
+					if ($('.list_divider').eq(0).next().next().find('.date_message_prive').length >0) {
+						$('.content_list_divider').eq(0).replaceWith(content);
+					}
+					else {
+						$(".content_list_divider").eq(destinataire_index).remove();
+						$('.content_list_divider').eq(0).before(content);
+					}
 					
 				}
 				//Si le joueur n'a pas encore reçu de message aujourd'hui, on ajoute un list divider
 				else {
+					$(".content_list_divider").eq(destinataire_index).remove();
 					content = '<li data-role="list-divider" class="list_divider"><div class="date_message_prive">'+
 					day + '/' + month + '/' + year + '</div>'+
 								'<span class="ui-li-count">0</span></li><li class="content_list_divider"><a href="#"><img src="img/logoloreal.png"><h3 class="destinataire_liste" data-pseudo='+destinataire+' data-id='+id+'>'+
@@ -273,6 +282,7 @@ $(document).on("pageinit", "#chat", function() {
 });
 
 $(document).on("pageshow", "#chat", function() {
+	hasscrolledchatglobal = false;
 	var socket = io.connect('http://localhost:8080');
 	var d= new Date();
 	var d_passe = substractMinutes(d, 600)
