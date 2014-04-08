@@ -1,6 +1,8 @@
 // JavaScript Document
+var id_joueur = 1;
+var pseudo_color = "#032f55";
 $(document).on("pageinit", "#chat", function() {
-	var pseudo_color = "#032f55";
+	
 	var socket = io.connect('http://localhost:8080');
 	
 	//On initialise la page en disant qu'il n'y a pas eu de scroll
@@ -25,7 +27,7 @@ $(document).on("pageinit", "#chat", function() {
 		//Le message est envoyé s'il n'est pas vide
 		if (mess != '') {
 			socket.emit('setChatGlobalNewMessage', {
-				idJoueur : 1,
+				idJoueur : id_joueur,
 				message: $('#message_input').val()
 			});
 			// On écrit le message côté client
@@ -64,6 +66,16 @@ $(document).on("pageinit", "#chat", function() {
 	
 	//Onglet messagerie
 	
+	//conversion datejs to datesql
+	Date.prototype.toMysqlFormat = function() {
+   		return this.getUTCFullYear() + "-" + twoDigits(1 + this.getUTCMonth()) + "-" + twoDigits(this.getUTCDate()) + " " + twoDigits(this.getUTCHours()) + ":" + twoDigits(this.getUTCMinutes()) + ":" + twoDigits(this.getUTCSeconds());
+	};
+	
+	var date_70 = new Date(0);
+	socket.emit('getNewPrivateMessages', id_joueur, date_70.toMysqlFormat());
+	socket.on('resultGetNewPrivateMessages', on_receive_new_messages);
+	
+	
 	//Une popup s'ouvre lorsqu'on veut créer un nouveau fil de conversation
 	$('#new_mail').click(function () {
 		$('#popupmess').popup( "open" );
@@ -91,10 +103,15 @@ $(document).on("pageinit", "#chat", function() {
 	socket.on("resultCheckDestinataire", function(exist, id_destinataire){
 		var destinataire = $('#destinataire_entre').val();
 		if (exist) {
-			$('#destinataire').text(destinataire);
-			//On stocke l'id du destinataire
-			$('#destinataire').data("id_destinataire",id_destinataire);
-			$('#destinataire_entre').val('');
+			/*if (id_destinataire == id_joueur) {
+				alert('Vous ne pouvez pas envoyer un message à vous-même');
+			}
+			else{*/
+				$('#destinataire').text(destinataire);
+				//On stocke l'id du destinataire
+				$('#destinataire').data("id_destinataire",id_destinataire);
+				$('#destinataire_entre').val('');
+			//}
 		}
 		else {
 			alert("Ce pseudo n'existe pas");
@@ -108,11 +125,14 @@ $(document).on("pageinit", "#chat", function() {
 		if ($("#destinataire").text()=='') {
 			alert('Veuillez sélectionner un destinataire');
 		}
-		else {
+		else { 
 			var d = new Date();
-			maj_tchat_prive(d,$("#destinataire").text(),$("#private_message").val());
-			socket.emit("setNewPrivateMessages", $("#private_message").val(), $('#destinataire').data("id_destinataire"),2);
-			
+			/*maj_tchat_prive(d,$("#destinataire").text(),$("#private_message").val());*/
+			socket.emit("setNewPrivateMessages", $("#private_message").val(), $('#destinataire').data("id_destinataire"),id_joueur);
+			/*var dateBefore = substractMinutes(d, 1);
+			var dateBeforeSQL = dateBefore.toMysqlFormat();
+			socket.emit('getNewPrivateMessages', id_joueur, dateBeforeSQL);*/
+			maj_tchat_prive(d,$("#destinataire").text(),$("#private_message").val(), $('#destinataire').data("id_destinataire"));
 			//On ferme puis réinitialise la popup
 			$('#popupmess').popup( "close" );
 			$('#destinataire').data("id_destinataire","");
@@ -125,22 +145,35 @@ $(document).on("pageinit", "#chat", function() {
 		
 	});
 	
-	
-	var idJoueur = 1;
-	socket.emit('getNewPrivateMessages', idJoueur);
-	socket.on('resultGetNewPrivateMessages', function (rows) {
+
+	function on_receive_new_messages (rows) {
 		for (var i=0;i<rows.length;i++) {
-			destinataire=rows[i].pseudo;
-			contenu=rows[i].contenu;
-			var d = new Date();
-			maj_tchat_prive(d,destinataire,contenu);
+			var destinataire=rows[i].pseudo;
+			var contenu=rows[i].contenu;
+			var dateSQL=rows[i].date;
+			var id = rows[i].idEmetteur;
+			var dateJS = new Date(dateSQL);
+			maj_tchat_prive(dateJS,destinataire,contenu,id);
 		}
-	});
+	};
+		
+	//On retire nbminutes minutes de la date en entrée
+	function substractMinutes(date, nbMinutes) {
+    	return new Date(date.getTime() - nbMinutes*60000);
+	}
 	
+	//function utilisée par toMysqlFormat
+	function twoDigits(d) {
+		if(0 <= d && d < 10) return "0" + d.toString();
+		if(-10 < d && d < 0) return "-0" + (-1*d).toString();
+		return d.toString();
+	}
+
 	
+		
 	
-	function maj_tchat_prive (date, destinataire, contenu) {
-		var year = date.getFullYear();
+	function maj_tchat_prive (date, destinataire, contenu,id) {
+			var year = date.getFullYear();
 			var month = date.getMonth();
 			var day = date.getDate();
 			var hour = date.getHours();
@@ -164,7 +197,7 @@ $(document).on("pageinit", "#chat", function() {
 			if (!(conversation_commencee)) {
 				//Si le joueur a déjà reçu un message ce jour
 				if (day + '/' + month + '/' + year == $('.date_message_prive').eq(0).html()) {
-					content = '<li class="content_list_divider"><a href="#"><img src="img/logoloreal.png"><h3 class="destinataire_liste">'+
+					content = '<li class="content_list_divider"><a href="#"><img src="img/logoloreal.png"><h3 class="destinataire_liste" data-pseudo='+destinataire+' data-id='+id+'>'+
 									destinataire+
 								'</h3><p class="dernier_message">'+
 								contenu+
@@ -177,7 +210,7 @@ $(document).on("pageinit", "#chat", function() {
 				else {
 					content = '<li data-role="list-divider" class="list_divider"><div class="date_message_prive">'+
 					day + '/' + month + '/' + year + '</div>'+
-								'<span class="ui-li-count">0</span></li><li class="content_list_divider"><a href="#"><img src="img/logoloreal.png"><h3 class="destinataire_liste">'+
+								'<span class="ui-li-count">0</span></li><li class="content_list_divider"><a href="#"><img src="img/logoloreal.png"><h3 class="destinataire_liste" data-pseudo='+destinataire+' data-id='+id+'>'+
 									destinataire+
 								'</h3><p class="dernier_message">'+
 								contenu+
@@ -190,7 +223,7 @@ $(document).on("pageinit", "#chat", function() {
 				$(".content_list_divider").eq(destinataire_index).remove();
 				//Si le joueur a déjà reçu un message ce jour
 				if (day + '/' + month + '/' + year == $('.date_message_prive').eq(0).html()) {
-					content = '<li class="content_list_divider"><a href="#"><img src="img/logoloreal.png"><h3 class="destinataire_liste">'+
+					content = '<li class="content_list_divider"><a href="#"><img src="img/logoloreal.png"><h3 class="destinataire_liste" data-pseudo='+destinataire+' data-id='+id+'>'+
 									destinataire+
 								'</h3><p class="dernier_message">'+
 								contenu+
@@ -203,7 +236,7 @@ $(document).on("pageinit", "#chat", function() {
 				else {
 					content = '<li data-role="list-divider" class="list_divider"><div class="date_message_prive">'+
 					day + '/' + month + '/' + year + '</div>'+
-								'<span class="ui-li-count">0</span></li><li class="content_list_divider"><a href="#"><img src="img/logoloreal.png"><h3 class="destinataire_liste">'+
+								'<span class="ui-li-count">0</span></li><li class="content_list_divider"><a href="#"><img src="img/logoloreal.png"><h3 class="destinataire_liste" data-pseudo='+destinataire+' data-id='+id+'>'+
 									destinataire+
 								'</h3><p class="dernier_message">'+
 								contenu+
@@ -225,13 +258,43 @@ $(document).on("pageinit", "#chat", function() {
 	
 	
 	//conversion de datetime SQL en date js
-	function parse_date(string) {   
-		var t = string.split(/[- :]/);
-		var d = new Date(t[0], t[1]-1, t[2], t[3], t[4], t[5]);      
-		return d;  
-    }  
-		
+	function dateObjectFromUTC(s) {
+ 		 s = s.split(/\D/);
+  	return new Date(Date.UTC(+s[0], --s[1], +s[2], +s[3], +s[4], +s[5], 0));
+	}
+			
+	$( "#liste_messages_persos" ).on('click', '.content_list_divider', function() {
+		$('#tchat_perso').data("idDestinataire",$(this).find('.destinataire_liste').data('id'));
+		$('#tchat_perso').data("pseudoDestinataire",$(this).find('.destinataire_liste').data('pseudo'));
+		$.mobile.changePage("#tchat_perso");
+	});
 	
 
 });
+
+$(document).on("pageshow", "#chat", function() {
+	var socket = io.connect('http://localhost:8080');
+	var d= new Date();
+	var d_passe = substractMinutes(d, 600)
+	socket.emit('getNewPrivateMessages', id_joueur, d_passe.toMysqlFormat());
+	
+	//On retire nbminutes minutes de la date en entrée
+	function substractMinutes(date, nbMinutes) {
+    	return new Date(date.getTime() - nbMinutes*60000);
+	}
+
+
+});
+
+//conversion datejs to datesql
+Date.prototype.toMysqlFormat = function() {
+   		return this.getUTCFullYear() + "-" + twoDigits(1 + this.getUTCMonth()) + "-" + twoDigits(this.getUTCDate()) + " " + twoDigits(this.getUTCHours()) + ":" + twoDigits(this.getUTCMinutes()) + ":" + twoDigits(this.getUTCSeconds());
+};
+
+//function utilisée par toMysqlFormat
+ twoDigits = function(d) {
+		if(0 <= d && d < 10) return "0" + d.toString();
+		if(-10 < d && d < 0) return "-0" + (-1*d).toString();
+		return d.toString();
+}
 

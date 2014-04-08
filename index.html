@@ -135,18 +135,18 @@
                   	<!--  Div où les messages vont s'afficher-->
                 	<div id="div_champs_chat">
                     	<!-- div invisible pour régler le problème de padding ne fonctionnant pas (le texte s'affiche sous les tabs) -->
-                    	<div id='chat_blank' style="height : 40px"> 
+                    	<div class='chat_blank' style="height : 40px"> 
                         </div>
                     </div>
                     <!-- Bas de l'écran  -->
-                    <div id="div_chat_send">
+                    <div class="div_chat_send">
                         <form id="send_chatmessage_form" data-ajax="false">
                        		<!-- zonne de saisie du texte -->
-                            <div id="champ_texte_chat">
+                            <div class="champ_texte_chat">
                                 <input type="text" name="message_input" id="message_input" value="" /> 
                             </div>
                             <!-- icône d'envoi -->
-                            <div id="send_icon">
+                            <div class="send_icon">
                             <input type="image" id="send_chatmessage"  src="img/send.png" /> 
                             </div>   
                         </form> 
@@ -184,7 +184,7 @@
                     		<img src="img/new_mail.png" style="height:50px;width:50px;">
                         </a>
                          <!-- Liste des fils de conversation -->
-               			<ul id="liste_messages_persos" data-role="listview" data-theme="a" data-dividertheme="a" data-filter="true" data-filter-theme="a" data-filter-placeholder="Rechercher parmi les messages...">
+               			<ul id="liste_messages_persos" data-role="listview" data-theme="a" data-dividertheme="a" data-filter="true" data-filter-theme="a" data-filter-placeholder="Rechercher parmi les destinataires...">
 
                           </ul>
                             
@@ -196,9 +196,39 @@
             	</div>
       		</div>
     </div>
-
-        
-      
+    
+    <!-- Page tchat privé -->
+    <div data-role="page" id="tchat_perso">
+      <div  data-role="header" data-position="fixed" data-tap-toggle="false" style="border-bottom-width: 0px;">
+        <a href='#' data-rel="back" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-notext"></a>
+        <a href="#" class="ui-icon-info ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-notext">No text</a>   
+        <h1>Messagerie privée</h1>
+      </div>
+      <div data-role="content">
+      	<!--  Div où les messages vont s'afficher-->
+        <div id="div_champs_messagerie">
+            <!-- div invisible pour régler le problème de padding ne fonctionnant pas (le texte s'affiche sous les tabs) -->
+            <div class='chat_blank' style="height : 40px"> 
+            </div>
+            
+        </div>
+        <!-- Bas de l'écran  -->
+        <div class="div_chat_send" style="left:0;">
+            <form id="send_message_prive_form" data-ajax="false">
+                <!-- zonne de saisie du texte -->
+                <div class="champ_texte_chat">
+                    <input type="text" name="message_input" id="message_prive_input" value="" /> 
+                </div>
+                <!-- icône d'envoi -->
+                <div class="send_icon">
+                <input type="image" id="send_chat_private_message"  src="img/send.png" /> 
+                </div>   
+            </form> 
+        </div>
+      </div>
+    </div>
+    
+    
 <!-- Page Entreprise -->
 
   
