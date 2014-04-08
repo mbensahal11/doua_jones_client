@@ -1,6 +1,5 @@
 // JavaScript Document
-var id_joueur = 1;
-var pseudo= 'Quentin';
+
 var pseudo_color = "#032f55";
 var hasscrolledchatglobal;
 $(document).on("pageinit", "#chat", function() {
@@ -29,7 +28,8 @@ $(document).on("pageinit", "#chat", function() {
 		//Le message est envoyé s'il n'est pas vide
 		if (mess != '') {
 			socket.emit('setChatGlobalNewMessage', {
-				idJoueur : id_joueur,
+				idJoueur : idJoueur,
+				pseudo : pseudo,
 				message: $('#message_input').val()
 			});
 			// On écrit le message côté client
@@ -51,7 +51,7 @@ $(document).on("pageinit", "#chat", function() {
 			scrolleddown = false;
 		}
 		//On écrit le message reçu
-		$('#div_champs_chat').append("<div class='line_gauche'><img src='img/bulle_gauche.png' alt='' class='fleche_bulle_gauche'/><div class='pseudo'> <b>" + "<font color="+pseudo_color +">" + message.idJoueur + "</font>" + "</b> </div> " + "<div class='message'>" + message.message + "</div> </div>");
+		$('#div_champs_chat').append("<div class='line_gauche'><img src='img/bulle_gauche.png' alt='' class='fleche_bulle_gauche'/><div class='pseudo'> <b>" + "<font color="+pseudo_color +">" + message.pseudo + "</font>" + "</b> </div> " + "<div class='message'>" + message.message + "</div> </div>");
 		
 		//Si le joueur a remonté dans le fil de conversation, on ne fait pas un scroll automatique vers le bas
 		if (scrolleddown) {
@@ -74,7 +74,7 @@ $(document).on("pageinit", "#chat", function() {
 	};
 	
 	var date_70 = new Date(0);
-	socket.emit('getNewPrivateMessages', id_joueur, date_70.toMysqlFormat());
+	socket.emit('getNewPrivateMessages', idJoueur, date_70.toMysqlFormat());
 	socket.on('resultGetNewPrivateMessages', on_receive_new_messages);
 	
 	
@@ -105,15 +105,15 @@ $(document).on("pageinit", "#chat", function() {
 	socket.on("resultCheckDestinataire", function(exist, id_destinataire){
 		var destinataire = $('#destinataire_entre').val();
 		if (exist) {
-			/*if (id_destinataire == id_joueur) {
+			if (id_destinataire == idJoueur) {
 				alert('Vous ne pouvez pas envoyer un message à vous-même');
 			}
-			else{*/
+			else{
 				$('#destinataire').text(destinataire);
 				//On stocke l'id du destinataire
 				$('#destinataire').data("id_destinataire",id_destinataire);
 				$('#destinataire_entre').val('');
-			//}
+			}
 		}
 		else {
 			alert("Ce pseudo n'existe pas");
@@ -130,10 +130,10 @@ $(document).on("pageinit", "#chat", function() {
 		else { 
 			var d = new Date();
 			/*maj_tchat_prive(d,$("#destinataire").text(),$("#private_message").val());*/
-			socket.emit("setNewPrivateMessages", $("#private_message").val(), $('#destinataire').data("id_destinataire"),id_joueur);
+			socket.emit("setNewPrivateMessages", $("#private_message").val(), $('#destinataire').data("id_destinataire"),idJoueur);
 			/*var dateBefore = substractMinutes(d, 1);
 			var dateBeforeSQL = dateBefore.toMysqlFormat();
-			socket.emit('getNewPrivateMessages', id_joueur, dateBeforeSQL);*/
+			socket.emit('getNewPrivateMessages', idJoueur, dateBeforeSQL);*/
 			maj_tchat_prive(d,$("#destinataire").text(),$("#private_message").val(), $('#destinataire').data("id_destinataire"));
 			//On ferme puis réinitialise la popup
 			$('#popupmess').popup( "close" );
@@ -231,7 +231,7 @@ $(document).on("pageinit", "#chat", function() {
 								'</p><p class="ui-li-aside"><strong>'+ hour+':'+ minute + '</strong></p></a></li>';
 					//S'il n'y a qu'un seul élément entre les deux dates, on le remplace par content sinon on le supprime et on le replace en tête de liste		
 					
-					if ($('.list_divider').eq(0).next().next().find('.date_message_prive').length >0) {
+					if ($('.list_divider').eq(0).next().next().find('.date_message_prive').length >0 || $(this).next().next().length ==0) {
 						$('.content_list_divider').eq(0).replaceWith(content);
 					}
 					else {
@@ -275,6 +275,7 @@ $(document).on("pageinit", "#chat", function() {
 	$( "#liste_messages_persos" ).on('click', '.content_list_divider', function() {
 		$('#tchat_perso').data("idDestinataire",$(this).find('.destinataire_liste').data('id'));
 		$('#tchat_perso').data("pseudoDestinataire",$(this).find('.destinataire_liste').data('pseudo'));
+		$('#titre_tchat_perso').html($(this).find('.destinataire_liste').data('pseudo'));
 		$.mobile.changePage("#tchat_perso");
 	});
 	
@@ -286,7 +287,7 @@ $(document).on("pageshow", "#chat", function() {
 	var socket = io.connect('http://localhost:8080');
 	var d= new Date();
 	var d_passe = substractMinutes(d, 600)
-	socket.emit('getNewPrivateMessages', id_joueur, d_passe.toMysqlFormat());
+	socket.emit('getNewPrivateMessages', idJoueur, d_passe.toMysqlFormat());
 	
 	//On retire nbminutes minutes de la date en entrée
 	function substractMinutes(date, nbMinutes) {
