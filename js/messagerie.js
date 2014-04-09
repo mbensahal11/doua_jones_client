@@ -35,8 +35,8 @@ $(document).on("pageinit", "#tchat_perso", function() {
 		return false;
 	});
 	
-	socket.emit('adduser', pseudo);
-	socket.on('updatechat', function (username, data) {
+	
+	socket.on('updateChatPrive', function (username, data) {
 		if (username == $('#tchat_perso').data("pseudoDestinataire") ) {
 			var scrolleddown = true;
 			if ($(window).scrollTop() + $(window).height() != $(document).height() && hasscrolledmessagerie==true) {

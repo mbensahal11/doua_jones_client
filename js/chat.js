@@ -5,7 +5,7 @@ var hasscrolledchatglobal;
 $(document).on("pageinit", "#chat", function() {
 	
 	var socket = io.connect('http://localhost:8080');
-	
+	socket.emit('adduser', pseudo, idJoueur);
 	//On initialise la page en disant qu'il n'y a pas eu de scroll
 	hasscrolledchatglobal = false;
 	
@@ -279,7 +279,10 @@ $(document).on("pageinit", "#chat", function() {
 		$.mobile.changePage("#tchat_perso");
 	});
 	
-
+	//Partie Chat société
+	socket.on('nomSociete', function (nomSociete) {
+		$('#tab_tchat_societe').text('Tchat avec : '+nomSociete);
+	});
 });
 
 $(document).on("pageshow", "#chat", function() {
