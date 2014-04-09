@@ -148,6 +148,11 @@ $(document).on("pageinit", "#chat", function() {
 	});
 	
 
+	$( "#tabs_chat" ).tabs({
+   		activate: function(event, ui) { $(document).scrollTop($(document).height()); }
+	});
+
+
 	function on_receive_new_messages (rows) {
 		for (var i=0;i<rows.length;i++) {
 			var destinataire=rows[i].pseudo;
@@ -280,9 +285,73 @@ $(document).on("pageinit", "#chat", function() {
 	});
 	
 	//Partie Chat société
-	socket.on('nomSociete', function (nomSociete) {
+	socket.on('nom_id_Societe', function (nomSociete, idSociete) {
 		$('#tab_tchat_societe').text('Tchat avec : '+nomSociete);
+		$('#Tchat_societe').data('idSociete', idSociete);
 	});
+	
+	$('#send_messageSociete_form').submit(function(event) {
+		event.preventDefault();
+		event.stopImmediatePropagation();
+		// On récupère le message
+		
+		//Le message est envoyé s'il n'est pas vide
+		if ( $('#message_societe_input').val() != '') {
+			socket.emit('setChatSocieteMessage', {
+				idJoueur : idJoueur,
+				pseudo : pseudo,
+				idSociete : $('#Tchat_societe').data('idSociete'),
+				message: $('#message_societe_input').val()
+			});
+			// On écrit le message côté client
+			$('#div_champs_chatSociete').append("<div class='line_droite'><img src='img/bulle_droite.png' alt='' class='fleche_bulle_droite'/><div class='pseudo'> <b>" + "<font color="+pseudo_color +">" + pseudo + "</font>" + "</b> </div> " + "<div class='message'>" + $('#message_societe_input').val() + "</div> </div>");
+			//Le champs texte est remis à zéro
+			$('#message_societe_input').val('');
+			//On scroll vers le bas
+			$(document).scrollTop($(document).height());  
+		}
+			
+		return false;
+	});
+	
+	//A la réception d'un message
+	socket.on('updateChatSociete', function (pseudo_emetteur, message) {
+			var scrolleddown = true;
+			if ($(window).scrollTop() + $(window).height() != $(document).height() && hasscrolledchatglobal==true) {
+				scrolleddown = false;
+			}
+			$('#div_champs_chatSociete').append("<div class='line_gauche'><img src='img/bulle_gauche.png' alt='' class='fleche_bulle_gauche'/><div class='pseudo'> <b>" + "<font color="+pseudo_color +">" + pseudo_emetteur + "</font>" + "</b> </div> " + "<div class='message'>" + message + "</div> </div>");
+		
+			if (scrolleddown) {
+			$(document).scrollTop($(document).height());  
+			}
+		
+	});
+	
+	socket.on('resultgetChatSocieteMessages', function (rows) {
+		for (var i=0;i<rows.length;i++) {
+			if (rows[i].id != idJoueur) {
+				content = "<div class='line_gauche'><img src='img/bulle_gauche.png' alt='' class='fleche_bulle_gauche'/><div class='pseudo'> <b>" + "<font color="+pseudo_color +">" + rows[i].pseudo + "</font>" + "</b> </div> " + "<div class='message'>" + rows[i].contenu + "</div> </div>"
+			}
+			else {
+				content = "<div class='line_droite'><img src='img/bulle_droite.png' alt='' class='fleche_bulle_droite'/><div class='pseudo'> <b>" + "<font color="+pseudo_color +">" + pseudo + "</font>" + "</b> </div> " + "<div class='message'>" + rows[i].contenu + "</div> </div>"
+			}
+			$('#div_champs_chatSociete').append(content);
+		}
+		$(document).scrollTop($(document).height());  
+	});
+	
+	
+	//On prévient lorsque quelqu'un de la société se connecte
+	socket.on('newConnectionChatSociete', function (data) {
+		$('#div_champs_chatSociete').append(data);
+	});
+	
+	//...et lorsque que quelqu'un de la société se déconnecte
+	socket.on('newDeconnectionChatSociete', function (data) {
+		$('#div_champs_chatSociete').append(data);
+	});
+	
 });
 
 $(document).on("pageshow", "#chat", function() {
@@ -291,6 +360,8 @@ $(document).on("pageshow", "#chat", function() {
 	var d= new Date();
 	var d_passe = substractMinutes(d, 600)
 	socket.emit('getNewPrivateMessages', idJoueur, d_passe.toMysqlFormat());
+	//On récupère les messages de la société
+	socket.emit('getChatSocieteMessages', $('#Tchat_societe').data('idSociete'));
 	
 	//On retire nbminutes minutes de la date en entrée
 	function substractMinutes(date, nbMinutes) {

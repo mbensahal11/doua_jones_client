@@ -40,7 +40,10 @@
     <script src="js/entreprise.js"></script>
     <script src="js/chat.js"></script>
     <script src="js/messagerie.js"></script>
-    <script src="js/send.js"></script>
+    <script src="js/boutique.js"></script>
+    <script src="js/connexion.js"></script>
+    <script src="js/emprunt.js"></script>
+    <script src="js/inscription.js"></script>
     
     
  <!-- Socket io-->
@@ -56,7 +59,80 @@
 
 	<body>
     
- 
+ <!-- Page Inscription  --> 
+<!--    
+<div data-role="page" id="inscription" style=" background:-webkit-radial-gradient(#e65858,#8c1515); background:-moz-radial-gradient(#e65858,#8c1515); background:-o-radial-gradient(#e65858,#8c1515); background:radial-gradient(#e65858,#8c1515);">
+        
+	<div>
+		<marquee direction="left" scrollamount="5" >
+			Bienvenue apprentis traders !
+		</marquee>
+    </div>
+	<div style="text-align:right"><a href="#"><img src="img/Aide bouton.png" alt="aide" style="width:48px; height:48px;"/></a></div>
+        <div id="finance_insc">
+            <p style="text-align:center;color:#ffffff;margin-bottom:4px;margin-top:0px;">Bienvenue dans</p>
+                <img src="img/Doua Jones Logo 1 (1).png" alt="curve">
+		</div>
+	<div data-role="content" style="padding-top:8px">
+		<div id="menuinscription" style="width:80%; margin-right: auto; margin-left: auto; color:#ffffff">
+			<p style="text-align:center; margin-top:4px;">Inscris toi pour jouer : </p>
+			<div data-role="fieldcontain" style="margin-top:1px">
+				<form id="inscription_form">
+					<label for="pseudo">Pseudo</label>
+					<input type="text" name="text-1" id="pseudo" value="">
+					<label for="mdp">Mot de passe</label>
+					<input type="password" id="mdp" value="">
+					<label for="cmdp">Confirmer Mot de passe</label>
+					<input type="password" id="cmdp" value=""/>
+                    
+<div style="width:50%; display:inline-block;"><label for="mail">Adresse mail</label>
+		<input type="text" name="text-1" id="mail"></div>
+        <div style="display:inline-block;">@insa-lyon.fr</div>
+                    
+	<div style="margin-top:20px">
+		<input type="submit" value="Envoyer l'inscription" id="envoi_ins"/>
+        <button id="retour_conn">Vous possédez déjà un compte ?</button>
+	</div>
+				</form>
+			</div>
+       	</div>
+	</div>
+</div> -->
+
+
+<!-- Page Connexion  -->
+<!--
+<div data-role="page" id="connexion" style=" background:-webkit-radial-gradient(#e65858,#8c1515); background:-moz-radial-gradient(#e65858,#8c1515); background:-o-radial-gradient(#e65858,#8c1515); background:radial-gradient(#e65858,#8c1515);">
+        
+	<div>
+		<marquee direction="left" scrollamount="5" >
+			Bienvenue apprentis traders !
+		</marquee>
+	</div>
+	<div style="text-align:right"><a href="#"><img src="img/Aide bouton.png" alt="aide" style="width:48px; height:48px;"/></a></div>
+		<div id="finance_connex">
+			<p style="text-align:center;color:#ffffff;margin-bottom:4px;margin-top:0px;">Bienvenue dans</p>
+				<img src="img/Doua Jones Logo 1 (1).png" alt="curve">
+        </div>
+	<div data-role="content" style="padding-top:8px">
+		<div id="menuconnexion" style="width:80%; margin-right: auto; margin-left: auto; color:#ffffff;">
+			<p style="text-align:center; margin-top:4px;">Connecte-toi champion : </p>
+			<div data-role="fieldcontain" style="margin-top:1px; border:3px solid white; border-radius:5px; padding-top: 10px;padding-right: 10px;padding-bottom: 10px;padding-left: 10px;">
+				<form id="connexion_form">
+					<label for="connect_pseudo">Pseudo</label>
+					<input type="text" name="text-1" id="connect_pseudo">
+					<label for="connect_mdp">Mot de passe</label>
+					<input type="text" name="text-1" id="connect_mdp">
+	<div style="margin-top:20px">
+		<input type="submit" value="Connexion" id="envoi_conn"/>
+		<button id="retour_ins">S'inscrire</button>
+	</div>
+				</form>
+			</div>
+
+		</div>
+	</div>
+</div>    -->
     
 <!--Page d'accueil -->
     
@@ -147,7 +223,7 @@
                             </div>
                             <!-- icône d'envoi -->
                             <div class="send_icon">
-                            <input type="image" id="send_chatmessage"  src="img/send.png" /> 
+                            	<input type="image" id="send_chatmessage"  src="img/send.png" /> 
                             </div>   
                         </form> 
                     </div>
@@ -192,7 +268,25 @@
             	
                  <!-- Tchat société -->
                 <div id="Tchat_societe">
-            		Société
+            		<!--  Div où les messages vont s'afficher-->
+                	<div id="div_champs_chatSociete">
+                    	<!-- div invisible pour régler le problème de padding ne fonctionnant pas (le texte s'affiche sous les tabs) -->
+                    	<div class='chat_blank' style="height : 40px"> 
+                        </div>
+                    </div>
+                    <!-- Bas de l'écran  -->
+                    <div class="div_chat_send">
+                        <form id="send_messageSociete_form" data-ajax="false">
+                       		<!-- zonne de saisie du texte -->
+                            <div class="champ_texte_chat">
+                                <input type="text" name="message_input" id="message_societe_input" value="" /> 
+                            </div>
+                            <!-- icône d'envoi -->
+                            <div class="send_icon">
+                            	<input type="image" id="send_message_societe"  src="img/send.png" /> 
+                            </div>   
+                        </form> 
+                    </div>
             	</div>
       		</div>
     </div>
@@ -441,6 +535,147 @@
               <h4>Pied de page</h4>
           </div>
       </div>
+      
+      <!-- Profil BMC  -->
+
+<div data-role="page" id="bmcprofil">
+	<div data-role="header">
+		<a href='#' data-rel="back" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-notext"></a>
+    	<h1></h1>
+	</div>
+	<div data-role="content">
+        <a href="#Entreprise" class="ui-btn ui-shadow" style="border-radius:5px">Profil Entreprise</a>
+        <a href="#emprunt" class="ui-btn ui-shadow" style="border-radius:5px">BMC Investment</a>
+        <a href="#boutique" class="ui-btn ui-shadow" style="border-radius:5px">Boutique BMC</a>
+</div>
+	<div data-role="footer">
+    	<h4>Pied de page</h4>
+	</div>  
+</div>     
+
+<!-- Boutique BMC  -->
+
+	<!-- Boutique BMC header  -->
+
+<div data-role="page" id="boutique">
+	<div data-role="header">
+		<a href='#' data-rel="back" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-notext"></a>
+    	<h1>Boutique BMC</h1>
+	</div>
+    
+	<!-- Boutique BMC tabs  -->
+    
+    <div data-role="tabs" id="tabs_boutique" style="padding-bottom: 3.2;
+      padding-top: 0px;padding-right: 0px;padding-left: 0px;" >
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#items" data-ajax="false">Objets</a></li>            
+                <li><a href="#atouts" data-ajax="false">Atouts</a></li>
+            </ul>
+        </div>
+    
+        <div id="items">
+            <div data-role="content">
+                <div class="ui-grid-a" style="text-align:center">
+                    <div class="ui-block-a">
+                    <label for="boutique_mod">Module d'achat</label>
+                    <select name="boutique_mod" id="boutique_mod" data-native-menu="false">
+                        <option value="choose-one" data-placeholder="true">Choisis un module</option>
+                        <option value="1">Garage BMC</option>
+                        <option value="2">Immobilier BMC</option>
+                        <option value="3">BMC Hippisme</option>
+                        <option value="4">Bijouterie BMC</option>
+                        <option value="5">BMC Cycling</option>
+                        <option value="6">BMC boat</option>
+                        <option value="7">BMC maroquinerie</option>
+                        <option value="8">BMC vignoble</option>
+                        <option value="9">BMC shoes</option>
+                        <option value="10">Zoo BMC</option>
+                        <option value="11">BMC Antiquites</option>
+                        <option value="12">BMC Monuments</option>
+                        <option value="13">BMC Art</option>
+                        <option value="14">Air BMC</option>
+                    </select>
+                    </div>  
+                    <div class="ui-block-b" id="ajout">
+                    </div>
+                </div>
+             <div class="ui-field-contain">
+                <form>
+                    <div style="width:45%; display:inline-block; text-align:center">Prix (en ฿)
+                    </div>
+                    <div style="width:45%; display:inline-block">
+                        <textarea cols="40" rows="8" name="textarea" id="prix_item" style="resize:none;" disabled>
+                        </textarea>
+                    </div>
+                    <img src="" style="display:block; margin-right:auto; margin-left:auto; width:80%; margin-bottom:15px;" id="image_item">
+                    <input type="submit" value="Acheter" id="acheter_item">
+                    </form> 
+                </div>  
+            </div>
+        </div>
+        <div id="atouts">
+        	<div data-role="content">
+                <label for="boutique_atout">Avantage temporaire</label>
+				<select name="boutique_atout" id="boutique_atout" data-native-menu="false">
+                    <option value="choose-one" data-placeholder="true">Choisis un atout</option>
+                    <option value="1">Réduction de 10% à l’achat d’une action</option>
+                    <option value="2">Majoration de 10% faite au joueur lors de la vente d’une action</option>
+                    <option value="3">Augmentation de 10% du dividende reversé au prochain bilan</option>
+                    <option value="4">Prochain emprunt réalisé avec le statut d’emprunteur A</option>
+                    <option value="5">Prochain emprunt réalisé à taux 0%</option>
+                    <option value="6">Ajout d’un emprunt supplémentaire à la limite autorisée</option>
+                    <option value="7">Achat d’une action sans se trouver physiquement sur le campus</option>
+                    <option value="8">Vente d’une action sans se trouver physiquement sur le campus</option>
+                    <option value="9">Achat d’une action supplémentaire à limite autorisée</option>
+				</select>
+				<input type="submit" value="Acheter" id="acheter_atout">
+            </div>
+        </div>
+	</div>
+    <div data-role="footer">
+		<h4>Pied de page</h4>
+	</div>
+</div>
+
+<!-- Module d'emprunt  -->
+
+<div data-role="page" id="emprunt">
+	<div data-role="header">
+		<a href='#' data-rel="back" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-notext"></a>
+    	<h1>BMC Investment</h1>
+	</div>
+	<div data-role="content">
+    	<form>
+            <ul data-role="listview" data-inset="true">
+                <li class="ui-field-contain">
+                  <div style="width:50%; display:inline-block">
+                  TEG (en ฿)
+                  </div>
+                  <div style="width:50%; display:inline-block">
+                    <textarea cols="40" rows="8" name="textarea" id="TEG" style="resize:none; height:50px;" disabled>
+                    </textarea>
+                  </div>
+                </li>
+                <li class="ui-field-contain">
+                    <label for="somme_emprunt">Somme souhaitée (en ฿)
+                    </label>
+                    <input type="range" name="slider-emprunt" id="somme_emprunt" value="1" min="1" max="100">
+                </li>
+                <li class="ui-field-contain">
+                    <label for="duree_emprunt">Durée de remboursement (en jours)
+                    </label>
+                    <input type="range" name="duree_emprunt" id="duree_emprunt" value="1" min="1" max="30">            
+                </li>
+            </ul> 
+                <input type="submit" value="Emprunter" id="saisie_emprunt"/>
+		</form>
+	</div>
+<div data-role="footer">
+    <h1></h1>
+</div>
+</div>
+
 
 	<!--page mentions légales	-->
 		<div data-role="page" id="MentionsLegales">
