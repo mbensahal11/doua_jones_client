@@ -96,7 +96,7 @@ display:block;
 /* div correspondant à l'Icone d'envoi dans la page chat global */
 .send_icon {
 	width : 14%;
-	right:0;
+	right:3%;
 	float:right;
 	height:50px;
 }
@@ -104,7 +104,7 @@ display:block;
 /*Icone d'envoi dans la page chat global */
 #send_chatmessage, #send_chat_private_message, #send_message_societe {
 	height:90%;
-	padding-left:40px;
+	padding-left:5%;
 }
 
 /* Barre d'onglets dans la page générale chat */
@@ -189,17 +189,17 @@ display:block;
 
 /* Saisie du message -- messagerie privée */
 #private_message {
-	height:100px; 
+	height:80%; 
 	resize:none;
 	max-height:85%;
 }
 
 /* Icone pour envoyer le message privé */
 #send_chatmessage_icon {
-	width:50px;
-	height:50px;
+	width:40px;
+	height:40px;
 	position:absolute;
-	bottom:5px;
-	right:10px;
+	bottom:-8px;
+	right:10%;
 }
 	

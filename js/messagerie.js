@@ -2,20 +2,18 @@ $(document).on("pagebeforeshow", "#tchat_perso", function() {
 	//On efface la conversation
 	$('#div_champs_messagerie').empty();
 });
-	var idJoueur = 1;
-	var pseudo= 'Quentin';
-	var hasscrolledmessagerie;
+
 	
 	
 $(document).on("pageshow", "#tchat_perso", function() {
 	//On initialise la page en disant qu'il n'y a pas eu de scroll
 	hasscrolledmessagerie = false;
-	var socket = io.connect('http://134.214.47.242:8080');
+	//var socket = io.connect(adresse_serveur);
 	socket.emit('getPrivateMessagesDestinataire', $('#tchat_perso').data("idDestinataire") ,idJoueur);
 });
 
 $(document).on("pageinit", "#tchat_perso", function() {
-	var socket = io.connect('http://134.214.47.242:8080');
+	//var socket = io.connect(adresse_serveur);
 	hasscrolledmessagerie = false;
 	$('#send_message_prive_form').submit(function(event) {
 		event.preventDefault();

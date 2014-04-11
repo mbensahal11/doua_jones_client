@@ -475,7 +475,8 @@ function initialize() {
 		var Entreprise = [];
 		Entreprise[0] = {Objet :GI,
 						 nom : "Total Logistics",
-						 srcImage : 'img/logo_carte_entreprise/GI.png',
+						 srcImagecarte : 'img/logo_carte_entreprise/GI.png',
+						 srcImageentreprise : 'img/logo_entreprise/GI.png',
 						 //Coordonnées sud-ouest de l'image
 						 swBound : new google.maps.LatLng(45.781879478444075,4.873852358474778),
 						 //Coordonnées nord est de l'image
@@ -486,7 +487,8 @@ function initialize() {
 						 };
 		Entreprise[1] = {Objet :BMC,
 						 nom : "Banque Mondiale du Commerce",
-						 srcImage : 'img/logo_carte_entreprise/BMC.png',
+						 srcImagecarte : 'img/logo_carte_entreprise/BMC.png',
+						 srcImageentreprise : 'img/logo_entreprise/BMC.png',
 						 swBound : new google.maps.LatLng(45.78235459626573,4.876164422645616),
 						 neBound : new google.maps.LatLng(45.78279984683528,4.876861859416181),
 						 bounds : null,
@@ -494,7 +496,8 @@ function initialize() {
 						 };
 		Entreprise[2] = {Objet :GEN,
 						 nom : "Green Energy & Co",
-						 srcImage : 'img/logo_carte_entreprise/GEN.png',
+						 srcImagecarte : 'img/logo_carte_entreprise/GEN.png',
+						 srcImageentreprise : 'img/logo_entreprise/GEN.png',
 						 swBound : new google.maps.LatLng(45.783001797491934,4.873004780426072),
 						 neBound : new google.maps.LatLng(45.78324502874469,4.873439360713178
 ),
@@ -503,7 +506,8 @@ function initialize() {
 						 };
 		Entreprise[3] = {Objet :TC,
 						 nom : "Blue Telecom",
-						 srcImage : 'img/logo_carte_entreprise/TC.png',
+						 srcImagecarte : 'img/logo_carte_entreprise/TC.png',
+						 srcImageentreprise : 'img/logo_entreprise/TC.png',
 						 swBound : new google.maps.LatLng(45.78350870418728,4.872889445438432),
 						 neBound : new google.maps.LatLng(45.78391653590745,4.87362711534422),
 						 bounds : null,
@@ -511,7 +515,8 @@ function initialize() {
 						 };
 		Entreprise[4] = {Objet :GE,
 						 nom : "Genius Electrics",
-						 srcImage : 'img/logo_carte_entreprise/GE.png',
+						 srcImagecarte : 'img/logo_carte_entreprise/GE.png',
+						 srcImageentreprise :'img/logo_entreprise/GE.png',
 						 swBound : new google.maps.LatLng(45.78299057441293,4.8712720734024515),
 						 neBound : new google.maps.LatLng(45.78348445283917,4.872044612025434),
 						 bounds : null,
@@ -519,7 +524,8 @@ function initialize() {
 						 };
 		Entreprise[5] = {Objet :Rotonde,
 						 nom : "Brodewei",
-						 srcImage : 'img/logo_carte_entreprise/Rotonde.png',
+						 srcImagecarte : 'img/logo_carte_entreprise/Rotonde.png',
+						 srcImageentreprise : 'img/logo_entreprise/Rotonde.png',
 						 swBound : new google.maps.LatLng(45.78386970872993,4.873761163368272),
 						 neBound : new google.maps.LatLng(45.78416156854144,4.874286938761884),
 						 bounds : null,
@@ -527,7 +533,8 @@ function initialize() {
 						 };
 		Entreprise[6] = {Objet :EFI,
 						 nom : "Hill Tone",
-						 srcImage : 'img/logo_carte_entreprise/EFI.png',
+						 srcImagecarte : 'img/logo_carte_entreprise/EFI.png',
+						 srcImageentreprise : 'img/logo_entreprise/EFI.png',
 						 swBound : new google.maps.LatLng(45.784243804234606,4.870687351837205),
 						 neBound : new google.maps.LatLng(45.784816230599766,4.871615458583051),
 						 bounds : null,
@@ -535,7 +542,8 @@ function initialize() {
 						 };
 						 
 		Entreprise[7] = {Objet :CB,
-						 srcImage : 'img/logo_carte_entreprise/colette.png',
+						 srcImagecarte : 'img/logo_carte_entreprise/colette.png',
+						 srcImageentreprise : 'img/logo_entreprise/colette.png',
 						 nom : "Wilbedon & Co",
 						 swBound : new google.maps.LatLng(45.784909688021635,4.873836265220689),
 						 neBound : new google.maps.LatLng(45.78548210754941,4.874764371966535),
@@ -544,7 +552,8 @@ function initialize() {
 						 };
 						 
 		Entreprise[8] = {Objet :Humas,
-						 srcImage : 'img/logo_carte_entreprise/Humas.png',
+						 srcImagecarte : 'img/logo_carte_entreprise/Humas.png',
+						 srcImageentreprise : 'img/logo_entreprise/Humas.png',
 						 nom : "Center Park",
 						 swBound : new google.maps.LatLng(45.783312301771254,4.874753580703782),
 						 neBound : new google.maps.LatLng(45.78377250859037,4.875472475146466),
@@ -553,7 +562,8 @@ function initialize() {
 						 };
 						 
 		Entreprise[9] = {Objet :Kfet,
-						 srcImage : 'img/logo_carte_entreprise/MDE.png',
+						 srcImagecarte : 'img/logo_carte_entreprise/MDE.png',
+						 srcImageentreprise : 'img/logo_entreprise/MDE.png',
 						 nom : "Club Mad",
 						 swBound : new google.maps.LatLng(45.78404553392958,4.875150547637986),
 						 neBound : new google.maps.LatLng(45.78450573469595,4.8758694420806705),
@@ -562,7 +572,8 @@ function initialize() {
 						 };
 						 
 		Entreprise[10] = {Objet :BS,
-						 srcImage : 'img/logo_carte_entreprise/BS.png',
+						 srcImagecarte : 'img/logo_carte_entreprise/BS.png',
+						 srcImageentreprise : 'img/logo_entreprise/BS.png',
 						 nom : "Biotech",
 						 swBound : new google.maps.LatLng(45.782167542488075,4.873004780426072),
 						 neBound : new google.maps.LatLng(45.78244444695973,4.8735466490737736),
@@ -571,7 +582,8 @@ function initialize() {
 						 };
 						 
 		Entreprise[11] = {Objet :IF,
-						 srcImage : 'img/logo_carte_entreprise/IF.png',
+						 srcImagecarte : 'img/logo_carte_entreprise/IF.png',
+						 srcImageentreprise : 'img/logo_entreprise/IF.png',
 						 nom : "ITech",
 						 swBound : new google.maps.LatLng(45.78148292031208,4.872299359455155),
 						 neBound : new google.maps.LatLng(45.78188889630108,4.872978020762616),
@@ -580,7 +592,8 @@ function initialize() {
 						 };
 						 
 		Entreprise[12] = {Objet :Beurk,
-						 srcImage : 'img/logo_carte_entreprise/Miam.png',
+						 srcImagecarte : 'img/logo_carte_entreprise/Miam.png',
+						 srcImageentreprise : 'img/logo_entreprise/Miam.png',
 						 nom : "Miam Inc.",
 						 swBound : new google.maps.LatLng(45.78079641914237,4.8731201154137125),
 						 neBound : new google.maps.LatLng(45.78132585783069,4.873951662635022),
@@ -590,7 +603,8 @@ function initialize() {
 						 
 		Entreprise[13] = {Objet :CD,
 						 nom : "Campanule",
-						 srcImage : 'img/logo_carte_entreprise/CD.png',
+						 srcImagecarte : 'img/logo_carte_entreprise/CD.png',
+						 srcImageentreprise : 'img/logo_entreprise/CD.png',
 						 swBound : new google.maps.LatLng(45.779862988460735,4.873130844249772),
 						 neBound : new google.maps.LatLng(45.780392436012725,4.873962391471082),
 						 bounds : null,
@@ -599,7 +613,8 @@ function initialize() {
 						 
 		Entreprise[14] = {Objet :GCU,
 						 nom : "Leonard Construction",
-						 srcImage : 'img/logo_carte_entreprise/GCU.png',
+						 srcImagecarte : 'img/logo_carte_entreprise/GCU.png',
+						 srcImageentreprise : 'img/logo_entreprise/GCU.png',
 						 swBound : new google.maps.LatLng(45.78369762395447,4.876397774829911),
 						 neBound : new google.maps.LatLng(45.78422703509279,4.877229322051221),
 						 bounds : null,
@@ -608,7 +623,8 @@ function initialize() {
 						 
 		Entreprise[15] = {Objet :GMC,
 						 nom : "Mech. Enterprise",
-						 srcImage : 'img/logo_carte_entreprise/GMC.png',
+						 srcImagecarte : 'img/logo_carte_entreprise/GMC.png',
+						 srcImageentreprise : 'img/logo_entreprise/GMC.png',
 						 swBound : new google.maps.LatLng(45.78258654207694,4.874868915691422),
 						 neBound : new google.maps.LatLng(45.78311596376634,4.875700462912732),
 						 bounds : null,
@@ -618,7 +634,8 @@ function initialize() {
 		Entreprise[16] = {Objet :Dir,
 						 Chemin : "Dir.html",
 						 nom : "Doua Postal",
-						 srcImage : 'img/logo_carte_entreprise/direction.png',
+						 srcImagecarte : 'img/logo_carte_entreprise/direction.png',
+						 srcImageentreprise : 'img/logo_entreprise/direction.png',
 						 swBound : new google.maps.LatLng(45.782938200015685,4.877556489124345),
 						 neBound : new google.maps.LatLng(45.783606034993184,4.878709901427442),
 						 bounds : null,
@@ -627,7 +644,8 @@ function initialize() {
 						 
 		Entreprise[17] = {Objet :Capelle,
 						 nom : "Palais des Congrès",
-						 srcImage : 'img/logo_carte_entreprise/Capelle.png',
+						 srcImagecarte : 'img/logo_carte_entreprise/Capelle.png',
+						 srcImageentreprise : 'img/logo_entreprise/Capelle.png',
 						 swBound : new google.maps.LatLng(45.78316266137002,4.87942867101674),
 						 neBound : new google.maps.LatLng(45.78373322834793,4.8803138624183475),
 						 bounds : null,
@@ -636,7 +654,8 @@ function initialize() {
 						 
 		Entreprise[18] = {Objet :CDS,
 						 nom : "Sport Center",
-						 srcImage : 'img/logo_carte_entreprise/CDS.png',
+						 srcImagecarte : 'img/logo_carte_entreprise/CDS.png',
+						 srcImageentreprise : 'img/logo_entreprise/CDS.png',
 						 swBound : new google.maps.LatLng(45.78484235181969,4.877073691501664),
 						 neBound : new google.maps.LatLng(45.785532609127586,4.878135908698255),
 						 bounds : null,
@@ -645,7 +664,8 @@ function initialize() {
 						 
 		Entreprise[19] = {Objet :GJ,
 						 nom : "ORPIste",
-						 srcImage : 'img/logo_carte_entreprise/GJ.png',
+						 srcImagecarte : 'img/logo_carte_entreprise/GJ.png',
+						 srcImageentreprise : 'img/logo_entreprise/GJ.png',
 						 swBound : new google.maps.LatLng(45.785616713223426,4.878210948123979),
 						 neBound : new google.maps.LatLng(45.78630696094315,4.879273165320569),
 						 bounds : null,
@@ -654,7 +674,8 @@ function initialize() {
 						 
 		Entreprise[20] = {Objet :GMD,
 						 nom : "Airboost",
-						 srcImage : 'img/logo_carte_entreprise/GMD.png',
+						 srcImagecarte : 'img/logo_carte_entreprise/GMD.png',
+						 srcImageentreprise : 'img/logo_entreprise/GMD.png',
 						 swBound : new google.maps.LatLng(45.78473386554657,4.880571292057084),
 						 neBound : new google.maps.LatLng(45.78542412419778,4.881633509253675),
 						 bounds : null,
@@ -663,7 +684,8 @@ function initialize() {
 						 
 		Entreprise[21] = {Objet :Trav,
 						 nom : "Lion Formation",
-						 srcImage : 'img/logo_carte_entreprise/LN.png',
+						 srcImagecarte : 'img/logo_carte_entreprise/LN.png',
+						 srcImageentreprise : 'img/logo_entreprise/LN.png',
 						 swBound : new google.maps.LatLng(45.783677048565046,4.882067964687394),
 						 neBound : new google.maps.LatLng(45.78408487905373,4.882805634593183),
 						 bounds : null,
@@ -673,7 +695,8 @@ function initialize() {
 		Entreprise[22] = {Objet :Fermat,
 						 Chemin : "Fermat.html",
 						 nom : "Pedro de Fermat",
-						 srcImage : 'img/logo_carte_entreprise/Fermat.png',
+						 srcImagecarte : 'img/logo_carte_entreprise/Fermat.png',
+						 srcImageentreprise : 'img/logo_entreprise/Fermat.png',
 						 swBound : new google.maps.LatLng(45.78484235182056,4.881995545043992),
 						 neBound : new google.maps.LatLng(45.78535491818525,4.882714439486676),
 						 bounds : null,
@@ -682,7 +705,8 @@ function initialize() {
 						 
 		Entreprise[23] = {Objet :batAB,
 						 nom : "Formula One",
-						 srcImage : 'img/logo_carte_entreprise/AB.png',
+						 srcImagecarte : 'img/logo_carte_entreprise/AB.png',
+						 srcImageentreprise : 'img/logo_entreprise/AB.png',
 						 swBound : new google.maps.LatLng(45.783970714764045,4.883486853256272),
 						 neBound : new google.maps.LatLng(45.78436732030299,4.88411455259245),
 						 bounds : null,
@@ -692,7 +716,8 @@ function initialize() {
 						 
 		Entreprise[24] = {Objet :gymB,
 						 nom : "Badison Square Garden",
-						 srcImage : 'img/logo_carte_entreprise/GymB.png',
+						 srcImagecarte : 'img/logo_carte_entreprise/GymB.png',
+						 srcImageentreprise : 'img/logo_entreprise/GymB.png',
 						 swBound : new google.maps.LatLng(45.78530996265055,4.882859216346787),
 						 neBound : new google.maps.LatLng(45.78557188810294,4.883288432215863),
 						 bounds : null,
@@ -701,7 +726,8 @@ function initialize() {
 						 
 		Entreprise[25] = {Objet :SGM,
 						 nom : "SoTech Materials",
-						 srcImage : 'img/logo_carte_entreprise/SGM.png',
+						 srcImagecarte : 'img/logo_carte_entreprise/SGM.png',
+						 srcImageentreprise : 'img/logo_entreprise/SGM.png',
 						 swBound : new google.maps.LatLng(45.78220495329441,4.871588574066209),
 						 neBound : new google.maps.LatLng(45.78269509763412,4.87238793477934),
 						 bounds : null,
@@ -777,7 +803,7 @@ function initialize() {
 		for (var i=0;i<Entreprise.length;i++) {
   			Entreprise[i].Objet.setMap(map);
 			Entreprise[i].bounds = new google.maps.LatLngBounds(Entreprise[i].swBound, Entreprise[i].neBound);
-			Entreprise[i].Overlay = new google.maps.GroundOverlay(Entreprise[i].srcImage,Entreprise[i].bounds);
+			Entreprise[i].Overlay = new google.maps.GroundOverlay(Entreprise[i].srcImagecarte,Entreprise[i].bounds);
 			Entreprise[i].index = i;
 			Entreprise[i].Overlay.setMap(map);
 		};
@@ -1002,11 +1028,11 @@ function initialize() {
 			google.maps.event.addDomListener(document.getElementById('info'), 'click', function(){openinfo(entreprise)})
 			google.maps.event.addDomListener(document.getElementById('checkin'), 'click', function(){checkin(entreprise)})	
 		}
-		var socket = io.connect('http://134.214.47.242:8080');
+		//var socket = io.connect(adresse_serveur);
 		function checkin(entreprise) {
 			var teleportation = false;
 			//Si le joueur se trouve à la BMC et qu'il fait un checkin dans une société à laquelle il n'a pas accès, on met le booléen "teleportation" à vrai
-			if (google.maps.geometry.poly.containsLocation(position_joueur,Entreprise[1])) {
+			if (google.maps.geometry.poly.containsLocation(position_joueur,Entreprise[1].Objet)) {
 				if (!(location_contained_or_edge (entreprise))) {
 					teleportation = true;
 				}
@@ -1026,7 +1052,7 @@ function initialize() {
 		var ok_ordre = false
 		function openinfo(entreprise) {
 			//On charge l'image de l'entreprise sur la page de l'entreprise
-			document.getElementById('image_entreprise').setAttribute('src',entreprise.srcImage)
+			document.getElementById('image_entreprise').setAttribute('src',entreprise.srcImageentreprise)
 			//On écrit le nom de l'entreprise dans le header
 			$('#nom_entreprise').html(entreprise.nom);
 			//On écrit le nom de l'entreprise dans le champ nom où il faut passer l'ordre

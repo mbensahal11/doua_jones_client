@@ -3,7 +3,7 @@
 
 $(document).on("pageinit", "#inscription", function() {
 
-	var socket = io.connect('http://134.214.47.242:8080');
+	var socket = io.connect(adresse_serveur);
 	
 	$(document).on("click", "#envoi_ins", function(event){
 		event.preventDefault();
@@ -37,6 +37,7 @@ $(document).on("pageinit", "#inscription", function() {
 		event.preventDefault();
 		event.stopImmediatePropagation();		
 		$.mobile.changePage("#connexion");
+		return false;
 	});
 
 });

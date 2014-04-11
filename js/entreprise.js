@@ -7,7 +7,7 @@ $(document).on("pageshow", "#Entreprise", function() {
 					
 		var btGetCours = document.getElementById("btGetCours");
 
-		var socket = io.connect('http://134.214.47.242:8080');
+		var socket = io.connect(adresse_serveur);
 
 		socket.emit("getCoursEntreprise", $('#entreprise_active').data("id_entreprise"));
 
@@ -35,6 +35,8 @@ $(document).on("pageshow", "#Entreprise", function() {
 		var currentYear=(new Date()).getFullYear();
 				
 		$("#today").click(function () {
+			event.preventDefault();
+			event.stopImmediatePropagation();
 			$.plot("#placeholder", values, {
 				xaxis: {
 					mode: "time",
@@ -44,10 +46,13 @@ $(document).on("pageshow", "#Entreprise", function() {
 				lines: {fill:true},
 				legend: {position:"nw", backgroundOpacity:0.3},
 			});
+			return false;
 		});
 
 		
 		$("#lastweek").click(function () {
+			event.preventDefault();
+			event.stopImmediatePropagation();
 			$.plot("#placeholder", values, {
 				xaxis: {
 					mode: "time",
@@ -60,9 +65,12 @@ $(document).on("pageshow", "#Entreprise", function() {
 				lines: {fill:true},
 				legend: {position:"nw", backgroundOpacity:0.3},
 			});
+			return false;
 		});
 		
 		$("#lastmonth").click(function () {
+			event.preventDefault();
+			event.stopImmediatePropagation();
 			$.plot("#placeholder", values, {
 				xaxis: {
 					mode: "time",
@@ -73,6 +81,7 @@ $(document).on("pageshow", "#Entreprise", function() {
 				lines: {fill:true},
 				legend: {position:"nw", backgroundOpacity:0.3},
 			});
+			return false;
 		});
 
 	});

@@ -1,6 +1,6 @@
 $(document).on("pageinit", "#connexion", function() { 
 
-	var socket=io.connect('http://134.214.47.242:8080');
+	var socket=io.connect(adresse_serveur);
 	//A la connexion, si l'utilisateur  à les valeurs sauvegardées en local storage, on le connecte automatiquement
 	var pseudo_localStorage = "pseudo_localStorage";
 	var password_localStorage = "password_localStorage";
@@ -30,6 +30,8 @@ $(document).on("pageinit", "#connexion", function() {
 	socket.on('resultConnexionUtilisateur', function(data) {
 		if (data.connexionAccordee) {
 			$.mobile.changePage("#Accueil_jeu");
+			idJoueur = data.idJoueur;
+			pseudo = data.pseudo;
 		}
 		else {alert(data.erreur);
 			$("#envoi_conn").prop("disabled",false);

@@ -36,6 +36,7 @@
 
     
 <!--Code Javascript externe -->  	 
+	<script src="js/main.js"> </script>
    	<script src="js/map.js"> </script>
     <script src="js/entreprise.js"></script>
     <script src="js/chat.js"></script>
@@ -48,11 +49,15 @@
     
  <!-- Socket io-->
  
- 	<script type="text/javascript" src= "http://134.214.47.242:8080/socket.io/socket.io.js"></script>
+ 	<script type="text/javascript" src= "http://localhost:8080/socket.io/socket.io.js"></script>
     
     
  <!-- Fichiers css -->
     <link rel="stylesheet" href="css/douajones.css"/>
+    
+ <!-- SplashScreen -->
+ <link rel="apple-touch-startup-image" href="img/splash/splash.png">
+ 
 
   </head>
 
@@ -61,7 +66,7 @@
     
  
 <!-- Page Connexion  -->
-
+<!--
 <div data-role="page" id="connexion" style=" background:-webkit-radial-gradient(#e65858,#8c1515); background:-moz-radial-gradient(#e65858,#8c1515); background:-o-radial-gradient(#e65858,#8c1515); background:radial-gradient(#e65858,#8c1515);">
         
 	<div>
@@ -92,10 +97,10 @@
 
 		</div>
 	</div>
-</div>   
+</div>   -->
 
 <!-- Page Inscription  --> 
-    
+    <!--
 <div data-role="page" id="inscription" style=" background:-webkit-radial-gradient(#e65858,#8c1515); background:-moz-radial-gradient(#e65858,#8c1515); background:-o-radial-gradient(#e65858,#8c1515); background:radial-gradient(#e65858,#8c1515);">
         
 	<div>
@@ -133,7 +138,7 @@
        	</div>
 	</div>
 </div> 
-
+-->
 
     
 <!--Page d'accueil -->
@@ -234,7 +239,7 @@
                 <!-- Messagerie privée -->
             	<div id="Tchat_prive">
                 	<!-- Popup s'ouvrant lors de la création d'un nouveau fil de conversation -->
-                	<div data-role="popup" id="popupmess" data-overlay-theme="b" data-theme="b" data-corners="false" data-tolerance="15,15" style="padding:20px;width:1000px;height:500px">
+                	<div data-role="popup" id="popupmess" data-overlay-theme="b" data-theme="b" data-corners="false" data-tolerance="15,15" style="padding:10%;width:90%;height:80%; max-width:100%;">
 					<a href="#" data-rel="back" data-role="button" data-theme="b" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
                    				<!-- Champs de recherche du destinataire -->
 								<form id="search_destinataire" data-ajax="false">
@@ -350,7 +355,8 @@
   <!-- onglet PROFIL -->
               
               <div id="Profil"> 
-              <img id='image_entreprise' alt="">
+              	<img id='image_entreprise' alt="" style="max-width:80%;max-height:30%;height:120px;width:120px; display: block;
+margin: 0 auto; margin-top:4px ">
                   <div data-role="collapsibleset" data-theme="a" data-content-theme="a">
                       <div data-role="collapsible" data-collapsed="false">
                           <h3>Fiche de l'entreprise</h3>

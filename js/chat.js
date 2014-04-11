@@ -1,11 +1,9 @@
 // JavaScript Document
 
-var pseudo_color = "#032f55";
-var hasscrolledchatglobal;
 $(document).on("pageinit", "#chat", function() {
 	
-	var socket = io.connect('http://134.214.47.242:8080');
-	socket.emit('addUser', pseudo, idJoueur);
+	//var socket = io.connect(adresse_serveur);
+	//socket.emit('addUser', pseudo, idJoueur);
 	//On initialise la page en disant qu'il n'y a pas eu de scroll
 	hasscrolledchatglobal = false;
 	
@@ -44,7 +42,7 @@ $(document).on("pageinit", "#chat", function() {
 	});
 	
 	//A la réception d'un message dans le chat global
-	socket.on('newMessageChatGlobal', function (message) {
+	/*socket.on('newMessageChatGlobal', function (message) {
 		var scrolleddown = true
 		
 		if ($(window).scrollTop() + $(window).height() != $(document).height() && hasscrolledchatglobal==true) {
@@ -58,7 +56,7 @@ $(document).on("pageinit", "#chat", function() {
 			$(document).scrollTop($(document).height());  
 		}
 
-	});
+	});*/
 	
 	//La variable hasscrolled est initialisé à false, si le joueur ne scrolle pas et qu'il reçoit des messages, la page scrollera automatiquement
 	window.onscroll = function (e) {  
@@ -74,8 +72,8 @@ $(document).on("pageinit", "#chat", function() {
 	};
 	
 	var date_70 = new Date(0);
-	socket.emit('getPrivateMessages', idJoueur, date_70.toMysqlFormat());
-	socket.on('resultGetPrivateMessages', on_receive_new_messages);
+	//socket.emit('getPrivateMessages', idJoueur, date_70.toMysqlFormat());
+	/*socket.on('resultGetPrivateMessages', on_receive_new_messages);*/
 	
 	
 	//Une popup s'ouvre lorsqu'on veut créer un nouveau fil de conversation
@@ -96,13 +94,13 @@ $(document).on("pageinit", "#chat", function() {
 		var destinataire = $('#destinataire_entre').val();
 		
 		
-		socket.emit("check_destinataire", destinataire);
+		//socket.emit("check_destinataire", destinataire);
 		
 		return false;
 	});
 	
 	//Si le destinataire existe, on peut écrire et envoyer le message
-	socket.on("resultCheckDestinataire", function(exist, id_destinataire){
+	/*socket.on("resultCheckDestinataire", function(exist, id_destinataire){
 		var destinataire = $('#destinataire_entre').val();
 		if (exist) {
 			if (id_destinataire == idJoueur) {
@@ -118,7 +116,7 @@ $(document).on("pageinit", "#chat", function() {
 		else {
 			alert("Ce pseudo n'existe pas");
 		}
-	});
+	});*/
 			
 	
 	$('#send_private_message').submit(function(event) {
@@ -285,10 +283,10 @@ $(document).on("pageinit", "#chat", function() {
 	});
 	
 	//Partie Chat société
-	socket.on('nom_id_Societe', function (nomSociete, idSociete) {
-		$('#tab_tchat_societe').text('Tchat avec : '+nomSociete);
+	/*socket.on('nom_id_Societe', function (nomSociete, idSociete) {
+		$('#tab_tchat_societe').text(nomSociete);
 		$('#Tchat_societe').data('idSociete', idSociete);
-	});
+	});*/
 	
 	$('#send_messageSociete_form').submit(function(event) {
 		event.preventDefault();
@@ -315,7 +313,7 @@ $(document).on("pageinit", "#chat", function() {
 	});
 	
 	//A la réception d'un message
-	socket.on('updateChatSociete', function (pseudo_emetteur, message) {
+	/*socket.on('updateChatSociete', function (pseudo_emetteur, message) {
 			var scrolleddown = true;
 			if ($(window).scrollTop() + $(window).height() != $(document).height() && hasscrolledchatglobal==true) {
 				scrolleddown = false;
@@ -350,18 +348,18 @@ $(document).on("pageinit", "#chat", function() {
 	//...et lorsque que quelqu'un de la société se déconnecte
 	socket.on('newDeconnectionChatSociete', function (data) {
 		$('#div_champs_chatSociete').append(data);
-	});
+	});*/
 	
 });
 
 $(document).on("pageshow", "#chat", function() {
 	hasscrolledchatglobal = false;
-	var socket = io.connect('http://134.214.47.242:8080');
+	//var socket = io.connect(adresse_serveur);
 	var d= new Date();
 	var d_passe = substractMinutes(d, 600)
-	socket.emit('getPrivateMessages', idJoueur, d_passe.toMysqlFormat());
+	//socket.emit('getPrivateMessages', idJoueur, d_passe.toMysqlFormat());
 	//On récupère les messages de la société
-	socket.emit('getChatSocieteMessages', $('#Tchat_societe').data('idSociete'));
+	//socket.emit('getChatSocieteMessages', $('#Tchat_societe').data('idSociete'));
 	
 	//On retire nbminutes minutes de la date en entrée
 	function substractMinutes(date, nbMinutes) {
