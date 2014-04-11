@@ -1004,10 +1004,18 @@ function initialize() {
 		}
 		var socket = io.connect('http://134.214.47.242:8080');
 		function checkin(entreprise) {
+			var teleportation = false;
+			//Si le joueur se trouve à la BMC et qu'il fait un checkin dans une société à laquelle il n'a pas accès, on met le booléen "teleportation" à vrai
+			if (google.maps.geometry.poly.containsLocation(position_joueur,Entreprise[1])) {
+				if (!(location_contained_or_edge (entreprise))) {
+					teleportation = true;
+				}
+			}
 			//On envoie les données du checkin
 			socket.emit('setCheckin',{
 			idEntreprise : entreprise.index,
 			idJoueur : 1,
+			teleportation : teleportation
 			});
 			
 		}

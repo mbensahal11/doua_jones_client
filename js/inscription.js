@@ -1,10 +1,11 @@
 // JavaScript Document
-	//on stocke les 3 input et le bt dans des variables pour récup leur valeur plus tard
+	//on stocke les 3 input et le bt dans des variables pour récup leur valeur plus tard
 
-$(document).on("pageshow", "#inscription", function() {
+$(document).on("pageinit", "#inscription", function() {
 
-//	var socket = io.connect('http://192.168.0.50:8080');
-	$(document).on("click", "#envoi_ins", function(){
+	var socket = io.connect('http://134.214.47.242:8080');
+	
+	$(document).on("click", "#envoi_ins", function(event){
 		event.preventDefault();
 		event.stopImmediatePropagation();
 		if(!$('#mdp').val() || !$('#cmdp').val() || !$('#pseudo').val() || !$('#mail').val() ) {
@@ -21,6 +22,7 @@ $(document).on("pageshow", "#inscription", function() {
 			var data = {pseudo : $("#pseudo").val(), password : $("#mdp").val() , email : mail };
 			socket.emit("inscription", data); 
 		}
+		return false;
 	});
 	
 	socket.on('resultInscription', function(data) {

@@ -7,9 +7,9 @@ $(document).on("pageshow", "#Entreprise", function() {
 					
 		var btGetCours = document.getElementById("btGetCours");
 
-		var socket = io.connect('http://localhost:8080');
+		var socket = io.connect('http://134.214.47.242:8080');
 
-		/*socket.emit("getCoursEntreprise", 1);*/
+		socket.emit("getCoursEntreprise", $('#entreprise_active').data("id_entreprise"));
 
 		var values;
 	
