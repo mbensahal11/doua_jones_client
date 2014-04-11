@@ -10,12 +10,12 @@ $(document).on("pagebeforeshow", "#tchat_perso", function() {
 $(document).on("pageshow", "#tchat_perso", function() {
 	//On initialise la page en disant qu'il n'y a pas eu de scroll
 	hasscrolledmessagerie = false;
-	var socket = io.connect('http://localhost:8080');
+	var socket = io.connect('http://134.214.47.242:8080');
 	socket.emit('getPrivateMessagesDestinataire', $('#tchat_perso').data("idDestinataire") ,idJoueur);
 });
 
 $(document).on("pageinit", "#tchat_perso", function() {
-	var socket = io.connect('http://localhost:8080');
+	var socket = io.connect('http://134.214.47.242:8080');
 	hasscrolledmessagerie = false;
 	$('#send_message_prive_form').submit(function(event) {
 		event.preventDefault();
@@ -24,7 +24,7 @@ $(document).on("pageinit", "#tchat_perso", function() {
 		//Le message est envoyé s'il n'est pas vide
 		if (mess != '') {
 			socket.emit('setNewPrivateMessages', mess, $('#tchat_perso').data("idDestinataire"), idJoueur);
-			socket.emit('pm', $('#tchat_perso').data("pseudoDestinataire"), mess);
+			socket.emit('privateMessage', $('#tchat_perso').data("pseudoDestinataire"), mess);
 			// On écrit le message côté client
 			$('#div_champs_messagerie').append("<div class='line_droite'><img src='img/bulle_droite.png' alt='' class='fleche_bulle_droite'/><div class='pseudo'> <b>" + "<font color="+pseudo_color +">" + pseudo + "</font>" + "</b> </div> " + "<div class='message'>" + mess + "</div> </div>");
 			//Le champs texte est remis à zéro

@@ -4,8 +4,8 @@ var pseudo_color = "#032f55";
 var hasscrolledchatglobal;
 $(document).on("pageinit", "#chat", function() {
 	
-	var socket = io.connect('http://localhost:8080');
-	socket.emit('adduser', pseudo, idJoueur);
+	var socket = io.connect('http://134.214.47.242:8080');
+	socket.emit('addUser', pseudo, idJoueur);
 	//On initialise la page en disant qu'il n'y a pas eu de scroll
 	hasscrolledchatglobal = false;
 	
@@ -44,7 +44,7 @@ $(document).on("pageinit", "#chat", function() {
 	});
 	
 	//A la réception d'un message dans le chat global
-	socket.on('Message', function (message) {
+	socket.on('newMessageChatGlobal', function (message) {
 		var scrolleddown = true
 		
 		if ($(window).scrollTop() + $(window).height() != $(document).height() && hasscrolledchatglobal==true) {
@@ -74,8 +74,8 @@ $(document).on("pageinit", "#chat", function() {
 	};
 	
 	var date_70 = new Date(0);
-	socket.emit('getNewPrivateMessages', idJoueur, date_70.toMysqlFormat());
-	socket.on('resultGetNewPrivateMessages', on_receive_new_messages);
+	socket.emit('getPrivateMessages', idJoueur, date_70.toMysqlFormat());
+	socket.on('resultGetPrivateMessages', on_receive_new_messages);
 	
 	
 	//Une popup s'ouvre lorsqu'on veut créer un nouveau fil de conversation
@@ -130,7 +130,7 @@ $(document).on("pageinit", "#chat", function() {
 		else { 
 			var d = new Date();
 			/*maj_tchat_prive(d,$("#destinataire").text(),$("#private_message").val());*/
-			socket.emit("setNewPrivateMessages", $("#private_message").val(), $('#destinataire').data("id_destinataire"),idJoueur);
+			socket.emit("setNewPrivateMessage", $("#private_message").val(), $('#destinataire').data("id_destinataire"),idJoueur);
 			/*var dateBefore = substractMinutes(d, 1);
 			var dateBeforeSQL = dateBefore.toMysqlFormat();
 			socket.emit('getNewPrivateMessages', idJoueur, dateBeforeSQL);*/
@@ -356,10 +356,10 @@ $(document).on("pageinit", "#chat", function() {
 
 $(document).on("pageshow", "#chat", function() {
 	hasscrolledchatglobal = false;
-	var socket = io.connect('http://localhost:8080');
+	var socket = io.connect('http://134.214.47.242:8080');
 	var d= new Date();
 	var d_passe = substractMinutes(d, 600)
-	socket.emit('getNewPrivateMessages', idJoueur, d_passe.toMysqlFormat());
+	socket.emit('getPrivateMessages', idJoueur, d_passe.toMysqlFormat());
 	//On récupère les messages de la société
 	socket.emit('getChatSocieteMessages', $('#Tchat_societe').data('idSociete'));
 	
