@@ -4,3 +4,9 @@ var hasscrolledchatglobal;
 var idJoueur;
 var pseudo;
 var hasscrolledmessagerie;
+
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady() {
+	navigator.splashscreen.show();
+}

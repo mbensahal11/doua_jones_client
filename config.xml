@@ -7,14 +7,20 @@
     <content src="index.html" />
     <access origin="*" />
 	<!-- SplashScreen -->
+	<plugin name="SplashScreen" value="org.apache.cordova.SplashScreen"/>
+	<feature name="SplashScreen">
+    	<param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+	</feature>
+
 	<gap:splash src="img/splash/splash.png" />
-	<gap:splash src="css/splash/android/ldpi.png" gap:platform="android" gap:density="ldpi" /> <!-- 200x320 -->
-    <gap:splash src="css/splash/android/mdpi.png" gap:platform="android" gap:density="mdpi" /> <!-- 320x480 -->
-    <gap:splash src="css/splash/android/hdpi.png" gap:platform="android" gap:density="hdpi" /> <!-- 480x800 -->
-    <gap:splash src="css/splash/android/xhdpi.png" gap:platform="android" gap:density="xhdpi" /> <!-- 720x1280 -->
+	<gap:splash src="img/splash/splash.png" gap:platform="android" gap:density="ldpi" /> <!-- 200x320 -->
+    <gap:splash src="img/splash/splash.png" gap:platform="android" gap:density="mdpi" /> <!-- 320x480 -->
+    <gap:splash src="img/splash/splash.png" gap:platform="android" gap:density="hdpi" /> <!-- 480x800 -->
+    <gap:splash src="img/splash/splash.png" gap:platform="android" gap:density="xhdpi" /> <!-- 720x1280 -->
 	<preference name="show-splash-screen-spinner" value="false" />
     <preference name="auto-hide-splash-screen" value="true" />
 	<preference name="splash-screen-duration" value="5000" />
 	
 </widget>
+
 
