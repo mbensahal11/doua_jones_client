@@ -2,8 +2,8 @@
 
 $(document).on("pageinit", "#chat", function() {
 	
-	//var socket = io.connect(adresse_serveur);
-	//socket.emit('addUser', pseudo, idJoueur);
+	var socket = io.connect(adresse_serveur);
+	socket.emit('addUser', pseudo, idJoueur);
 	//On initialise la page en disant qu'il n'y a pas eu de scroll
 	hasscrolledchatglobal = false;
 	
@@ -13,7 +13,7 @@ $(document).on("pageinit", "#chat", function() {
 			//reste à tester si joueur.idJoueur est le joueur actif dans ce cas mettre le texte à droite
 			
 			
-			$('#div_champs_chat').append("<div class='line_gauche'><img src='img/bulle_gauche.png' alt='' class='fleche_bulle_gauche'/><div 	class='pseudo'> <b>" + "<font color="+pseudo_color +">" + value[i].Joueur_idJoueur + "</font>" + "</b> </div> " + "<div class='message'>" + value[i].contenu + "</div> </div>");
+			$('#div_champs_chat').append("<div class='line_gauche'><div 	class='pseudo'> <b>" + "<font color="+pseudo_color +">" + value[i].Joueur_idJoueur + "</font>" + "</b> </div> " + "<div class='message'>" + value[i].contenu + "</div> </div>");
 		}
 	});*/
 	
@@ -31,7 +31,7 @@ $(document).on("pageinit", "#chat", function() {
 				message: $('#message_input').val()
 			});
 			// On écrit le message côté client
-			$('#div_champs_chat').append("<div class='line_droite'><img src='img/bulle_droite.png' alt='' class='fleche_bulle_droite'/><div class='pseudo'> <b>" + "<font color="+pseudo_color +">" + pseudo + "</font>" + "</b> </div> " + "<div class='message'>" + mess + "</div> </div>");
+			$('#div_champs_chat').append("<div class='line_droite'><div class='pseudo'> <b>" + "<font color="+pseudo_color +">" + pseudo + "</font>" + "</b> </div> " + "<div class='message'>" + mess + "</div> </div>");
 			//Le champs texte est remis à zéro
 			$('#message_input').val('');
 			//On scroll vers le bas
@@ -42,21 +42,21 @@ $(document).on("pageinit", "#chat", function() {
 	});
 	
 	//A la réception d'un message dans le chat global
-	/*socket.on('newMessageChatGlobal', function (message) {
+	socket.on('newMessageChatGlobal', function (message) {
 		var scrolleddown = true
 		
 		if ($(window).scrollTop() + $(window).height() != $(document).height() && hasscrolledchatglobal==true) {
 			scrolleddown = false;
 		}
 		//On écrit le message reçu
-		$('#div_champs_chat').append("<div class='line_gauche'><img src='img/bulle_gauche.png' alt='' class='fleche_bulle_gauche'/><div class='pseudo'> <b>" + "<font color="+pseudo_color +">" + message.pseudo + "</font>" + "</b> </div> " + "<div class='message'>" + message.message + "</div> </div>");
+		$('#div_champs_chat').append("<div class='line_gauche'><div class='pseudo'> <b>" + "<font color="+pseudo_color +">" + message.pseudo + "</font>" + "</b> </div> " + "<div class='message'>" + message.message + "</div> </div>");
 		
 		//Si le joueur a remonté dans le fil de conversation, on ne fait pas un scroll automatique vers le bas
 		if (scrolleddown) {
 			$(document).scrollTop($(document).height());  
 		}
 
-	});*/
+	});
 	
 	//La variable hasscrolled est initialisé à false, si le joueur ne scrolle pas et qu'il reçoit des messages, la page scrollera automatiquement
 	window.onscroll = function (e) {  
@@ -72,8 +72,8 @@ $(document).on("pageinit", "#chat", function() {
 	};
 	
 	var date_70 = new Date(0);
-	//socket.emit('getPrivateMessages', idJoueur, date_70.toMysqlFormat());
-	/*socket.on('resultGetPrivateMessages', on_receive_new_messages);*/
+	socket.emit('getPrivateMessages', idJoueur, date_70.toMysqlFormat());
+	socket.on('resultGetPrivateMessages', on_receive_new_messages);
 	
 	
 	//Une popup s'ouvre lorsqu'on veut créer un nouveau fil de conversation
@@ -94,13 +94,13 @@ $(document).on("pageinit", "#chat", function() {
 		var destinataire = $('#destinataire_entre').val();
 		
 		
-		//socket.emit("check_destinataire", destinataire);
+		socket.emit("check_destinataire", destinataire);
 		
 		return false;
 	});
 	
 	//Si le destinataire existe, on peut écrire et envoyer le message
-	/*socket.on("resultCheckDestinataire", function(exist, id_destinataire){
+	socket.on("resultCheckDestinataire", function(exist, id_destinataire){
 		var destinataire = $('#destinataire_entre').val();
 		if (exist) {
 			if (id_destinataire == idJoueur) {
@@ -116,7 +116,7 @@ $(document).on("pageinit", "#chat", function() {
 		else {
 			alert("Ce pseudo n'existe pas");
 		}
-	});*/
+	});
 			
 	
 	$('#send_private_message').submit(function(event) {
@@ -283,10 +283,10 @@ $(document).on("pageinit", "#chat", function() {
 	});
 	
 	//Partie Chat société
-	/*socket.on('nom_id_Societe', function (nomSociete, idSociete) {
+	socket.on('nom_id_Societe', function (nomSociete, idSociete) {
 		$('#tab_tchat_societe').text(nomSociete);
 		$('#Tchat_societe').data('idSociete', idSociete);
-	});*/
+	});
 	
 	$('#send_messageSociete_form').submit(function(event) {
 		event.preventDefault();
@@ -302,7 +302,7 @@ $(document).on("pageinit", "#chat", function() {
 				message: $('#message_societe_input').val()
 			});
 			// On écrit le message côté client
-			$('#div_champs_chatSociete').append("<div class='line_droite'><img src='img/bulle_droite.png' alt='' class='fleche_bulle_droite'/><div class='pseudo'> <b>" + "<font color="+pseudo_color +">" + pseudo + "</font>" + "</b> </div> " + "<div class='message'>" + $('#message_societe_input').val() + "</div> </div>");
+			$('#div_champs_chatSociete').append("<div class='line_droite'><div class='pseudo'> <b>" + "<font color="+pseudo_color +">" + pseudo + "</font>" + "</b> </div> " + "<div class='message'>" + $('#message_societe_input').val() + "</div> </div>");
 			//Le champs texte est remis à zéro
 			$('#message_societe_input').val('');
 			//On scroll vers le bas
@@ -313,12 +313,12 @@ $(document).on("pageinit", "#chat", function() {
 	});
 	
 	//A la réception d'un message
-	/*socket.on('updateChatSociete', function (pseudo_emetteur, message) {
+	socket.on('updateChatSociete', function (pseudo_emetteur, message) {
 			var scrolleddown = true;
 			if ($(window).scrollTop() + $(window).height() != $(document).height() && hasscrolledchatglobal==true) {
 				scrolleddown = false;
 			}
-			$('#div_champs_chatSociete').append("<div class='line_gauche'><img src='img/bulle_gauche.png' alt='' class='fleche_bulle_gauche'/><div class='pseudo'> <b>" + "<font color="+pseudo_color +">" + pseudo_emetteur + "</font>" + "</b> </div> " + "<div class='message'>" + message + "</div> </div>");
+			$('#div_champs_chatSociete').append("<div class='line_gauche'><div class='pseudo'> <b>" + "<font color="+pseudo_color +">" + pseudo_emetteur + "</font>" + "</b> </div> " + "<div class='message'>" + message + "</div> </div>");
 		
 			if (scrolleddown) {
 			$(document).scrollTop($(document).height());  
@@ -327,12 +327,13 @@ $(document).on("pageinit", "#chat", function() {
 	});
 	
 	socket.on('resultgetChatSocieteMessages', function (rows) {
+			$('#div_champs_chatSociete').find('*').not('.chat_blank').remove();
 		for (var i=0;i<rows.length;i++) {
 			if (rows[i].id != idJoueur) {
-				content = "<div class='line_gauche'><img src='img/bulle_gauche.png' alt='' class='fleche_bulle_gauche'/><div class='pseudo'> <b>" + "<font color="+pseudo_color +">" + rows[i].pseudo + "</font>" + "</b> </div> " + "<div class='message'>" + rows[i].contenu + "</div> </div>"
+				content = "<div class='line_gauche'><div class='pseudo'> <b>" + "<font color="+pseudo_color +">" + rows[i].pseudo + "</font>" + "</b> </div> " + "<div class='message'>" + rows[i].contenu + "</div> </div>"
 			}
 			else {
-				content = "<div class='line_droite'><img src='img/bulle_droite.png' alt='' class='fleche_bulle_droite'/><div class='pseudo'> <b>" + "<font color="+pseudo_color +">" + pseudo + "</font>" + "</b> </div> " + "<div class='message'>" + rows[i].contenu + "</div> </div>"
+				content = "<div class='line_droite'><div class='pseudo'> <b>" + "<font color="+pseudo_color +">" + pseudo + "</font>" + "</b> </div> " + "<div class='message'>" + rows[i].contenu + "</div> </div>"
 			}
 			$('#div_champs_chatSociete').append(content);
 		}
@@ -342,24 +343,24 @@ $(document).on("pageinit", "#chat", function() {
 	
 	//On prévient lorsque quelqu'un de la société se connecte
 	socket.on('newConnectionChatSociete', function (data) {
-		$('#div_champs_chatSociete').append(data);
+		$('#div_champs_chatSociete').append(data+' <br/>');
 	});
 	
 	//...et lorsque que quelqu'un de la société se déconnecte
 	socket.on('newDeconnectionChatSociete', function (data) {
-		$('#div_champs_chatSociete').append(data);
-	});*/
+		$('#div_champs_chatSociete').append(data+' <br/>');
+	});
 	
 });
 
 $(document).on("pageshow", "#chat", function() {
 	hasscrolledchatglobal = false;
-	//var socket = io.connect(adresse_serveur);
+	var socket = io.connect(adresse_serveur);
 	var d= new Date();
 	var d_passe = substractMinutes(d, 600)
-	//socket.emit('getPrivateMessages', idJoueur, d_passe.toMysqlFormat());
+	socket.emit('getPrivateMessages', idJoueur, d_passe.toMysqlFormat());
 	//On récupère les messages de la société
-	//socket.emit('getChatSocieteMessages', $('#Tchat_societe').data('idSociete'));
+	socket.emit('getChatSocieteMessages', $('#Tchat_societe').data('idSociete'));
 	
 	//On retire nbminutes minutes de la date en entrée
 	function substractMinutes(date, nbMinutes) {

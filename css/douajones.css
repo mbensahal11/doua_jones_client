@@ -85,7 +85,7 @@ display:block;
 }
 
 
-/* Zone dans le chat global où les div champs texte sont affichées */
+/* Zone  où les div champs texte sont affichées */
 #div_champs_chat, #div_champs_messagerie, #div_champs_chatSociete {
 	width : 100%;
 	bottom : 100px;
@@ -123,6 +123,7 @@ display:block;
 	border-style:solid;
 	border-color: #25383c;
 	border-width:1px;
+	border-radius:17px;
 }
 
 /* Message écrit par le joueur */
@@ -134,6 +135,7 @@ display:block;
 	border-style:solid;
 	border-color: #25383c;
 	border-width:1px;
+	border-radius:17px;
 }
 
 /* Pseudo du joueur */

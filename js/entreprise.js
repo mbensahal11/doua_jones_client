@@ -34,7 +34,7 @@ $(document).on("pageshow", "#Entreprise", function() {
 		var currentDay=(new Date()).getDate();
 		var currentYear=(new Date()).getFullYear();
 				
-		$("#today").click(function () {
+		$("#today").click(function (event) {
 			event.preventDefault();
 			event.stopImmediatePropagation();
 			$.plot("#placeholder", values, {
@@ -50,7 +50,7 @@ $(document).on("pageshow", "#Entreprise", function() {
 		});
 
 		
-		$("#lastweek").click(function () {
+		$("#lastweek").click(function (event) {
 			event.preventDefault();
 			event.stopImmediatePropagation();
 			$.plot("#placeholder", values, {
@@ -68,7 +68,7 @@ $(document).on("pageshow", "#Entreprise", function() {
 			return false;
 		});
 		
-		$("#lastmonth").click(function () {
+		$("#lastmonth").click(function (event) {
 			event.preventDefault();
 			event.stopImmediatePropagation();
 			$.plot("#placeholder", values, {
