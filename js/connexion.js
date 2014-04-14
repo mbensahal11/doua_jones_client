@@ -36,7 +36,7 @@ $(document).on("pageinit", "#connexion", function() {
 	});
 	
 	socket.on('resultConnexionUtilisateur', function(data) {
-		//navigator.splashscreen.hide();
+		navigator.splashscreen.hide();
 		if (data.connexionAccordee) {
 			$.mobile.changePage("#Accueil_jeu");
 			idJoueur = data.idJoueur;
