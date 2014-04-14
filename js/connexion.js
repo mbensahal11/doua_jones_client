@@ -47,8 +47,6 @@ $(document).on("pageinit", "#connexion", function() {
 	});
 
 	$(document).on("click","#retour_ins", function(event) {
-		navigator.splashscreen.hide();
-		cordova.exec(null, null, "SplashScreen", "hide", [])
 		event.preventDefault();
 		event.stopImmediatePropagation();
 		$.mobile.changePage("#inscription");
