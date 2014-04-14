@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.example.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/2.9.0">
+<widget id="com.example.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Doua Jones</name>
     <description>
         Application Doua Jones de la Bibliothèque Marie Curie
@@ -20,9 +20,11 @@
     <gap:splash src="img/splash/splash.png" gap:platform="android" gap:density="hdpi" /> <!-- 480x800 -->
     <gap:splash src="img/splash/splash.png" gap:platform="android" gap:density="xhdpi" /> <!-- 720x1280 -->
 	<preference name="show-splash-screen-spinner" value="false" />
+	<preference name="splashscreen" value="splash" />
    	<preference name="auto-hide-splash-screen" value="false" /> 
-	<preference name="SplashScreenDelay" value="20000" /> 
-	<preference name="splash-screen-duration" value="20000" />
+	<preference name="SplashScreenDelay" value="30000" /> 
+	<preference name="splash-screen-duration" value="30000" />
+	
 	
 </widget>
 
