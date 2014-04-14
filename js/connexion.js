@@ -1,5 +1,5 @@
 $(document).on("pageinit", "#connexion", function() { 
-
+	navigator.splashscreen.show();
 	var socket=io.connect(adresse_serveur);
 	//A la connexion, si l'utilisateur  à les valeurs sauvegardées en local storage, on le connecte automatiquement
 	var pseudo_localStorage = "pseudo_localStorage";
@@ -36,9 +36,9 @@ $(document).on("pageinit", "#connexion", function() {
 	});
 	
 	socket.on('resultConnexionUtilisateur', function(data) {
-		navigator.splashscreen.hide();
 		if (data.connexionAccordee) {
 			$.mobile.changePage("#Accueil_jeu");
+			navigator.splashscreen.hide();
 			idJoueur = data.idJoueur;
 			pseudo = data.pseudo;
 		}
