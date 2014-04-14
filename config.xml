@@ -18,8 +18,8 @@
     <gap:splash src="img/splash/splash.png" gap:platform="android" gap:density="hdpi" /> <!-- 480x800 -->
     <gap:splash src="img/splash/splash.png" gap:platform="android" gap:density="xhdpi" /> <!-- 720x1280 -->
 	<preference name="show-splash-screen-spinner" value="false" />
-    <preference name="auto-hide-splash-screen" value="true" />
-	<preference name="splash-screen-duration" value="5000" />
+   <!-- <preference name="auto-hide-splash-screen" value="true" /> -->
+	<preference name="splash-screen-duration" value="10000" />
 	
 </widget>
 

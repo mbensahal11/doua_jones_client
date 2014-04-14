@@ -80,8 +80,9 @@ display:block;
  
 /*Champs texte dans la page chat globale*/
 .champ_texte_chat{
-	width : 85%;
+	width : 80%;
 	float:left;
+	margin-right:2%;
 }
 
 
@@ -95,9 +96,8 @@ display:block;
 
 /* div correspondant à l'Icone d'envoi dans la page chat global */
 .send_icon {
-	width : 14%;
-	right:3%;
-	float:right;
+	margin-right:2%;
+	width : 11%;
 	height:50px;
 }
 
