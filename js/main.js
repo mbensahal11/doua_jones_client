@@ -1,4 +1,4 @@
-var adresse_serveur = "http://88.172.179.93:5050";
+var adresse_serveur = "http://134.214.47.242:8080";
 var pseudo_color = "#032f55";
 var hasscrolledchatglobal;
 var idJoueur;
