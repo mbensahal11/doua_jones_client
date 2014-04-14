@@ -21,9 +21,8 @@
     <gap:splash src="img/splash/splash.png" gap:platform="android" gap:density="xhdpi" /> <!-- 720x1280 -->
 	<preference name="show-splash-screen-spinner" value="false" />
    	<preference name="auto-hide-splash-screen" value="false" /> 
-	<!-- <preference name="SplashScreenDelay" value="30000" /> 
-	<preference name="splash-screen-duration" value="30000" /> -->
-	
+	<preference name="SplashScreenDelay" value="20000" /> 
+	<preference name="splash-screen-duration" value="20000" />
 	
 </widget>
 

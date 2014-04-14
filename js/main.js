@@ -8,5 +8,5 @@ var hasscrolledmessagerie;
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
-	navigator.splashscreen.show();
+	navigator.splashscreen.hide();
 }

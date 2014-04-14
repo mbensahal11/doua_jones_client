@@ -36,7 +36,6 @@ $(document).on("pageinit", "#connexion", function() {
 	});
 	
 	socket.on('resultConnexionUtilisateur', function(data) {
-		navigator.splashscreen.hide();
 		if (data.connexionAccordee) {
 			$.mobile.changePage("#Accueil_jeu");
 			idJoueur = data.idJoueur;
@@ -48,6 +47,8 @@ $(document).on("pageinit", "#connexion", function() {
 	});
 
 	$(document).on("click","#retour_ins", function(event) {
+		navigator.splashscreen.hide();
+		cordova.exec(null, null, "SplashScreen", "hide", [])
 		event.preventDefault();
 		event.stopImmediatePropagation();
 		$.mobile.changePage("#inscription");
