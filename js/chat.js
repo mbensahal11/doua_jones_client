@@ -1,7 +1,6 @@
 // JavaScript Document
 
 $(document).on("pageinit", "#chat", function() {
-	alert (result_test);
 	var socket = io.connect(adresse_serveur);
 	socket.emit('addUser', pseudo, idJoueur);
 	//On initialise la page en disant qu'il n'y a pas eu de scroll
