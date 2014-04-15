@@ -1047,7 +1047,10 @@ function initialize() {
 		var ok_ordre = false
 		function openinfo(entreprise) {
 			//On charge l'image de l'entreprise sur la page de l'entreprise
-			document.getElementById('image_entreprise').setAttribute('src',entreprise.srcImageentreprise)
+			document.getElementById('image_entreprise').setAttribute('src',entreprise.srcImageentreprise);
+			if (entreprise.index == 1) {
+				document.getElementById('image_bmc').setAttribute('src',entreprise.srcImageentreprise);
+			}
 			//On écrit le nom de l'entreprise dans le header
 			$('#nom_entreprise').html(entreprise.nom);
 			//On écrit le nom de l'entreprise dans le champ nom où il faut passer l'ordre
