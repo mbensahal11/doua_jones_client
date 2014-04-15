@@ -1,7 +1,7 @@
 $(document).on("pageinit", "#Accueil_jeu", function() {
 	
 
-
+	var socket = io.connect(adresse_serveur);
     tokenHandler=function(msg) {
         console.log("Token Handler " + msg);
     };
@@ -52,6 +52,7 @@ $(document).on("pageinit", "#Accueil_jeu", function() {
                     // Your GCM push server needs to know the regID before it can push to this device
                     // here is where you might want to send it the regID for later use.
                     alert('registration id = '+e.regid);
+					socket.emit('idNotification', e.regid);
                 }
             break;
 
