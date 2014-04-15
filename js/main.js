@@ -11,6 +11,6 @@ function onDeviceReady() {
 	navigator.splashscreen.show();
 }
 
-$(document).on("pageinit", "#Acceuil_jeu", function() {
+$(document).on("pageshow", "#Accueil_jeu", function() {
 	navigator.notification.alert('Nouveau message de la BMC!');
 });
