@@ -42,12 +42,26 @@ $(document).on("pageshow", "#boutique", function() {
 	$(document).on("click","#acheter_item", function(event) {
 		event.preventDefault();
 		event.stopImmediatePropagation();
-		
+		//si le joueur ne se trouve pas à la BMC, il ne peut pas acheter d'items
+		if ($('#bmcprofil').data("isAtBMC")) {
+			
+		}
+		else {
+			alert('Vous devez vous rendre à la BMC pour acheter un item');
+		}
+		return false;
 	});
 
 	$(document).on("click","#acheter_atout", function(event) {
 		event.preventDefault();
 		event.stopImmediatePropagation();
+		if ($('#bmcprofil').data("isAtBMC")) {
+			
+		}
+		else {
+			alert('Vous devez vous rendre à la BMC pour acheter un atout');
+		}
+		return false;
 	});	
 
 });

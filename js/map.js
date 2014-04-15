@@ -1060,6 +1060,14 @@ function initialize() {
 			if (document.getElementById('checkin').disabled == true) {				
 				ok_ordre = false;
 			}
+			//On regarde si le joueur se trouve à la BMC
+			var isAtBMC = false;
+			if (google.maps.geometry.poly.containsLocation(position_joueur,Entreprise[1].Objet)) {
+				isAtBMC = true;
+			}
+			//On affecte la variable isAtBMC à la page BMC profil pour savoir si on peut intéragir avec la boutique
+			$('#bmcprofil').data("isAtBMC", isAtBMC);
+			
 			//On ferme l'infowindow	
 			infowindow.close(map);
 			//On affiche la page entreprise ou la page BMC

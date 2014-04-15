@@ -15,14 +15,19 @@ $('#somme_emprunt').prop("max",data.empruntMaximum); //somme max empruntable
 
 });
 
-	$(document).on("click", "#saisie_emprunt", function (event) 
-	{
-		var h={idJoueur: idJoueur, montant:$('#somme_emprunt').val(), duree:$('#duree_emprunt').val() };
-		socket.emit("setEmprunt", h);
+	$(document).on("click", "#saisie_emprunt", function (event) {
 		event.preventDefault();
 		event.stopImmediatePropagation();
+		var h={idJoueur: idJoueur, montant:$('#somme_emprunt').val(), duree:$('#duree_emprunt').val() };
+		if ($('#bmcprofil').data("isAtBMC")) {
+			socket.emit("setEmprunt", h);
+		}
+		else {
+			alert('Vous devez vous rendre à la BMC pour effectuer un emprunt');
+		}
 		$('#duree_emprunt').val(1).slider("refresh");
 		$('#somme_emprunt').val(1).slider("refresh");
+		return false;
 	});	
 	
 	
