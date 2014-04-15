@@ -761,10 +761,10 @@ function initialize() {
 	});
   	//géolocalisation : on
   	function onSuccess(position) { 
-		//coordonnees_joueur.latitude = position.coords.latitude;  	
-		//coordonnees_joueur.longitude = position.coords.longitude;
-		coordonnees_joueur.latitude = 45.782549;  	
-		coordonnees_joueur.longitude = 4.876893;
+		coordonnees_joueur.latitude = position.coords.latitude;  	
+		coordonnees_joueur.longitude = position.coords.longitude;
+		/*coordonnees_joueur.latitude = 45.782549;  	
+		coordonnees_joueur.longitude = 4.876893;*/
  		position_joueur = new google.maps.LatLng(coordonnees_joueur.latitude, coordonnees_joueur.longitude);
 		marker.setMap(null);
 		marker.setPosition(position_joueur);
@@ -793,7 +793,7 @@ function initialize() {
 		//On efface l'ancien cercle pour ne pas surcharger la carte
 		displaycurrentposition.setMap(null);
 		displaycurrentposition = new google.maps.Circle(position_options);
-		//Pn centre la carte sur le joueur
+		//On centre la carte sur le joueur
 		map.panTo(position_joueur);
         map.setZoom(17);
 	}
