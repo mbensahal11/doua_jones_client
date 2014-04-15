@@ -11,6 +11,8 @@ $(document).on("pageshow", "#map", function() {
 	
 function initialize() {
 	
+	//On initialise le booléen permettant de savoir si le joueur a déjà été localisé
+	var hasalreadybeenlocated = false;
 	//le style de la carte
 	var myStyles =[
     	{
@@ -793,9 +795,12 @@ function initialize() {
 		//On efface l'ancien cercle pour ne pas surcharger la carte
 		displaycurrentposition.setMap(null);
 		displaycurrentposition = new google.maps.Circle(position_options);
-		//On centre la carte sur le joueur
-		map.panTo(position_joueur);
-        map.setZoom(17);
+		//Si il s'agit de la première localisation, on centre la carte sur le joueur
+		if (!(hasalreadybeenlocated)) {
+			map.panTo(position_joueur);
+			map.setZoom(17);
+		}
+		hasalreadybeenlocated == true;
 	}
 		
 	//fonction appelé au chargement de la carte
@@ -1087,7 +1092,17 @@ function initialize() {
 				$("#tabs_entreprise").tabs( "option", "active", 1 );
 				
 			});
+			
+			$('#geolocation_icon').click(function (e) {
+				e.stopImmediatePropagation();
+				e.preventDefault();
+				map.panTo(position_joueur);
+				map.setZoom(17);
+				return false;
+			});
+
 	
 //fin initialize
 }
+
 

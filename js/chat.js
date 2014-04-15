@@ -7,15 +7,20 @@ $(document).on("pageinit", "#chat", function() {
 	//On initialise la page en disant qu'il n'y a pas eu de scroll
 	hasscrolledchatglobal = false;
 	
-	/*socket.emit('getChatGlobalMessages');
-	socket.on('resultGetChatGlobalMessages', function (value) {
-		for (var i=0;i<value.length;i++) {
-			//reste à tester si joueur.idJoueur est le joueur actif dans ce cas mettre le texte à droite
-			
-			
-			$('#div_champs_chat').append("<div class='line_gauche'><div 	class='pseudo'> <b>" + "<font color="+pseudo_color +">" + value[i].Joueur_idJoueur + "</font>" + "</b> </div> " + "<div class='message'>" + value[i].contenu + "</div> </div>");
+	socket.emit('getChatGlobalMessages');
+	socket.on('resultGetChatGlobalMessages', function (rows) {
+		for (var i=0;i<rows.length;i++) {
+			if (rows[i].idJoueur != idJoueur) {
+				content = "<div class='line_gauche'><div class='pseudo'> <b>" + "<font color="+pseudo_color +">" + rows[i].pseudo + "</font>" + "</b> </div> " + "<div class='message'>" + rows[i].contenu + "</div> </div>"
+			}
+			else {
+				content = "<div class='line_droite'><div class='pseudo'> <b>" + "<font color="+pseudo_color +">" + pseudo + "</font>" + "</b> </div> " + "<div class='message'>" + rows[i].contenu + "</div> </div>"
+			}
+			$('#div_champs_chat').append(content);
 		}
-	});*/
+		$(document).scrollTop($(document).height());  
+	});
+
 	
 	// Envoi d'un message dans le chat global
 	$('#send_chatmessage_form').submit(function(event) {
@@ -215,7 +220,7 @@ $(document).on("pageinit", "#chat", function() {
 				else {
 					content = '<li data-role="list-divider" class="list_divider"><div class="date_message_prive">'+
 					day + '/' + month + '/' + year + '</div>'+
-								'<span class="ui-li-count">0</span></li><li class="content_list_divider"><a href="#"><img src="img/logoloreal.png"><h3 class="destinataire_liste" data-pseudo='+destinataire+' data-id='+id+'>'+
+								'</li><li class="content_list_divider"><a href="#"><img src="img/logoloreal.png"><h3 class="destinataire_liste" data-pseudo='+destinataire+' data-id='+id+'>'+
 									destinataire+
 								'</h3><p class="dernier_message">'+
 								contenu+
@@ -248,7 +253,7 @@ $(document).on("pageinit", "#chat", function() {
 					$(".content_list_divider").eq(destinataire_index).remove();
 					content = '<li data-role="list-divider" class="list_divider"><div class="date_message_prive">'+
 					day + '/' + month + '/' + year + '</div>'+
-								'<span class="ui-li-count">0</span></li><li class="content_list_divider"><a href="#"><img src="img/logoloreal.png"><h3 class="destinataire_liste" data-pseudo='+destinataire+' data-id='+id+'>'+
+								'</li><li class="content_list_divider"><a href="#"><img src="img/logoloreal.png"><h3 class="destinataire_liste" data-pseudo='+destinataire+' data-id='+id+'>'+
 									destinataire+
 								'</h3><p class="dernier_message">'+
 								contenu+
