@@ -10,3 +10,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
 	navigator.splashscreen.show();
 }
+
+$(document).on("pageinit", "#Acceuil_jeu", function() {
+	navigator.notification.alert('Nouveau message de la BMC!');
+});
