@@ -97,14 +97,13 @@ display:block;
 /* div correspondant à l'Icone d'envoi dans la page chat global */
 .send_icon {
 	margin-right:2%;
-	width : 11%;
 	height:50px;
 }
 
 /*Icone d'envoi dans la page chat global */
 #send_chatmessage, #send_chat_private_message, #send_message_societe {
 	height:90%;
-	padding-left:5%;
+	margin-left:5%;
 }
 
 /* Barre d'onglets dans la page générale chat */

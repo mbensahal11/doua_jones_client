@@ -12,6 +12,10 @@
     	<param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
 		<param name="ios-package" value="CDVSplashScreen" />
 	</feature>
+	<plugin name="Geolocation" value="org.apache.cordova.GeoBroker" />
+	<plugin name="Geolocation" value="CDVLocation" />
+
+
 	
 
 	<gap:splash src="img/splash/splash.png" />
@@ -22,8 +26,8 @@
 	<preference name="show-splash-screen-spinner" value="false" />
 	<preference name="splashscreen" value="splash" />
    	<preference name="auto-hide-splash-screen" value="false" /> 
-	<preference name="SplashScreenDelay" value="5000" /> 
-	<preference name="splash-screen-duration" value="5000" />
+	<preference name="SplashScreenDelay" value="8000" /> 
+	<preference name="splash-screen-duration" value="8000" />
 	
 	
 </widget>

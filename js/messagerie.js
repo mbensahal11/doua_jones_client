@@ -21,7 +21,7 @@ $(document).on("pageinit", "#tchat_perso", function() {
 		var mess = $('#message_prive_input').val();
 		//Le message est envoyé s'il n'est pas vide
 		if (mess != '') {
-			socket.emit('setNewPrivateMessages', mess, $('#tchat_perso').data("idDestinataire"), idJoueur);
+			socket.emit('setNewPrivateMessage', mess, $('#tchat_perso').data("idDestinataire"), idJoueur);
 			socket.emit('privateMessage', $('#tchat_perso').data("pseudoDestinataire"), mess);
 			// On écrit le message côté client
 			$('#div_champs_messagerie').append("<div class='line_droite'><div class='pseudo'> <b>" + "<font color="+pseudo_color +">" + pseudo + "</font>" + "</b> </div> " + "<div class='message'>" + mess + "</div> </div>");
