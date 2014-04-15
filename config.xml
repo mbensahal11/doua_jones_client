@@ -33,7 +33,7 @@
 	
 	<!-- Norification -->
 	<plugin name="Notification" value="org.apache.cordova.Notification"/>
-	<gap:plugin name="com.adobe.plugins.pushplugin" />
+	<gap:plugin name="com.phonegap.plugins.pushplugin" />
 
 	
 </widget>
