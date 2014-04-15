@@ -35,6 +35,9 @@
 	<plugin name="Notification" value="org.apache.cordova.Notification"/>
 	<script type="text/javascript" src="PushNotification.js"></script>
 	<gap:plugin name="com.phonegap.plugins.pushplugin" />
+	<feature name="PushPlugin">
+  <param name="android-package" value="com.plugin.gcm.PushPlugin" />
+</feature>
 
 	
 	
