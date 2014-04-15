@@ -1,10 +1,10 @@
 // JavaScript Document
 $(document).on("pageshow", "#emprunt", function() {
 
-//var socket=io.connect('http://192.168.0.50:8080');
+var socket=io.connect(adresse_serveur);
 
 //remplacer le 1 par l'identifiant joueur	
-socket.emit("getStatsEmprunt",1);
+socket.emit("getStatsEmprunt", idJoueur);
 
 socket.on("resultGetStatsEmprunt",function(data) {
 	//informations contenues dans data data.
@@ -17,7 +17,7 @@ $('#somme_emprunt').prop("max",data.empruntMaximum); //somme max empruntable
 
 	$(document).on("click", "#saisie_emprunt", function (event) 
 	{
-		var h={idJoueur:1, montant:$('#somme_emprunt').val(), duree:$('#duree_emprunt').val() };
+		var h={idJoueur: idJoueur, montant:$('#somme_emprunt').val(), duree:$('#duree_emprunt').val() };
 		socket.emit("setEmprunt", h);
 		event.preventDefault();
 		event.stopImmediatePropagation();

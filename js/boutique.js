@@ -39,13 +39,13 @@ $(document).on("pageshow", "#boutique", function() {
 	
 	});
 
-	$(document).on("click","#acheter_item", function() {
+	$(document).on("click","#acheter_item", function(event) {
 		event.preventDefault();
 		event.stopImmediatePropagation();
 		
 	});
 
-	$(document).on("click","#acheter_atout", function() {
+	$(document).on("click","#acheter_atout", function(event) {
 		event.preventDefault();
 		event.stopImmediatePropagation();
 	});	

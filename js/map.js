@@ -11,8 +11,6 @@ $(document).on("pageshow", "#map", function() {
 	
 function initialize() {
 	
-	//On initialise le booléen permettant de savoir si le joueur a déjà été localisé
-	var hasalreadybeenlocated = false;
 	//le style de la carte
 	var myStyles =[
     	{
@@ -795,12 +793,6 @@ function initialize() {
 		//On efface l'ancien cercle pour ne pas surcharger la carte
 		displaycurrentposition.setMap(null);
 		displaycurrentposition = new google.maps.Circle(position_options);
-		//Si il s'agit de la première localisation, on centre la carte sur le joueur
-		if (!(hasalreadybeenlocated)) {
-			map.panTo(position_joueur);
-			map.setZoom(17);
-		}
-		hasalreadybeenlocated == true;
 	}
 		
 	//fonction appelé au chargement de la carte
@@ -880,7 +872,7 @@ function initialize() {
 
 		function show_myInfowindow(entreprise,position) {
 			infowindow.close(map);
-			content_infowindow = '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>'+entreprise.nom+'</b><br/></center><button id="checkin" >Check-in</button><button id="info">Fiche entreprise</button></div>'
+			content_infowindow = '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>'+entreprise.nom+'</b><br/></center><button id="checkin" disabled>Check-in</button><button id="info">Fiche entreprise</button></div>'
 			$('#infowindow_content').html(content_infowindow);
 			infowindow.setContent($('#infowindow_content').html());
 			// Replace our Info Window's position
@@ -1070,8 +1062,13 @@ function initialize() {
 			}
 			//On ferme l'infowindow	
 			infowindow.close(map);
-			//On affiche la page entreprise
-			$.mobile.changePage("#Entreprise");
+			//On affiche la page entreprise ou la page BMC
+			if (entreprise.index != 1) {
+				$.mobile.changePage("#Entreprise");
+			}
+			else {
+				$.mobile.changePage("#bmcprofil");
+			}
 		}
 		 	
 			//On grise(respectivement dégrise) l'onglet passer un ordre si on est pas sur la zone
