@@ -16,12 +16,12 @@ $(document).on("pageinit", "#Accueil_jeu", function() {
 
         var pushNotification = window.plugins.pushNotification;
         // TODO: Enter your own GCM Sender ID in the register call for Android
-        /*if (device.platform == 'android' || device.platform == 'Android') {*/
-            pushNotification.register(successHandler, errorHandler,{"senderID":"494854872923 ","ecb":"app.onNotificationGCM"});
-        /*}
+        if (device.platform == 'android' || device.platform == 'Android') {
+            pushNotification.register(successHandler, errorHandler,{"senderID":"494854872923","ecb":"app.onNotificationGCM"});
+        }
         else {
             pushNotification.register(tokenHandler,errorHandler,{"badge":"true","sound":"true","alert":"true","ecb":"app.onNotificationAPN"});
-        }*/
+        }
     
     // iOS
     onNotificationAPN= function(event) {

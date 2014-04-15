@@ -34,6 +34,7 @@
 	<!-- Norification -->
 	<plugin name="Notification" value="org.apache.cordova.Notification"/>
 	<gap:plugin name="com.phonegap.plugins.pushplugin" />
+	<plugin name="Device" value="CDVDevice" />
 
 	
 </widget>
