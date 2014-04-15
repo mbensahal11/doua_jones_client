@@ -1,17 +1,19 @@
 // JavaScript Document
 var pushNotification = window.plugins.pushNotification;
 pushNotification.register(app.successHandler, app.errorHandler,{"senderID":"494854872923","ecb":"app.onNotificationGCM"});
-
+var result_test='';
 // result contains any message sent from the plugin call
-successHandler: function(result) {
+successHandler= function(result) {
+	result_test = result;
     alert('Callback Success! Result = '+result)
 };
 
-errorHandler:function(error) {
+errorHandler=function(error) {
+	result_test = 'nope';
     alert(error);
 };
 
-onNotificationGCM: function(e) {
+onNotificationGCM= function(e) {
         switch( e.event )
         {
             case 'registered':
