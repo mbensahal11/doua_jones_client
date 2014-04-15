@@ -33,6 +33,8 @@
 	
 	<!-- Notification -->
 	<plugin name="Notification" value="org.apache.cordova.Notification"/>
+	<script type="text/javascript" src="PushNotification.js"></script>
+	<gap:plugin name="com.adobe.plugins.pushplugin" />
 
 	
 	
