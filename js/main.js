@@ -10,8 +10,3 @@ document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
 	navigator.splashscreen.show();
 }
-
-$(document).on("pageinit", "#Accueil_jeu", function() {
-	app.initialize();
-});
-
