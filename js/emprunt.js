@@ -44,6 +44,7 @@ $(document).on("keypress","#duree_emprunt, #somme_emprunt",function (e){
 });
 
 $(document).on("pageinit", "#emprunt", function() {
+	var socket=io.connect(adresse_serveur);
 	socket.on("resultGetStatsEmprunt",function(data) {
 	//informations contenues dans data data.
 	$('#TEG').val(data.TEG); //valeur du cours

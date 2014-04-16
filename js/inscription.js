@@ -23,7 +23,11 @@ $(document).on("pageinit", "#inscription", function() {
 			var data = {pseudo : $("#pseudo").val(), password : $("#mdp").val() , email : mail };
 			socket.emit("inscription", data); 
 		}
-		$.mobile.loading( 'show' );
+		$.mobile.loading( 'show', {
+			text: "Veuillez patienter",
+			textVisible: true,
+			theme: "b",
+		});
 		return false;
 	});
 	

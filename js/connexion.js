@@ -9,7 +9,11 @@ $(document).on("pageinit", "#connexion", function() {
 	if (pseudo_joueur != null && password_joueur!= null )  {
 		var data= {pseudo: pseudo_joueur, password: password_joueur};
      	socket.emit("connexionUtilisateur",data);
-		$.mobile.loading( 'show' );
+		$.mobile.loading( 'show', {
+			text: "Veuillez patienter",
+			textVisible: true,
+			theme: "b",
+		});
     }
 	
 	
@@ -22,7 +26,11 @@ $(document).on("pageinit", "#connexion", function() {
 			var data= {pseudo: $('#connect_pseudo').val(), password: $('#connect_mdp').val()};
 			
 			socket.emit("connexionUtilisateur",data);
-			$.mobile.loading( 'show' );
+			$.mobile.loading( 'show', {
+				text: "Veuillez patienter",
+				textVisible: true,
+				theme: "b",
+			});
 			localStorage.setItem(pseudo_localStorage, $('#connect_pseudo').val());
 			localStorage.setItem(password_localStorage, $('#connect_mdp').val());
 			$('#connect_pseudo').val('');
