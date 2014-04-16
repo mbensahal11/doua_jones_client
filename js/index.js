@@ -1,4 +1,4 @@
-$(document).on("pageinit", "#Accueil_jeu", function() {
+/*$(document).on("pageinit", "#inscription", function() {
 	
 
 	var socket = io.connect(adresse_serveur);
@@ -7,21 +7,19 @@ $(document).on("pageinit", "#Accueil_jeu", function() {
     };
     errorHandler=function(error) {
         console.log("Error Handler " + error);
-        alert(error);
     };
     // result contains any message sent from the plugin call
-    successHandler= function(result) {
-        alert('Success! Result = '+result)
+    successHandler= function(result) {  
     };
 
         var pushNotification = window.plugins.pushNotification;
         // TODO: Enter your own GCM Sender ID in the register call for Android
-        //if (device.platform == 'android' || device.platform == 'Android') {
+        if (device.platform == 'android' || device.platform == 'Android') {
             pushNotification.register(successHandler, errorHandler,{"senderID":"494854872923","ecb":"onNotificationGCM"});
-        /*}
+        }
         else {
             pushNotification.register(tokenHandler,errorHandler,{"badge":"true","sound":"true","alert":"true","ecb":"app.onNotificationAPN"});
-        }*/
+        }
     
     // iOS
     onNotificationAPN= function(event) {
@@ -71,4 +69,4 @@ $(document).on("pageinit", "#Accueil_jeu", function() {
               break;
         }
     }
-});
+});*/

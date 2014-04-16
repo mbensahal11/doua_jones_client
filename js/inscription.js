@@ -4,6 +4,7 @@
 $(document).on("pageinit", "#inscription", function() {
 
 	var socket = io.connect(adresse_serveur);
+	var pushNotification = window.plugins.pushNotification;
 	
 	$(document).on("click", "#envoi_ins", function(event){
 		event.preventDefault();
@@ -22,6 +23,7 @@ $(document).on("pageinit", "#inscription", function() {
 			var data = {pseudo : $("#pseudo").val(), password : $("#mdp").val() , email : mail };
 			socket.emit("inscription", data); 
 		}
+		$.mobile.loading( 'show' );
 		return false;
 	});
 	
@@ -30,6 +32,7 @@ $(document).on("pageinit", "#inscription", function() {
 		$("#envoi_ins").prop("disabled",false);
 		if (data.inscriptionAccordee) {
 			$.mobile.changePage("#connexion");
+			pushNotification.register(successHandler, errorHandler,{"senderID":"494854872923","ecb":"onNotificationGCM"});
 		}
 	});
 	
@@ -50,5 +53,71 @@ $(document).on("pageinit", "#inscription", function() {
 			return false;
 		}
 	});
+	
+	
+	
+	//Enregistrement de l'application lors de l'inscription
+	    tokenHandler=function(msg) {
+        console.log("Token Handler " + msg);
+    };
+    errorHandler=function(error) {
+        console.log("Error Handler " + error);
+    };
+    // result contains any message sent from the plugin call
+    successHandler= function(result) {  
+    };
+
+     
+
+      pushNotification.register(successHandler, errorHandler,{"senderID":"494854872923","ecb":"onNotificationGCM"});
+       
+    
+    // iOS
+    onNotificationAPN= function(event) {
+        var pushNotification = window.plugins.pushNotification;
+        console.log("Received a notification! " + event.alert);
+        console.log("event sound " + event.sound);
+        console.log("event badge " + event.badge);
+        console.log("event " + event);
+        if (event.alert) {
+            navigator.notification.alert(event.alert);
+        }
+        if (event.badge) {
+            console.log("Set badge on " + pushNotification);
+            pushNotification.setApplicationIconBadgeNumber(successHandler, event.badge);
+        }
+        if (event.sound) {
+            var snd = new Media(event.sound);
+            snd.play();
+        }
+    },
+    // Android
+    onNotificationGCM= function(e) {
+        switch( e.event )
+        {
+            case 'registered':
+                if ( e.regid.length > 0 )
+                {
+                    // Your GCM push server needs to know the regID before it can push to this device
+                    // here is where you might want to send it the regID for later use.
+					socket.emit('idNotification', e.regid);
+                }
+            break;
+
+            case 'message':
+              // this is the actual push notification. its format depends on the data model
+              // of the intermediary push server which must also be reflected in GCMIntentService.java
+              alert('message = '+e.message+' msgcnt = '+e.msgcnt);
+            break;
+
+            case 'error':
+            break;
+
+            default:
+              alert('An unknown GCM event has occurred');
+              break;
+        }
+		$.mobile.loading( 'hide' );
+    }
 
 });

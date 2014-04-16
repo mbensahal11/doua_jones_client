@@ -9,6 +9,7 @@ $(document).on("pageinit", "#connexion", function() {
 	if (pseudo_joueur != null && password_joueur!= null )  {
 		var data= {pseudo: pseudo_joueur, password: password_joueur};
      	socket.emit("connexionUtilisateur",data);
+		$.mobile.loading( 'show' );
     }
 	
 	
@@ -21,6 +22,7 @@ $(document).on("pageinit", "#connexion", function() {
 			var data= {pseudo: $('#connect_pseudo').val(), password: $('#connect_mdp').val()};
 			
 			socket.emit("connexionUtilisateur",data);
+			$.mobile.loading( 'show' );
 			localStorage.setItem(pseudo_localStorage, $('#connect_pseudo').val());
 			localStorage.setItem(password_localStorage, $('#connect_mdp').val());
 			$('#connect_pseudo').val('');
@@ -45,6 +47,7 @@ $(document).on("pageinit", "#connexion", function() {
 		else {alert(data.erreur);
 			$("#envoi_conn").prop("disabled",false);
 		}
+		$.mobile.loading( 'hide' );
 	});
 
 	$(document).on("click","#retour_ins", function(event) {
