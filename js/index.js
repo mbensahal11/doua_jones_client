@@ -1,4 +1,4 @@
-/*$(document).on("pageinit", "#Accueil_jeu", function() {
+$(document).on("pageinit", "#Accueil_jeu", function() {
 	
 
 	var socket = io.connect(adresse_serveur);
@@ -18,10 +18,10 @@
         // TODO: Enter your own GCM Sender ID in the register call for Android
         //if (device.platform == 'android' || device.platform == 'Android') {
             pushNotification.register(successHandler, errorHandler,{"senderID":"494854872923","ecb":"onNotificationGCM"});
-        }
+        /*}
         else {
             pushNotification.register(tokenHandler,errorHandler,{"badge":"true","sound":"true","alert":"true","ecb":"app.onNotificationAPN"});
-        }
+        }*/
     
     // iOS
     onNotificationAPN= function(event) {
@@ -71,4 +71,4 @@
               break;
         }
     }
-});*/
+});
