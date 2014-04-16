@@ -9,11 +9,14 @@ div.ui-datepicker, .ui-datepicker td a, ui-datepicker-calendar mobile-enhanced t
 }
 
 
-.bouton_acc { height: 60px;
+.bouton_acc { 
+	height: 60px;
 	padding:2px 2px 2px 2px;
-    border: 2px solid #191919;
+    border: 2px solid #8c1515;
     border-radius: 5px;
-	width:80px; margin: 0 auto; display:block; }
+	width:80px; margin: 0 auto; display:block; 
+	background-color: #fffde5;
+}
 
 .bouton_acc:active, img[alt='aide']:active {
 	background-color: #b81c1c;

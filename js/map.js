@@ -484,6 +484,7 @@ function initialize() {
 						 //On initialise l'image à null, on l'a crée ligne 789
 						 bounds : null,
 						 Overlay : null,
+						 texteProfil : "« Notre clientèle attende de nous une fiabilité, une ponctualité et une qualité de livraison exceptionnelles. » sont des paroles du président de Total Logistics et son entreprise a su convaincre totalement ses clients. Grâce à son Lean Management, Total Logistics connecte toute la France et ouvre des portes au monde pour les produits français."
 						 };
 		Entreprise[1] = {Objet :BMC,
 						 nom : "Banque Mondiale du Commerce",
@@ -493,16 +494,17 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78279984683528,4.876861859416181),
 						 bounds : null,
 						 Overlay : null,
+						 texteProfil : "La Banque Mondiale du Commerce est le cœur financier de la région. Elle est un pilier monétaire important aux entreprises environnantes et de nombreux citoyens lui confient ses épargnes. Durement frappée par la crise économique en 2008, la banque s’est bien reposée et planifie d’intensifier ses affaires internationales dans un avenir proche."
 						 };
 		Entreprise[2] = {Objet :GEN,
 						 nom : "Green Energy & Co",
 						 srcImagecarte : 'img/logo_carte_entreprise/GEN.png',
 						 srcImageentreprise : 'img/logo_entreprise/GEN.png',
 						 swBound : new google.maps.LatLng(45.783001797491934,4.873004780426072),
-						 neBound : new google.maps.LatLng(45.78324502874469,4.873439360713178
-),
+						 neBound : new google.maps.LatLng(45.78324502874469,4.873439360713178),
 						 bounds : null,
 						 Overlay : null,
+						 texteProfil : ""
 						 };
 		Entreprise[3] = {Objet :TC,
 						 nom : "Blue Telecom",
@@ -512,6 +514,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78391653590745,4.87362711534422),
 						 bounds : null,
 						 Overlay : null,
+						 texteProfil : ""
 						 };
 		Entreprise[4] = {Objet :GE,
 						 nom : "Genius Electrics",
@@ -521,6 +524,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78348445283917,4.872044612025434),
 						 bounds : null,
 						 Overlay : null,
+						 texteProfil : ""
 						 };
 		Entreprise[5] = {Objet :Rotonde,
 						 nom : "Brodewei",
@@ -530,6 +534,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78416156854144,4.874286938761884),
 						 bounds : null,
 						 Overlay : null,
+						 texteProfil : ""
 						 };
 		Entreprise[6] = {Objet :EFI,
 						 nom : "Hill Tone",
@@ -539,6 +544,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.784816230599766,4.871615458583051),
 						 bounds : null,
 						 Overlay : null,
+						 texteProfil : ""
 						 };
 						 
 		Entreprise[7] = {Objet :CB,
@@ -549,6 +555,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78548210754941,4.874764371966535),
 						 bounds : null,
 						 Overlay : null,
+						 texteProfil : ""
 						 };
 						 
 		Entreprise[8] = {Objet :Humas,
@@ -559,6 +566,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78377250859037,4.875472475146466),
 						 bounds : null,
 						 Overlay : null,
+						 texteProfil : ""
 						 };
 						 
 		Entreprise[9] = {Objet :Kfet,
@@ -569,6 +577,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78450573469595,4.8758694420806705),
 						 bounds : null,
 						 Overlay : null,
+						 texteProfil : ""
 						 };
 						 
 		Entreprise[10] = {Objet :BS,
@@ -579,6 +588,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78244444695973,4.8735466490737736),
 						 bounds : null,
 						 Overlay : null,
+						 texteProfil : ""
 						 };
 						 
 		Entreprise[11] = {Objet :IF,
@@ -589,6 +599,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78188889630108,4.872978020762616),
 						 bounds : null,
 						 Overlay : null,
+						 texteProfil : ""
 						 };
 						 
 		Entreprise[12] = {Objet :Beurk,
@@ -599,6 +610,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78132585783069,4.873951662635022),
 						 bounds : null,
 						 Overlay : null,
+						 texteProfil: "Même si Miam Inc. est la plus grande chaîne de pizzeria du pays, son cadre authentique rappelle toujours la convivialité que l’on retrouve dans les ruelles de Naples. Les responsables sont surtout contents que l’expansion dans le marché européen se soit conclue avec succès. Même en Italie, on peut désormais trouver des restaurants de Miam Inc."
 						 };
 						 
 		Entreprise[13] = {Objet :CD,
@@ -609,6 +621,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.780392436012725,4.873962391471082),
 						 bounds : null,
 						 Overlay : null,
+						 texteProfil : ""
 						 };
 						 
 		Entreprise[14] = {Objet :GCU,
@@ -619,6 +632,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78422703509279,4.877229322051221),
 						 bounds : null,
 						 Overlay : null,
+						 texteProfil : ""
 						 };
 						 
 		Entreprise[15] = {Objet :GMC,
@@ -629,6 +643,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78311596376634,4.875700462912732),
 						 bounds : null,
 						 Overlay : null,
+						 texteProfil: "Depuis plus de 50 ans Mech. Entreprise produit des pièces en acier d’exception. C’est une PME familiale reconnue pour ses valeurs et ses traditions. L’entreprise évolue avec le temps, en utilisant des simulations numériques modernes et une automatique industrielle.  Ses clients la récompensent par une fidélité durable."
 						 };
 						 
 		Entreprise[16] = {Objet :Dir,
@@ -640,6 +655,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.783606034993184,4.878709901427442),
 						 bounds : null,
 						 Overlay : null,
+						 texteProfil : ""
 						 };
 						 
 		Entreprise[17] = {Objet :Capelle,
@@ -650,6 +666,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78373322834793,4.8803138624183475),
 						 bounds : null,
 						 Overlay : null,
+						 texteProfil : ""
 						 };
 						 
 		Entreprise[18] = {Objet :CDS,
@@ -660,6 +677,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.785532609127586,4.878135908698255),
 						 bounds : null,
 						 Overlay : null,
+						 texteProfil : ""
 						 };
 						 
 		Entreprise[19] = {Objet :GJ,
@@ -670,6 +688,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78630696094315,4.879273165320569),
 						 bounds : null,
 						 Overlay : null,
+						 texteProfil : ""
 						 };
 						 
 		Entreprise[20] = {Objet :GMD,
@@ -680,6 +699,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78542412419778,4.881633509253675),
 						 bounds : null,
 						 Overlay : null,
+						 texteProfil : ""
 						 };
 						 
 		Entreprise[21] = {Objet :Trav,
@@ -690,6 +710,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78408487905373,4.882805634593183),
 						 bounds : null,
 						 Overlay : null,
+						 texteProfil : ""
 						 }; 
 						 
 		Entreprise[22] = {Objet :Fermat,
@@ -701,6 +722,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78535491818525,4.882714439486676),
 						 bounds : null,
 						 Overlay : null,
+						 texteProfil : ""
 						 }; 
 						 
 		Entreprise[23] = {Objet :batAB,
@@ -711,6 +733,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78436732030299,4.88411455259245),
 						 bounds : null,
 						 Overlay : null,
+						 texteProfil : ""
 						 };
 						 
 						 
@@ -722,6 +745,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78557188810294,4.883288432215863),
 						 bounds : null,
 						 Overlay : null,
+						 texteProfil : ""
 						 };
 						 
 		Entreprise[25] = {Objet :SGM,
@@ -732,6 +756,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78269509763412,4.87238793477934),
 						 bounds : null,
 						 Overlay : null,
+						 texteProfil : ""
 						 };
 
 	 
@@ -872,7 +897,7 @@ function initialize() {
 
 		function show_myInfowindow(entreprise,position) {
 			infowindow.close(map);
-			content_infowindow = '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>'+entreprise.nom+'</b><br/></center><button id="checkin" disabled>Check-in</button><button id="info">Fiche entreprise</button></div>'
+			content_infowindow = '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>'+entreprise.nom+'</b><br/></center><button id="checkin" >Check-in</button><button id="info">Fiche entreprise</button></div>'
 			$('#infowindow_content').html(content_infowindow);
 			infowindow.setContent($('#infowindow_content').html());
 			// Replace our Info Window's position
@@ -1057,6 +1082,8 @@ function initialize() {
 			$('#entreprise_active').html(entreprise.nom);
 			//On stocke l'id de l'entreprise sélectionnée
 			$('#entreprise_active').data("id_entreprise", entreprise.index);
+			//On modifie le texte du profil de l'entreprise
+			$('#texte_fiche_entreprise').text(entreprise.texteProfil);
 			
 			//On vérifie que l'on puisse bien passer un ordre
 				ok_ordre = true;		
