@@ -9,11 +9,7 @@ $(document).on("pageinit", "#connexion", function() {
 	if (pseudo_joueur != null && password_joueur!= null )  {
 		var data= {pseudo: pseudo_joueur, password: password_joueur};
      	socket.emit("connexionUtilisateur",data);
-		$.mobile.loading( 'show', {
-			text: "Veuillez patienter",
-			textVisible: true,
-			theme: "b",
-		});
+		$.mobile.loading( 'show', {html: "<span><center><img src='img/load.gif' /></center><h1>Loading...</h1></span>"});
     }
 	
 	
