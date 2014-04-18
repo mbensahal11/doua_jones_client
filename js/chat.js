@@ -161,8 +161,9 @@ $(document).on("pageinit", "#chat", function() {
 			var contenu=rows[i].contenu;
 			var dateSQL=rows[i].date;
 			var id = rows[i].idEmetteur;
+			var avatar = rows[i].avatar;
 			var dateJS = new Date(dateSQL);
-			maj_tchat_prive(dateJS,destinataire,contenu,id);
+			maj_tchat_prive(dateJS,destinataire,contenu,id, avatar);
 		}
 	};
 		
@@ -181,7 +182,7 @@ $(document).on("pageinit", "#chat", function() {
 	
 		
 	
-	function maj_tchat_prive (date, destinataire, contenu,id) {
+	function maj_tchat_prive (date, destinataire, contenu,id, avatar) {
 			var year = date.getFullYear();
 			var month = date.getMonth();
 			var day = date.getDate();
@@ -206,7 +207,7 @@ $(document).on("pageinit", "#chat", function() {
 			if (!(conversation_commencee)) {
 				//Si le joueur a déjà reçu un message ce jour
 				if (day + '/' + month + '/' + year == $('.date_message_prive').eq(0).html()) {
-					content = '<li class="content_list_divider"><a href="#"><img src="img/logoloreal.png"><h3 class="destinataire_liste" data-pseudo='+destinataire+' data-id='+id+'>'+
+					content = '<li class="content_list_divider"><a href="#"><img src="img/avatars/'+avatar+'.png"><h3 class="destinataire_liste" data-pseudo='+destinataire+' data-id='+id+'>'+
 									destinataire+
 								'</h3><p class="dernier_message">'+
 								contenu+
@@ -219,7 +220,7 @@ $(document).on("pageinit", "#chat", function() {
 				else {
 					content = '<li data-role="list-divider" class="list_divider"><div class="date_message_prive">'+
 					day + '/' + month + '/' + year + '</div>'+
-								'</li><li class="content_list_divider"><a href="#"><img src="img/logoloreal.png"><h3 class="destinataire_liste" data-pseudo='+destinataire+' data-id='+id+'>'+
+								'</li><li class="content_list_divider"><a href="#"><img src="img/avatars/'+avatar+'.png"><h3 class="destinataire_liste" data-pseudo='+destinataire+' data-id='+id+'>'+
 									destinataire+
 								'</h3><p class="dernier_message">'+
 								contenu+
@@ -231,7 +232,7 @@ $(document).on("pageinit", "#chat", function() {
 			else {
 				//Si le joueur a déjà reçu un message ce jour
 				if (day + '/' + month + '/' + year == $('.date_message_prive').eq(0).html()) {
-					content = '<li class="content_list_divider"><a href="#"><img src="img/logoloreal.png"><h3 class="destinataire_liste" data-pseudo='+destinataire+' data-id='+id+'>'+
+					content = '<li class="content_list_divider"><a href="#"><img src="img/avatars/'+avatar+'.png"><h3 class="destinataire_liste" data-pseudo='+destinataire+' data-id='+id+'>'+
 									destinataire+
 								'</h3><p class="dernier_message">'+
 								contenu+
@@ -252,7 +253,7 @@ $(document).on("pageinit", "#chat", function() {
 					$(".content_list_divider").eq(destinataire_index).remove();
 					content = '<li data-role="list-divider" class="list_divider"><div class="date_message_prive">'+
 					day + '/' + month + '/' + year + '</div>'+
-								'</li><li class="content_list_divider"><a href="#"><img src="img/logoloreal.png"><h3 class="destinataire_liste" data-pseudo='+destinataire+' data-id='+id+'>'+
+								'</li><li class="content_list_divider"><a href="#"><img src="img/avatars/'+avatar+'.png"><h3 class="destinataire_liste" data-pseudo='+destinataire+' data-id='+id+'>'+
 									destinataire+
 								'</h3><p class="dernier_message">'+
 								contenu+

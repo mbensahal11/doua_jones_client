@@ -9,7 +9,6 @@ $(document).on("pageinit", "#connexion", function() {
 	if (pseudo_joueur != null && password_joueur!= null )  {
 		var data= {pseudo: pseudo_joueur, password: password_joueur};
      	socket.emit("connexionUtilisateur",data);
-		$.mobile.loading( 'show', {html: "<span><center><img src='img/load.gif' /></center><h1>Loading...</h1></span>"});
     }
 	
 	
@@ -42,7 +41,6 @@ $(document).on("pageinit", "#connexion", function() {
 	});
 	
 	socket.on('resultConnexionUtilisateur', function(data) {
-		//navigator.splashscreen.hide();
 		if (data.connexionAccordee) {
 			$.mobile.changePage("#Accueil_jeu");
 			idJoueur = data.idJoueur;
@@ -71,4 +69,16 @@ $(document).on("pageinit", "#connexion", function() {
 		}
 	});
 	
+});
+
+
+$(document).on("pageshow", "#connexion", function() { 
+	$.mobile.loading( 'show', {
+		text: 'Loading...',
+		textVisible: true,
+		theme: 'a'
+		});
+	setTimeout(function(){
+	$.mobile.loading( 'hide' );
+	},10000);		
 });
