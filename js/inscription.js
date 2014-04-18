@@ -73,7 +73,7 @@ $(document).on("pageinit", "#inscription", function() {
 
      
 
-      pushNotification.register(successHandler, errorHandler,{"senderID":"494854872923","ecb":"onNotificationGCM"});
+    pushNotification.register(successHandler, errorHandler,{"senderID":"494854872923","ecb":"onNotificationGCM"});
        
     
     // iOS
@@ -125,3 +125,8 @@ $(document).on("pageinit", "#inscription", function() {
     }
 
 });
+
+$(document).on("pagebeforeshow", "#inscription", function() {
+	$.mobile.loading( 'hide' );
+});
+	

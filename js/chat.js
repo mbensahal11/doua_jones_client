@@ -96,10 +96,7 @@ $(document).on("pageinit", "#chat", function() {
 		event.preventDefault();
 		event.stopImmediatePropagation();
 		var destinataire = $('#destinataire_entre').val();
-		
-		
-		socket.emit("check_destinataire", destinataire);
-		
+		socket.emit("check_destinataire", destinataire);	
 		return false;
 	});
 	
@@ -136,7 +133,7 @@ $(document).on("pageinit", "#chat", function() {
 			/*var dateBefore = substractMinutes(d, 1);
 			var dateBeforeSQL = dateBefore.toMysqlFormat();
 			socket.emit('getNewPrivateMessages', idJoueur, dateBeforeSQL);*/
-			maj_tchat_prive(d,$("#destinataire").text(),$("#private_message").val(), $('#destinataire').data("id_destinataire"));
+			//maj_tchat_prive(d,$("#destinataire").text(),$("#private_message").val(), $('#destinataire').data("id_destinataire"),"A37");
 			//On ferme puis réinitialise la popup
 			$('#popupmess').popup( "close" );
 			$('#destinataire').data("id_destinataire","");
@@ -239,7 +236,7 @@ $(document).on("pageinit", "#chat", function() {
 								'</p><p class="ui-li-aside"><strong>'+ hour+':'+ minute + '</strong></p></a></li>';
 					//S'il n'y a qu'un seul élément entre les deux dates, on le remplace par content sinon on le supprime et on le replace en tête de liste		
 					
-					if ($('.list_divider').eq(0).next().next().find('.date_message_prive').length >0 || $(this).next().next().length ==0) {
+					if ($('.list_divider').eq(0).next().next().find('.date_message_prive').length >0 || $('.list_divider').next().next().length ==0) {
 						$('.content_list_divider').eq(0).replaceWith(content);
 					}
 					else {
