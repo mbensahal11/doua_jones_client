@@ -2,7 +2,7 @@
 	//on stocke les 3 input et le bt dans des variables pour récup leur valeur plus tard
 
 $(document).on("pageinit", "#inscription", function() {
-
+	var idJoueur_inscription;
 	var socket = io.connect(adresse_serveur);
 	var pushNotification = window.plugins.pushNotification;
 	
@@ -36,6 +36,7 @@ $(document).on("pageinit", "#inscription", function() {
 		$("#envoi_ins").prop("disabled",false);
 		if (data.inscriptionAccordee) {
 			$.mobile.changePage("#connexion");
+			idJoueur_inscription = data.idJoueur;
 			pushNotification.register(successHandler, errorHandler,{"senderID":"494854872923","ecb":"onNotificationGCM"});
 		}
 	});
@@ -71,9 +72,6 @@ $(document).on("pageinit", "#inscription", function() {
     successHandler= function(result) {  
     };
 
-     
-
-    pushNotification.register(successHandler, errorHandler,{"senderID":"494854872923","ecb":"onNotificationGCM"});
        
     
     // iOS
@@ -104,7 +102,7 @@ $(document).on("pageinit", "#inscription", function() {
                 {
                     // Your GCM push server needs to know the regID before it can push to this device
                     // here is where you might want to send it the regID for later use.
-					socket.emit('idNotification', e.regid);
+					socket.emit('idNotification', e.regid, idJoueur_inscription);
                 }
             break;
 

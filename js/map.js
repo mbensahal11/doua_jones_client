@@ -2,7 +2,6 @@
 
 //On attend le chargement de la page avant de lancer la fonction d'initialisation
 $(document).on("pageshow", "#map", function() {
-	alert(devicePlatform);
 	if ($("#map-canvas").html() === '') {
 		initialize();
 	}
@@ -1132,8 +1131,10 @@ function initialize() {
 			$('#geolocation_icon').click(function (e) {
 				e.stopImmediatePropagation();
 				e.preventDefault();
-				map.panTo(position_joueur);
-				map.setZoom(17);
+				if ((coordonnees_joueur.latitude !=0 ) && (coordonnees_joueur.longitude !=0) ) {
+					map.panTo(position_joueur);
+					map.setZoom(17);
+				}
 				return false;
 			});
 
