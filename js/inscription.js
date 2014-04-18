@@ -61,7 +61,7 @@ $(document).on("pageinit", "#inscription", function() {
 	
 	
 	//Enregistrement de l'application lors de l'inscription
-	    tokenHandler=function(msg) {
+	tokenHandler=function(msg) {
         console.log("Token Handler " + msg);
     };
     errorHandler=function(error) {

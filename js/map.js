@@ -2,6 +2,7 @@
 
 //On attend le chargement de la page avant de lancer la fonction d'initialisation
 $(document).on("pageshow", "#map", function() {
+	alert(devicePlatform);
 	if ($("#map-canvas").html() === '') {
 		initialize();
 	}
@@ -829,7 +830,7 @@ function initialize() {
 			Entreprise[i].bounds = new google.maps.LatLngBounds(Entreprise[i].swBound, Entreprise[i].neBound);
 			Entreprise[i].Overlay = new google.maps.GroundOverlay(Entreprise[i].srcImagecarte,Entreprise[i].bounds);
 			Entreprise[i].index = i;
-			Entreprise[i].Overlay.setMap(map);
+			//Entreprise[i].Overlay.setMap(map);
 		};
 
 		//fin loadmap()

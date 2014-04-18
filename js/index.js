@@ -14,7 +14,7 @@
 
         var pushNotification = window.plugins.pushNotification;
         // TODO: Enter your own GCM Sender ID in the register call for Android
-        if (device.platform == 'android' || device.platform == 'Android') {
+        if (devicePlatform == 'android' || devicePlatform == 'Android') {
             pushNotification.register(successHandler, errorHandler,{"senderID":"494854872923","ecb":"onNotificationGCM"});
         }
         else {

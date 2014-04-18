@@ -34,7 +34,14 @@
 	<!-- Norification -->
 	<plugin name="Notification" value="org.apache.cordova.Notification"/>
 	<gap:plugin name="com.phonegap.plugins.pushplugin" />
+	
+	<!-- Device -->
 	<plugin name="Device" value="CDVDevice" />
+	<feature name="Device">
+    	<param name="android-package" value="org.apache.cordova.Device" />
+	</feature>
+	
+	
 
 	
 </widget>
