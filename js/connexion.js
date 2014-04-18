@@ -42,9 +42,9 @@ $(document).on("pageinit", "#connexion", function() {
 	
 	socket.on('resultConnexionUtilisateur', function(data) {
 		if (data.connexionAccordee) {
-			$.mobile.changePage("#Accueil_jeu");
 			idJoueur = data.idJoueur;
 			pseudo = data.pseudo;
+			$.mobile.changePage("#Accueil_jeu");
 		}
 		else {alert(data.erreur);
 			$("#envoi_conn").prop("disabled",false);
@@ -73,12 +73,18 @@ $(document).on("pageinit", "#connexion", function() {
 
 
 $(document).on("pageshow", "#connexion", function() { 
-	$.mobile.loading( 'show', {
-		text: 'Loading...',
-		textVisible: true,
-		theme: 'a'
-		});
-	setTimeout(function(){
-	$.mobile.loading( 'hide' );
-	},10000);		
+	var pseudo_localStorage = "pseudo_localStorage";
+	var password_localStorage = "password_localStorage";
+	var pseudo_joueur = localStorage.getItem(pseudo_localStorage);
+	var password_joueur = localStorage.getItem(password_localStorage);
+	if (pseudo_joueur != null && password_joueur!= null )  {
+		$.mobile.loading( 'show', {
+			text: 'Veuillez patienter...',
+			textVisible: true,
+			theme: 'a'
+			});
+		setTimeout(function(){
+		$.mobile.loading( 'hide' );
+		},10000);	
+	}
 });

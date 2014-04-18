@@ -39,6 +39,9 @@ $(document).on("pageinit", "#inscription", function() {
 			idJoueur_inscription = data.idJoueur;
 			pushNotification.register(successHandler, errorHandler,{"senderID":"494854872923","ecb":"onNotificationGCM"});
 		}
+		else {
+			$.mobile.loading( 'hide' );
+		}
 	});
 	
 	$(document).on("click", "#retour_conn", function(event){

@@ -1,18 +1,11 @@
 $(document).on("pageinit", "#tutoriel", function() {
 	var idPage = 1;
-	$('#tutorielPrevious').click(function(event){
-		event.preventDefault();
-		event.stopImmediatePropagation();
-		if (idPage !=1) {
-			idPage -= 1;
-			document.getElementById('imgTutorielActive').setAttribute('src',"img/tutoriel/t"+idPage+".jpg");
-			$('#pageTutoriel').text(idPage + '/50');
-			
-		}
-		return false;
-	});
+	$('#tutorielPrevious').click(previous);
+	$( "#tutoriel" ).on( "swiperight", previous);
+	$( "#tutoriel" ).on( "swipeleft",next); 
+	$('#tutorielNext').click(next);
 	
-	$('#tutorielNext').click(function(event){
+	function next (event){
 		if (idPage !=50) {
 			idPage += 1;
 			document.getElementById('imgTutorielActive').setAttribute('src',"img/tutoriel/t"+idPage+".jpg");
@@ -22,5 +15,18 @@ $(document).on("pageinit", "#tutoriel", function() {
 		event.stopImmediatePropagation();
 		
 		return false;
-	});
+	};
+	
+	function previous (event){
+		event.preventDefault();
+		event.stopImmediatePropagation();
+		if (idPage !=1) {
+			idPage -= 1;
+			document.getElementById('imgTutorielActive').setAttribute('src',"img/tutoriel/t"+idPage+".jpg");
+			$('#pageTutoriel').text(idPage + '/50');
+			
+		}
+		return false;
+	};
+
 });

@@ -206,3 +206,17 @@ display:block;
 	bottom:-8px;
 	right:10%;
 }
+
+.ui-footer {
+	height :32px;
+	font-size:12px;
+}
+
+/* Profil joueur */
+.tdb {
+	border: 2px solid #8c1515; 
+	margin-bottom:5%; padding-top:5px; 
+	padding-bottom:5px; 
+	border-radius:5px;
+}
+
