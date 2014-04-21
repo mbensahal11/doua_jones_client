@@ -3,11 +3,10 @@ $(document).on("pageinit", "#notifications", function() {
 	var socket=io.connect(adresse_serveur);	
 
 	$( "#notifications" ).on( "swiperight", (function(event){
-		$.mobile.changePage('#Accueil_jeu');
-		/*$.mobile.changePage('#Accueil_jeu',{
+		$.mobile.changePage('#Accueil_jeu',{
 			transition: "slide",
 			reverse:true
-		});*/
+		});
 	}));
 	
 	socket.on("resultGetNotifications", function(rows) {
