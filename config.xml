@@ -41,6 +41,9 @@
     	<param name="android-package" value="org.apache.cordova.Device" />
 	</feature>
 	
+	<!-- Back button -->
+	<plugin name="App" value="com.phonegap.App"/>
+	
 	
 
 	

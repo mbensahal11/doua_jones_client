@@ -1,13 +1,8 @@
 $(document).on("pageinit", "#tutoriel", function() {
 	var idPage = 1;
 	$('#tutorielPrevious').click(previous);
-	$( "#tutoriel" ).on( "swiperight", previous,{
-			transition: "slide",
-			reverse:true
-		});
-	$( "#tutoriel" ).on( "swipeleft",next, previous,{
-			transition: "slide"
-		}); 
+	$( "#tutoriel" ).on( "swiperight", previous);
+	$( "#tutoriel" ).on( "swipeleft",next); 
 	$('#tutorielNext').click(next);
 	
 	function next (event){

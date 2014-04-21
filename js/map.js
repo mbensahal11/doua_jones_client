@@ -1060,7 +1060,7 @@ function initialize() {
 			//On envoie les données du checkin
 			socket.emit('setCheckin',{
 			idEntreprise : entreprise.index,
-			idJoueur : 1,
+			idJoueur : idJoueur,
 			teleportation : teleportation
 			});
 			

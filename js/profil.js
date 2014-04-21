@@ -412,5 +412,6 @@ $(document).on("pageshow", "#profil", function() {
 	socket.emit('getCarnetJoueur',joueur);
 	socket.emit('getInfosJoueur',joueur);
 	socket.emit('getListeObjetsJoueur',joueur);
+	socket.emit('getArgentDisponibleJoueur',idJoueur);
 });
 
