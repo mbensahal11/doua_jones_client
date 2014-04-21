@@ -11,7 +11,7 @@ var argentJoueur=0;
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
-	navigator.splashscreen.show();
+	//navigator.splashscreen.show();
 	devicePlatform = device.model;
 	//Si on appuie sur le back button sur la page principale et que la dernière page visitée et la page de connection, on quitte l'application
 	document.addEventListener("backbutton",  function (e) {
