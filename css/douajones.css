@@ -233,10 +233,6 @@ display:block;
 	width:75%;
 }
 
-/* tentative résolution probleme du flash lors d'un swipe */
-* {
-    -webkit-transform:translate3d(0,0,0);
-    -webkit-backface-visibility: hidden;
-}
+
 
 

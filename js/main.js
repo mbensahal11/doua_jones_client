@@ -14,17 +14,15 @@ function onDeviceReady() {
 	navigator.splashscreen.show();
 	devicePlatform = device.model;
 	//Si on appuie sur le back button sur la page principale et que la dernière page visitée et la page de connection, on quitte l'application
-	document.addEventListener("backbutton", onBackKeyPress, false);
-}
-
-
-	function onBackKeyPress() {
-		if (data.prevPage.attr('id') == 'connexion') {
-			navigator.app.exitApp();
-		}
-		else {
-			window.history.back();
-		}
+	document.addEventListener("backbutton",  function (e) {
+            e.preventDefault();
+			if (data.prevPage.attr('id') == 'connexion') {
+				//do nothing
+			}
+			else {
+				window.history.back();
+			}
+        }, false );
 	}
 
 $(document).on("pageinit", "#Accueil_jeu", function() { 
@@ -45,9 +43,10 @@ $(document).on("pageinit", "#Accueil_jeu", function() {
 	}));
 	
 	$( "#Accueil_jeu" ).on( "swipeleft", (function(event){
-		$.mobile.changePage('#notifications',{
+		$.mobile.changePage('#notifications');
+		/*$.mobile.changePage('#notifications',{
 			transition: "slide"
-		});
+		});*/
 	}));
 	
 	
