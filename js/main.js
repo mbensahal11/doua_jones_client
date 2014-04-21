@@ -15,10 +15,9 @@ function onDeviceReady() {
 	devicePlatform = device.model;
 	//Si on appuie sur le back button sur la page principale et que la dernière page visitée et la page de connection, on quitte l'application
 	document.addEventListener("backbutton",  function (e) {
-			alert(data.prevPage.attr('id'));
             e.preventDefault();
 			if (data.prevPage.attr('id') == 'connexion') {
-				alert('nothing');
+				//do nothing
 			}
 			else {
 				window.history.back();
