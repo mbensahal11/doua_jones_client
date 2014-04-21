@@ -17,6 +17,7 @@ function onDeviceReady() {
 
 $(document).on("pageinit", "#Accueil_jeu", function() { 
 	var socket=io.connect(adresse_serveur);
+	$.mobile.silentScroll(0);
 	socket.emit('getArgentDisponibleJoueur',idJoueur);
 	
 	socket.on ('resultGetArgentDisponibleJoueur', function(data) {
@@ -26,12 +27,12 @@ $(document).on("pageinit", "#Accueil_jeu", function() {
 	});
 	
 	//Si on appuie sur le back button sur la page principale et que la dernière page visitée et la page de connection, on quitte l'application
-	document.addEventListener("backbutton", onBackKeyPress, true);
+	/*document.addEventListener("backbutton", onBackKeyPress, true);
 	function onBackKeyPress() {
 		if (data.prevPage.attr('id') == 'connexion') {
 			navigator.app.exitApp();
 		}
-	}
+	}*/
 	
 	//On empêche le scroll sur la page d'accueil
 	$( "#Accueil_jeu" ).on( "scrollstart", (function(event){
@@ -43,5 +44,6 @@ $(document).on("pageinit", "#Accueil_jeu", function() {
 	$( "#Accueil_jeu" ).on( "swipeleft", (function(event){
 		$.mobile.changePage('#notifications');
 	}));
+	
 	
 });

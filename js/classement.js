@@ -9,9 +9,8 @@ socket.on('resultGetPlageClassementScoreJoueur',function(data){
 		for (var i=0; i<data.length;i++) {
 			var Class_score=data[i];
 			var src="img/avatars/"+Class_score.avatar+".png";
-			var rang=i+1;
-			var id = data.idJoueur; 
-			var ajout="<tr class='content_classement_joueur'><a href='#'><td>"+"<img class='avatarClassement' alt='Av' src='"+src+"'/></td><td>"+rang+"</td><td class='classement_pseudo_id' data-id="+id+">"+Class_score.pseudo+"</td><td>"+Class_score.score+"</td></a></tr>";
+			var rang=i+1; 
+			var ajout="<tr class='content_classement_joueur'><a href='#'><td>"+"<img class='avatarClassement' alt='Av' src='"+src+"'/></td><td>"+rang+"</td><td class='classement_pseudo_id' data-id="+Class_score.idJoueur+">"+Class_score.pseudo+"</td><td>"+Class_score.score+"</td></a></tr>";
 		$('#table_score tbody tr:last').after(ajout);
 	
 		}
@@ -25,8 +24,9 @@ socket.on('resultGetPlageClassementCapitalJoueur',function(data){
 			var Class_cap=data[j];
 			var src="img/avatars/"+Class_cap.avatar+".png";
 			var rang=j+1;
-			var id = data.idJoueur; 
-			var ajout="<tr class='content_classement_joueur'><a href='#'><td>"+"<img class='avatarClassement' alt='Av' src='"+src+"'/></td><td>"+rang+"</td><td class='classement_pseudo_id' data-id="+id+">"+Class_cap.pseudo+"</td><td>"+Class_cap.capital+"</td></a></tr>";
+			var ajout="<tr class='content_classement_joueur'><a href='#'><td>"+"<img class='avatarClassement' \
+						alt='Av' src='"+src+"'/></td><td>"+rang+"</td><td class='classement_pseudo_id' \
+						data-id="+Class_cap.idJoueur+">"+Class_cap.pseudo+"</td><td>"+Class_cap.capital+"</td></a></tr>";
 			$('#table_capital tbody tr:last').after(ajout);
 	
 		}
@@ -39,9 +39,8 @@ socket.on('resultGetPlageClassementCapitalSociete',function(data){
 		$('#body_table_classement_societe').html('<tr> </tr>');
 		for (var j=0; j<data.length;j++) {
 			var Class_soc=data[j];
-			var idSociete =data.idSociete;
 			var rang=j+1;
-			var ajout="<tr class='content_classement_societe'><a href='#'><td>"+rang+"</td><td class='classement_nomSociete_id' data-id="+idSociete+">"+Class_soc.nomSociete+"</td><td>"+Class_soc.capital+"</td></a></tr>";
+			var ajout="<tr class='content_classement_societe'><a href='#'><td>"+rang+"</td><td class='classement_nomSociete_id' data-id="+Class_soc.idSociete+">"+Class_soc.nomSociete+"</td><td>"+Class_soc.capital+"</td></a></tr>";
 			$('#table_societe tbody tr:last').after(ajout);
 	
 		}
@@ -57,13 +56,12 @@ socket.on('PositionClassementCapitalJoueur',function(data,firstRank,rangJoueur){
 		
 		for (var j=0; j<data.length;j++) {
 			var Class_cap=data[j];
-			var id = data.idJoueur; 
 			var src="img/avatars/"+Class_cap.avatar+".png";
 			if (rangJoueur==rang) {
-				var ajout="<tr class='content_classement_joueur' style='font-weight:bold'><a href='#'><td><a href='#'>"+"<img class='avatarClassement' alt='Av' src='"+src+"'/></a></td><td>"+rang+"</td><td class='classement_pseudo_id' data-id="+id+">"+Class_cap.pseudo+"</td><td>"+Class_cap.capital+"</td></a></tr>";
+				var ajout="<tr class='content_classement_joueur' style='font-weight:bold'><a href='#'><td><a href='#'>"+"<img class='avatarClassement' alt='Av' src='"+src+"'/></a></td><td>"+rang+"</td><td class='classement_pseudo_id' data-id="+Class_cap.idJoueur+">"+Class_cap.pseudo+"</td><td>"+Class_cap.capital+"</td></a></tr>";
 				$('#table_capital tbody tr:last').after(ajout);
 			} else {
-				var ajout="<tr class='content_classement_joueur'><a href='#'><td>"+"<img class='avatarClassement' alt='Av' src='"+src+"'/></td><td>"+rang+"</td><td class='classement_pseudo_id' data-id="+id+">"+Class_cap.pseudo+"</td><td>"+Class_cap.capital+"</td></a></tr>";
+				var ajout="<tr class='content_classement_joueur'><a href='#'><td>"+"<img class='avatarClassement' alt='Av' src='"+src+"'/></td><td>"+rang+"</td><td class='classement_pseudo_id' data-id="+Class_cap.idJoueur+">"+Class_cap.pseudo+"</td><td>"+Class_cap.capital+"</td></a></tr>";
 				$('#table_capital tbody tr:last').after(ajout);}
 			rang=rang+1;
 		}
@@ -79,13 +77,12 @@ socket.on('PositionClassementScoreJoueur',function(data,firstRank,rangJoueur){
 		
 		for (var j=0; j<data.length;j++) {
 			var Class_sco=data[j];
-			var id = data.idJoueur; 
 			var src="img/avatars/"+Class_sco.avatar+".png";
 			if (rangJoueur==rang) {
-				var ajout="<tr class='content_classement_joueur' style='font-weight:bold'><a href='#'><td><a href='#'>"+"<img class='avatarClassement' alt='Av' src='"+src+"'/></a></td><td>"+rang+"</td><td class='classement_pseudo_id' data-id="+id+">"+Class_sco.pseudo+"</td><td>"+Class_sco.score+"</td></a></tr>";
+				var ajout="<tr class='content_classement_joueur' style='font-weight:bold'><a href='#'><td><a href='#'>"+"<img class='avatarClassement' alt='Av' src='"+src+"'/></a></td><td>"+rang+"</td><td class='classement_pseudo_id' data-id="+Class_sco.idJoueur+">"+Class_sco.pseudo+"</td><td>"+Class_sco.score+"</td></a></tr>";
 				$('#table_score tbody tr:last').after(ajout);
 			} else {			
-				var ajout="<tr class='content_classement_joueur'><a href='#'><td><a href='#'>"+"<img class='avatarClassement' alt='Av' src='"+src+"'/></a></td><td>"+rang+"</td><td class='classement_pseudo_id' data-id="+id+">"+Class_sco.pseudo+"</td><td>"+Class_sco.score+"</td></a></tr>";
+				var ajout="<tr class='content_classement_joueur'><a href='#'><td><a href='#'>"+"<img class='avatarClassement' alt='Av' src='"+src+"'/></a></td><td>"+rang+"</td><td class='classement_pseudo_id' data-id="+Class_sco.idJoueur+">"+Class_sco.pseudo+"</td><td>"+Class_sco.score+"</td></a></tr>";
 				$('#table_score tbody tr:last').after(ajout);
 			}
 			rang=rang+1;
@@ -95,20 +92,19 @@ socket.on('PositionClassementScoreJoueur',function(data,firstRank,rangJoueur){
 	
 //Classement relatif par capital société		
 socket.on('PositionClassementCapitalSociete',function(data,firstRank,rangJoueur){
-		var rang=firstRank;
-		var idSociete = data.idSociete; 
+		var rang=firstRank; 
 		var ajout="<tr><a href='#'><td>...</td><td>...</td><td>...</td></a></tr>";
 		$('#table_societe tbody tr:last').after(ajout);
 		$('#table_societe').table("refresh"); 
 		
 		for (var j=0; j<data.length;j++) {
 			var Class_soc=data[j];
-			var src="img/avatars/"+Class_soc.avatar+".png";
+			//var src="img/avatars/"+Class_soc.avatarSociete+".png";
 			if (rangJoueur==rang) {
-				var ajout="<tr class='content_classement_societe' style='font-weight:bold'><a href='#'><td>"+rang+"</td><td>"+Class_soc.nomSociete+"</td><td>"+Class_soc.capital+"</td></a></tr>";
+				var ajout="<tr class='content_classement_societe' style='font-weight:bold'><a href='#'><td>"+rang+"</td><td  class='classement_nomSociete_id' data-id="+Class_soc.idSociete+">"+Class_soc.nomSociete+"</td><td>"+Class_soc.capital+"</td></a></tr>";
 				$('#table_societe tbody tr:last').after(ajout);
 			} else {			
-				var ajout="<tr class='content_classement_societe'><a href='#'><td>"+rang+"</td><td class='classement_nomSociete_id' data-id="+idSociete+">"+Class_soc.nomSociete+"</td><td>"+Class_soc.capital+"</td></a></tr>";
+				var ajout="<tr class='content_classement_societe'><a href='#'><td>"+rang+"</td><td class='classement_nomSociete_id' data-id="+Class_soc.idSociete+">"+Class_soc.nomSociete+"</td><td>"+Class_soc.capital+"</td></a></tr>";
 				$('#table_societe tbody tr:last').after(ajout);
 			}
 				rang=rang+1;
