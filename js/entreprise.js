@@ -427,7 +427,7 @@ socket.on('resultGetNombreTitresJoueurEntreprise', function(data) {
 
 $(document).on("pageshow", "#Entreprise", function() {
 	var socket = io.connect(adresse_serveur);			
-	socket.emit("getPerfEntreprise", idJoueur);
+	socket.emit("getPerfEntreprise", $('#entreprise_active').data('id_entreprise'));
 	socket.emit("getArgentDisponibleJoueur",idJoueur);
 	
 	//On récupère la quantité max vendue par le joueur pour une entreprise donnée

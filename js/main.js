@@ -13,11 +13,22 @@ document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
 	navigator.splashscreen.show();
 	devicePlatform = device.model;
+	//Si on appuie sur le back button sur la page principale et que la dernière page visitée et la page de connection, on quitte l'application
+	document.addEventListener("backbutton", onBackKeyPress, false);
 }
+
+
+	function onBackKeyPress() {
+		if (data.prevPage.attr('id') == 'connexion') {
+			navigator.app.exitApp();
+		}
+		else {
+			window.history.back();
+		}
+	}
 
 $(document).on("pageinit", "#Accueil_jeu", function() { 
 	var socket=io.connect(adresse_serveur);
-	$.mobile.silentScroll(0);
 	socket.emit('getArgentDisponibleJoueur',idJoueur);
 	
 	socket.on ('resultGetArgentDisponibleJoueur', function(data) {
@@ -25,14 +36,6 @@ $(document).on("pageinit", "#Accueil_jeu", function() {
 		$('.argent_dispo').text(argentJoueur + ' ฿');
 		$("#avoir").text(argentJoueur);
 	});
-	
-	//Si on appuie sur le back button sur la page principale et que la dernière page visitée et la page de connection, on quitte l'application
-	/*document.addEventListener("backbutton", onBackKeyPress, true);
-	function onBackKeyPress() {
-		if (data.prevPage.attr('id') == 'connexion') {
-			navigator.app.exitApp();
-		}
-	}*/
 	
 	//On empêche le scroll sur la page d'accueil
 	$( "#Accueil_jeu" ).on( "scrollstart", (function(event){
@@ -42,8 +45,13 @@ $(document).on("pageinit", "#Accueil_jeu", function() {
 	}));
 	
 	$( "#Accueil_jeu" ).on( "swipeleft", (function(event){
-		$.mobile.changePage('#notifications');
+		$.mobile.changePage('#notifications',{
+			transition: "slide"
+		});
 	}));
 	
 	
+});
+$(document).on("pageshow", "#Accueil_jeu", function() { 
+	$.mobile.silentScroll(0);
 });

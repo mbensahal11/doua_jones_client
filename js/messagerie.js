@@ -5,8 +5,7 @@ $(document).on("pagebeforeshow", "#tchat_perso", function() {
 
 	
 	
-$(document).on("pageshow", "#tchat_perso", function() {
-	$(document).scrollTop($(document).height());  
+$(document).on("pageshow", "#tchat_perso", function() {  
 	//On initialise la page en disant qu'il n'y a pas eu de scroll
 	hasscrolledmessagerie = false;
 	var socket = io.connect(adresse_serveur);

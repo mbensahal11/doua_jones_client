@@ -17,6 +17,7 @@ $(document).on("pageinit", "#profil", function() {
 	
 		// Création de la table Ordre en attente	
 	socket.on('resultGetOrdresEnCours',function(data){
+			$("#table_ordre .body_table_profil").find("tr:gt(0)").remove();
 			for (var i=0; i<data.length;i++) {
 				var ordre=data[i];
 				var ajout="<tr><td>"+ordre.DateCreation+"</td><td>"+ordre.Sens+"</td><td>"+ordre.Type+"</td><td>"+ordre.Entreprise_idEntreprise+"</td><td>"+ordre.Quantite+"</td><td>"+ordre.Prix+"</td><td>"+ordre.DateValidite+"</td></tr>";
@@ -30,6 +31,7 @@ $(document).on("pageinit", "#profil", function() {
 		
 		// Création de la table Emprunt		
 	socket.on('resultGetEmpruntsEnCours',function(data){
+			$("#table_emprunt .body_table_profil").find("tr:gt(0)").remove();
 			for (var i=0; i<data.length;i++) {
 				var emprunt=data[i];
 				var ajout="<tr><td>"+emprunt.date_emprunt+"</td><td>"+emprunt.valeur_empruntee+"</td><td>"+emprunt.remboursement_quotidien+"</td><td>"+emprunt.retard+"</td><td>"+emprunt.montant_restant+"</td></tr>";
@@ -41,6 +43,7 @@ $(document).on("pageinit", "#profil", function() {
 	
 		// Création de la table Action		
 	socket.on('resultGetCarnetJoueur',function(data){
+			$("#table_action .body_table_profil").find("tr:gt(0)").remove();
 			for (var i=0; i<data.length;i++) {
 				var action=data[i];
 				var ajout="<tr><td>"+action.nom_entreprise+"</td><td>"+action.quantite+"</td><td>"+action.valeur+"</td></tr>";
