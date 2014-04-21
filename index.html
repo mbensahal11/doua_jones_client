@@ -52,11 +52,14 @@
     <script src="js/tutoriel.js"></script>
     <script src="js/profil.js"></script>
     <script src="js/aide.js"></script>
+    <script src="js/rechercher.js"></script>
+    <script src="js/classement.js"></script>
+    <script src="js/notifications.js"></script>
     
     
  <!-- Socket io-->
  
- 	<script type="text/javascript" src= "http://giserv5.insa-lyon.fr:15550/socket.io/socket.io.js"></script>
+ 	<script type="text/javascript" src= "http://88.172.179.93:5050/socket.io/socket.io.js"></script>
     
     
  <!-- Fichiers css -->
@@ -165,6 +168,7 @@
         </marquee>
     </div>
 	<a href="#aide" id="btn_aide"><img src="img/bouton aide.png" style="width:8%; height:7%; position:absolute; left:85%; border: solid 2px #8c1515; border-radius:5px"></a>
+    <a href="#rechercher" id="btn_rechercher"><img src="img/rechercher.png" style="width:8%; height:7%; position:absolute; left:5%; border: solid 2px #8c1515; border-radius:5px"></a>
     <img src="img/logo Doua Jones.png" style="height:100px; width:300px; display:block; margin-right:auto; margin-left:auto; margin-top:5%;">
     
         <div data-role="content" style="padding-top:8px">
@@ -180,7 +184,7 @@
                     <div class="ui-block-a" style="text-align:center ; margin-bottom:5px;">Missions</div>
                     <div class="ui-block-b" style="text-align:center; margin-bottom:5px;">Mon Profil</div>
                     <div class="ui-block-a" style="height:75px;"><a href="#chat"><img src="img/social icone rouge.png" class="bouton_acc"></a></div>
-                    <div class="ui-block-b" style="height:75px;"><a href="#"><img src="img/Classement rouge.png" class="bouton_acc"></a></div>
+                    <div class="ui-block-b" style="height:75px;"><a href="#classement"><img src="img/Classement rouge.png" class="bouton_acc"></a></div>
                     <div class="ui-block-a" style="text-align:center; margin-bottom:5px;">Social</div>
                     <div class="ui-block-b" style="text-align:center; margin-bottom:5px;">Classement</div>
             
@@ -198,7 +202,7 @@
       <div data-role="content">
       	<img id="imgTutorielActive" src="img/tutoriel/t1.jpg" style="height:100%;width:100%;">
       </div>
-      <div data-role="footer" style="margin:auto; width: 1000px; height:auto; font-size:auto">
+      <div data-role="footer" data-position="fixed" style="margin:auto; width: 1000px; height:auto; font-size:auto">
       	<a href='#' id='tutorielPrevious' class="ui-btn ui-corner-all ui-icon-arrow-l ui-btn-icon-notext ui-btn-inline"></a>
         <p  id='pageTutoriel' style="text-align:center; display:inline-block; margin-left:9%;margin-right:9%"> 1/50 </p>
         <a href="#" id='tutorielNext' class="ui-btn ui-corner-all ui-icon-arrow-r ui-btn-icon-notext ui-btn-inline"></a>
@@ -220,6 +224,83 @@
 			<h4 class="argent_dispo" style="color:#D6B430"></h4>
 		</div>
 	</div>
+
+<!--Classement -->
+
+<div data-role="page" id="classement">
+	<div data-role="header">
+		<a href='#' data-rel="back" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-notext"></a>
+    	<h1>Classement</h1>
+	</div>
+    
+    <div data-role="tabs" id="tabs_classement" style="padding-bottom: 3.2;
+      padding-top: 0px;padding-right: 0px;padding-left: 0px;" >
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#classement_score" data-ajax="false">Score</a></li>                
+                <li><a href="#classement_capital" data-ajax="false">Capital</a></li>
+				<li><a href="#classement_societe" data-ajax="false">Societe</a></li>
+            </ul>
+        </div>
+    
+        <div id="classement_score">
+            <div data-role="content">
+                <table id="table_score" class="classement_table_class_joueur" data-role="table" data-mode="columtoggle" class="ui-body-d ui-shadow table-stripe">
+                    <thead>
+                        <tr class="ui-bar-a">
+                            <th></th>
+                            <th>Rang</th>
+                            <th>Joueur</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="body_table_classement_score">
+                    	<tr>
+                    	</tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="classement_capital">
+        	<div data-role="content">
+                <table id="table_capital" class="classement_table_class_joueur" data-role="table" data-mode="columtoggle" class="ui-body-d ui-shadow table-stripe">
+        <thead>
+            <tr class="ui-bar-a">
+                <th></th>
+                <th>Rang</th>
+                <th>Joueur</th>
+                <th>Capital</th>
+            </tr>
+        </thead>
+        <tbody id="body_table_classement_capital">
+        <tr>
+        </tr>
+        </tbody>
+    </table>
+            </div>
+        </div>
+        <div id="classement_societe">
+        	<div data-role="content">
+                <table id="table_societe" class="classement_table_class_societe" data-role="table" data-mode="columtoggle" class="ui-body-d ui-shadow table-stripe">
+                    <thead>
+                        <tr class="ui-bar-a">
+                            <th>Rang</th>
+                            <th>Societe</th>
+                            <th>Capital</th>
+                        </tr>
+                    </thead>
+                    <tbody id="body_table_classement_societe">
+                    <tr>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>        
+	</div>
+    <div data-role="footer" data-position="fixed">
+		<h4 class="argent_dispo" style="color:#D6B430"></h4>
+	</div>
+</div>
     
 <!-- Profil -->
        <div data-role="page" id="profil">
@@ -235,7 +316,7 @@
                 <ul>
                         <li><a href="#infosProfil" data-ajax="false">Infos</a>
                         </li>            
-                        <li><a href="#infosMesTransactions" data-ajax="false">Mes Transactions</a>
+                        <li><a href="#infosMesTransactions" data-ajax="false">Transactions</a>
                         </li>
                         <li><a href="#infosMaSociete" data-ajax="false">Ma société</a>
                         </li>
@@ -662,7 +743,6 @@
       </div>
     </div>
     
-    
 <!-- Page Entreprise -->
 
   
@@ -709,28 +789,34 @@ margin: 0 auto; margin-top:4px">
   <!-- onglet PERFORMANCE -->
             
               <div id="Performance">
-              	<div class="ui-grid-a">
-                	<div class="ui-block-a" style="height:30px; line-height:30px;">Capacité d'accueil : </div>
-                    <div class="ui-block-b" style="height:30px; line-height:30px;">                              
-                    
-                  	</div>
-					<div class="ui-block-a" style="height:30px; line-height:30px;">Valeur actuelle du cours : </div>
-                    <div class="ui-block-b" style="height:30px; line-height:30px;"></div>
-					<div class="ui-block-a" style="height:30px; line-height:30px;">Actionaire majoritaire : </div>
-                    <div class="ui-block-b" style="height:30px; line-height:30px;"></div>
-					<div class="ui-block-a" style="height:30px; line-height:30px;">Fréquentation : </div>
-                    <div class="ui-block-b" style="height:30px; line-height:30px;"></div>
-					<div class="ui-block-a" style="height:30px; line-height:30px;">Gain par passage : </div>
-                    <div class="ui-block-b" style="height:30px; line-height:30px;"></div>
-					<div class="ui-block-a" style="height:30px; line-height:30px;">Date prochain bilan : </div>
-                    <div class="ui-block-b" style="height:30px; line-height:30px;"></div>
-             	</div>
-  
+              <div class="ui-content">
+				<h3>Exercice précédent</h3>
+                <div id="infosExPrec" class="tdb" >
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a" style="padding-left:10%">Dividende/titre : </div>
+                        <div class="ui-block-b" id="affiche_dividende"></div>
+                        <div class="ui-block-a" style="padding-left:10%">Check-in : </div>
+                        <div class="ui-block-b" id="affiche_checkin"></div>
+                    </div>
+                </div>
+				<h3>Exercice en cours</h3>
+                <div id="infosExEnCours" class="tdb">
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a" style="padding-left:10%">Cours actuel : </div>
+                        <div class="ui-block-b" id="affiche_valCours"></div>
+                        <div class="ui-block-a" style="padding-left:10%">Actionnaire maj : </div>
+                        <div class="ui-block-b" id="affiche_actMaj"></div>
+                        <div class="ui-block-a" style="padding-left:10%">Societe maj : </div>
+                        <div class="ui-block-b" id="affiche_socMaj"></div>                        
+                        <div class="ui-block-a" style="padding-left:10%">Date bilan : </div>
+                        <div class="ui-block-b" id="affiche_dateBilan"></div>                    </div>                    
+				</div>
   				<div id="placeholder" style="width:90%;height:250px; margin-top:15px">
   				</div>
   				<button id="today">Aujourd'hui</button>
   				<button id="lastweek">Dernière semaine</button>
 				<button id="lastmonth">Dernier mois</button>
+              </div>
               </div>
               
   <!-- Onglet PASSER UN ORDRE -->
@@ -741,27 +827,22 @@ margin: 0 auto; margin-top:4px">
                       
                   <!-- Nom de l'entreprise -->     
                       
-                      <div class="ui-field-contain">
       					<label for="select-custom-16">Entreprise</label>
                         <textarea cols="40" rows="1" name="textarea" id="entreprise_active" disabled style="resize:none; height:40px"></textarea>
                         
                         
-                       </div>
       
                       
       <!-- Sens de l'ordre -->
-                    <div class="ui-field-contain">
                           <label for="select-custom-17">Sens de l'ordre</label>
                           <select name="select-custom-17" id="select-custom-17" data-native-menu="false">
                               <option value="achat" selected="selected">Achat</option>
                               <option value="vente">Vente</option>
                           </select>
-                      </div>
                       
   <!-- Type d'ordre  -->
   
                       
-                      <div class="ui-field-contain">
                           <label for="select-custom-18">Type d'ordre</label>
                           <select name="select-custom-18" id="selectordre" data-native-menu="false">
                               <option value="cours_limite" selected="selected">Ordre à cours limité</option>
@@ -769,7 +850,6 @@ margin: 0 auto; margin-top:4px">
                               <option value="seuil_declenchement">Ordre à déclenchement </option>
                               <option value="meilleure_limite">Ordre à la meilleure limite</option>
                           </select>
-                      </div>
                       
  <!-- Listview qui contient PRIX, NOMBRE et DATE DE VALIDITE  -->
                       
@@ -777,10 +857,12 @@ margin: 0 auto; margin-top:4px">
                       
 		<!--PRIX-->                   
                           <li class="ui-field-contain">
+                          	<div>
                               <label for="Prix">Prix (en ฿)</label>
                               <textarea cols="40" rows="8" name="textarea" id="Prix" class="required" style="width:80px; height:40px; display:inline-block; resize:none;"></textarea>   
-                              <div id="requis">
-                              </div>
+                             </div>
+                             <div id="consult_argentDisp">
+                             </div>
                           </li>  
                           
 		<!--TYPE DE DECLENCHEMENT-->                   
@@ -801,8 +883,6 @@ margin: 0 auto; margin-top:4px">
                             </label>
                             <textarea cols="40" rows="8" name="textarea" id="vseuil" style="width:80px; height:40px; resize:none;  margin-top:10px;">
                             </textarea>  
-                            <div id="seuilrequis">
-                            </div>
 
      <!--SAISIE DE LA PLAGE-->    
                              
@@ -820,7 +900,7 @@ margin: 0 auto; margin-top:4px">
                       
                           <li class="ui-field-contain">
                               <label for="Nombre">Nombre</label>
-                              <input type="range" name="slider" id="Nombre" value="1" min="0" max="100"  />
+                              <input type="range" name="slider" id="Nombre" value="1" min="1" max="100"  />
                           </li>
                           
       <!--Date de validite-->
@@ -855,9 +935,113 @@ margin: 0 auto; margin-top:4px">
               </div>
           </div >
           <div data-role="footer">
-              <h4 class="argent_dispo" style="color:#D6B430"></h4>
+              <h4></h4>
           </div>
       </div>
+      
+      <!-- Profil BMC  -->
+
+<div data-role="page" id="bmcprofil">
+	<div data-role="header">
+		<a href='#' data-rel="back" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-notext"></a>
+    	<h1>BMC</h1>
+	</div>
+	<div data-role="content">
+    <img id='image_bmc' alt="" style="max-width:80%;max-height:30%;height:120px;width:120px; display: block;
+margin: 0 auto; margin-top:4px ">
+        <a href="#Entreprise" class="ui-btn ui-shadow" style="border-radius:5px">Profil Entreprise</a>
+        <a href="#emprunt" class="ui-btn ui-shadow" style="border-radius:5px">BMC Investment</a>
+        <a href="#boutique" class="ui-btn ui-shadow" style="border-radius:5px">Boutique BMC</a>
+</div>
+	<!--<div data-role="footer">
+    	<h4></h4>
+	</div>  -->
+</div>     
+
+<!-- Boutique BMC  -->
+
+	<!-- Boutique BMC header  -->
+
+<div data-role="page" id="boutique">
+	<div data-role="header">
+		<a href='#' data-rel="back" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-notext"></a>
+    	<h1>Boutique BMC</h1>
+	</div>
+    
+	<!-- Boutique BMC tabs  -->
+    
+    <div data-role="tabs" id="tabs_boutique" style="padding-bottom: 3.2;
+      padding-top: 0px;padding-right: 0px;padding-left: 0px;" >
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#items" data-ajax="false">Objets</a></li>            
+                <li><a href="#atouts" data-ajax="false">Atouts</a></li>
+            </ul>
+        </div>
+    
+        <div id="items">
+            <div data-role="content">
+                <div class="ui-grid-a" style="text-align:center">
+                    <div class="ui-block-a">
+                    <label for="boutique_mod">Module d'achat</label>
+                    <select name="boutique_mod" id="boutique_mod" data-native-menu="false">
+                        <option value="choose-one" data-placeholder="true">Choisis un module</option>
+                        <option value="1">Garage BMC</option>
+                        <option value="2">Immobilier BMC</option>
+                        <option value="3">BMC Hippisme</option>
+                        <option value="4">Bijouterie BMC</option>
+                        <option value="5">BMC Cycling</option>
+                        <option value="6">BMC boat</option>
+                        <option value="7">BMC maroquinerie</option>
+                        <option value="8">BMC vignoble</option>
+                        <option value="9">BMC shoes</option>
+                        <option value="10">Zoo BMC</option>
+                        <option value="11">BMC Antiquites</option>
+                        <option value="12">BMC Monuments</option>
+                        <option value="13">BMC Art</option>
+                        <option value="14">Air BMC</option>
+                    </select>
+                    </div>  
+                    <div class="ui-block-b" id="ajout">
+                    </div>
+                </div>
+             <div class="ui-field-contain">
+                <form>
+                    <div style="width:45%; display:inline-block; text-align:center">Prix (en ฿)
+                    </div>
+                    <div style="width:45%; display:inline-block">
+                        <textarea cols="40" rows="8" name="textarea" id="prix_item" style="resize:none;" disabled>
+                        </textarea>
+                    </div>
+                    <img src="" style="display:block; margin-right:auto; margin-left:auto; width:80%; margin-bottom:15px;" id="image_item">
+                    <input type="submit" value="Acheter" id="acheter_item">
+                    </form> 
+                </div>  
+            </div>
+        </div>
+        <div id="atouts">
+        	<div data-role="content">
+                <label for="boutique_atout">Avantage temporaire</label>
+				<select name="boutique_atout" id="boutique_atout" data-native-menu="false">
+                    <option value="choose-one" data-placeholder="true">Choisis un atout</option>
+                    <option value="1">Réduction de 10% à l’achat d’une action</option>
+                    <option value="2">Majoration de 10% faite au joueur lors de la vente d’une action</option>
+                    <option value="3">Augmentation de 10% du dividende reversé au prochain bilan</option>
+                    <option value="4">Prochain emprunt réalisé avec le statut d’emprunteur A</option>
+                    <option value="5">Prochain emprunt réalisé à taux 0%</option>
+                    <option value="6">Ajout d’un emprunt supplémentaire à la limite autorisée</option>
+                    <option value="7">Achat d’une action sans se trouver physiquement sur le campus</option>
+                    <option value="8">Vente d’une action sans se trouver physiquement sur le campus</option>
+                    <option value="9">Achat d’une action supplémentaire à limite autorisée</option>
+				</select>
+				<input type="submit" value="Acheter" id="acheter_atout">
+            </div>
+        </div>
+	</div>
+    <div data-role="footer">
+       <h4 class="argent_dispo" style="color:#D6B430"></h4>
+    </div>
+</div>
       
       <!-- Profil BMC  -->
 
@@ -967,6 +1151,106 @@ margin: 0 auto; margin-top:4px ">
 	</div>
 </div>
 
+<!-- Recherche membre ou société -->
+<div data-role="page" id="rechercher">
+  <div data-role="header">
+  	<a href='#' data-rel="back" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-notext"></a>
+    <h1>Rechercher</h1>
+  </div>
+
+  	<div data-role="tabs" id="tabs_rechercher" style="padding-bottom: 3.2;padding-top: 0px;padding-right: 0px;padding-left: 0px;" >
+            <div data-role="navbar">
+                <ul>
+                        <li><a href="#rechercher_joueur" data-ajax="false">Joueur</a>
+                        </li>            
+                        <li><a href="#rechercher_societe" data-ajax="false">Société d'investissement</a>
+                        </li>
+                </ul>
+            </div>
+            
+            <div id="rechercher_joueur">
+            	<form id="search_joueur_form" data-ajax="false">
+   					<input type="search" placeholder="Rechercher un joueur"  id="joueur_entre" value="" />
+  				</form>
+                	<ul id="ul_result_search_joueur"  data-role="listview" data-theme="a" data-dividertheme="a" data-filter="false">
+                    </ul>
+            </div>
+            <div id="rechercher_societe">
+            	<form id="search_societe_form" data-ajax="false">
+   					<input type="search" placeholder="Rechercher une société d'investissement"  id="societe_entre" value="" />
+  				</form>
+                	<ul id="ul_result_search_societe"  data-role="listview" data-theme="a" data-dividertheme="a" data-filter="false">
+                    </ul>
+            </div>
+  		</div>
+  	<div data-role="footer">
+			<h4 class="argent_dispo" style="color:#D6B430"></h4>
+	</div>
+  </div>
+  
+  <!-- Profil extérieur joueur -->
+  <div data-role="page" id="profil_exterieur_joueur">
+    <div data-role="header">
+    <a href='#' data-rel="back" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-notext"></a>
+      <h1 id="titre_profil_exterieur_joueur">Profil</h1>
+    </div>
+    <div data-role="content">
+    </div>
+  </div>
+  
+  <!-- Profil extérieur entreprise -->
+  <div data-role="page" id="profil_exterieur_societe">
+    <div data-role="header">
+    	<a href='#' data-rel="back" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-notext"></a>
+      <h1 id="titre_profil_exterieur_societe">Profil</h1>
+    </div>
+    <div data-role="content">
+    </div>
+  </div>
+  
+  <!-- Page notifications -->
+  
+  <div data-role="page" id="notifications">
+    <div data-role="header">
+    	<a href='#' data-rel="back" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-notext"></a>
+      <h1>Notifications</h1>
+    </div>
+    <div data-role="content">
+    	<div data-role="collapsible" data-theme="a">
+        	<h3>BMC</h3>
+   			<ul id="liste_notifications_bmc" data-role="listview" data-theme="a" data-dividertheme="a" data-filter="false">
+        	
+        	</ul>
+		</div>
+    	<div data-role="collapsible" data-theme="a">
+        	<h3>Messages</h3>
+   			<ul id="liste_notifications_message" class="ui-listview" data-role="listview" data-theme="a" data-dividertheme="a" data-filter="false">
+        	
+        	</ul>
+		</div>
+        <div data-role="collapsible" data-theme="a">
+        	<h3>Ordres</h3>
+   			<ul id="liste_notifications_ordre" class="ui-listview" data-role="listview" data-theme="a" data-dividertheme="a" data-filter="false">
+        	
+        	</ul>
+		</div>
+        <div data-role="collapsible" data-theme="a">
+        	<h3>Emprunts</h3>
+   			<ul id="liste_notifications_emprunt" class="ui-listview" data-role="listview" data-theme="a" data-dividertheme="a" data-filter="false">
+        	
+        	</ul>
+		</div>
+        <div data-role="collapsible" data-theme="a">
+        	<h3>Impôts</h3>
+   			<ul id="liste_notifications_impot" class="ui-listview" data-role="listview" data-theme="a" data-dividertheme="a" data-filter="false">
+        	
+        	</ul>
+		</div>
+    </div>
+    <div data-role="footer">
+			<h4 class="argent_dispo" style="color:#D6B430"></h4>
+	</div>
+  </div>
 <!-- Module d'emprunt  -->
 
 <div data-role="page" id="emprunt">
@@ -1012,9 +1296,8 @@ margin: 0 auto; margin-top:4px ">
 			<h1>Aide</h1>
 		</div>
         <div data-role="content" id="letters">
-        	<p>Saisir la recherche</p>
             <form>
-                <input data-type="search" id="searchForCollapsibleSet">
+                <input data-type="search" placeholder="Saisir la recherche" id="searchForCollapsibleSet">
             </form>
 		<div data-role="collapsibleset" data-filter="true" data-inset="true" id="collapsiblesetForFilter" data-input="#searchForCollapsibleSet">
 		</div>

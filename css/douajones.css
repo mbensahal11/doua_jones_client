@@ -220,3 +220,16 @@ display:block;
 	border-radius:5px;
 }
 
+/*Classement */
+.avatarClassement {
+	width:50px;
+	height:50px;
+}
+
+.contenu_notif {
+	text-align:justify;
+	word-wrap:break-word;
+	white-space : normal;
+	width:75%;
+}
+

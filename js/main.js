@@ -1,4 +1,5 @@
-var adresse_serveur = "http://giserv5.insa-lyon.fr:15550";
+//var adresse_serveur = "http://giserv5.insa-lyon.fr:15550";
+var adresse_serveur = "http://88.172.179.93:5050";
 var pseudo_color = "#032f55";
 var hasscrolledchatglobal;
 var idJoueur;
@@ -37,6 +38,10 @@ $(document).on("pageinit", "#Accueil_jeu", function() {
 		event.preventDefault();
 		event.stopImmediatePropagation();
 		return false;
+	}));
+	
+	$( "#Accueil_jeu" ).on( "swipeleft", (function(event){
+		$.mobile.changePage('#notifications');
 	}));
 	
 });

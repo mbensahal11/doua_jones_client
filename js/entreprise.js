@@ -1,15 +1,63 @@
+var argentDispOrdre;
+var qteMaxVendue;
+var dateProchBilanReel;
+var coursEntrep;
 // JavaScript Document
-$(document).on("pageshow", "#Entreprise", function() {
+$(document).on("pageinit", "#Entreprise", function() {
+
+var socket = io.connect(adresse_serveur);
+
+//Onglet Perfomances infos 
+
+		
+socket.on("resultGetPerfEntreprise", function(data) {
+	dateProchBilanReel = new Date(data.dateProchainBilanReel);
+	var dividende="100"+" ฿";
+	coursEntrep=data.coursActuel;
+	coursEntrepAAfficher=coursEntrep+" ฿";
+	$('#affiche_dividende').text();	
+	$('#affiche_checkin').text(data.checkinExercicePrecedent);	
+	$('#affiche_valCours').text(coursEntrepAAfficher);	
+	$('#affiche_actMaj').text(data.actionnaireMajoritaire.pseudo);	
+	$('#affiche_socMaj').text(data.societeMajoritaire.nomSociete);	
+	$('#affiche_dateBilan').text(data.dateProchainBilan);
+		
+});			
+
+//Fin Performances infos
+
+//Affichage de l'argent disponible
+
+socket.on('resultGetArgentDisponibleJoueur', function(data) {
+	argentDispOrdre=data.argent_disponible
+	argentDispOrdreAAfficher="Argent disponible : "+argentDispOrdre+" ฿"
+	$("#consult_argentDisp").text(argentDispOrdreAAfficher);	
+});
+
+
+socket.on('resultGetNombreTitresJoueurEntreprise', function(data) {
+	qteMaxVendue=data.quantite;
+});
+//
+
+
+//
+
+//Dans le cas d'une vente on limite le slider à la quantité possédée par le joueur
+	$(document).on("change","#select-custom-17", function() {
+			if ($('#select-custom-17 option:selected').val()=="vente") {
+				$('#Nombre').prop("max",qteMaxVendue);
+				$('#Nombre').val(1).slider("refresh");
+			}
+	});
+
+			
 			
 			//Graphe page performance
 			$(function() {
 		
 					
 		var btGetCours = document.getElementById("btGetCours");
-
-		var socket = io.connect(adresse_serveur);
-
-		socket.emit("getCoursEntreprise", $('#entreprise_active').data("id_entreprise"));
 
 		var values;
 	
@@ -107,7 +155,8 @@ $(document).on("pageshow", "#Entreprise", function() {
                           $('#saisiedate').datepicker("setDate", new Date());	
                       }
                       if(event.target.id == "radio-choice-3"){
-                          $('#saisiedate').datepicker("setDate", new Date(1992,06,24));	
+                          $('#saisiedate').datepicker("setDate", dateProchBilanReel);
+						  $('#saisiedate').datepicker("refresh");
                       }
                   }
               });
@@ -119,8 +168,6 @@ $(document).on("pageshow", "#Entreprise", function() {
 					//On remet le formulaire à zéro lorsque l'on change de type d'ordre, sauf le sens de l'ordre et le type d'ordre
 					  	//Prix
 					  $("#Prix").val('');
-					  	//Texte requis
-					  $('#requis').text('');
 					  	//Slider Nombre
 					  $('#Nombre').val(1).slider("refresh");
 					  	//Date de validite
@@ -138,8 +185,6 @@ $(document).on("pageshow", "#Entreprise", function() {
 					$("#vseuillabel").show();					
 					//Valeur du seuil
 					$('#vseuil').val('');
-					//Texte seuil requis
-					$('#seuilrequis').text('');
 					//Initialiser la plage
 					$('#range-10a').val(1).slider("refresh");
 					$('#range-10b').val(100).slider("refresh");
@@ -185,8 +230,15 @@ $(document).on("pageshow", "#Entreprise", function() {
 				$("#vplage").show();
 				$("#vplagelabel").show();	
 					//On nettoie ce que le joueur a entré dans seuil et le label saisir un seuil ! en cas d'oubli	
-				$('#vseuil').val('');		
-				$('#seuilrequis').text('');	
+				$('#vseuil').val('');	
+				//On initialise les valeurs du slider à plus ou moins 5,5%
+				var coursMoins=Math.round(coursEntrep*0.80*100)/100;
+				var coursPlus=Math.round(coursEntrep*1.2*100)/100;
+				$('#range-10a').prop('min',coursMoins).slider("refresh");
+				$('#range-10a').prop('max',coursPlus).slider("refresh");
+				$('#range-10b').prop('min',coursMoins).slider("refresh");
+				$('#range-10b').prop('max',coursPlus).slider("refresh");
+				//coursEntrep	
 				}					
 			});
 	
@@ -210,6 +262,7 @@ $(document).on("pageshow", "#Entreprise", function() {
               $('#commentForm').submit(function(event) {
 				  event.preventDefault();
 				  event.stopImmediatePropagation();
+				  	var peutAcheter=false;
 					var radio_type_date = $("input:radio[name='radio-choice-type-date']");
 					var index_type_date = radio_type_date.index(radio_type_date.filter(':checked'));
 					
@@ -218,10 +271,10 @@ $(document).on("pageshow", "#Entreprise", function() {
 					var index_type_declenchement = radio_type_declenchement.index(radio_type_declenchement.filter(':checked'));
 					//On s'assure que le joueur ait rempli le champ prix (seul champ qui peut-être vide) en cas de choix de choix de l'ordre à cours limité
 					if ( !$('#Prix').val() && $('#selectordre').val()==='cours_limite' ){
-						$('#requis').text('Il faut saisir un prix !');
-						}
+					alert('Il faut saisir un prix !');
+					}
 					else if ( !$('#vseuil').val() && $('#selectordre').val()==='seuil_declenchement' && index_type_declenchement==0  ) {
-						$('#seuilrequis').text('Il faut saisir le seuil !')
+					alert('Il faut saisir le seuil !');
 					}	
 					else {	
 					 
@@ -254,60 +307,132 @@ $(document).on("pageshow", "#Entreprise", function() {
 							prix_action = parseFloat($('#Prix').val());
 						}
 						
-						var socket = io.connect('http://localhost:8080');
-						//On envoie les données de l'ordre
-						socket.emit('setOrdre',{
-							idJoueur:1,
-							idEntreprise:parseFloat($('#entreprise_active').data("id_entreprise")),
-							sens:$('#select-custom-17').val(),
-							typeOrdre:$('#selectordre').val(),
-							prix:prix_action,
-							quantite:parseFloat($('#Nombre').val()),
-							borneInf:minimum,
-							borneSup:maximum,
-							dateValidite:$('#saisiedate').val()
-							});
-						
-						//On remet le formulaire à zéro après validation
-							//Sens de l'ordre
-						var myselectun = $( "#select-custom-17" );
-						myselectun[0].selectedIndex = 0;
-						myselectun.selectmenu( "refresh" );
-							//Type de l'ordre
-						var myselectdeux = $( "#selectordre" );
-						myselectdeux[0].selectedIndex = 0;
-						myselectdeux.selectmenu( "refresh" );
-							//Valeur du prix
-						$("#Prix").val('');
-							//Texte requis
-						$('#requis').text('');
-							//Slider Nombre
-						$('#Nombre').val(1).slider("refresh");
-							//Date de validite
-						$("#validite input").prop("checked",false).checkboxradio("refresh");
-						$("#radio-choice-1").prop("checked",true).checkboxradio("refresh");
-						  //DatePicker
-						$('#saisiedate').datepicker("setDate", new Date()).datepicker("refresh");
-						//Type de déclenchement
-						$("#typedeclenchement input").prop("checked",false).checkboxradio("refresh");
-						$("#radio-choice-h-2a").prop("checked",true).checkboxradio("refresh");
-						//Valeur du seuil
-						$('#vseuil').val('');
-						//Initialiser la plage
-						$('#range-10a').val(1).slider("refresh");
-						$('#range-10b').val(100).slider("refresh");
-						
-						//Cacher la div déclenchement
-						$('#declenchement').hide();
-						
-						//Prix able
-						$("#Prix").prop("disabled",false);
+					
+						//si vente, pas de tests
+						if ($('#select-custom-17 option:selected').val()=="vente") {
+					
+							peutAcheter=true;
 
-				  }
+						} 
+						//sinon, si achat, tests sur la nature de l'ordre et la capacite du joueur à acheter
+						else {
+							//si ordre à cours limité 
+							if($('#selectordre option:selected').val()=="cours_limite")   {
+
+								if(argentDispOrdre < $("#Prix").val() * $("#Nombre").val()) {
+									alert("Vous n'avez pas l'argent disponible pour acheter");
+								}
+								else {
+									peutAcheter=true;
+								}
+							}
+							//ordre meilleure limite ou au marché
+							else if ($('#selectordre option:selected').val()=="meilleure_limite" || $('#selectordre option:selected').val()=="au_marche") {
+								
+								if(argentDispOrdre < coursEntrep * $("#Nombre").val()) {
+									
+								}
+								else {
+									peutAcheter=true;
+								}
+								
+							
+							}
+							// ordre à déclenchement
+							else  {
+								//Seuil	
+								if ($("#typedeclenchement input:checked").val()=="Seuil") {
+
+									if(argentDispOrdre < $("#Nombre").val() * $("#vseuil").val()) 		{
+		
+									alert("Vous n'avez pas l'argent disponible pour acheter");
+		
+									}
+									else {
+										peutAcheter=true;
+									}
+								}
+								else {
+									if(argentDispOrdre < $("#Nombre").val() * $("#range-10b").prop('max')) {
+		
+										alert("Vous n'avez pas l'argent disponible pour acheter");
+		
+									}
+									else {
+										peutAcheter=true;
+									}								
+								}
+							}
+							//
+						}
+						
+						if (peutAcheter) {
+														//On envoie les données de l'ordre
+							var dateAEnvoyer=new Date($('#saisiedate').datepicker("getDate"))	;					
+							socket.emit('setOrdre',{
+								idJoueur:idJoueur,
+								idEntreprise:$('#entreprise_active').data('id_entreprise'),
+								//parseFloat($('#entreprise_active').data("id_entreprise")),
+								sens:$('#select-custom-17').val(),
+								typeOrdre:$('#selectordre').val(),
+								prix:prix_action,
+								quantite:parseFloat($('#Nombre').val()),
+								borneInf:minimum,
+								borneSup:maximum,
+								dateValidite:dateAEnvoyer
+								});
+				
+							//On remet le formulaire à zéro après validation
+								//Sens de l'ordre
+							var myselectun = $( "#select-custom-17" );
+							myselectun[0].selectedIndex = 0;
+							myselectun.selectmenu( "refresh" );
+								//Type de l'ordre
+							var myselectdeux = $( "#selectordre" );
+							myselectdeux[0].selectedIndex = 0;
+							myselectdeux.selectmenu( "refresh" );
+								//Valeur du prix
+							$("#Prix").val('');
+								//Slider Nombre
+							$('#Nombre').val(1).slider("refresh");
+								//Date de validite
+							$("#validite input").prop("checked",false).checkboxradio("refresh");
+							$("#radio-choice-1").prop("checked",true).checkboxradio("refresh");
+							  //DatePicker
+							$('#saisiedate').datepicker("setDate", new Date()).datepicker("refresh");
+							//Type de déclenchement
+							$("#typedeclenchement input").prop("checked",false).checkboxradio("refresh");
+							$("#radio-choice-h-2a").prop("checked",true).checkboxradio("refresh");
+							//Valeur du seuil
+							$('#vseuil').val('');
+							//Initialiser la plage
+							$('#range-10a').val(1).slider("refresh");
+							$('#range-10b').val(100).slider("refresh");
+							
+							//Cacher la div déclenchement
+							$('#declenchement').hide();
+							
+							//Prix able
+							$("#Prix").prop("disabled",false);
+							
+							}
+						
+						
+					}
 
 				  //On envoie le résultat par défaut de la fonction submit, on est passé par socket.io
 				  return false;
 				});		
+});
 
-  
-}); 
+$(document).on("pageshow", "#Entreprise", function() {
+	var socket = io.connect(adresse_serveur);			
+	socket.emit("getPerfEntreprise", idJoueur);
+	socket.emit("getArgentDisponibleJoueur",idJoueur);
+	
+	//On récupère la quantité max vendue par le joueur pour une entreprise donnée
+	socket.emit("getNombreTitresJoueurEntreprise",idJoueur,$('#entreprise_active').data('id_entreprise')); 
+
+	socket.emit("getCoursEntreprise", $('#entreprise_active').data('id_entreprise'));
+
+});
