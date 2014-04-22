@@ -328,9 +328,9 @@ Bienvenue apprentis traders !
             <ul>
                     <li><a href="#infosProfil" data-ajax="false">Infos</a>
                     </li>            
-                    <li><a href="#infosMesTransactions" data-ajax="false">Mes Transactions</a>
+                    <li><a href="#infosMesTransactions" data-ajax="false">Transactions</a>
                     </li>
-                    <li><a href="#infosMaSociete" data-ajax="false">Ma société</a>
+                    <li><a href="#infosMaSociete" data-ajax="false">Société</a>
                     </li>
                     <li><a href="#infosMaVitrine" data-ajax="false">Ma vitrine</a>
                     </li>
@@ -570,20 +570,23 @@ Bienvenue apprentis traders !
                         <div class="ui-block-b" id="affiche_actionsEnAttenteSociete"></div>
                         <div class="ui-block-a" style="padding-left:10%">Majoritaire chez :</div>
                         <div class="ui-block-b"></div>
+                        </div>
                         
-                        
-                        	<div id="enTeteSociete" style="display:none">
-                            	<div class="ui-block-a" style="padding-left:10%"> Entreprise
-                                </div>
-                                <div class="ui-block-b" style="padding-left:20%"> Capacite fixee
-                                </div>
-                            </div>
-                            <div id="affiche_entrepriseSociete" style="margin-top:5%">
-                            </div>
+                       <div id="affiche_entrepriseSociete"  style="display:none;">
+                        <table id="DisplayEntrepriseMajoritaire" data-role="table" data-mode="columtoggle" class="ui-body-d ui-shadow table-stripe" style="display:block; margin-left:auto; margin-right:auto; width:70%; margin-top:10px;">
+                            <thead>
+                                <tr class="ui-bar-a">
+                                    <th>Entreprise</th>
+                                    <th>Capacite fixee</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+						</table>
+                    </div>  
                                              
                     </div>
-                </div>
-			</div>	
+                </div>	
             <div id="tableau maj">
             </div>
             <div id="bouton_administrer" style="display:none">
@@ -601,17 +604,25 @@ Bienvenue apprentis traders !
 			</div> 
             
             <div data-role="popup" id="choixActionClicMembre" data-theme="a" class="ui-content" style="max-width:340px; padding-bottom:2em;">
-				<center><h2></h2></center>
+				<center><h2 id="choixActionClicMembrePseudo"></h2></center>
                 <a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="voirProfilJoueurSociete">Voir profil</a>
                	<a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="changerStatutMembre" style="display:none">Changer statut</a>
                 
-                <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="exclureMembre" style="display:none">Exclure membre</a>   
+                <a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="exclureMembre" style="display:none">Exclure membre</a>   
 			</div> 
             <div data-role="popup" id="choixChangerStatut" data-theme="a" class="ui-content" style="max-width:340px; padding-bottom:2em;">
-              <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="nommerVicePresident">Nommer Vice-Président</a>
-              <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="nommerPresident">Nommer Président</a>
+              <a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="nommerVicePresident" style="display:none">Nommer Vice-Président</a>
+              <a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="retirerTitreVicePresident" style="display:none"> Retirer titre de Vice-Président </a>
+              <a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="nommerPresident">Nommer Président</a>
               <a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="retourChoixChangerStatut">Retour</a>
            </div>
+           
+           <div data-role="popup" id="confirmationChangerMembres" data-theme="a" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+           	<div id="divConfirmationChangerMembres"></div>
+           	<a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="confirmerChangerMembres">Confirmer</a>
+              <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="annulerChangerMembres">Annuler</a>
+           </div>
+           
             
      	</div>
     </div>
@@ -1332,7 +1343,7 @@ margin: 0 auto; margin-top:4px ">
   
   </div>
   
-  <!-- Profil extérieur entreprise -->
+  <!-- Profil extérieur société -->
   <div data-role="page" id="profil_exterieur_societe">
     <div data-role="header">
     	<a href='#' data-rel="back" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-notext"></a>

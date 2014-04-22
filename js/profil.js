@@ -61,11 +61,11 @@ $(document).on("pageinit", "#profil_joueur", function() {
 
 // Confirmation pour quitter la société
 	$(document).on("click","#confirmerQuitterSociete", function(event) {
-
-		socket.emit('setDemandeDepartSociete', joueur.idJoueur,pseudo);
 		
 		event.preventDefault();
 		event.stopImmediatePropagation();
+		socket.emit('setDemandeDepartSociete', joueur.idJoueur,pseudo);
+		$.mobile.changePage("#Accueil_jeu");
 	});
 	
 	
@@ -99,14 +99,15 @@ $(document).on("pageinit", "#profil_joueur", function() {
 			.addClass("imgMembre")
 			)
 			)
-			.append("<p class='pseudo_membre'>"+membre.pseudo+"</p>")
+			.append("<p class='pseudo_membre' data-statut="+membre.statut_societe+">"+membre.pseudo+"</p>")
 			.addClass("divMembre");
 		}   
 	});
 	
 		socket.on('EntrepriseSocieteMajoritaire', function(data) {
-			$("#enTeteSociete").show();
-			$('#affiche_entrepriseSociete').append('<div class="ui-block-a" style="padding-left:10%; width:50%;"><li>'+data.nom_entreprise+'</li></div><div class="ui-block-b" style="padding-left:10%">'+data.capacitefixee+'</div>');
+			$('#DisplayEntrepriseMajoritaire tbody').append('<tr><th>'+data.nom_entreprise+'</th><th>'+data.capacitefixee+'</th></tr>');
+			$('#affiche_entrepriseSociete').show();	
+			$('#DisplayEntrepriseMajoritaire').table("refresh");
 		})
 	
 	socket.on('resultGetInfosSocieteDuJoueur', function(data) {
@@ -157,13 +158,15 @@ $(document).on("pageinit", "#profil_joueur", function() {
 
 	//Affichage des informations du joueur
 	socket.on('resultGetInfosJoueur',function(data) {
+		$("#bouton_administrer").hide();
+		$("#bouton_candidatures").hide();
 		idSociete = data.Societe_idSociete;	
 		statutJoueur=data.statut_societe;
 		
 		if (statutJoueur == "President") {
 			$("#bouton_administrer").show();
 		}
-		if (statutJoueur== "President" || statutJoueur=="Vice-President") {
+		if (statutJoueur== "President" || statutJoueur=="Vice-president") {
 			$("#bouton_candidatures").show();
 		}
 			//avatar
@@ -444,9 +447,10 @@ $(document).on("pageinit", "#profil_joueur", function() {
 		
 		//Lors d'un clic sur un joueur
 		$( "#affiche_membresSociete" ).on("click", ".divMembre", function () {
-			$('#choixActionClicMembre h2').text($(this).find('.pseudo_membre').text());
-			$('#choixActionClicMembre h2').data('id', $(this).data('id'));
-			if (statutJoueur != "President") {
+			$('#choixActionClicMembrePseudo').text($(this).find('.pseudo_membre').text());
+			$('#choixActionClicMembrePseudo').data('id', $(this).data('id'));
+			$('#choixActionClicMembrePseudo').data('statut', $(this).find('.pseudo_membre').data('statut'));
+			if ((statutJoueur != "President") || ($('#choixActionClicMembrePseudo').text() == pseudo)) {
 				voirProfilJoueurSociete();
 			}
 			else {
@@ -456,13 +460,24 @@ $(document).on("pageinit", "#profil_joueur", function() {
 			}
 		});
 		
+		//Clique sur "voir le profil"
 		$( "#voirProfilJoueurSociete").on("click", voirProfilJoueurSociete);
 		
+		//Clic sur changer statut
 		$( "#changerStatutMembre").on("click", function() {
+			$('#retirerTitreVicePresident').hide();
+			$('#nommerVicePresident').hide();
+			if ($('#choixActionClicMembrePseudo').data('statut') == 'Vice-president') {
+				$('#retirerTitreVicePresident').show();
+			}
+			else {
+				$('#nommerVicePresident').show();
+			}
 			$('#choixActionClicMembre').popup('close');
 			setTimeout( function(){ $("#choixChangerStatut").popup("open"); }, 100 );
 		});
 		
+		//retour depuis changer statut
 		$( "#retourChoixChangerStatut").on("click", function(event) {
 			event.preventDefault();
 			event.stopImmediatePropagation();
@@ -470,9 +485,74 @@ $(document).on("pageinit", "#profil_joueur", function() {
 			setTimeout( function(){ $("#choixActionClicMembre").popup("open"); }, 100 );
 		});
 		
+		$( "#nommerPresident").on("click", function(event) {
+			event.preventDefault();
+			event.stopImmediatePropagation();
+			$('#choixChangerStatut').popup('close');
+			$("#confirmationChangerMembres").data("action", "nommerPresident");
+			$("#divConfirmationChangerMembres").text('Etes-vous sûr de vouloir nommer '+$('#choixActionClicMembrePseudo').text()+' Président? Vous deviendrez Vice-Président');
+			setTimeout( function(){ $("#confirmationChangerMembres").popup("open"); }, 100 );
+		});
+		
+		$( "#nommerVicePresident").on("click", function(event) {
+			event.preventDefault();
+			event.stopImmediatePropagation();
+			$('#choixChangerStatut').popup('close');
+			$("#confirmationChangerMembres").data("action", "nommerVicePresident");
+			$("#divConfirmationChangerMembres").text('Etes-vous sûr de vouloir nommer '+$('#choixActionClicMembrePseudo').text()+' Vice-Président?');
+			setTimeout( function(){ $("#confirmationChangerMembres").popup("open"); }, 100 );
+		});
+		
+		$( "#retirerTitreVicePresident").on("click", function(event) {
+			event.preventDefault();
+			event.stopImmediatePropagation();
+			$('#choixChangerStatut').popup('close');
+			$("#confirmationChangerMembres").data("action", "retirerTitreVicePresident");
+			$("#divConfirmationChangerMembres").text('Etes-vous sûr de vouloir retirer le titre de Vice-Président à '+$('#choixActionClicMembrePseudo').text()+'? Il restera membre.');
+			setTimeout( function(){ $("#confirmationChangerMembres").popup("open"); }, 100 );
+		});
+		
+		$( "#exclureMembre").on("click", function(event) {
+			event.preventDefault();
+			event.stopImmediatePropagation();
+			$('#choixActionClicMembre').popup('close');
+			$("#confirmationChangerMembres").data("action", "exclureMembre");
+			$("#divConfirmationChangerMembres").text('Etes-vous sûr de vouloir exclure '+$('#choixActionClicMembrePseudo').text()+' ?');
+			setTimeout( function(){ $("#confirmationChangerMembres").popup("open"); }, 100 );
+		});
+			
+		$( "#confirmerChangerMembres").on("click", function(event) {
+			event.preventDefault();
+			event.stopImmediatePropagation();
+			if ($("#confirmationChangerMembres").data("action") == "nommerPresident") {
+				socket.emit("setNewStatutMembreSociete", $('#choixActionClicMembrePseudo').data('id'), "President");
+				socket.emit("setNewStatutMembreSociete", idJoueur, "Vice-president");
+				$("#confirmationChangerMembres").popup("close");
+				$.mobile.changePage("#Accueil_jeu");
+			}
+			else if ($("#confirmationChangerMembres").data("action") == "nommerVicePresident") {
+				socket.emit("setNewStatutMembreSociete", $('#choixActionClicMembrePseudo').data('id'), "Vice-president");
+				$("#confirmationChangerMembres").popup("close");
+			}
+			else if ($("#confirmationChangerMembres").data("action") == "retirerTitreVicePresident") {
+				socket.emit("setNewStatutMembreSociete", $('#choixActionClicMembrePseudo').data('id'), "Membre");
+				$("#confirmationChangerMembres").popup("close");
+			}
+			else if ($("#confirmationChangerMembres").data("action") == "exclureMembre") {
+				socket.emit("setExclureMembreSociete", $('#choixActionClicMembrePseudo').data('id'),$('#choixActionClicMembrePseudo').text());
+				$("#confirmationChangerMembres").popup("close");
+			}
+		});
+		
+		$( "#annulerChangerMembres").on("click", function(event) {
+			event.preventDefault();
+			event.stopImmediatePropagation();
+			$("#confirmationChangerMembres").popup("close");
+		});
+			
 		function voirProfilJoueurSociete () {
-			$('#profil_exterieur_joueur').data("idJoueur",$('#choixActionClicMembre h2').data('id'));
-			$("#titre_profil_exterieur_joueur").text($('#choixActionClicMembre h2').text());
+			$('#profil_exterieur_joueur').data("idJoueur",$('#choixActionClicMembrePseudo').data('id'));
+			$("#titre_profil_exterieur_joueur").text($('#choixActionClicMembrePseudo').text());
 			$.mobile.changePage("#profil_exterieur_joueur");
 		}
 
@@ -482,7 +562,7 @@ $(document).on("pageshow", "#profil_joueur", function(event, data) {
 	var joueur = {idJoueur : idJoueur};
 	var socket=io.connect(adresse_serveur);
 	if (data.prevPage.attr('id')!='choix_depart-dialog') {
-		$('#affiche_entrepriseSociete').empty();	
+		$('#DisplayEntrepriseMajoritaire tbody').empty();	
 		socket.emit('getOrdresEnCours',joueur);
 		socket.emit('getEmpruntsEnCours',joueur);
 		socket.emit('getCarnetJoueur',joueur);
