@@ -538,7 +538,7 @@ Bienvenue apprentis traders !
         </table>
         </div>
 	</div>	
-    
+    <!-- Onglet ma société -->
     <div id="infosMaSociete">
     	<div data-role="content">
     	            <div id="presentation_statique">
@@ -1331,17 +1331,73 @@ margin: 0 auto; margin-top:4px ">
             Le joueur n'a pas d'objet dans ce module
             </div>
         </div>
-        <!-- Societe -->
+        
+        <!-- Onglet societe Profil exterieur joueur -->
         <div id="infos_societe_joueur_exterieur">
             <div data-role="content">
+            	<div id="presentation_statique_societe_joueur_exterieur">
+                        <div style="margin-left:5%;">
+                        	<p id="affiche_nomSociete_societe_joueur_exterieur" style=" text-align:center;font-size:2em;"></p>
+                        </div>
+           			</div>
+            <div id="mouvantSociete_societe_joueur_exterieur">
+            	<h3>Membres</h3>           
+            	<div id="affiche_membresSociete_societe_joueur_exterieur" class="tdb">
+                </div>
+            	<h3>Description</h3>
+				<div id="affiche_descriptionSociete_societe_joueur_exterieur" class="tdb" style="padding-left:7px; padding-right:7px;"></div>
+				<h3>Informations générales</h3>
+                <div id="infos_generalesSociete_societe_joueur_exterieur" class="tdb" >
+                    <div class="ui-grid-a">
+                    
+						<div class="ui-block-a" style="padding-left:10%">Rang</div>
+                        <div class="ui-block-b" id="affiche_rangSociete_societe_joueur_exterieur"></div>
+                         
+                        <div class="ui-block-a" style="padding-left:10%">Liquidité</div>                    
+                        <div class="ui-block-b" id="affiche_liquiditeSociete_societe_joueur_exterieur"></div>
+                       
+                        <div class="ui-block-a" style="padding-left:10%">Actions achetées</div>
+                        <div class="ui-block-b" id="affiche_actionsAchetéesSociete_societe_joueur_exterieur"></div>
+                        <div class="ui-block-a" style="padding-left:10%">Actions vendues</div>
+                        <div class="ui-block-b" id="affiche_actionsVenduesSociete_societe_joueur_exterieur"></div> 
+                        <div class="ui-block-a" style="padding-left:10%">Ordres en cours</div>
+                        <div class="ui-block-b" id="affiche_actionsEnAttenteSociete_societe_joueur_exterieur"></div>
+                        <div class="ui-block-a" style="padding-left:10%">Majoritaire chez :</div>
+                        <div class="ui-block-b"></div>
+                        </div>
+                        
+                       <div id="affiche_entrepriseSociete_societe_joueur_exterieur"  style="display:none;">
+                        <table id="DisplayEntrepriseMajoritaire_societe_joueur_exterieur" data-role="table" data-mode="columtoggle" class="ui-body-d ui-shadow table-stripe" style="display:block; margin-left:auto; margin-right:auto; width:70%; margin-top:10px;">
+                            <thead>
+                                <tr class="ui-bar-a">
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+						</table>
+                    </div>  
+                                             
+                    </div>
+                </div>	
+            <div id="tableau maj_societe_joueur_exterieur">
+            </div>
+            <div id="bouton_rejoindre_societe_joueur_exterieur">
+				<button id="rejoindre_societe_joueur_exterieur">Rejoindre société d'investissement</button>
+            </div> 
+            <div data-role="popup" id="confirmer_rejoindre_societe_joueur_exterieur" data-theme="a" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+				<h2>Etes-vous sur de vouloir rejoindre cette société d'investissement?</h2>
+                <a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="confirmerRejoindreSociete_joueur_exterieur">Oui</a>
+                <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="annulerRejoindreSociete_joueur_exterieur">Non, je reste dans ma société actuelle</a>   
+			</div> 
+            
             </div>
         </div>
         
         </div>
   	</div>
     
-  
-  </div>
+ 
   
   <!-- Profil extérieur société -->
   <div data-role="page" id="profil_exterieur_societe">
@@ -1350,6 +1406,61 @@ margin: 0 auto; margin-top:4px ">
       <h1 id="titre_profil_exterieur_societe">Profil</h1>
     </div>
     <div data-role="content">
+    	            	<div id="presentation_statique_societe_exterieur">
+                        <div style="margin-left:5%;">
+                        	<p id="affiche_nomSociete_societe_exterieur" style=" text-align:center;font-size:2em;"></p>
+                        </div>
+           			</div>
+            <div id="mouvantSociete_societe_exterieur">
+            	<h3>Membres</h3>           
+            	<div id="affiche_membresSociete_societe_exterieur" class="tdb">
+                </div>
+            	<h3>Description</h3>
+				<div id="affiche_descriptionSociete_societe_exterieur" class="tdb" style="padding-left:7px; padding-right:7px;"></div>
+				<h3>Informations générales</h3>
+                <div id="infos_generalesSociete_societe_exterieur" class="tdb" >
+                    <div class="ui-grid-a">
+                    
+						<div class="ui-block-a" style="padding-left:10%">Rang</div>
+                        <div class="ui-block-b" id="affiche_rangSociete_societe_exterieur"></div>
+                         
+                        <div class="ui-block-a" style="padding-left:10%">Liquidité</div>                    
+                        <div class="ui-block-b" id="affiche_liquiditeSociete_societe_exterieur"></div>
+                       
+                        <div class="ui-block-a" style="padding-left:10%">Actions achetées</div>
+                        <div class="ui-block-b" id="affiche_actionsAchetéesSociete_societe_exterieur"></div>
+                        <div class="ui-block-a" style="padding-left:10%">Actions vendues</div>
+                        <div class="ui-block-b" id="affiche_actionsVenduesSociete_societe_exterieur"></div> 
+                        <div class="ui-block-a" style="padding-left:10%">Ordres en cours</div>
+                        <div class="ui-block-b" id="affiche_actionsEnAttenteSociete_societe_exterieur"></div>
+                        <div class="ui-block-a" style="padding-left:10%">Majoritaire chez :</div>
+                        <div class="ui-block-b"></div>
+                        </div>
+                        
+                       <div id="affiche_entrepriseSociete_societe_exterieur"  style="display:none;">
+                        <table id="DisplayEntrepriseMajoritaire_societe_exterieur" data-role="table" data-mode="columtoggle" class="ui-body-d ui-shadow table-stripe" style="display:block; margin-left:auto; margin-right:auto; width:70%; margin-top:10px;">
+                            <thead>
+                                <tr class="ui-bar-a">
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+						</table>
+                    </div>  
+                                             
+                    </div>
+                </div>	
+            <div id="tableau maj_societe_exterieur">
+            </div>
+            <div id="bouton_rejoindre_societe_exterieur">
+				<button id="rejoindre_societe_exterieur">Rejoindre société d'investissement</button>
+            </div> 
+            <div data-role="popup" id="confirmer_rejoindre_societe_exterieur" data-theme="a" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+				<h2>Etes-vous sur de vouloir rejoindre cette société d'investissement?</h2>
+                <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="confirmerRejoindreSociete_exterieur">Oui</a>
+                <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="annulerRejoindreSociete_exterieur">Non, je reste dans ma société actuelle</a>   
+			</div>
     </div>
   </div>
   

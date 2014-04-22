@@ -75,9 +75,7 @@ $(document).on("pageinit", "#administrer", function() {
 	socket.on('resultSetDissoudreSociete', function(data) {
 		alert(data.message);
 		if(data.erreur==false) {
-			$.mobile.changePage('#Accueil_jeu');
-			event.preventDefault();
-			event.stopImmediatePropagation();	
+			$.mobile.changePage("#profil_joueur", { allowSamePageTransition: true } );	
 		}
 	
 	})
@@ -111,7 +109,7 @@ $(document).on("pageinit", "#administrer", function() {
 
 
 	//Dissoudre la société
-	$(document).on("click","#dissoudreSociete", function() {
+	$(document).on("click","#dissoudreSociete", function(event) {
 			event.preventDefault();
 			event.stopImmediatePropagation();
 			socket.emit('setDissoudreSociete', joueur.idJoueur);

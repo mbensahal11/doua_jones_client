@@ -65,7 +65,9 @@ $(document).on("pageinit", "#profil_joueur", function() {
 		event.preventDefault();
 		event.stopImmediatePropagation();
 		socket.emit('setDemandeDepartSociete', joueur.idJoueur,pseudo);
-		$.mobile.changePage("#Accueil_jeu");
+		setTimeout( function(){
+				$.mobile.changePage("#profil_joueur", { allowSamePageTransition: true } );
+				}, 100 );
 	});
 	
 	
@@ -528,7 +530,9 @@ $(document).on("pageinit", "#profil_joueur", function() {
 				socket.emit("setNewStatutMembreSociete", $('#choixActionClicMembrePseudo').data('id'), "President");
 				socket.emit("setNewStatutMembreSociete", idJoueur, "Vice-president");
 				$("#confirmationChangerMembres").popup("close");
-				$.mobile.changePage("#Accueil_jeu");
+				setTimeout( function(){
+				$.mobile.changePage("#profil_joueur", { allowSamePageTransition: true } );
+				}, 100 );
 			}
 			else if ($("#confirmationChangerMembres").data("action") == "nommerVicePresident") {
 				socket.emit("setNewStatutMembreSociete", $('#choixActionClicMembrePseudo').data('id'), "Vice-president");
@@ -570,6 +574,6 @@ $(document).on("pageshow", "#profil_joueur", function(event, data) {
 		socket.emit('getListeObjetsJoueur',joueur);
 		socket.emit('getArgentDisponibleJoueur',idJoueur);
 		socket.emit('getMembresSocieteDuJoueur',joueur);
-		socket.emit('getInfosSocieteDuJoueur',joueur)
+		socket.emit('getInfosSocieteDuJoueur',joueur);
 	}
 });

@@ -44,6 +44,7 @@ $(document).on("pageinit", "#connexion", function() {
 		if (data.connexionAccordee) {
 			idJoueur = data.idJoueur;
 			pseudo = data.pseudo;
+			idSociete = data.idSociete;
 			$.mobile.changePage("#Accueil_jeu");
 		}
 		else {alert(data.erreur);

@@ -5,7 +5,7 @@ $(document).on("pageinit", "#profil_exterieur_joueur", function() {
 	var imageAvatar=["A1","A2","A3","A4","A5","A6","A7","A8","A9","A10","A11","A12","A13","A14","A15","A16","A17","A18","A19","A20","A21","A22","A23","A24","A25","A26","A27","A28","A29","A30","A31","A32"]	
 	var idAvatar=0;	
 	//Affichage des informations du joueur
-	socket.on('resultGetInfosJoueur',function(data) {	
+	socket.on('resultGetInfosJoueur_exterieur',function(data) {	
 	
 			//avatar
 		var lien="img/avatars/"+data.avatar+".png";
@@ -127,16 +127,107 @@ $(document).on("pageinit", "#profil_exterieur_joueur", function() {
 			return false;
 		});
 		
-	});
 
+	
+	//Partie société d'investissement
+	
+	//Affiches les membres de la sté
+	socket.on('resultGetMembresSocieteDuJoueur_exterieur', function(data) {	
+		$('#affiche_membresSociete_societe_joueur_exterieur').empty();
+		for (var k=0; k<data.length;k++) {
+			var membre=data[k];
+			$('<div data-id='+membre.idJoueur+'>')
+			.css('display','inline-block')
+			.appendTo("#affiche_membresSociete_societe_joueur_exterieur")
+			.append(
+			$("<a>").attr({href:'#'+''})
+			.append(
+			$("<img>").attr({ 
+			src: "img/avatars/"+membre.avatar+".png",
+			alt: membre.pseudo })
+			.addClass("imgMembre")
+			)
+			)
+			.append("<p class='pseudo_membre' data-statut="+membre.statut_societe+">"+membre.pseudo+"</p>")
+			.addClass("divMembre");
+		}   
+	});
+	
+	//à insérer si on peut rafraichir la page
+	$( "#affiche_membresSociete_societe_joueur_exterieur" ).on("click", ".divMembre", function () {
+		//Si on clique sur le profil d'un autre joueur, on est redirigé
+		if ($(this).find('.pseudo_membre').text() != $("#titre_profil_exterieur_joueur").text()) {
+			$('#profil_exterieur_joueur').data("idJoueur",$(this).data('id'));
+			$("#titre_profil_exterieur_joueur").text($(this).find('.pseudo_membre').text());
+			$.mobile.changePage("#profil_exterieur_joueur", { allowSamePageTransition: true } );
+		}
+	});
+	
+	
+	socket.on('EntrepriseSocieteMajoritaire_exterieur', function(data) {
+			$('#DisplayEntrepriseMajoritaire_societe_joueur_exterieur tbody').append('<tr><th>'+data.nom_entreprise+'</th></tr>');
+			$('#affiche_entrepriseSociete_societe_joueur_exterieur').show();	
+			$('#DisplayEntrepriseMajoritaire_societe_joueur_exterieur').table("refresh");
+		})
+		
+	socket.on('resultGetInfosSocieteDuJoueur_exterieur', function(data) {
+		$("#affiche_descriptionSociete_societe_joueur_exterieur").text(data.descriptionSociete);	
+		$("#affiche_nomSociete_societe_joueur_exterieur").text(data.nomSociete);
+		$("#affiche_nomSociete_societe_joueur_exterieur").data('idSociete',data.idSociete);
+	});
+	
+	socket.on('resultGetInfosSocieteDuJoueur_ScoreEtClassement_exterieur', function(data){
+		//pos, idSociete, capital, nomSociete
+		$("#affiche_rangSociete_societe_joueur_exterieur").text(data.pos);
+		$("#affiche_liquiditeSociete_societe_joueur_exterieur").text(data.capital);
+	});
+	
+	socket.on('resultGetInfosSocieteDuJoueur_CumulActionsVenduesSocieteParIdJoueur_exterieur', function(data) {
+		// cumul_vente, Societe_idSociete
+		$("#affiche_actionsVenduesSociete_societe_joueur_exterieur").text(data.cumul_vente);
+	
+	});
+	
+	socket.on('resultGetInfosSocieteDuJoueur_CumulActionsAcheteesSocieteParIdJoueur_exterieur', function(data) {
+		$("#affiche_actionsAchetéesSociete_societe_joueur_exterieur").text(data.cumul_achat);
+	});
+	
+	socket.on('resultGetInfosSocieteDuJoueur_CumulOrdresEnCoursSocieteParIdJoueur_exterieur', function(data) {
+		$("#affiche_actionsEnAttenteSociete_societe_joueur_exterieur").text(data.cumul_ordre);
+	});
+	
+	$('#rejoindre_societe_joueur_exterieur').on("click", function(event) {
+		event.preventDefault();
+		event.stopImmediatePropagation();
+		//Si le joueur appartient déjà à la société
+		if (idSociete == $("#affiche_nomSociete_societe_joueur_exterieur").data('idSociete')) {
+			alert("Vous appartenez déjà à cette société d'investissement");
+		}
+		else {
+		$('#confirmer_rejoindre_societe_joueur_exterieur').popup("open");
+		}
+	});
+	
+	$('#confirmerRejoindreSociete_joueur_exterieur').on("click", function(event) {
+		event.preventDefault();
+		event.stopImmediatePropagation();
+		socket.emit("setDemandeAjoutMembreSociete", idJoueur, $("#affiche_nomSociete_societe_joueur_exterieur").data('idSociete'));
+		alert("Votre demande a été envoyée");
+		$('#confirmer_rejoindre_societe_joueur_exterieur').popup("close");
+	});
+	
+});
 
 $(document).on("pageshow", "#profil_exterieur_joueur", function() {
 	var socket = io.connect(adresse_serveur);
 	var joueur = {idJoueur : $('#profil_exterieur_joueur').data("idJoueur")};
+	$('#DisplayEntrepriseMajoritaire_societe_joueur_exterieur tbody').empty();	
 	$('#consult_boutique_exterieur_label').text('Consulte les objets de '+$("#titre_profil_exterieur_joueur").text());
 	$('#affiche_non_objets_exterieur').text($("#titre_profil_exterieur_joueur").text()+' n\'a pas d\'objet dans ce module');
-	socket.emit('getInfosJoueur',joueur);
-	socket.emit('getListeObjetsJoueur',joueur);
+	socket.emit('getInfosJoueur_exterieur',joueur);
+	socket.emit('getListeObjetsJoueur_exterieur',joueur);
+	socket.emit('getMembresSocieteDuJoueur_exterieur',joueur);
+	socket.emit('getInfosSocieteDuJoueur_exterieur',joueur);
 });
 
 $(document).on("pagebeforeshow", "#profil_exterieur_joueur", function() {

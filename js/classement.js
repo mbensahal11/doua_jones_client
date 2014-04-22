@@ -121,6 +121,7 @@ socket.on('PositionClassementCapitalSociete',function(data,firstRank,rangJoueur)
 	$( ".classement_table_class_societe" ).on('click', '.content_classement_societe', function() {
 		$('#profil_exterieur_societe').data("idSociete",$(this).find('.classement_nomSociete_id').data('id'));
 		$("#titre_profil_exterieur_societe").text($(this).find('.classement_nomSociete_id').text());
+		$("#confirmer_rejoindre_societe_joueur_exterieur h2").text('Etes-vous sur de vouloir rejoindre "'+$("#titre_profil_exterieur_societe").text+'" ? Vous quitterez votre ancienne société.');
 		$.mobile.changePage("#profil_exterieur_societe");
 	});
 

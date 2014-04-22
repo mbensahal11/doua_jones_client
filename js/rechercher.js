@@ -42,10 +42,10 @@ $(document).on("pageinit", "#rechercher", function() {
 	socket.on("resultRechercheSociete", function(rows){
 		$('#ul_result_search_societe').empty();
 		for (var i=0;i<rows.length;i++) {
-			var idSociete = rows[i].idSociete;
+			var idSociete_resultrecherche = rows[i].idSociete;
 			var avatar = rows[i].avatar;
 			var nomSociete = rows[i].nomSociete;
-			var content = '<li class="content_recherche_societe"><a href="#"><img src="img/avatars/'+avatar+'.png" /><h3 class="nomSociete_trouve" data-id='+idSociete+'>'+nomSociete+'</h3></a></li>';
+			var content = '<li class="content_recherche_societe"><a href="#"><img src="img/avatars/'+avatar+'.png" /><h3 class="nomSociete_trouve" data-id='+idSociete_resultrecherche+'>'+nomSociete+'</h3></a></li>';
 			$('#ul_result_search_societe').append(content);
 		}
 		$('#ul_result_search_societe').listview('refresh');
@@ -60,6 +60,7 @@ $(document).on("pageinit", "#rechercher", function() {
 	$( "#ul_result_search_societe" ).on('click', '.content_recherche_societe', function() {
 		$('#profil_exterieur_societe').data("idSociete",$(this).find('.nomSociete_trouve').data('id'));
 		$("#titre_profil_exterieur_societe").text($(this).find('.nomSociete_trouve').text());
+		$("#confirmer_rejoindre_societe_joueur_exterieur h2").text('Etes-vous sur de vouloir rejoindre "'+$("#titre_profil_exterieur_societe").text+'" ? Vous quitterez votre ancienne société.');
 		$.mobile.changePage("#profil_exterieur_societe");
 	});
 	

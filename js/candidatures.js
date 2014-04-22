@@ -21,7 +21,7 @@ $(document).on("pageinit", "#candidatures", function() {
 		
 		for (var i in data.rows) {
 
-			var src="'avatars/"+data.rows[i].avatar+".png'";
+			var src="img/avatars/"+data.rows[i].avatar+".png";
 			$("#candidat").append('<li class="candidatSoc" data-id='+data.rows[i].idJoueur+'><a href="#purchase" data-rel="popup"><img src='+src+'><h2>'+data.rows[i].pseudo+'</h2><p>'+data.rows[i].nomSociete+'</p></a></li>');
 			$("#candidat").listview("refresh");
 		}
@@ -43,7 +43,7 @@ $(document).on("pageinit", "#candidatures", function() {
 	
 	
 	
-	$(document).on("click","#accepter_joueur", function() {
+	$(document).on("click","#accepter_joueur", function(event) {
 		socket.emit('setAccepterDemandeMembre',joueur.idJoueur,idCandidat);
 		event.preventDefault();
 		event.stopImmediatePropagation();
@@ -51,7 +51,7 @@ $(document).on("pageinit", "#candidatures", function() {
 	
 	
 	
-	$(document).on("click","#refuser_joueur", function() {
+	$(document).on("click","#refuser_joueur", function(event) {
 		socket.emit('setRefuserDemandeMembre',joueur.idJoueur,idCandidat);
 		$('li[data-id="'+idCandidat+'"]').remove();
 		$("#candidat").listview("refresh"); 
