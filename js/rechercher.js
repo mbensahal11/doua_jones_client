@@ -60,7 +60,7 @@ $(document).on("pageinit", "#rechercher", function() {
 	$( "#ul_result_search_societe" ).on('click', '.content_recherche_societe', function() {
 		$('#profil_exterieur_societe').data("idSociete",$(this).find('.nomSociete_trouve').data('id'));
 		$("#titre_profil_exterieur_societe").text($(this).find('.nomSociete_trouve').text());
-		$("#confirmer_rejoindre_societe_joueur_exterieur h2").text('Etes-vous sur de vouloir rejoindre "'+$("#titre_profil_exterieur_societe").text+'" ? Vous quitterez votre ancienne société.');
+		$("#confirmer_rejoindre_societe_exterieur h2").text('Etes-vous sur de vouloir rejoindre "'+$("#titre_profil_exterieur_societe").text()+'" ? Vous quitterez votre ancienne société.');
 		$.mobile.changePage("#profil_exterieur_societe");
 	});
 	

@@ -12,6 +12,7 @@ $(document).on("pageinit", "#candidatures", function() {
 	var socket=io.connect(adresse_serveur);	
 	
 	var idCandidat;
+	var pseudoCandidat;
 
 	socket.on("resultGetDemandesAjoutSociete", function(data) {
 		
@@ -22,11 +23,12 @@ $(document).on("pageinit", "#candidatures", function() {
 		for (var i in data.rows) {
 
 			var src="img/avatars/"+data.rows[i].avatar+".png";
-			$("#candidat").append('<li class="candidatSoc" data-id='+data.rows[i].idJoueur+'><a href="#purchase" data-rel="popup"><img src='+src+'><h2>'+data.rows[i].pseudo+'</h2><p>'+data.rows[i].nomSociete+'</p></a></li>');
+			$("#candidat").append('<li class="candidatSoc" data-id='+data.rows[i].idJoueur+'><a href="#purchase" data-rel="popup"><img src='+src+'><h2 id="pseudo_candidat">'+data.rows[i].pseudo+'</h2><p>'+data.rows[i].nomSociete+'</p></a></li>');
 			$("#candidat").listview("refresh");
 		}
 		
 	});
+	
 	
 	socket.on('resultSetAccepterDemandeMembre',function(data) {
 		alert(data.message);
@@ -39,24 +41,32 @@ $(document).on("pageinit", "#candidatures", function() {
 
 	$("#contenu_candidats").on("click", ".candidatSoc", function() {
 		idCandidat=$(this).data("id");
+		pseudoCandidat= $(this).find('#pseudo_candidat').text();
+	});
+	
+	$("#voir_profil_candidature").on("click", function() {
+		$('#profil_exterieur_joueur').data("idJoueur",idCandidat);
+		$("#titre_profil_exterieur_joueur").text(pseudoCandidat);
+		$.mobile.changePage("#profil_exterieur_joueur");
 	});
 	
 	
 	
 	$(document).on("click","#accepter_joueur", function(event) {
-		socket.emit('setAccepterDemandeMembre',joueur.idJoueur,idCandidat);
 		event.preventDefault();
 		event.stopImmediatePropagation();
+		socket.emit('setAccepterDemandeMembre',joueur.idJoueur,idCandidat);
+		$('#purchase').popup('close');
 	});	
 	
 	
 	
 	$(document).on("click","#refuser_joueur", function(event) {
+		event.preventDefault();
+		event.stopImmediatePropagation();
 		socket.emit('setRefuserDemandeMembre',joueur.idJoueur,idCandidat);
 		$('li[data-id="'+idCandidat+'"]').remove();
 		$("#candidat").listview("refresh"); 
-		event.preventDefault();
-		event.stopImmediatePropagation();
 	});	
 
 

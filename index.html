@@ -178,7 +178,7 @@ Bienvenue apprentis traders !
         </marquee>
     </div>
 	<a href="#aide" id="btn_aide"><img src="img/bouton aide.png" style="width:8%; height:7%; position:absolute; left:85%; border: solid 2px #8c1515; border-radius:5px"></a>
-    <a href="#rechercher" id="btn_rechercher"><img src="img/rechercher.png" style="width:8%; height:7%; position:absolute; left:5%; border: solid 2px #8c1515; border-radius:5px"></a>
+    <a href="#rechercher" id="btn_rechercher"><img src="img/rechercher.png" style="width:8%; height:7%; position:absolute; left:70%; border: solid 2px #8c1515; border-radius:5px"></a>
     <img src="img/logo Doua Jones.png" style="height:100px; width:300px; display:block; margin-right:auto; margin-left:auto; margin-top:5%;">
     
         <div data-role="content" style="padding-top:8px">
@@ -189,7 +189,7 @@ Bienvenue apprentis traders !
                     <div class="ui-block-a" style="text-align:center; margin-bottom:5px;">Tutoriel</div>
                     <div class="ui-block-b" style="text-align:center;  margin-bottom:5px;">Carte</div>
                 
-                    <div class="ui-block-a" style="height:75px;"><a href="#"><img src="img/missions icone rouge.png"class="bouton_acc"></a></div>
+                    <div class="ui-block-a" style="height:75px;"><a href="#" onClick="alert('Contenu à venir');"><img src="img/missions icone rouge.png"class="bouton_acc"></a></div>
                     <div class="ui-block-b" style="height:75px;"><a href="#profil_joueur"><img src="img/mon compte icone rouge.png" class="bouton_acc"></a></div>
                     <div class="ui-block-a" style="text-align:center ; margin-bottom:5px;">Missions</div>
                     <div class="ui-block-b" style="text-align:center; margin-bottom:5px;">Mon Profil</div>
@@ -412,13 +412,13 @@ Bienvenue apprentis traders !
                 <form id="chgt_mdp">
 					<label for="ancienMdp">Ancien mot de passe
                     </label>                 
-					<input type="text" name="textinput" id="ancienMdp" value="" maxlength="45"  />
+					<input type="password" name="textinput" id="ancienMdp" value="" maxlength="45"  />
 					<label for="nouveauMdp">Nouveau mot de passe
                     </label>                 
-					<input type="text" name="textinput" id="nouveauMdp" value="" maxlength="45" />
+					<input type="password" name="textinput" id="nouveauMdp" value="" maxlength="45" />
 					<label for="validerNouveauMdp">Valider nouveau mot de passe
                     </label>                 
-					<input type="text" name="textinput" id="validerNouveauMdp" value="" maxlength="45" />
+					<input type="password" name="textinput" id="validerNouveauMdp" value="" maxlength="45" />
 					<input type="submit" value="Envoyer" id="envoi_new_mdp" />
                     <button id="retour_infos_from_mdp">Retour au profil</button>
                 </form>
@@ -599,7 +599,7 @@ Bienvenue apprentis traders !
             
            <div data-role="popup" id="confirmerQuitterPopUp" data-theme="a" class="ui-content" style="max-width:340px; padding-bottom:2em;">
 				<h2>Etes-vous sur de vouloir partir ?</h2>
-                <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="confirmerQuitterSociete">Oui</a>
+                <a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="confirmerQuitterSociete">Oui</a>
                 <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="resterSociete">Non, je reste</a>   
 			</div> 
             
@@ -678,7 +678,7 @@ Bienvenue apprentis traders !
          >
 		<label for="newCapacite">Fixer la capacité</label>
 		  <input type="number" name="newCapacite" id="newCapacite" value=""  />
-        
+         <button id="btn_modif_capa">Enregistrer les capacités</button>
         <table id="table_capacite" data-role="table" data-mode="columtoggle" class="ui-body-d ui-shadow table-stripe">
         	<thead>
             	<tr class="ui-bar-a">
@@ -691,11 +691,14 @@ Bienvenue apprentis traders !
                 </tr>
 			</tbody>
 		</table>
-        <button id="btn_modif_capa">Enregistrer les capacités</button>
+       
         </div>
           <label for="choix_descriptionSociete">Modifier la description</label>
           <input type="text" name="textinput" value="" maxlength="140" id="choix_descriptionSociete"  />
         <button id="btn_modif_infoSociete">Enregistrer la description</button>
+        <label for="choix_nomSociete">Modifier le nom de la société</label>
+          <input type="text" name="textinput" value="" maxlength="140" id="choix_nomSociete"  />
+        <button id="btn_modif_nomSociete">Enregistrer le nouveau nom</button>
         <div id="dissolutionSociete">
 		<a href="#confirmerDissoudre" data-rel="popup" class="ui-shadow ui-btn ui-corner-all">Dissoudre la société</a>
         </div>
@@ -724,9 +727,9 @@ Bienvenue apprentis traders !
         </div>
     <div data-role="popup" id="purchase" data-theme="a" class="ui-content" style="max-width:340px; padding-bottom:2em;">
     
-        <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="accepter_joueur">Accepter</a>
+        <a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="accepter_joueur">Accepter</a>
         <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="refuser_joueur">Refuser</a>   
-            <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Voir profil</a>     
+        <a href="#" id="voir_profil_candidature" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Voir profil</a>     
         <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Retour</a>
     </div> 
 	</div>
@@ -1260,15 +1263,7 @@ margin: 0 auto; margin-top:4px ">
                             <div class="ui-block-b" id="affiche_score_exterieur"></div>                                                          
                         </div>
                     </div>
-                    <h3>Statut bancaire</h3>
-                    <div id="infos_bancaires_exterieur" class="tdb">
-                        <div class="ui-grid-a">
-                            <div class="ui-block-a" style="padding-left:10%">Compte en banque ฿</div>
-                            <div class="ui-block-b" id="affiche_compte_exterieur"></div>
-                            <div class="ui-block-a" style="padding-left:10%">Argent disponible ฿</div>
-                            <div class="ui-block-b" id="affiche_argent_exterieur"></div>
-                        </div>
-                    </div>  
+                    
                     <h3>Statut d'investisseur</h3>
                     <div id="infos_finance_exterieur" class="tdb">
                         <div class="ui-grid-a">
@@ -1277,26 +1272,9 @@ margin: 0 auto; margin-top:4px ">
                             <div class="ui-block-a" style="padding-left:10%">Actions vendues</div>
                             <div class="ui-block-b" id="affiche_actionsVendues_exterieur"></div>
                             <div class="ui-block-a" style="padding-left:10%">Actions possédées</div>
-                            <div class="ui-block-b" id="affiche_actionsPossedees_exterieur"></div>
-                            <div class="ui-block-a" style="padding-left:10%">Ordres en attente</div>
-                            <div class="ui-block-b" id="affiche_ordre_exterieur"></div>                        
+                            <div class="ui-block-b" id="affiche_actionsPossedees_exterieur"></div>                       
                         </div>
-                    </div>    
-                    <h3>Statut d'emprunteur</h3>
-                    <div id="infos_emprunts" class="tdb">
-                        <div class="ui-grid-a">                    
-                            <div class="ui-block-a" style="padding-left:10%">Emprunts en cours</div>
-                            <div class="ui-block-b" id="affiche_empruntsEnCours_exterieur"></div>
-                            <div class="ui-block-a" style="padding-left:10%">Emprunts en retard</div>
-                            <div class="ui-block-b" id="affiche_empruntsEnRetard_exterieur"></div>
-                            <div class="ui-block-a" style="padding-left:10%">Nombre Emprunts maximum</div>
-                            <div class="ui-block-b" id="affiche_empruntsNombreMax_exterieur"></div>
-                            <div class="ui-block-a" style="padding-left:10%">TEG</div>
-                            <div class="ui-block-b" id="affiche_teg_exterieur"></div>                       
-                        </div>
-                    </div>  
-                                                                 
-                    
+                    </div>                 
                 </div>
             </div>
         </div>
@@ -1388,7 +1366,7 @@ margin: 0 auto; margin-top:4px ">
             <div data-role="popup" id="confirmer_rejoindre_societe_joueur_exterieur" data-theme="a" class="ui-content" style="max-width:340px; padding-bottom:2em;">
 				<h2>Etes-vous sur de vouloir rejoindre cette société d'investissement?</h2>
                 <a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="confirmerRejoindreSociete_joueur_exterieur">Oui</a>
-                <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="annulerRejoindreSociete_joueur_exterieur">Non, je reste dans ma société actuelle</a>   
+                <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="annulerRejoindreSociete_joueur_exterieur">Non, je reste dans ma société.</a>   
 			</div> 
             
             </div>
@@ -1459,7 +1437,7 @@ margin: 0 auto; margin-top:4px ">
             <div data-role="popup" id="confirmer_rejoindre_societe_exterieur" data-theme="a" class="ui-content" style="max-width:340px; padding-bottom:2em;">
 				<h2>Etes-vous sur de vouloir rejoindre cette société d'investissement?</h2>
                 <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="confirmerRejoindreSociete_exterieur">Oui</a>
-                <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="annulerRejoindreSociete_exterieur">Non, je reste dans ma société actuelle</a>   
+                <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="annulerRejoindreSociete_exterieur">Non, je reste dans ma société.</a>   
 			</div>
     </div>
   </div>
@@ -1499,6 +1477,12 @@ margin: 0 auto; margin-top:4px ">
         <div id="collabsible_impots" class="collabsible_notifications" data-role="collapsible" data-theme="a">
         	<h3>Impôts</h3>
    			<ul id="liste_notifications_impot" class="ui-listview" data-role="listview" data-theme="a" data-dividertheme="a" data-filter="false">
+        	
+        	</ul>
+       	</div>
+        <div id="collabsible_impots" class="collabsible_societe" data-role="collapsible" data-theme="a">
+            <h3>Société</h3>
+   			<ul id="liste_notifications_societe" class="ui-listview" data-role="listview" data-theme="a" data-dividertheme="a" data-filter="false">
         	
         	</ul>
 		</div>

@@ -897,7 +897,7 @@ function initialize() {
 
 		function show_myInfowindow(entreprise,position) {
 			infowindow.close(map);
-			content_infowindow = '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>'+entreprise.nom+'</b><br/></center><button id="checkin" >Check-in</button><button id="info">Fiche entreprise</button></div>'
+			content_infowindow = '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>'+entreprise.nom+'</b><br/></center><button id="checkin" disabled>Check-in</button><button id="info">Fiche entreprise</button></div>'
 			$('#infowindow_content').html(content_infowindow);
 			infowindow.setContent($('#infowindow_content').html());
 			// Replace our Info Window's position
@@ -1085,23 +1085,28 @@ function initialize() {
 			//On modifie le texte du profil de l'entreprise
 			$('#texte_fiche_entreprise').text(entreprise.texteProfil);
 			
-			//On vérifie que l'on puisse bien passer un ordre
-				ok_ordre = true;		
-			if (document.getElementById('checkin').disabled == true) {				
-				ok_ordre = false;
-			}
+			
 			//On regarde si le joueur se trouve à la BMC
 			var isAtBMC = false;
 			if (google.maps.geometry.poly.containsLocation(position_joueur,Entreprise[1].Objet)) {
 				isAtBMC = true;
 			}
 			//On affecte la variable isAtBMC à la page BMC profil pour savoir si on peut intéragir avec la boutique
+			
 			$('#bmcprofil').data("isAtBMC", isAtBMC);
+			
+			//On vérifie que l'on puisse bien passer un ordre
+				ok_ordre = true;		
+			if (document.getElementById('checkin').disabled == true) {				
+				ok_ordre = false;
+			}
 			
 			//On ferme l'infowindow	
 			infowindow.close(map);
 			//On affiche la page entreprise ou la page BMC
 			if (entreprise.index != 1) {
+				//si le joueur se trouve à la bmc et qu'il sélectionne une autre entreprise, il ne peut pas passer d'ordre
+				ok_ordre = false;
 				$.mobile.changePage("#Entreprise");
 			}
 			else {

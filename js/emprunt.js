@@ -14,34 +14,35 @@ $(document).on("pageinit", "#emprunt", function() {
 	var socket=io.connect(adresse_serveur);
 	var dataEmprunt;
 	socket.on("resultGetStatsEmprunt",function(data) {
-	//informations contenues dans data data.
-	$('#TEG').val(data.TEG); //valeur du cours
-	var TEG_temp = $('#TEG').val()*100;
-	var TEG=TEG_temp +' %';
-	$('#TEG').val(TEG);
-	$('#somme_emprunt').prop("max",data.empruntMaximum); //somme max empruntable
-	dataEmprunt = data
+		//informations contenues dans data data.
+		$('#TEG').val(data.TEG); //valeur du cours
+		var TEG_temp = $('#TEG').val()*100;
+		var TEG=TEG_temp +' %';
+		$('#TEG').val(TEG);
+		$('#somme_emprunt').prop("max",data.empruntMaximum); //somme max empruntable
+		dataEmprunt = data
 	});
 	
 	$(document).on("click", "#saisie_emprunt", function (event) {
-	event.preventDefault();
-	event.stopImmediatePropagation();
-	if (dataEmprunt.nbEmprunts>=dataEmprunt.nbEmpruntsMaximum) {
-			alert("Nombre d'emprunts maximum atteint");
+		event.preventDefault();
+		event.stopImmediatePropagation();
+		if (dataEmprunt.nbEmprunts>=dataEmprunt.nbEmpruntsMaximum) {
+				alert("Nombre d'emprunts maximum atteint");
+				$('#duree_emprunt').val(1).slider("refresh");
+				$('#somme_emprunt').val(1).slider("refresh");			
+		} else {
+			var h={idJoueur: idJoueur, montant:$('#somme_emprunt').val(), duree:$('#duree_emprunt').val() };
+			if ($('#bmcprofil').data("isAtBMC")) {
+				socket.emit("setEmprunt", h);
+				alert("Emprunt effectué");
+			}
+			else {
+				alert('Vous devez vous rendre à la BMC pour effectuer un emprunt');
+			}
 			$('#duree_emprunt').val(1).slider("refresh");
-			$('#somme_emprunt').val(1).slider("refresh");			
-	} else {
-		var h={idJoueur: idJoueur, montant:$('#somme_emprunt').val(), duree:$('#duree_emprunt').val() };
-		if ($('#bmcprofil').data("isAtBMC")) {
-			socket.emit("setEmprunt", h);
+			$('#somme_emprunt').val(1).slider("refresh");
 		}
-		else {
-			alert('Vous devez vous rendre à la BMC pour effectuer un emprunt');
-		}
-		$('#duree_emprunt').val(1).slider("refresh");
-		$('#somme_emprunt').val(1).slider("refresh");
-	}
-	return false;
+		return false;
 	});
 	
 	//Pas de lettres dans les zones de saisie

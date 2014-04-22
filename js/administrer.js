@@ -1,8 +1,5 @@
 // JavaScript Document
 
-var descriptionSociete;
-var tableau=[];
-var nbEntrepRecu=0;
 
 $(document).on("pageshow", "#administrer", function() {
 	var socket=io.connect(adresse_serveur);	
@@ -15,6 +12,10 @@ $(document).on("pageshow", "#administrer", function() {
 $(document).on("pageinit", "#administrer", function() {
 	var socket=io.connect(adresse_serveur);	
 	var joueur={idJoueur: idJoueur};	
+	
+	var descriptionSociete;
+	var tableau=[];
+	var nbEntrepRecu=0;
 	var vicepresident = false; 
 	if (statutJoueur=="Vice-President") {
 		vicepresident = true;
@@ -65,9 +66,10 @@ $(document).on("pageinit", "#administrer", function() {
 
 	//Mise à jour de la description actuelle dans l'écran Administrer
 	socket.on('resultGetInfosSocieteDuJoueur', function(data) {
-	
 		descriptionSociete=data.descriptionSociete;
+		nomSociete=data.nomSociete;
 		$('#choix_descriptionSociete').val(descriptionSociete);
+		$('#choix_nomSociete').val(nomSociete);
 	
 	})
 	
@@ -105,6 +107,15 @@ $(document).on("pageinit", "#administrer", function() {
 		//Envoi des données de chgt de description
 		socket.emit('setNewDescriptionSociete', joueur.idJoueur, description);
 		alert('Description modifiée');
+	});	
+	
+	$(document).on("click","#btn_modif_nomSociete", function(event) {
+		event.preventDefault();
+		event.stopImmediatePropagation();
+		nom=$('#choix_nomSociete').val();
+		//Envoi des données de chgt de nom
+		socket.emit('setNewNomSociete', joueur.idJoueur, nom);
+		alert('Nom modifié');
 	});		
 
 

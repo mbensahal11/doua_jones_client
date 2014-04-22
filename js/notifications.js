@@ -98,6 +98,18 @@ $(document).on("pageinit", "#notifications", function() {
 				$("#collabsible_impots").attr("data-theme", "b");
 				$('#liste_notifications_impot').listview('refresh');
 			}
+			else if (type == "societe") {
+				if (day + '/' + month + '/' + year == $('.date_notifications_societe').eq(0).html()) {
+					content = '<li class="content_list_divider_notifications_societe"><div class="contenu_notif">'+contenu+'</div><p class="ui-li-aside"><strong>'+ hour+':'+ minute + '</strong></p></li>';
+					$('.content_list_divider_notifications_societe').eq(0).before(content);
+				}
+				else {
+					content = '<li data-role="list-divider" class="list_divider_notifications_societe"><div class="date_notifications_societe">'+ day + '/' + month + '/' + year +'</div>'+'</li><li class="content_list_divider_notifications_societe"><div class="contenu_notif">'+contenu+'</div><p class="ui-li-aside"><strong>'+ hour+':'+ minute + '</strong></p></li>';
+					$('#liste_notifications_societe').prepend(content);
+				}
+				$("#collabsible_societe").attr("data-theme", "b");
+				$('#liste_notifications_societe').listview('refresh');
+			}
 		}
 	});
 	

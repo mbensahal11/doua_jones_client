@@ -54,7 +54,7 @@ $(document).on("pageinit", "#profil_exterieur_joueur", function() {
 		var module;
 		var idObj;
 		var listeObjets;
-	socket.on ('resultGetListeObjetsJoueur', function(data) {
+	socket.on ('resultGetListeObjetsJoueur_exterieur', function(data) {
 		listeObjets=data;
 		var idMod=$('#consult_boutique_exterieur option:selected').val();
 		if (idMod != "choose-one") {

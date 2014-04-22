@@ -65,6 +65,7 @@ $(document).on("pageinit", "#profil_joueur", function() {
 		event.preventDefault();
 		event.stopImmediatePropagation();
 		socket.emit('setDemandeDepartSociete', joueur.idJoueur,pseudo);
+		$('#confirmerQuitterPopUp').popup( "close" );
 		setTimeout( function(){
 				$.mobile.changePage("#profil_joueur", { allowSamePageTransition: true } );
 				}, 100 );
@@ -331,8 +332,8 @@ $(document).on("pageinit", "#profil_joueur", function() {
 		event.preventDefault();
 		event.stopImmediatePropagation();
 		//Contrôler avec le mot de passe actuel, il faut remplacer password par la valeur du mdp actuel contenue ds le localstorage
-	
-		if ($('#ancienMdp').val()!='password') {
+		var password_localStorage = "password_localStorage";
+		if ($('#ancienMdp').val()!=localStorage.getItem(password_localStorage)) {
 			alert('ancien mot de passe incorrect'); }
 		else if ($('#nouveauMdp').val()!=$('#validerNouveauMdp').val()) {
 			alert('Retaper le nouveau mot de passe');
@@ -344,7 +345,8 @@ $(document).on("pageinit", "#profil_joueur", function() {
 		}
 		else {
 			var newpassword=$('#nouveauMdp').val();
-			var data= {idJoueur:1, newPassword:newpassword};
+			localStorage.setItem(password_localStorage,newpassword);
+			var data= {idJoueur:idJoueur, newPassword:newpassword};
 			socket.emit('setNewPassword',data);	
 		//Mettre à jour le mot de passe dans le localStorage
 			socket.on('resultSetNewPassword',function(booboo) {
@@ -384,17 +386,34 @@ $(document).on("pageinit", "#profil_joueur", function() {
 	});
 
 //Onglet vitrine
-	//Défilement des objets achetés
-	socket.on ('resultGetListeObjetsJoueur', function(data) {
 		var idMod;
 		var module;
 		var idObj;
+	//Défilement des objets achetés
+	socket.on ('resultGetListeObjetsJoueur', function(data) {
+		listeObjets=data;
+		var idMod=$('#consult_boutique option:selected').val();
+		if (idMod != "choose-one") {
+			idObj=0;	
+			module = listeObjets[idMod-1];
+			if (module.length!=0) {
+				var src="img/"+module[idObj].nom+".png";
+				$("#image_objets").prop("src",src);
+				$("#description_item").text(module[idObj].nom);
+				$("#affiche_objets").show();
+				$("#affiche_non_objets").hide();			
+			} else {
+			$("#affiche_non_objets").show();
+			$("#affiche_objets").hide();
+			}
+		}
+	});
 		//En fonction du module choisi, les objets possédés par le joueur sont affichés
 		$(document).on("change","#consult_boutique", function(event) {
 			event.preventDefault();
 			event.stopImmediatePropagation();
 			idMod=$('#consult_boutique option:selected').val();
-			module=data[idMod-1];
+			module=listeObjets[idMod-1];
 			idObj=0;
 			if (module.length!=0) {
 				var src="img/"+module[idObj].nom+".png";
@@ -444,7 +463,7 @@ $(document).on("pageinit", "#profil_joueur", function() {
 			return false;
 		});
 		
-	});
+	
 
 		
 		//Lors d'un clic sur un joueur
@@ -537,14 +556,23 @@ $(document).on("pageinit", "#profil_joueur", function() {
 			else if ($("#confirmationChangerMembres").data("action") == "nommerVicePresident") {
 				socket.emit("setNewStatutMembreSociete", $('#choixActionClicMembrePseudo').data('id'), "Vice-president");
 				$("#confirmationChangerMembres").popup("close");
+				setTimeout( function(){
+				$.mobile.changePage("#profil_joueur", { allowSamePageTransition: true } );
+				}, 100 );
 			}
 			else if ($("#confirmationChangerMembres").data("action") == "retirerTitreVicePresident") {
 				socket.emit("setNewStatutMembreSociete", $('#choixActionClicMembrePseudo').data('id'), "Membre");
 				$("#confirmationChangerMembres").popup("close");
+				setTimeout( function(){
+				$.mobile.changePage("#profil_joueur", { allowSamePageTransition: true } );
+				}, 100 );
 			}
 			else if ($("#confirmationChangerMembres").data("action") == "exclureMembre") {
 				socket.emit("setExclureMembreSociete", $('#choixActionClicMembrePseudo').data('id'),$('#choixActionClicMembrePseudo').text());
 				$("#confirmationChangerMembres").popup("close");
+				setTimeout( function(){
+				$.mobile.changePage("#profil_joueur", { allowSamePageTransition: true } );
+				}, 100 );
 			}
 		});
 		
