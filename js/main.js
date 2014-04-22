@@ -4,6 +4,8 @@ var pseudo_color = "#032f55";
 var hasscrolledchatglobal;
 var idJoueur;
 var pseudo;
+var idSociete;
+var statutJoueur
 var hasscrolledmessagerie;
 var devicePlatform;
 var argentJoueur=0;
@@ -11,10 +13,10 @@ var argentJoueur=0;
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
-	//navigator.splashscreen.show();
+	navigator.splashscreen.show();
 	devicePlatform = device.model;
 	//Si on appuie sur le back button sur la page principale et que la dernière page visitée et la page de connection, on quitte l'application
-	document.addEventListener("backbutton",  function (e) {
+	document.addEventListener("backbutton",  function (e, data) {
             e.preventDefault();
 			if (data.prevPage.attr('id') == 'connexion') {
 				//do nothing

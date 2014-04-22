@@ -57,6 +57,8 @@
     <script src="js/notifications.js"></script>
     <script src="js/profil_exterieur_joueur.js"></script>
     <script src="js/profil_exterieur_societe.js"></script>
+    <script src="js/candidatures.js"></script>
+    <script src="js/administrer.js"></script>
     
     
  <!-- Socket io-->
@@ -118,43 +120,46 @@ Bienvenue apprentis traders !
 
 <!-- Page Inscription  --> 
    
-<div data-role="page" id="inscription" style=" background:-webkit-radial-gradient(#e65858,#8c1515); background:-moz-radial-gradient(#e65858,#8c1515); background:-o-radial-gradient(#e65858,#8c1515); background:radial-gradient(#e65858,#8c1515);">
+<div data-role="page" id="inscription" style="margin:0;padding:0;background: url(img/fond%200414.png) no-repeat center;  -webkit-background-size: cover; 
+    -moz-background-size: cover; 
+    -o-background-size: cover; 
+    background-size: cover; 
+    " >
         
-	<div>
-		<marquee direction="left" scrollamount="5" >
-			Bienvenue apprentis traders !
-		</marquee>
+<div>
+<marquee direction="left" scrollamount="5" >
+Bienvenue apprentis traders !
+</marquee>
     </div>
-	<div style="text-align:right"><a href="#"><img src="img/Aide bouton.png" alt="aide" style="width:48px; height:48px;"/></a></div>
-        <div id="finance_insc">
-            <p style="text-align:center;color:#ffffff;margin-bottom:4px;margin-top:0px;">Bienvenue dans</p>
-                <img src="img/Doua Jones Logo 1 (1).png" alt="curve">
-		</div>
-	<div data-role="content" style="padding-top:8px">
-		<div id="menuinscription" style="width:80%; margin-right: auto; margin-left: auto; color:#ffffff">
-			<p style="text-align:center; margin-top:4px;">Inscris toi pour jouer : </p>
-			<div data-role="fieldcontain" style="margin-top:1px">
-				<form id="inscription_form">
-					<label for="pseudo">Pseudo</label>
-					<input type="text" maxlength="40" name="text-1" id="pseudo" value="">
-					<label for="mdp">Mot de passe</label>
-					<input type="password" maxlength="40" id="mdp" value="">
-					<label for="cmdp">Confirmer Mot de passe</label>
-					<input type="password" id="cmdp" value=""/>
+<div style="text-align:right"><a href="#"><img src="img/Aide bouton.png" alt="aide" style="width:48px; height:48px;"/></a></div>
+<img src="img/logo Doua Jones.png" style="height:100px; width:300px; display:block; margin-right:auto; margin-left:auto">
+
+<div data-role="content" style="padding-top:8px">
+
+<div id="menuinscription" style="width:80%; margin-right: auto; margin-left: auto; color:#8c1515;">
+<p style="text-align:center; margin-top:4px;">Inscris toi pour jouer : </p>
+<div data-role="fieldcontain" style="margin-top:1px; border:3px solid white; border-radius:5px; padding-top: 10px;padding-right: 10px;padding-bottom: 10px;padding-left: 10px; background-color:#8C1515; color:#FFFFFF";>	
+<form id="inscription_form">
+<label for="pseudo">Pseudo</label>
+<input type="text" name="text-1" id="pseudo" value="">
+<label for="mdp">Mot de passe</label>
+<input type="password" id="mdp" value="">
+<label for="cmdp">Confirmer Mot de passe</label>
+<input type="password" id="cmdp" value=""/>
                     
 <div style="width:50%; display:inline-block;"><label for="mail">Adresse mail</label>
-		<input type="text" name="text-1" id="mail"></div>
+<input type="text" name="text-1" id="mail"></div>
         <div style="display:inline-block;">@insa-lyon.fr</div>
                     
-	<div style="margin-top:20px">
-		<input type="submit" value="Envoyer l'inscription" id="envoi_ins"/>
-        <button id="retour_conn">Vous possédez déjà un compte ?</button>
-	</div>
-				</form>
-			</div>
+<div style="margin-top:20px">
+<input type="submit" value="Envoyer l'inscription" id="envoi_ins"/>
+        <button id="retour_conn">Déjà un compte ?</button>
+</div>
+</form>
+</div>
        	</div>
-	</div>
-</div> 
+</div>
+</div>
 
 
     
@@ -185,7 +190,7 @@ Bienvenue apprentis traders !
                     <div class="ui-block-b" style="text-align:center;  margin-bottom:5px;">Carte</div>
                 
                     <div class="ui-block-a" style="height:75px;"><a href="#"><img src="img/missions icone rouge.png"class="bouton_acc"></a></div>
-                    <div class="ui-block-b" style="height:75px;"><a href="#profil"><img src="img/mon compte icone rouge.png" class="bouton_acc"></a></div>
+                    <div class="ui-block-b" style="height:75px;"><a href="#profil_joueur"><img src="img/mon compte icone rouge.png" class="bouton_acc"></a></div>
                     <div class="ui-block-a" style="text-align:center ; margin-bottom:5px;">Missions</div>
                     <div class="ui-block-b" style="text-align:center; margin-bottom:5px;">Mon Profil</div>
                     <div class="ui-block-a" style="height:75px;"><a href="#chat"><img src="img/social icone rouge.png" class="bouton_acc"></a></div>
@@ -308,310 +313,413 @@ Bienvenue apprentis traders !
 </div>
     
 <!-- Profil -->
-       <div data-role="page" id="profil">
+  
     
-         <div data-role="header">
-            <h1>Mon Profil</h1>
-            <a href='#' data-rel="back" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-notext"></a>
+        <div data-role="page" id="profil_joueur">
+
+	 <div data-role="header">
+		<h1>Mon Profil</h1>
+		<a href='#' data-rel="back" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-notext"></a>
+	</div>
+    
+    <div data-role="tabs" id="tabs_profilJoueur" style="padding-bottom: 3.2;
+      padding-top: 0px;padding-right: 0px;padding-left: 0px;" >
+        <div data-role="navbar">
+            <ul>
+                    <li><a href="#infosProfil" data-ajax="false">Infos</a>
+                    </li>            
+                    <li><a href="#infosMesTransactions" data-ajax="false">Mes Transactions</a>
+                    </li>
+                    <li><a href="#infosMaSociete" data-ajax="false">Ma société</a>
+                    </li>
+                    <li><a href="#infosMaVitrine" data-ajax="false">Ma vitrine</a>
+                    </li>
+            </ul>
         </div>
+
         
-        <div data-role="tabs" id="tabs_profilJoueur" style="padding-bottom: 3.2;
-          padding-top: 0px;padding-right: 0px;padding-left: 0px;" >
-            <div data-role="navbar">
-                <ul>
-                        <li><a href="#infosProfil" data-ajax="false">Infos</a>
-                        </li>            
-                        <li><a href="#infosMesTransactions" data-ajax="false">Transactions</a>
-                        </li>
-                        <li><a href="#infosMaSociete" data-ajax="false">Ma société</a>
-                        </li>
-                        <li><a href="#infosMaVitrine" data-ajax="false">Ma vitrine</a>
-                        </li>
-                </ul>
+    <!-- Onglet Infos -->
+      
+	<div id="infosProfil">
+    	<div data-role="content">
+            <div id="presentation_statique">
+                <img src="" style="display:inline-block; width:30%; margin-left:3%; margin-top:5%" id="affiche_avatar">
+                <div style="display:inline-block; margin-left:5%;">
+                <p id="affiche_pseudo" style="font-size:2em;"></p>
+                </div>
             </div>
-    
-            
-        <!-- Onglet Infos -->
-          
-        <div id="infosProfil">
-            <div data-role="content">
-                <div id="presentation_statique">
-                    <img src="" style="display:inline-block; width:30%; margin-left:3%; margin-top:5%" id="affiche_avatar">
-                    <div style="display:inline-block; margin-left:5%;">
-                    <p id="affiche_pseudo" style="font-size:2em;"></p>
+            <div id="mouvant1">
+            	<h3>Description</h3>
+				<div id="affiche_description" class="tdb" style="padding-left:7px; padding-right:7px;"></div>
+				<h3>Informations générales</h3>
+                <div id="infos_generales" class="tdb" >
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a" style="padding-left:10%">Sexe</div>
+                        <div class="ui-block-b" id="affiche_sexe"></div>
+                        <div class="ui-block-a" style="padding-left:10%">Année d'étude</div>
+                        <div class="ui-block-b" id="affiche_etude"></div>
+                        <div class="ui-block-a" style="padding-left:10%">Département</div>
+                        <div class="ui-block-b" id="affiche_depart"></div>
+                        <div class="ui-block-a" style="padding-left:10%">Société d'invest.</div>
+                        <div class="ui-block-b" id="affiche_societe"></div> 
+                        <div class="ui-block-a" style="padding-left:10%">Jours dans le jeu</div>
+                        <div class="ui-block-b" id="affiche_jour"></div>                        <div class="ui-block-a" style="padding-left:10%">Score</div>
+                        <div class="ui-block-b" id="affiche_score"></div>                                                          
                     </div>
                 </div>
-                <div id="mouvant1">
-                    <h3>Description</h3>
-                    <div id="affiche_description" class="tdb" style="padding-left:7px; padding-right:7px;"></div>
-                    <h3>Informations générales</h3>
-                    <div id="infos_generales" class="tdb" >
-                        <div class="ui-grid-a">
-                            <div class="ui-block-a" style="padding-left:10%">Sexe</div>
-                            <div class="ui-block-b" id="affiche_sexe"></div>
-                            <div class="ui-block-a" style="padding-left:10%">Année d'étude</div>
-                            <div class="ui-block-b" id="affiche_etude"></div>
-                            <div class="ui-block-a" style="padding-left:10%">Département</div>
-                            <div class="ui-block-b" id="affiche_depart"></div>
-                            <div class="ui-block-a" style="padding-left:10%">Société d'invest.</div>
-                            <div class="ui-block-b" id="affiche_societe"></div> 
-                            <div class="ui-block-a" style="padding-left:10%">Jours dans le jeu</div>
-                            <div class="ui-block-b" id="affiche_jour"></div>                        <div class="ui-block-a" style="padding-left:10%">Score</div>
-                            <div class="ui-block-b" id="affiche_score"></div>                                                          
-                        </div>
+				<h3> bancaire</h3>
+                <div id="infos_bancaires" class="tdb">
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a" style="padding-left:10%">Compte en banque ฿</div>
+                        <div class="ui-block-b" id="affiche_compte"></div>
+                        <div class="ui-block-a" style="padding-left:10%">Argent disponible ฿</div>
+                        <div class="ui-block-b" id="affiche_argent"></div>
                     </div>
-                    <h3>Statut bancaire</h3>
-                    <div id="infos_bancaires" class="tdb">
-                        <div class="ui-grid-a">
-                            <div class="ui-block-a" style="padding-left:10%">Compte en banque ฿</div>
-                            <div class="ui-block-b" id="affiche_compte"></div>
-                            <div class="ui-block-a" style="padding-left:10%">Argent disponible ฿</div>
-                            <div class="ui-block-b" id="affiche_argent"></div>
-                        </div>
-                    </div>  
-                    <h3>Statut d'investisseur</h3>
-                    <div id="infos_finance" class="tdb">
-                        <div class="ui-grid-a">
-                            <div class="ui-block-a" style="padding-left:10%">Actions achetées</div>
-                            <div class="ui-block-b" id="affiche_actionsAchetees"></div>
-                            <div class="ui-block-a" style="padding-left:10%">Actions vendues</div>
-                            <div class="ui-block-b" id="affiche_actionsVendues"></div>
-                            <div class="ui-block-a" style="padding-left:10%">Actions possédées</div>
-                            <div class="ui-block-b" id="affiche_actionsPossedees"></div>
-                            <div class="ui-block-a" style="padding-left:10%">Ordres en attente</div>
-                            <div class="ui-block-b" id="affiche_ordre"></div>                        
-                        </div>
-                    </div>    
-                    <h3>Statut d'emprunteur</h3>
-                    <div id="infos_emprunts" class="tdb">
-                        <div class="ui-grid-a">
-                            <div class="ui-block-a" style="padding-left:10%">Statut</div>
-                            <div class="ui-block-b" id="affiche_statut"></div>                    
-                            <div class="ui-block-a" style="padding-left:10%">Emprunts en cours</div>
-                            <div class="ui-block-b" id="affiche_empruntsEnCours"></div>
-                            <div class="ui-block-a" style="padding-left:10%">Emprunts en retard</div>
-                            <div class="ui-block-b" id="affiche_empruntsEnRetard"></div>
-                            <div class="ui-block-a" style="padding-left:10%">Nombre Emprunts maximum</div>
-                            <div class="ui-block-b" id="affiche_empruntsNombreMax"></div>
-                            <div class="ui-block-a" style="padding-left:10%">TEG</div>
-                            <div class="ui-block-b" id="affiche_teg"></div>                       
-                        </div>
-                    </div>  
-                                                                 
-                    <button id="btn_modif_mdp">Modifier mon mot de passe</button>
-                    <button id="btn_modif_infos">Modifier mes informations</button>
-                </div>
-                <div id="mouvant2" style="display:none;">
-                    <form id="chgt_mdp">
-                        <label for="ancienMdp">Ancien mot de passe
-                        </label>                 
-                        <input type="text" name="textinput" id="ancienMdp" value="" maxlength="45"  />
-                        <label for="nouveauMdp">Nouveau mot de passe
-                        </label>                 
-                        <input type="text" name="textinput" id="nouveauMdp" value="" maxlength="45" />
-                        <label for="validerNouveauMdp">Valider nouveau mot de passe
-                        </label>                 
-                        <input type="text" name="textinput" id="validerNouveauMdp" value="" maxlength="45" />
-                        <input type="submit" value="Envoyer" id="envoi_new_mdp" />
-                        <button id="retour_infos_from_mdp">Retour au profil</button>
-                    </form>
-                </div>
-                <div id="mouvant3" style="display:none;">
-                
-                <div style="width:95%; margin:auto;" id="choix_avatar">
-                    <a href="#" style="display:inline-block; width:25%" id="fleche_gauche_avatar"><img src="img/icon-arrow-left.png"/></a>   
-                    <img src="avatars/A1.png" style="height:40%; display:inline-block; width:47%" id="image_avatar"/>
-                    <a href="#" style="display:inline-block; width:25%; text-align:right" id="fleche_droite_avatar"><img src="img/icon-arrow-right.png" /></a>         
-                </div>            	
-                        
-                    <form id="chgt_infos" style="margin-top:15px">
-                        <label for="choix_description">Description</label>
-                        <textarea cols="40" rows="8" name="textarea" id="choix_description" style="height:70px; resize:none" maxlength="140"></textarea>                
+                </div>  
+				<h3> d'investisseur</h3>
+                <div id="infos_finance" class="tdb">
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a" style="padding-left:10%">Actions achetées</div>
+                        <div class="ui-block-b" id="affiche_actionsAchetees"></div>
+                        <div class="ui-block-a" style="padding-left:10%">Actions vendues</div>
+                        <div class="ui-block-b" id="affiche_actionsVendues"></div>
+                        <div class="ui-block-a" style="padding-left:10%">Actions possédées</div>
+                        <div class="ui-block-b" id="affiche_actionsPossedees"></div>
+                        <div class="ui-block-a" style="padding-left:10%">Ordres en attente</div>
+                        <div class="ui-block-b" id="affiche_ordre"></div>                        
+                    </div>
+                </div>    
+				<h3> d'emprunteur</h3>
+                <div id="infos_emprunts" class="tdb">
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a" style="padding-left:10%"></div>
+                        <div class="ui-block-b" id="affiche_"></div>                    
+                        <div class="ui-block-a" style="padding-left:10%">Emprunts en cours</div>
+                        <div class="ui-block-b" id="affiche_empruntsEnCours"></div>
+                        <div class="ui-block-a" style="padding-left:10%">Emprunts en retard</div>
+                        <div class="ui-block-b" id="affiche_empruntsEnRetard"></div>
+                        <div class="ui-block-a" style="padding-left:10%">Nombre Emprunts maximum</div>
+                        <div class="ui-block-b" id="affiche_empruntsNombreMax"></div>
+                        <div class="ui-block-a" style="padding-left:10%">TEG</div>
+                        <div class="ui-block-b" id="affiche_teg"></div>                       
+                    </div>
+                </div>  
+                                                             
+            	<button id="btn_modif_mdp">Modifier mon mot de passe</button>
+				<button id="btn_modif_infos">Modifier mes informations</button>
+        	</div>
+            <div id="mouvant2" style="display:none;">
+                <form id="chgt_mdp">
+					<label for="ancienMdp">Ancien mot de passe
+                    </label>                 
+					<input type="text" name="textinput" id="ancienMdp" value="" maxlength="45"  />
+					<label for="nouveauMdp">Nouveau mot de passe
+                    </label>                 
+					<input type="text" name="textinput" id="nouveauMdp" value="" maxlength="45" />
+					<label for="validerNouveauMdp">Valider nouveau mot de passe
+                    </label>                 
+					<input type="text" name="textinput" id="validerNouveauMdp" value="" maxlength="45" />
+					<input type="submit" value="Envoyer" id="envoi_new_mdp" />
+                    <button id="retour_infos_from_mdp">Retour au profil</button>
+                </form>
+			</div>
+			<div id="mouvant3" style="display:none;">
             
-                        <select name="select-custom" id="choix_sexe" data-native-menu="false">
-                            <option value="choose-one" data-placeholder="true">Sexe</option>
-                            <option value="Homme">Homme</option>
-                            <option value="Femme">Femme</option>
-                            <option value="Non renseigné">Non renseigné</option>
-                        </select>
-                        
-                        <select name="select-custom2" id="choix_annee" data-native-menu="false">
-                            <option value="choose-one" data-placeholder="true">Année</option>
-                            <option value="1A">1A</option>
-                            <option value="2A">2A</option>
-                            <option value="3A">3A</option>
-                            <option value="4A">4A</option>
-                            <option value="5A">5A</option>
-                            <option value="Autre">Autre</option>
-                        </select>
-                        <select name="select-custom3" id="choix_depart" data-native-menu="false">
-                            <option value="choose-one" data-placeholder="true">Département</option>
-                            <option value="PC">PC</option>
-                            <option value="GI">GI</option>
-                            <option value="BB">BB</option>
-                            <option value="BIM">BIM</option>
-                            <option value="GCU">GCU</option>
-                            <option value="GE">GE</option>
-                            <option value="GEN">GEN</option>
-                            <option value="GMC">GMC</option>
-                            <option value="GMD">GMD</option>
-                            <option value="GMPP">GMPP</option>
-                            <option value="IF">IF</option>
-                            <option value="SGM">SGM</option>
-                            <option value="TC">TC</option>
-                        </select>
-                        
-                        <input type="submit" value="Envoyer les infos" id="envoi_infos"/>
-                        <button id="retour_infos_from_modinfos">Retour au profil</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Onglet Transactions -->
+            <div style="width:95%; margin:auto;" id="choix_avatar">
+                <a href="#" style="display:inline-block; width:25%" id="fleche_gauche_avatar"><img src="img/icon-arrow-left.png"/></a>   
+                <img src="avatars/A1.png" style="height:40%; display:inline-block; width:47%" id="image_avatar"/>
+                <a href="#" style="display:inline-block; width:25%; text-align:right" id="fleche_droite_avatar"><img src="img/icon-arrow-right.png" /></a>         
+            </div>            	
+                    
+				<form id="chgt_infos" style="margin-top:15px">
+				    <label for="choix_description">Description</label>
+				    <textarea cols="40" rows="8" name="textarea" id="choix_description" style="height:70px; resize:none" maxlength="140"></textarea>                
+		
+					<select name="select-custom" id="choix_sexe" data-native-menu="false">
+						<option value="choose-one" data-placeholder="true">Sexe</option>
+						<option value="Homme">Homme</option>
+						<option value="Femme">Femme</option>
+						<option value="Non renseigné">Non renseigné</option>
+					</select>
+					
+					<select name="select-custom2" id="choix_annee" data-native-menu="false">
+						<option value="choose-one" data-placeholder="true">Année</option>
+						<option value="1A">1A</option>
+						<option value="2A">2A</option>
+						<option value="3A">3A</option>
+						<option value="4A">4A</option>
+						<option value="5A">5A</option>
+						<option value="Autre">Autre</option>
+					</select>
+					<select name="select-custom3" id="choix_depart" data-native-menu="false">
+						<option value="choose-one" data-placeholder="true">Département</option>
+                        <option value="PC">PC</option>
+						<option value="GI">GI</option>
+						<option value="BB">BB</option>
+						<option value="BIM">BIM</option>
+						<option value="GCU">GCU</option>
+						<option value="GE">GE</option>
+						<option value="GEN">GEN</option>
+						<option value="GMC">GMC</option>
+						<option value="GMD">GMD</option>
+						<option value="GMPP">GMPP</option>
+						<option value="IF">IF</option>
+						<option value="SGM">SGM</option>
+						<option value="TC">TC</option>
+					</select>
+					
+					<input type="submit" value="Envoyer les infos" id="envoi_infos"/>
+					<button id="retour_infos_from_modinfos">Retour au profil</button>
+				</form>
+			</div>
+    	</div>
+    </div>
     
-        <div id="infosMesTransactions" style="margin-top:15px">
-            <label for="choix_transaction">Suivi des transactions</label>
-            <select name="choix_transaction" id="choix_transaction" data-native-menu="false">
-                <option value="choose-one" data-placeholder="true">Sélectionner l'opération</option>
-                <option value="1" id="mesActions">Mes actions</option>
-                <option value="2" id="mesOrdres">Mes ordres en attente</option>
-                <option value="3" id="mesEmprunts">Mes emprunts</option>
-            </select>
-            
-            <div id="mouvant11" style="display:none">
-            <table id="table_ordre" data-role="table" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe" data-column-btn-theme="a" data-column-btn-text="Colonnes à afficher...">
-                <thead>
-                    <tr class="ui-bar-a">
-                        <th>Date</th>
-                        <th>Sens</th>
-                        <th data-priority="1">Type</th>
-                        <th>Entreprise</th>
-                        <th>Nombre</th>
-                        <th data-priority="2">Prix unit. ฿</th>
-                        <th data-priority="2">Expiration</th>
-                    </tr>
-                </thead>
-                <tbody class="body_table_profil">
-                <tr>
-                </tr>
-                </tbody>
-            </table>
-            </div>
-            <div id="mouvant12" style="display:none">
-            <table id="table_emprunt" data-role="table" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe" data-column-btn-theme="a" data-column-btn-text="Colonnes à afficher...">
-                <thead>
-                    <tr class="ui-bar-a">
-                        <th>Date</th>
-                        <th>Somme ฿</th>
-                        <th data-priority="1">Remboursement quot. ฿</th>
-                        <th data-priority="1">Jours de retards</th>
-                        <th>Restant ฿ </th>
-                    </tr>
-                </thead>
-                <tbody class="body_table_profil">
-                <tr>
-                </tr>
-                </tbody>
-            </table>
-            </div>   
-            <div id="mouvant13" style="display:none">
-            <table id="table_action" data-role="table" data-mode="columtoggle" class="ui-body-d ui-shadow table-stripe">
-                <thead>
-                    <tr class="ui-bar-a">
-                        <th>Entreprise</th>
-                        <th>Nombre</th>
-                        <th>Valeur ฿</th>
-                    </tr>
-                </thead>
-                <tbody class="body_table_profil">
-                <tr>
-                </tr>
-                </tbody>
-            </table>
-            </div>
-        </div>	
+    <!-- Onglet Transactions -->
+
+    <div id="infosMesTransactions" style="margin-top:15px">
+		<label for="choix_transaction">Suivi des transactions</label>
+		<select name="choix_transaction" id="choix_transaction" data-native-menu="false">
+            <option value="choose-one" data-placeholder="true">Sélectionner l'opération</option>
+            <option value="1" id="mesActions">Mes actions</option>
+            <option value="2" id="mesOrdres">Mes ordres en attente</option>
+            <option value="3" id="mesEmprunts">Mes emprunts</option>
+    	</select>
         
-       
-        <div id="infosMaSociete">
-            <div data-role="content">
-                        <div id="presentation_statique">
-                            <img src="" style="display:inline-block; width:30%; margin-left:3%; margin-top:5%" id="affiche_avatarSociete">
-                            <div style="display:inline-block; margin-left:5%;">
-                            <p id="affiche_nomSociete" style="font-size:2em;"></p>
+        <div id="mouvant11" style="display:none">
+        <table id="table_ordre" data-role="table" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe" data-column-btn-theme="a" data-column-btn-text="Colonnes à afficher...">
+            <thead>
+                <tr class="ui-bar-a">
+                    <th>Date</th>
+                    <th>Sens</th>
+                    <th data-priority="1">Type</th>
+                    <th>Entreprise</th>
+                    <th>Nombre</th>
+                    <th data-priority="2">Prix unit. ฿</th>
+                    <th data-priority="2">Expiration</th>
+                </tr>
+            </thead>
+            <tbody class="body_table_profil">
+            <tr>
+            </tr>
+            </tbody>
+        </table>
+		</div>
+		<div id="mouvant12" style="display:none">
+        <table id="table_emprunt" data-role="table" data-mode="columntoggle" class="ui-body-d ui-shadow table-stripe" data-column-btn-theme="a" data-column-btn-text="Colonnes à afficher...">
+            <thead>
+                <tr class="ui-bar-a">
+                    <th>Date</th>
+                    <th>Somme ฿</th>
+                    <th data-priority="1">Remboursement quot. ฿</th>
+                    <th data-priority="1">Jours de retards</th>
+                    <th>Restant ฿ </th>
+                </tr>
+            </thead>
+            <tbody class="body_table_profil">
+            <tr>
+            </tr>
+            </tbody>
+        </table>
+        </div>   
+		<div id="mouvant13" style="display:none">
+        <table id="table_action" data-role="table" data-mode="columtoggle" class="ui-body-d ui-shadow table-stripe">
+            <thead>
+                <tr class="ui-bar-a">
+                    <th>Entreprise</th>
+                    <th>Nombre</th>
+                    <th>Valeur ฿</th>
+                </tr>
+            </thead>
+            <tbody class="body_table_profil">
+            <tr>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+	</div>	
+    
+    <div id="infosMaSociete">
+    	<div data-role="content">
+    	            <div id="presentation_statique">
+                        <div style="margin-left:5%;">
+                        <p id="affiche_nomSociete" style=" text-align:center;font-size:2em;"></p>
+                        </div>
+           			</div>
+            <div id="mouvantSociete">
+            	<h3>Membres</h3>           
+            	<div id="affiche_membresSociete" class="tdb">
+                </div>
+            	<h3>Description</h3>
+				<div id="affiche_descriptionSociete" class="tdb" style="padding-left:7px; padding-right:7px;"></div>
+				<h3>Informations générales</h3>
+                <div id="infos_generalesSociete" class="tdb" >
+                    <div class="ui-grid-a">
+                    
+						<div class="ui-block-a" style="padding-left:10%">Rang</div>
+                        <div class="ui-block-b" id="affiche_rangSociete"></div>
+                         
+                        <div class="ui-block-a" style="padding-left:10%">Liquidité</div>                    
+                        <div class="ui-block-b" id="affiche_liquiditeSociete"></div>
+                       
+                        <div class="ui-block-a" style="padding-left:10%">Actions achetées</div>
+                        <div class="ui-block-b" id="affiche_actionsAchetéesSociete"></div>
+                        <div class="ui-block-a" style="padding-left:10%">Actions vendues</div>
+                        <div class="ui-block-b" id="affiche_actionsVenduesSociete"></div> 
+                        <div class="ui-block-a" style="padding-left:10%">Ordres en cours</div>
+                        <div class="ui-block-b" id="affiche_actionsEnAttenteSociete"></div>
+                        <div class="ui-block-a" style="padding-left:10%">Majoritaire chez :</div>
+                        <div class="ui-block-b"></div>
+                        
+                        
+                        	<div id="enTeteSociete" style="display:none">
+                            	<div class="ui-block-a" style="padding-left:10%"> Entreprise
+                                </div>
+                                <div class="ui-block-b" style="padding-left:20%"> Capacite fixee
+                                </div>
                             </div>
-                        </div>
-                <div id="mouvantSociete">
-                    <h3>Membres</h3>           
-                    <div id="affiche_membresSociete" class="tdb">
+                            <div id="affiche_entrepriseSociete" style="margin-top:5%">
+                            </div>
+                                             
                     </div>
-                    <h3>Description</h3>
-                    <div id="affiche_descriptionSociete" class="tdb" style="padding-left:7px; padding-right:7px;"></div>
-                    <h3>Informations générales</h3>
-                    <div id="infos_generalesSociete" class="tdb" >
-                        <div class="ui-grid-a">
-                            <div class="ui-block-a" style="padding-left:10%">Score</div>
-                            <div class="ui-block-b" id="affiche_scoreSociete"></div>
-                            <div class="ui-block-a" style="padding-left:10%">Liquidité</div>
-                            <div class="ui-block-b" id="affiche_liquiditeSociete"></div>
-                            <div class="ui-block-a" style="padding-left:10%">Actions achetées</div>
-                            <div class="ui-block-b" id="affiche_actionsAchetéesSociete"></div>
-                            <div class="ui-block-a" style="padding-left:10%">Actions vendues</div>
-                            <div class="ui-block-b" id="affiche_actionsVenduesSociete"></div> 
-                            <div class="ui-block-a" style="padding-left:10%">Actions en attente</div>
-                            <div class="ui-block-b" id="affiche_actionsEnAttenteSociete"></div>
-                            <div class="ui-block-a" style="padding-left:10%">Majoritaire chez</div>
-                            <div class="ui-block-b" id="affiche_entrepriseSociete"></div>                        
-                        </div>
-                    </div>
-                </div>	
-                <div id="mouvant_president">
-                        <label for="choix_descriptionSocietePres">Description</label>
-                        <textarea cols="40" rows="8" name="textarea" id="choix_descriptionSocietePres" style="height:70px; resize:none" maxlength="140"></textarea>                
-                    <button id="dissolution_societe">Dissoudre la société</button>
                 </div>
-                <div id="mouvant_vicePresident">
-                        <label for="choix_descriptionSocieteVice">Description</label>
-                        <textarea cols="40" rows="8" name="textarea" id="choix_descriptionSocieteVice" style="height:70px; resize:none" maxlength="140"></textarea>                
-                </div>
-                <button id="privileges_president">Privilèges président</button>
-                <button id="privileges_vicePresident">Privilèges vice président</button>
+			</div>	
+            <div id="tableau maj">
             </div>
+            <div id="bouton_administrer" style="display:none">
+				<button id="privileges_admin">Administrer</button>
+            </div>
+            <div id="bouton_candidatures" style="display:none">
+			<button id="privileges_candid">Voir candidatures</button>
+            </div>
+			<a id="quitterSociete" href="#" data-rel="popup" class="ui-shadow ui-btn ui-corner-all">Quitter la societe</a>
+            
+           <div data-role="popup" id="confirmerQuitterPopUp" data-theme="a" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+				<h2>Etes-vous sur de vouloir partir ?</h2>
+                <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="confirmerQuitterSociete">Oui</a>
+                <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="resterSociete">Non, je reste</a>   
+			</div> 
+            
+            <div data-role="popup" id="choixActionClicMembre" data-theme="a" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+				<center><h2></h2></center>
+                <a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="voirProfilJoueurSociete">Voir profil</a>
+               	<a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="changerStatutMembre" style="display:none">Changer statut</a>
+                
+                <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="exclureMembre" style="display:none">Exclure membre</a>   
+			</div> 
+            <div data-role="popup" id="choixChangerStatut" data-theme="a" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+              <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="nommerVicePresident">Nommer Vice-Président</a>
+              <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="nommerPresident">Nommer Président</a>
+              <a href="#" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="retourChoixChangerStatut">Retour</a>
+           </div>
+            
+     	</div>
+    </div>
+
+    <div id="infosMaVitrine" style="margin-top:10px">
+        <label for="consult_boutique">Consulte tes items</label>
+    <select name="consult_boutique" id="consult_boutique" data-native-menu="false">
+        <option value="choose-one" data-placeholder="true">Choisis un module</option>
+        <option value="1">Garage BMC</option>
+        <option value="2">Immobilier BMC</option>
+        <option value="3">BMC Hippisme</option>
+        <option value="4">Bijouterie BMC</option>
+        <option value="5">BMC Cycling</option>
+        <option value="6">BMC boat</option>
+        <option value="7">BMC maroquinerie</option>
+        <option value="8">BMC vignoble</option>
+        <option value="9">BMC shoes</option>
+        <option value="10">Zoo BMC</option>
+        <option value="11">BMC Antiquites</option>
+        <option value="12">BMC Monuments</option>
+        <option value="13">BMC Art</option>
+        <option value="14">Air BMC</option>
+    </select>
+        <div style="width:95%; margin:auto; display:none" id="affiche_objets">
+			<a href="#" style="display:inline-block; width:25%" id="fleche_gauche"><img src="img/icon-arrow-left.png"/></a>   
+			<img src="" style="height:40%; display:inline-block; width:47%" id="image_objets"/>
+			<a href="#" style="display:inline-block; width:25%; text-align:right" id="fleche_droite"><img src="img/icon-arrow-right.png" /></a> 
+			<div style="text-align:center" id="description_item">
+ 			</div>           
         </div>
+        <div id="affiche_non_objets" style="display:none; text-align:center;">
+        Vous n'avez pas d'objets dans ce module
+        </div>
+    </div>
+    
+	</div>
+    <div data-role="footer">
+		<h4>Pied de page</h4>
+	</div> 
+</div>    
+
+
+    <!-- Page Administrer -->
+<div data-role="page" id="administrer">
+	<div data-role="header">
+		<h1>Administrer</h1>
+		<a href='#' data-rel="back" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-notext"></a>
+	</div>
+	<div data-role="content">
+    	<div id="fixerCapacite">
+        </div>
+        <div id="rangeCapacite" style="display:none"
+         >
+		<label for="newCapacite">Fixer la capacité</label>
+		  <input type="number" name="newCapacite" id="newCapacite" value=""  />
         
-         <!-- Vitrine -->
-        <div id="infosMaVitrine" style="margin-top:10px">
-            <label for="consult_boutique">Consulte tes items</label>
-        <select name="consult_boutique" id="consult_boutique" data-native-menu="false">
-            <option value="choose-one" data-placeholder="true">Choisis un module</option>
-            <option value="1">Garage BMC</option>
-            <option value="2">Immobilier BMC</option>
-            <option value="3">BMC Hippisme</option>
-            <option value="4">Bijouterie BMC</option>
-            <option value="5">BMC Cycling</option>
-            <option value="6">BMC boat</option>
-            <option value="7">BMC maroquinerie</option>
-            <option value="8">BMC vignoble</option>
-            <option value="9">BMC shoes</option>
-            <option value="10">Zoo BMC</option>
-            <option value="11">BMC Antiquites</option>
-            <option value="12">BMC Monuments</option>
-            <option value="13">BMC Art</option>
-            <option value="14">Air BMC</option>
-        </select>
-            <div style="width:95%; margin:auto; display:none" id="affiche_objets">
-                <a href="#" style="display:inline-block; width:25%" id="fleche_gauche"><img src="img/icon-arrow-left.png"/></a>   
-                <img src="" style="height:40%; display:inline-block; width:47%" id="image_objets"/>
-                <a href="#" style="display:inline-block; width:25%; text-align:right" id="fleche_droite"><img src="img/icon-arrow-right.png" /></a> 
-                <div style="text-align:center" id="description_item">
-                </div>           
-            </div>
-            <div id="affiche_non_objets" style="display:none; text-align:center;">
-            Vous n'avez pas d'objet dans ce module
-            </div>
+        <table id="table_capacite" data-role="table" data-mode="columtoggle" class="ui-body-d ui-shadow table-stripe">
+        	<thead>
+            	<tr class="ui-bar-a">
+                	<th>Entreprise</th>
+                    <th>Capacite</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                </tr>
+			</tbody>
+		</table>
+        <button id="btn_modif_capa">Enregistrer les capacités</button>
         </div>
+          <label for="choix_descriptionSociete">Modifier la description</label>
+          <input type="text" name="textinput" value="" maxlength="140" id="choix_descriptionSociete"  />
+        <button id="btn_modif_infoSociete">Enregistrer la description</button>
+        <div id="dissolutionSociete">
+		<a href="#confirmerDissoudre" data-rel="popup" class="ui-shadow ui-btn ui-corner-all">Dissoudre la société</a>
+        </div>
+
+       <div data-role="popup" id="confirmerDissoudre" data-theme="a" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+            <h2>Etes-vous sur de dissoudre l'entreprise ?</h2>
+            <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="dissoudreSociete">Oui</a>
+            <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="pasDissoudreSociete">Non, je déconne</a>   
+        </div> 
         
+    </div>
+	<div data-role="footer">
+		<h4>Pied de page</h4>
+	</div>
+</div>
+
+
+    <!-- Page Candidatures -->
+<div data-role="page" id="candidatures">
+	<div data-role="header">
+		<a href='#' data-rel="back" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-notext"></a>
+		<h1>Candidature</h1>
+	</div>
+	<div data-role="content">
+        <div id="contenu_candidats">
         </div>
+    <div data-role="popup" id="purchase" data-theme="a" class="ui-content" style="max-width:340px; padding-bottom:2em;">
+    
+        <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="accepter_joueur">Accepter</a>
+        <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini" id="refuser_joueur">Refuser</a>   
+            <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Voir profil</a>     
+        <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline ui-mini">Retour</a>
+    </div> 
+	</div>
+
         <div data-role="footer" data-position="fixed">
 			<h4 class="argent_dispo" style="color:#D6B430"></h4>
 		</div>
@@ -1138,7 +1246,7 @@ margin: 0 auto; margin-top:4px ">
                             <div class="ui-block-b" id="affiche_societe_exterieur"></div> 
                             <div class="ui-block-a" style="padding-left:10%">Jours dans le jeu</div>
                             <div class="ui-block-b" id="affiche_jour_exterieur"></div>                        <div class="ui-block-a" style="padding-left:10%">Score</div>
-                            <div class="ui-block-b" id="affiche_score"></div>                                                          
+                            <div class="ui-block-b" id="affiche_score_exterieur"></div>                                                          
                         </div>
                     </div>
                     <h3>Statut bancaire</h3>
@@ -1165,9 +1273,7 @@ margin: 0 auto; margin-top:4px ">
                     </div>    
                     <h3>Statut d'emprunteur</h3>
                     <div id="infos_emprunts" class="tdb">
-                        <div class="ui-grid-a">
-                            <div class="ui-block-a" style="padding-left:10%">Statut</div>
-                            <div class="ui-block-b" id="affiche_statut_exterieur"></div>                    
+                        <div class="ui-grid-a">                    
                             <div class="ui-block-a" style="padding-left:10%">Emprunts en cours</div>
                             <div class="ui-block-b" id="affiche_empruntsEnCours_exterieur"></div>
                             <div class="ui-block-a" style="padding-left:10%">Emprunts en retard</div>
@@ -1244,31 +1350,31 @@ margin: 0 auto; margin-top:4px ">
       <h1>Notifications</h1>
     </div>
     <div data-role="content">
-    	<div data-role="collapsible" data-theme="a">
+    	<div id="collabsible_bmc" class="collabsible_notifications" data-role="collapsible" data-theme="a">
         	<h3>BMC</h3>
    			<ul id="liste_notifications_bmc" data-role="listview" data-theme="a" data-dividertheme="a" data-filter="false">
         	
         	</ul>
 		</div>
-    	<div data-role="collapsible" data-theme="a">
+    	<div id="collabsible_messages" class="collabsible_notifications" data-role="collapsible" data-theme="a">
         	<h3>Messages</h3>
    			<ul id="liste_notifications_message" class="ui-listview" data-role="listview" data-theme="a" data-dividertheme="a" data-filter="false">
         	
         	</ul>
 		</div>
-        <div data-role="collapsible" data-theme="a">
+        <div id="collabsible_ordres" class="collabsible_notifications" data-role="collapsible" data-theme="a">
         	<h3>Ordres</h3>
    			<ul id="liste_notifications_ordre" class="ui-listview" data-role="listview" data-theme="a" data-dividertheme="a" data-filter="false">
         	
         	</ul>
 		</div>
-        <div data-role="collapsible" data-theme="a">
+        <div id="collabsible_emprunts" class="collabsible_notifications" data-role="collapsible" data-theme="a">
         	<h3>Emprunts</h3>
    			<ul id="liste_notifications_emprunt" class="ui-listview" data-role="listview" data-theme="a" data-dividertheme="a" data-filter="false">
         	
         	</ul>
 		</div>
-        <div data-role="collapsible" data-theme="a">
+        <div id="collabsible_impots" class="collabsible_notifications" data-role="collapsible" data-theme="a">
         	<h3>Impôts</h3>
    			<ul id="liste_notifications_impot" class="ui-listview" data-role="listview" data-theme="a" data-dividertheme="a" data-filter="false">
         	

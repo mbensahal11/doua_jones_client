@@ -219,6 +219,18 @@ display:block;
 	border-radius:5px;
 }
 
+
+.imgMembre {
+border: 2px solid #8c1515	;
+width:40px;
+height:40px;
+}
+
+.divMembre {
+margin-left:2%;
+margin-right:2%
+}
+
 /*Classement */
 .avatarClassement {
 	width:50px;

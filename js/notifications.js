@@ -8,7 +8,9 @@ $(document).on("pageinit", "#notifications", function() {
 			reverse:true
 		});
 	}));
-	
+	$(".collabsible_notifications").each(function(i) {
+    	$(".collabsible_notifications").eq(i).attr("data-theme", "a");
+	});
 	socket.on("resultGetNotifications", function(rows) {
 			$('#liste_notifications_message').empty();
 			$('#liste_notifications_bmc').empty();
@@ -45,6 +47,7 @@ $(document).on("pageinit", "#notifications", function() {
 					content = '<li data-role="list-divider" class="list_divider_notifications_bmc"><div class="date_notifications_bmc">'+ day + '/' + month + '/' + year +'</div>'+'</li><li class="content_list_divider_notifications_bmc"><div class="contenu_notif">'+contenu+'</div><p class="ui-li-aside"><strong>'+ hour+':'+ minute + '</strong></p></li>';
 					$('#liste_notifications_bmc').prepend(content);
 				}
+				$("#collabsible_bmc").attr("data-theme", "b");
 				$('#liste_notifications_bmc').listview('refresh');
 			}
 			else if (type == "message") {
@@ -56,6 +59,7 @@ $(document).on("pageinit", "#notifications", function() {
 					content = '<li data-role="list-divider" class="list_divider_notifications_message"><div class="date_notifications_message">'+ day + '/' + month + '/' + year +'</div>'+'</li><li class="content_list_divider_notifications_message"><div class="contenu_notif">'+contenu+'</div><p class="ui-li-aside"><strong>'+ hour+':'+ minute + '</strong></p></li>';
 					$('#liste_notifications_message').prepend(content);
 				}
+				$("#collabsible_messages").attr("data-theme", "b");
 				$('#liste_notifications_message').listview('refresh');
 			}
 			else if (type == "ordre") {
@@ -67,6 +71,7 @@ $(document).on("pageinit", "#notifications", function() {
 					content = '<li data-role="list-divider" class="list_divider_notifications_ordre"><div class="date_notifications_ordre">'+ day + '/' + month + '/' + year +'</div>'+'</li><li class="content_list_divider_notifications_ordre"><div class="contenu_notif">'+contenu+'</div><p class="ui-li-aside"><strong>'+ hour+':'+ minute + '</strong></p></li>';
 					$('#liste_notifications_ordre').prepend(content);
 				}
+				$("#collabsible_ordres").attr("data-theme", "b");
 				$('#liste_notifications_ordre').listview('refresh');
 			}
 			else if (type == "emprunt") {
@@ -78,6 +83,7 @@ $(document).on("pageinit", "#notifications", function() {
 					content = '<li data-role="list-divider" class="list_divider_notifications_emprunt"><div class="date_notifications_emprunt">'+ day + '/' + month + '/' + year +'</div>'+'</li><li class="content_list_divider_notifications_emprunt"><div class="contenu_notif">'+contenu+'</div><p class="ui-li-aside"><strong>'+ hour+':'+ minute + '</strong></p></li>';
 					$('#liste_notifications_emprunt').prepend(content);
 				}
+				$("#collabsible_emprunts").attr("data-theme", "b");
 				$('#liste_notifications_emprunt').listview('refresh');
 			}
 			else if (type == "impot") {
@@ -89,6 +95,7 @@ $(document).on("pageinit", "#notifications", function() {
 					content = '<li data-role="list-divider" class="list_divider_notifications_impot"><div class="date_notifications_impot">'+ day + '/' + month + '/' + year +'</div>'+'</li><li class="content_list_divider_notifications_impot"><div class="contenu_notif">'+contenu+'</div><p class="ui-li-aside"><strong>'+ hour+':'+ minute + '</strong></p></li>';
 					$('#liste_notifications_impot').prepend(content);
 				}
+				$("#collabsible_impots").attr("data-theme", "b");
 				$('#liste_notifications_impot').listview('refresh');
 			}
 		}
@@ -98,6 +105,5 @@ $(document).on("pageinit", "#notifications", function() {
 
 $(document).on("pageshow", "#notifications", function() { 
 	var socket=io.connect(adresse_serveur);	
-
 	socket.emit("getNotifications", idJoueur);
 });

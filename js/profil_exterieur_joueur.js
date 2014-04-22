@@ -18,7 +18,7 @@ $(document).on("pageinit", "#profil_exterieur_joueur", function() {
 		$('#affiche_depart_exterieur').text(data.departement);
 		$('#affiche_etude_exterieur').text(data.annee_etude);
 		$('#affiche_sexe_exterieur').text(data.sexe);
-		$('#affiche_societe_exterieur').text(data.nom_societe);
+		$('#affiche_societe_exterieur').text(data.nomSociete);
 		$('#affiche_score_exterieur').text(data.score);
 		$('#affiche_jour_exterieur').text(data.jour);		
 			//Statut bancaire
@@ -26,12 +26,11 @@ $(document).on("pageinit", "#profil_exterieur_joueur", function() {
 		$('#affiche_argent_exterieur').text(data.argent_disponible);
 		
 			//Statut d'investisseur
-		$('#affiche_actionsAchetees_exterieur').text(data.nb_actions_achetées);
+		$('#affiche_actionsAchetees_exterieur').text(data.nb_actions_achetees);
 		$('#affiche_actionsVendues_exterieur').text(data.nb_actions_vendues);
 		$('#affiche_actionsPossedees_exterieur').text(data.nombre_actions_possedees);
 		$('#affiche_ordre_exterieur').text(data.nombre_ordres_en_cours);
 			//Statut d'emprunteur
-		$('#affiche_statut_exterieur').text(data.statut_investisseur);
 		$('#affiche_empruntsEnCours_exterieur').text(data.nombre_emprunts_en_cours);
 		$('#affiche_empruntsEnRetard_exterieur').text(data.nombre_emprunts_en_retard);
 		$('#affiche_empruntsNombreMax_exterieur').text(data.nb_emprunts_maximum);

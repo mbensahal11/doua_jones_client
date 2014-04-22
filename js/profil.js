@@ -1,13 +1,8 @@
 // JavaScript Document
 
-$(document).on("pageinit", "#profil", function() {
+$(document).on("pageinit", "#profil_joueur", function() {
 	var joueur = {idJoueur : idJoueur};
 	var socket=io.connect(adresse_serveur);	
-	socket.emit('getOrdresEnCours',joueur);
-	socket.emit('getEmpruntsEnCours',joueur);
-	socket.emit('getCarnetJoueur',joueur);
-	socket.emit('getInfosJoueur',joueur);
-	socket.emit('getListeObjetsJoueur',joueur);
 	
 	//2 variables "globales"
 	var imageAvatar=["A1","A2","A3","A4","A5","A6","A7","A8","A9","A10","A11","A12","A13","A14","A15","A16","A17","A18","A19","A20","A21","A22","A23","A24","A25","A26","A27","A28","A29","A30","A31","A32"]	
@@ -40,6 +35,39 @@ $(document).on("pageinit", "#profil", function() {
 			$('#table_emprunt').table("refresh");
 	});	
 	
+	$(document).on("click","#privileges_admin", function(event) {	
+			$.mobile.changePage('#administrer');
+			event.preventDefault();
+			event.stopImmediatePropagation();	
+				
+	}); 
+
+	$(document).on("click","#privileges_candid", function(event) {	
+			$.mobile.changePage('#candidatures');
+			event.preventDefault();
+			event.stopImmediatePropagation();	
+				
+	}); 	
+//Bouton Quitter la société	
+	$(document).on("click","#quitterSociete", function(event) {
+		$('.alerte_quitter_president').remove();
+		event.preventDefault();
+		event.stopImmediatePropagation();
+		if (statutJoueur=="President") {
+			$('#confirmerQuitterPopUp h2').after("<p class='alerte_quitter_president'> Attention, si vous quittez la société, vous allez la dissoudre car vous être président </p>");
+		} 
+		$('#confirmerQuitterPopUp').popup( "open" );
+	});
+
+// Confirmation pour quitter la société
+	$(document).on("click","#confirmerQuitterSociete", function(event) {
+
+		socket.emit('setDemandeDepartSociete', joueur.idJoueur,pseudo);
+		
+		event.preventDefault();
+		event.stopImmediatePropagation();
+	});
+	
 	
 		// Création de la table Action		
 	socket.on('resultGetCarnetJoueur',function(data){
@@ -53,6 +81,58 @@ $(document).on("pageinit", "#profil", function() {
 			}
 			$('#table_action').table("refresh");
 	});	
+	
+	//Affiches les membres de la sté
+	socket.on('resultGetMembresSocieteDuJoueur', function(data) {	
+		$('#affiche_membresSociete').empty();
+		for (var k=0; k<data.length;k++) {
+			var membre=data[k];
+			$('<div data-id='+membre.idJoueur+'>')
+			.css('display','inline-block')
+			.appendTo("#affiche_membresSociete")
+			.append(
+			$("<a>").attr({href:'#'+''})
+			.append(
+			$("<img>").attr({ 
+			src: "img/avatars/"+membre.avatar+".png",
+			alt: membre.pseudo })
+			.addClass("imgMembre")
+			)
+			)
+			.append("<p class='pseudo_membre'>"+membre.pseudo+"</p>")
+			.addClass("divMembre");
+		}   
+	});
+	
+		socket.on('EntrepriseSocieteMajoritaire', function(data) {
+			$("#enTeteSociete").show();
+			$('#affiche_entrepriseSociete').append('<div class="ui-block-a" style="padding-left:10%; width:50%;"><li>'+data.nom_entreprise+'</li></div><div class="ui-block-b" style="padding-left:10%">'+data.capacitefixee+'</div>');
+		})
+	
+	socket.on('resultGetInfosSocieteDuJoueur', function(data) {
+		$("#affiche_descriptionSociete").text(data.descriptionSociete);	
+		$("#affiche_nomSociete").text(data.nomSociete);
+	});
+	
+	socket.on('resultGetInfosSocieteDuJoueur_ScoreEtClassement', function(data){
+		//pos, idSociete, capital, nomSociete
+		$("#affiche_rangSociete").text(data.pos);
+		$("#affiche_liquiditeSociete").text(data.capital);
+	});
+	
+	socket.on('resultGetInfosSocieteDuJoueur_CumulActionsVenduesSocieteParIdJoueur', function(data) {
+		// cumul_vente, Societe_idSociete
+		$("#affiche_actionsVenduesSociete").text(data.cumul_vente);
+	
+	});
+	
+	socket.on('resultGetInfosSocieteDuJoueur_CumulActionsAcheteesSocieteParIdJoueur', function(data) {
+		$("#affiche_actionsAchetéesSociete").text(data.cumul_achat);
+	});
+	
+	socket.on('resultGetInfosSocieteDuJoueur_CumulOrdresEnCoursSocieteParIdJoueur', function(data) {
+		$("#affiche_actionsEnAttenteSociete").text(data.cumul_ordre);
+	});
 	
 		//Affichage en fonction du choix de l'utilisateur	
 	$("#choix_transaction").on("change",function() {
@@ -76,8 +156,16 @@ $(document).on("pageinit", "#profil", function() {
 //Onglet Infos	
 
 	//Affichage des informations du joueur
-	socket.on('resultGetInfosJoueur',function(data) {	
-	
+	socket.on('resultGetInfosJoueur',function(data) {
+		idSociete = data.Societe_idSociete;	
+		statutJoueur=data.statut_societe;
+		
+		if (statutJoueur == "President") {
+			$("#bouton_administrer").show();
+		}
+		if (statutJoueur== "President" || statutJoueur=="Vice-President") {
+			$("#bouton_candidatures").show();
+		}
 			//avatar
 		var lien="img/avatars/"+data.avatar+".png";
 		$('#affiche_avatar').prop('src',lien);	
@@ -89,7 +177,7 @@ $(document).on("pageinit", "#profil", function() {
 		$('#affiche_depart').text(data.departement);
 		$('#affiche_etude').text(data.annee_etude);
 		$('#affiche_sexe').text(data.sexe);
-		$('#affiche_societe').text(data.nom_societe);
+		$('#affiche_societe').text(data.nomSociete);
 		$('#affiche_score').text(data.score);
 		$('#affiche_jour').text(data.jour);		
 			//Statut bancaire
@@ -97,12 +185,11 @@ $(document).on("pageinit", "#profil", function() {
 		$('#affiche_argent').text(data.argent_disponible);
 		
 			//Statut d'investisseur
-		$('#affiche_actionsAchetees').text(data.nb_actions_achetées);
+		$('#affiche_actionsAchetees').text(data.nb_actions_achetees);
 		$('#affiche_actionsVendues').text(data.nb_actions_vendues);
 		$('#affiche_actionsPossedees').text(data.nombre_actions_possedees);
 		$('#affiche_ordre').text(data.nombre_ordres_en_cours);
 			//Statut d'emprunteur
-		$('#affiche_statut').text(data.statut_investisseur);
 		$('#affiche_empruntsEnCours').text(data.nombre_emprunts_en_cours);
 		$('#affiche_empruntsEnRetard').text(data.nombre_emprunts_en_retard);
 		$('#affiche_empruntsNombreMax').text(data.nb_emprunts_maximum);
@@ -193,6 +280,18 @@ $(document).on("pageinit", "#profil", function() {
 		return false;
 	});
 
+	//click sur retour au profil depuis l'écran de chgt de mdp
+	
+	$(document).on("click","#retour_infos_from_mdp", function() {
+	event.preventDefault();
+	event.stopImmediatePropagation();
+	$("#mouvant1").show();
+	$("#mouvant2").hide();
+	$("#ancienMdp").val('');
+	$("#nouveauMdp").val('');
+	$("#validerNouveauMdp").val('');
+
+	});
 	//click sur retour au profil depuis l'écran de chgt d'infos
 
 	$(document).on("click","#retour_infos_from_modinfos", function(event) {
@@ -341,77 +440,56 @@ $(document).on("pageinit", "#profil", function() {
 		});
 		
 	});
-	
-	
-//Onglet société d'investissement en chantier	
-	
-	/*	var ave=["A1","A4","A8","A10","A15","A16"];
-		for (var k=0; k<ave.length;k++) {
-			$( "<img>" ).attr({ 
-				src: "img/avatars/"+ave[k]+".png",
-				alt: ave[k]
-			})
-			.addClass("imgMembre")
-			.appendTo("#affiche_membresSociete");		
-		}   
 
-*/
-
-		var ave=["A1","A4","A8","A10","A15","A16"];
-		for (var k=0; k<ave.length;k++) {
-			$('<div>')
-			.css('display','inline-block')
-			.appendTo("#affiche_membresSociete")
-			.append($("<img>")
-				.attr({ 
-					src: "img/avatars/"+ave[k]+".png",
-					alt: ave[k] 	})
-				.addClass("imgMembre")
-			)
-			.append("<p>Coucou</p>")
-			.addClass("divMembre");
-		}   
-
-
-	
-/*	
-//Societe d'investissement
-	$(document).on("click","#privileges_president", function() {	
-//si l'entreprise majoritaire quelquepart
-	$("#mouvant_president").html("<label for='majoritaire'>Fixer la capacité chez</label>");
-	$('<select>').attr({'name':'majoritaire','id':'majoritaire','data-native-menu':'false'}).appendTo('#mouvant_president');
-	$('<option>').html("Choisis l'entreprise").appendTo('#boutique_obj');
-	$.each(data[$(this).val()-1], function(key, value) {  
-		$('#majoritaire')
-			 .append($("<option></option>")
-			 .attr("value",key)	
-			 .text(value.nom));
-	}); 
-	$('#majoritaire').selectmenu();
-
-	}); 
-	function () {
-		alert("voub");
-		var ave=["A1","A4","A8","A10","A15","A16"];
-		for (var k=0; k<ave.length;k++) {
-			$( "<img>" ).attr({ 
-				src: "img/avatars/"+ave[k]+".png",
-				alt: ave[k]
-			}).appendTo("#affiche_membresSociete");		
-			alert(ave[k]);
+		
+		//Lors d'un clic sur un joueur
+		$( "#affiche_membresSociete" ).on("click", ".divMembre", function () {
+			$('#choixActionClicMembre h2').text($(this).find('.pseudo_membre').text());
+			$('#choixActionClicMembre h2').data('id', $(this).data('id'));
+			if (statutJoueur != "President") {
+				voirProfilJoueurSociete();
+			}
+			else {
+				$('#changerStatutMembre').show();
+				$('#exclureMembre').show();
+				$('#choixActionClicMembre').popup('open');
+			}
+		});
+		
+		$( "#voirProfilJoueurSociete").on("click", voirProfilJoueurSociete);
+		
+		$( "#changerStatutMembre").on("click", function() {
+			$('#choixActionClicMembre').popup('close');
+			setTimeout( function(){ $("#choixChangerStatut").popup("open"); }, 100 );
+		});
+		
+		$( "#retourChoixChangerStatut").on("click", function(event) {
+			event.preventDefault();
+			event.stopImmediatePropagation();
+			$('#choixChangerStatut').popup('close');
+			setTimeout( function(){ $("#choixActionClicMembre").popup("open"); }, 100 );
+		});
+		
+		function voirProfilJoueurSociete () {
+			$('#profil_exterieur_joueur').data("idJoueur",$('#choixActionClicMembre h2').data('id'));
+			$("#titre_profil_exterieur_joueur").text($('#choixActionClicMembre h2').text());
+			$.mobile.changePage("#profil_exterieur_joueur");
 		}
-	};
-	*/
+
 });
 
-$(document).on("pageshow", "#profil", function() {
+$(document).on("pageshow", "#profil_joueur", function(event, data) {
 	var joueur = {idJoueur : idJoueur};
-	var socket=io.connect(adresse_serveur);	
-	socket.emit('getOrdresEnCours',joueur);
-	socket.emit('getEmpruntsEnCours',joueur);
-	socket.emit('getCarnetJoueur',joueur);
-	socket.emit('getInfosJoueur',joueur);
-	socket.emit('getListeObjetsJoueur',joueur);
-	socket.emit('getArgentDisponibleJoueur',idJoueur);
+	var socket=io.connect(adresse_serveur);
+	if (data.prevPage.attr('id')!='choix_depart-dialog') {
+		$('#affiche_entrepriseSociete').empty();	
+		socket.emit('getOrdresEnCours',joueur);
+		socket.emit('getEmpruntsEnCours',joueur);
+		socket.emit('getCarnetJoueur',joueur);
+		socket.emit('getInfosJoueur',joueur);
+		socket.emit('getListeObjetsJoueur',joueur);
+		socket.emit('getArgentDisponibleJoueur',idJoueur);
+		socket.emit('getMembresSocieteDuJoueur',joueur);
+		socket.emit('getInfosSocieteDuJoueur',joueur)
+	}
 });
-
