@@ -7,6 +7,16 @@ $(document).on("pageinit", "#profil_exterieur_societe", function() {
 		$('#affiche_membresSociete_societe_exterieur').empty();
 		for (var k=0; k<data.length;k++) {
 			var membre=data[k];
+			var color;
+			if (membre.statut_societe == "President") {
+				color = "#ff0000";
+			}
+			else if (membre.statut_societe == "Membre") {
+				color = "#e1533c";
+			}
+			else {
+				color = "#31748f" ;
+			}
 			$('<div data-id='+membre.idJoueur+'>')
 			.css('display','inline-block')
 			.appendTo("#affiche_membresSociete_societe_exterieur")
@@ -19,7 +29,7 @@ $(document).on("pageinit", "#profil_exterieur_societe", function() {
 			.addClass("imgMembre")
 			)
 			)
-			.append("<p class='pseudo_membre' data-statut="+membre.statut_societe+">"+membre.pseudo+"</p>")
+			.append("<p class='pseudo_membre'  style='color:"+color+"'  data-statut="+membre.statut_societe+">"+membre.pseudo+"</p>")
 			.addClass("divMembre");
 		}   
 	});
@@ -40,6 +50,8 @@ $(document).on("pageinit", "#profil_exterieur_societe", function() {
 		$("#affiche_descriptionSociete_societe_exterieur").text(data.descriptionSociete);	
 		$("#affiche_nomSociete_societe_exterieur").text(data.nomSociete);
 		$("#affiche_nomSociete_societe_exterieur").data('idSociete',data.idSociete);
+		var lien="img/avatarsSociete/"+data.avatarSociete+".png";
+		$('#affiche_avatar_societe_exterieur').prop('src',lien);
 	});
 	
 	socket.on('resultGetInfosSociete_ScoreEtClassement', function(data){

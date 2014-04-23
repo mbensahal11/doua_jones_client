@@ -5,7 +5,6 @@ $(document).on("pageshow", "#administrer", function() {
 	var socket=io.connect(adresse_serveur);	
 	var joueur={idJoueur: idJoueur};
 	socket.emit('getEntrepriseSocieteMajoritaire',joueur);
-	socket.emit('getInfosSocieteDuJoueur',joueur);
 
 });
 
@@ -16,18 +15,6 @@ $(document).on("pageinit", "#administrer", function() {
 	var descriptionSociete;
 	var tableau=[];
 	var nbEntrepRecu=0;
-	var vicepresident = false; 
-	if (statutJoueur=="Vice-President") {
-		vicepresident = true;
-	}
-
-	
-	if (vicepresident==true) {
-			
-		$("#fixerCapacite").hide();
-		$("#dissolutionSociete").hide();
-		
-	}
 	
 	//Renvoie les entreprises dans lesquelles les sociétés sont majoritaires (Le select s'affiche même si pas président ->erreur)
 	socket.on('resultGetEntrepriseSocieteMajoritaire', function(data) {	
@@ -64,15 +51,6 @@ $(document).on("pageinit", "#administrer", function() {
 		
 	});
 
-	//Mise à jour de la description actuelle dans l'écran Administrer
-	socket.on('resultGetInfosSocieteDuJoueur', function(data) {
-		descriptionSociete=data.descriptionSociete;
-		nomSociete=data.nomSociete;
-		$('#choix_descriptionSociete').val(descriptionSociete);
-		$('#choix_nomSociete').val(nomSociete);
-	
-	})
-	
 	//En cas de dissolution et de confirmation par le serveur , retour sur la page d'accueil du jeu
 	socket.on('resultSetDissoudreSociete', function(data) {
 		alert(data.message);
@@ -95,29 +73,7 @@ $(document).on("pageinit", "#administrer", function() {
 		
 		//Envoie des données de changement de capacite		
 		socket.emit('setDemandeChangerCapacite',idJoueur,$('#majoritaire option:selected').data('idEntrep'),$("#newCapacite").val());
-
-		
 	});
-
-	//Modifier les infos de la société (que la description en fait..)
-	$(document).on("click","#btn_modif_infoSociete", function(event) {
-		event.preventDefault();
-		event.stopImmediatePropagation();
-		description=$('#choix_descriptionSociete').val();
-		//Envoi des données de chgt de description
-		socket.emit('setNewDescriptionSociete', joueur.idJoueur, description);
-		alert('Description modifiée');
-	});	
-	
-	$(document).on("click","#btn_modif_nomSociete", function(event) {
-		event.preventDefault();
-		event.stopImmediatePropagation();
-		nom=$('#choix_nomSociete').val();
-		//Envoi des données de chgt de nom
-		socket.emit('setNewNomSociete', joueur.idJoueur, nom);
-		alert('Nom modifié');
-	});		
-
 
 	//Dissoudre la société
 	$(document).on("click","#dissoudreSociete", function(event) {
@@ -131,14 +87,7 @@ $(document).on("pageinit", "#administrer", function() {
 		$("#rangeCapacite").show();
 	}); 
 	
-	//Interdire le caractère "
-	jQuery("#choix_descriptionSociete").keyup(function(event)
-		{
-			name = jQuery("#choix_descriptionSociete").val();
-			var reg=new RegExp('(")', "g");
-			name = name.replace(reg,"'");
-			jQuery("#choix_descriptionSociete").val(name);
-		});
+	
 		
 
 });

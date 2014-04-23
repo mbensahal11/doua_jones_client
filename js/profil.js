@@ -5,8 +5,11 @@ $(document).on("pageinit", "#profil_joueur", function() {
 	var socket=io.connect(adresse_serveur);	
 	
 	//2 variables "globales"
-	var imageAvatar=["A1","A2","A3","A4","A5","A6","A7","A8","A9","A10","A11","A12","A13","A14","A15","A16","A17","A18","A19","A20","A21","A22","A23","A24","A25","A26","A27","A28","A29","A30","A31","A32","A33","A34","A35","A36"]	
+	var imageAvatar=["A1","A2","A3","A4","A5","A6","A7","A8","A9","A10","A11","A12","A13","A14","A15","A16","A17","A18","A19","A20","A21","A22","A23","A24","A25","A26","A27","A28","A29","A30","A31","A32","A33","A34","A35","A36","A37","A38","A39","A40","A41","A42","A43","A44","A45"]	
 	var idAvatar=0;	
+	
+	var imageAvatar_societe=["A1","A2","A3","A4","A5","A6","A7","A8","A9","A10","A11","A12","A13","A14","A15"]	
+	var idAvatar_societe=0;	
 	
 	//Onglet Transaction
 	
@@ -45,9 +48,14 @@ $(document).on("pageinit", "#profil_joueur", function() {
 	$(document).on("click","#privileges_candid", function(event) {	
 			$.mobile.changePage('#candidatures');
 			event.preventDefault();
-			event.stopImmediatePropagation();	
-				
-	}); 	
+			event.stopImmediatePropagation();			
+	}); 
+	
+	$(document).on("click","#privileges_informations", function(event) {
+		event.preventDefault();
+		event.stopImmediatePropagation();	
+		$.mobile.changePage('#informations_societe');			
+	});	
 //Bouton Quitter la société	
 	$(document).on("click","#quitterSociete", function(event) {
 		$('.alerte_quitter_president').remove();
@@ -90,6 +98,16 @@ $(document).on("pageinit", "#profil_joueur", function() {
 		$('#affiche_membresSociete').empty();
 		for (var k=0; k<data.length;k++) {
 			var membre=data[k];
+			var color;
+			if (membre.statut_societe == "President") {
+				color = "#ff0000";
+			}
+			else if (membre.statut_societe == "Membre") {
+				color = "#e1533c";
+			}
+			else {
+				color = "#31748f" ;
+			}
 			$('<div data-id='+membre.idJoueur+'>')
 			.css('display','inline-block')
 			.appendTo("#affiche_membresSociete")
@@ -102,7 +120,7 @@ $(document).on("pageinit", "#profil_joueur", function() {
 			.addClass("imgMembre")
 			)
 			)
-			.append("<p class='pseudo_membre' data-statut="+membre.statut_societe+">"+membre.pseudo+"</p>")
+			.append("<p class='pseudo_membre' style='color:"+color+"' data-statut="+membre.statut_societe+">"+membre.pseudo+"</p>")
 			.addClass("divMembre");
 		}   
 	});
@@ -116,6 +134,8 @@ $(document).on("pageinit", "#profil_joueur", function() {
 	socket.on('resultGetInfosSocieteDuJoueur', function(data) {
 		$("#affiche_descriptionSociete").text(data.descriptionSociete);	
 		$("#affiche_nomSociete").text(data.nomSociete);
+		var lien="img/avatarsSociete/"+data.avatarSociete+".png";
+		$('#affiche_avatar_societe').prop('src',lien);
 	});
 	
 	socket.on('resultGetInfosSocieteDuJoueur_ScoreEtClassement', function(data){
@@ -161,17 +181,27 @@ $(document).on("pageinit", "#profil_joueur", function() {
 
 	//Affichage des informations du joueur
 	socket.on('resultGetInfosJoueur',function(data) {
-		$("#bouton_administrer").hide();
+		$("#bouton_fixercapacite").hide();
 		$("#bouton_candidatures").hide();
 		idSociete = data.Societe_idSociete;	
 		statutJoueur=data.statut_societe;
+		var statut;
 		
 		if (statutJoueur == "President") {
 			$("#bouton_administrer").show();
-		}
-		if (statutJoueur== "President" || statutJoueur=="Vice-president") {
 			$("#bouton_candidatures").show();
+			$("#bouton_avatar_societe").show();
+			statut = "Président";
 		}
+		else if (statutJoueur== "President" || statutJoueur=="Vice-president") {
+			$("#bouton_candidatures").show();
+			$("#bouton_avatar_societe").show();
+			statut = "Vice-président";
+		}
+		else {
+			statut = "Membre";
+		}
+		
 			//avatar
 		var lien="img/avatars/"+data.avatar+".png";
 		$('#affiche_avatar').prop('src',lien);	
@@ -184,6 +214,7 @@ $(document).on("pageinit", "#profil_joueur", function() {
 		$('#affiche_etude').text(data.annee_etude);
 		$('#affiche_sexe').text(data.sexe);
 		$('#affiche_societe').text(data.nomSociete);
+		$('#affiche_statut').text(statut);
 		$('#affiche_score').text(data.score);
 		$('#affiche_jour').text(data.jour);		
 			//Statut bancaire
@@ -204,7 +235,7 @@ $(document).on("pageinit", "#profil_joueur", function() {
 		
 			//Informations de l'écran de modification des informations qui sont initialisées aux valeurs courantes. Par exemple, lorsque le joueur veut modifier son avatar, l'avatar affiché dans l'écran de modification est son avatar actuel. Idem pour la description, sexe, année d'étude.
 			
-			//Mise à jour de l'idAvatar (variable globale) pour afficher l'avatar actuel
+			//Mise à jour de l'idAvatar  pour afficher l'avatar actuel
 		
 		var j=0 ; 
 		while (imageAvatar[j]!=data.avatar) {

@@ -59,6 +59,7 @@
     <script src="js/profil_exterieur_societe.js"></script>
     <script src="js/candidatures.js"></script>
     <script src="js/administrer.js"></script>
+    <script src="js/infos_societe.js"></script>
     
     
  <!-- Socket io-->
@@ -294,6 +295,7 @@ Bienvenue apprentis traders !
                 <table id="table_societe" class="classement_table_class_societe" data-role="table" data-mode="columtoggle" class="ui-body-d ui-shadow table-stripe">
                     <thead>
                         <tr class="ui-bar-a">
+                        	<th></th>
                             <th>Rang</th>
                             <th>Societe</th>
                             <th>Capital</th>
@@ -362,6 +364,8 @@ Bienvenue apprentis traders !
                         <div class="ui-block-b" id="affiche_depart"></div>
                         <div class="ui-block-a" style="padding-left:10%">Société d'invest.</div>
                         <div class="ui-block-b" id="affiche_societe"></div> 
+                        <div class="ui-block-a" style="padding-left:10%">Statut</div>
+                        <div class="ui-block-b" id="affiche_statut"></div> 
                         <div class="ui-block-a" style="padding-left:10%">Jours dans le jeu</div>
                         <div class="ui-block-b" id="affiche_jour"></div>                        <div class="ui-block-a" style="padding-left:10%">Score</div>
                         <div class="ui-block-b" id="affiche_score"></div>                                                          
@@ -541,10 +545,13 @@ Bienvenue apprentis traders !
     <!-- Onglet ma société -->
     <div id="infosMaSociete">
     	<div data-role="content">
-    	            <div id="presentation_statique">
-                        <div style="margin-left:5%;">
-                        <p id="affiche_nomSociete" style=" text-align:center;font-size:2em;"></p>
-                        </div>
+    	            <div id="presentation_statique_societe">
+                        <center>
+                        	<p id="affiche_nomSociete" style=" text-align:center;font-size:2em;"></p>
+                        </center>
+                    	<center>
+                        	<img src="" style="width:30%;" id="affiche_avatar_societe">
+                        </center>
            			</div>
             <div id="mouvantSociete">
             	<h3>Membres</h3>           
@@ -593,8 +600,12 @@ Bienvenue apprentis traders !
 				<button id="privileges_admin">Administrer</button>
             </div>
             <div id="bouton_candidatures" style="display:none">
-			<button id="privileges_candid">Voir candidatures</button>
+				<button id="privileges_candid">Voir candidatures</button>
             </div>
+            <div id="bouton_avatar_societe" style="display:none">
+				<button id="privileges_informations">Modifier informations</button>
+            </div>
+
 			<a id="quitterSociete" href="#" data-rel="popup" class="ui-shadow ui-btn ui-corner-all">Quitter la societe</a>
             
            <div data-role="popup" id="confirmerQuitterPopUp" data-theme="a" class="ui-content" style="max-width:340px; padding-bottom:2em;">
@@ -659,13 +670,13 @@ Bienvenue apprentis traders !
     </div>
     
 	</div>
-    <div data-role="footer">
-		<h4>Pied de page</h4>
+    <div data-role="footer" data-position="fixed">
+			<h4 class="argent_dispo" style="color:#D6B430"></h4>
 	</div> 
 </div>    
 
 
-    <!-- Page Administrer -->
+    <!-- Page administrer -->
 <div data-role="page" id="administrer">
 	<div data-role="header">
 		<h1>Administrer</h1>
@@ -693,12 +704,6 @@ Bienvenue apprentis traders !
 		</table>
        
         </div>
-          <label for="choix_descriptionSociete">Modifier la description</label>
-          <input type="text" name="textinput" value="" maxlength="140" id="choix_descriptionSociete"  />
-        <button id="btn_modif_infoSociete">Enregistrer la description</button>
-        <label for="choix_nomSociete">Modifier le nom de la société</label>
-          <input type="text" name="textinput" value="" maxlength="140" id="choix_nomSociete"  />
-        <button id="btn_modif_nomSociete">Enregistrer le nouveau nom</button>
         <div id="dissolutionSociete">
 		<a href="#confirmerDissoudre" data-rel="popup" class="ui-shadow ui-btn ui-corner-all">Dissoudre la société</a>
         </div>
@@ -710,8 +715,8 @@ Bienvenue apprentis traders !
         </div> 
         
     </div>
-	<div data-role="footer">
-		<h4>Pied de page</h4>
+	<div data-role="footer" data-position="fixed">
+			<h4 class="argent_dispo" style="color:#D6B430"></h4>
 	</div>
 </div>
 
@@ -738,6 +743,37 @@ Bienvenue apprentis traders !
 			<h4 class="argent_dispo" style="color:#D6B430"></h4>
 		</div>
     </div>   
+    
+    <!-- Page informations societe -->
+<div data-role="page" id="informations_societe">
+	<div data-role="header">
+		<a href='#' data-rel="back" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-notext"></a>
+		<h1>Modifier informations</h1>
+	</div>
+	<div data-role="content">
+     <label for="choix_descriptionSociete">Modifier la description</label>
+          <input type="text" name="textinput" value="" maxlength="140" id="choix_descriptionSociete"  />
+        <button id="btn_modif_infoSociete">Enregistrer la description</button>
+        <label for="choix_nomSociete">Modifier le nom de la société</label>
+          <input type="text" name="textinput" value="" maxlength="140" id="choix_nomSociete"  />
+        <button id="btn_modif_nomSociete">Enregistrer le nouveau nom</button>
+        
+        <div style="width:95%; margin:auto;" id="choix_avatar_societe">
+                <a href="#" style="display:inline-block; width:25%" id="fleche_gauche_avatar_societe"><img src="img/icon-arrow-left.png"/></a>   
+                <img src="avatarsSociete/A1.png" style="height:40%; display:inline-block; width:47%" id="image_avatar_societe"/>
+                <a href="#" style="display:inline-block; width:25%; text-align:right" id="fleche_droite_avatar_societe"><img src="img/icon-arrow-right.png" /></a>         
+            </div>
+            
+            <form>
+            	<input type="submit" value="Changer l'avatar de la société" id="changer_avatar_societe"/>
+			</form>
+	</div>
+
+        <div data-role="footer" data-position="fixed">
+			<h4 class="argent_dispo" style="color:#D6B430"></h4>
+		</div>
+    </div>   
+     
     
 <!-- Chat -->
     <div data-role="page" id="chat">
@@ -1122,7 +1158,7 @@ margin: 0 auto; margin-top:4px ">
                         <option value="9">BMC shoes</option>
                         <option value="10">Zoo BMC</option>
                         <option value="11">BMC Antiquites</option>
-                        <option value="12">BMC Monuments</option>
+                        <option value="12">BMC uments</option>
                         <option value="13">BMC Art</option>
                         <option value="14">Air BMC</option>
                     </select>
@@ -1258,6 +1294,8 @@ margin: 0 auto; margin-top:4px ">
                             <div class="ui-block-b" id="affiche_depart_exterieur"></div>
                             <div class="ui-block-a" style="padding-left:10%">Société d'invest.</div>
                             <div class="ui-block-b" id="affiche_societe_exterieur"></div> 
+                            <div class="ui-block-a" style="padding-left:10%">Statut</div>
+                        	<div class="ui-block-b" id="affiche_statut_exterieur"></div> 
                             <div class="ui-block-a" style="padding-left:10%">Jours dans le jeu</div>
                             <div class="ui-block-b" id="affiche_jour_exterieur"></div>                        <div class="ui-block-a" style="padding-left:10%">Score</div>
                             <div class="ui-block-b" id="affiche_score_exterieur"></div>                                                          
@@ -1314,9 +1352,12 @@ margin: 0 auto; margin-top:4px ">
         <div id="infos_societe_joueur_exterieur">
             <div data-role="content">
             	<div id="presentation_statique_societe_joueur_exterieur">
-                        <div style="margin-left:5%;">
+                        <center>
                         	<p id="affiche_nomSociete_societe_joueur_exterieur" style=" text-align:center;font-size:2em;"></p>
-                        </div>
+                        </center>
+                    	<center>
+                        	<img src="" style="width:30%;" id="affiche_avatar_societe_joueur_exterieur">
+                        </center>
            			</div>
             <div id="mouvantSociete_societe_joueur_exterieur">
             	<h3>Membres</h3>           
@@ -1384,10 +1425,13 @@ margin: 0 auto; margin-top:4px ">
       <h1 id="titre_profil_exterieur_societe">Profil</h1>
     </div>
     <div data-role="content">
-    	            	<div id="presentation_statique_societe_exterieur">
-                        <div style="margin-left:5%;">
+    				<div id="presentation_statique_societe_exterieur">
+                        <center>
                         	<p id="affiche_nomSociete_societe_exterieur" style=" text-align:center;font-size:2em;"></p>
-                        </div>
+                        </center>
+                    	<center>
+                        	<img src="" style="width:30%;" id="affiche_avatar_societe_exterieur">
+                        </center>
            			</div>
             <div id="mouvantSociete_societe_exterieur">
             	<h3>Membres</h3>           

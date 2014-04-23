@@ -43,9 +43,9 @@ $(document).on("pageinit", "#rechercher", function() {
 		$('#ul_result_search_societe').empty();
 		for (var i=0;i<rows.length;i++) {
 			var idSociete_resultrecherche = rows[i].idSociete;
-			var avatar = rows[i].avatar;
+			var avatar = rows[i].avatarSociete;
 			var nomSociete = rows[i].nomSociete;
-			var content = '<li class="content_recherche_societe"><a href="#"><img src="img/avatars/'+avatar+'.png" /><h3 class="nomSociete_trouve" data-id='+idSociete_resultrecherche+'>'+nomSociete+'</h3></a></li>';
+			var content = '<li class="content_recherche_societe"><a href="#"><img src="img/avatarsSociete/'+avatar+'.png" /><h3 class="nomSociete_trouve" data-id='+idSociete_resultrecherche+'>'+nomSociete+'</h3></a></li>';
 			$('#ul_result_search_societe').append(content);
 		}
 		$('#ul_result_search_societe').listview('refresh');

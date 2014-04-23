@@ -6,7 +6,22 @@ $(document).on("pageinit", "#profil_exterieur_joueur", function() {
 	var idAvatar=0;	
 	//Affichage des informations du joueur
 	socket.on('resultGetInfosJoueur_exterieur',function(data) {	
-	
+		statutJoueur=data.statut_societe;
+		var statut;
+		if (statutJoueur == "President") {
+			$("#bouton_administrer").show();
+			$("#bouton_candidatures").show();
+			$("#bouton_avatar_societe").show();
+			statut = "Président";
+		}
+		else if (statutJoueur== "President" || statutJoueur=="Vice-president") {
+			$("#bouton_candidatures").show();
+			$("#bouton_avatar_societe").show();
+			statut = "Vice-président";
+		}
+		else {
+			statut = "Membre";
+		}
 			//avatar
 		var lien="img/avatars/"+data.avatar+".png";
 		$('#affiche_avatar_exterieur').prop('src',lien);	
@@ -19,6 +34,7 @@ $(document).on("pageinit", "#profil_exterieur_joueur", function() {
 		$('#affiche_etude_exterieur').text(data.annee_etude);
 		$('#affiche_sexe_exterieur').text(data.sexe);
 		$('#affiche_societe_exterieur').text(data.nomSociete);
+		$('#affiche_statut_exterieur').text(statut);
 		$('#affiche_score_exterieur').text(data.score);
 		$('#affiche_jour_exterieur').text(data.jour);		
 			//Statut bancaire
@@ -136,6 +152,16 @@ $(document).on("pageinit", "#profil_exterieur_joueur", function() {
 		$('#affiche_membresSociete_societe_joueur_exterieur').empty();
 		for (var k=0; k<data.length;k++) {
 			var membre=data[k];
+			var color;
+			if (membre.statut_societe == "President") {
+				color = "#ff0000";
+			}
+			else if (membre.statut_societe == "Membre") {
+				color = "#e1533c";
+			}
+			else {
+				color = "#31748f" ;
+			}
 			$('<div data-id='+membre.idJoueur+'>')
 			.css('display','inline-block')
 			.appendTo("#affiche_membresSociete_societe_joueur_exterieur")
@@ -148,7 +174,7 @@ $(document).on("pageinit", "#profil_exterieur_joueur", function() {
 			.addClass("imgMembre")
 			)
 			)
-			.append("<p class='pseudo_membre' data-statut="+membre.statut_societe+">"+membre.pseudo+"</p>")
+			.append("<p class='pseudo_membre'  style='color:"+color+"'  data-statut="+membre.statut_societe+">"+membre.pseudo+"</p>")
 			.addClass("divMembre");
 		}   
 	});
@@ -174,6 +200,8 @@ $(document).on("pageinit", "#profil_exterieur_joueur", function() {
 		$("#affiche_descriptionSociete_societe_joueur_exterieur").text(data.descriptionSociete);	
 		$("#affiche_nomSociete_societe_joueur_exterieur").text(data.nomSociete);
 		$("#affiche_nomSociete_societe_joueur_exterieur").data('idSociete',data.idSociete);
+		var lien="img/avatarsSociete/"+data.avatarSociete+".png";
+		$('#affiche_avatar_societe_joueur_exterieur').prop('src',lien);
 	});
 	
 	socket.on('resultGetInfosSocieteDuJoueur_ScoreEtClassement_exterieur', function(data){
