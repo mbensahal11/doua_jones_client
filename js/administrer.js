@@ -5,7 +5,6 @@ $(document).on("pageshow", "#administrer", function() {
 	var socket=io.connect(adresse_serveur);	
 	var joueur={idJoueur: idJoueur};
 	socket.emit('getEntrepriseSocieteMajoritaire',joueur);
-
 });
 
 $(document).on("pageinit", "#administrer", function() {

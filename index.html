@@ -40,7 +40,6 @@
     
 <!--Code Javascript externe -->  	 
 	<script src="js/main.js"> </script>
-    <script src="js/index.js"> </script>
    	<script src="js/map.js"> </script>
     <script src="js/entreprise.js"></script>
     <script src="js/chat.js"></script>
@@ -225,7 +224,7 @@ Bienvenue apprentis traders !
 	<div data-role="page" id="map" data-dom-cache="true" style = "html { height: 100% } ;body { height: 50%; margin: 20; padding: 20 }"> 
 		<div data-role="header">
         	<a href='#' data-rel="back" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-notext"></a>
-        	<a href="#" class="ui-icon-info ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-notext">No text</a>
+        	<a href="#aide" class="ui-icon-info ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-notext">No text</a>
             <a href="#" id="geolocation_icon" data-role="button" class="ui-icon-location ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-notext" style="margin-right:50px">No text</a>
             <h1>Carte du campus</h1>
         </div>
@@ -779,7 +778,7 @@ Bienvenue apprentis traders !
     <div data-role="page" id="chat">
     	<div  data-role="header" data-position="fixed" data-tap-toggle="false" style="border-bottom-width: 0px; z-index:99">
       		<a href='#' data-rel="back" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-notext"></a>
-        	<a href="#" class="ui-icon-info ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-notext">No text</a>   
+        	<a href="#aide" class="ui-icon-info ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-notext">No text</a>   
         	<h1>Chat</h1>
       	</div>
   
@@ -883,7 +882,7 @@ Bienvenue apprentis traders !
     <div data-role="page" id="tchat_perso">
       <div  data-role="header" data-position="fixed" data-tap-toggle="false" style="border-bottom-width: 0px;">
         <a href='#' data-rel="back" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-notext"></a>
-        <a href="#" class="ui-icon-info ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-notext">No text</a>   
+        <a href="#aide" class="ui-icon-info ui-btn-right ui-btn ui-btn-inline ui-mini ui-corner-all ui-btn-icon-notext">No text</a>   
         <h1 id="titre_tchat_perso"></h1>
       </div>
       <div data-role="content">
@@ -917,7 +916,7 @@ Bienvenue apprentis traders !
       
           <div data-role="header" style="border-bottom-width: 0px;">
               <h1 id="nom_entreprise"></h1>
-              <a href='#' data-rel="back" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-notext"></a> <a href='#'class="ui-btn ui-btn-right ui-corner-all ui-icon-info ui-btn-icon-notext"></a> 
+              <a href='#' data-rel="back" class="ui-btn ui-corner-all ui-icon-back ui-btn-icon-notext"></a> <a href='#aide'class="ui-btn ui-btn-right ui-corner-all ui-icon-info ui-btn-icon-notext"></a> 
           </div>
           
   <!-- TABS Entreprise -->
@@ -945,8 +944,8 @@ margin: 0 auto; margin-top:4px">
                       </div>
                       <div data-role="collapsible">
                           <h3>Actualités</h3>
-                          <p id="texte_actualites_entreprise">                            
-                          </p>
+                          <div id="texte_actualites_entreprise">                            
+                          </div>
                       </div>
                   </div>
               </div>
@@ -1023,8 +1022,8 @@ margin: 0 auto; margin-top:4px">
 		<!--PRIX-->                   
                           <li class="ui-field-contain">
                           	<div>
-                              <label for="Prix">Prix (en ฿)</label>
-                              <textarea cols="40" rows="8" name="textarea" id="Prix" class="required" style="width:80px; height:40px; display:inline-block; resize:none;"></textarea>   
+                            <label for="Prix">Prix (en ฿)</label>
+<input type="number" name="number" id="Prix" value=""  /> 
                              </div>
                              <div id="consult_argentDisp">
                              </div>
@@ -1158,7 +1157,7 @@ margin: 0 auto; margin-top:4px ">
                         <option value="9">BMC shoes</option>
                         <option value="10">Zoo BMC</option>
                         <option value="11">BMC Antiquites</option>
-                        <option value="12">BMC uments</option>
+                        <option value="12">BMC Monuments</option>
                         <option value="13">BMC Art</option>
                         <option value="14">Air BMC</option>
                     </select>
@@ -1190,7 +1189,8 @@ margin: 0 auto; margin-top:4px ">
         </div>
         <div id="atouts">
         <div data-role="content">
-                <label for="boutique_atout">Avantage temporaire</label>
+        	Contenu à venir...
+                <!--<label for="boutique_atout">Avantage temporaire</label>
 <select name="boutique_atout" id="boutique_atout" data-native-menu="false">
                     <option value="choose-one" data-placeholder="true">Choisis un atout</option>
                     <option value="1">Réduction de 10% à l’achat d’une action</option>
@@ -1204,13 +1204,15 @@ margin: 0 auto; margin-top:4px ">
                     <option value="9">Achat d’une action supplémentaire à limite autorisée</option>
 </select>
 <input type="submit" value="Acheter" id="acheter_atout">
-            </div>
-        </div>
-</div>
-    <div data-role="footer">
-		<h4 class="argent_dispo" style="color:#D6B430"></h4>
+
+-->
+		</div>
+    	<div data-role="footer">
+			<h4 class="argent_dispo" style="color:#D6B430"></h4>
+		</div>   
 	</div>
-</div>
+	</div>
+    </div>
 
 <!-- Recherche membre ou société -->
 <div data-role="page" id="rechercher">

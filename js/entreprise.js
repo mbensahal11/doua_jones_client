@@ -77,6 +77,10 @@ socket.on('resultGetNombreTitresJoueurEntreprise', function(data) {
 				//	pan: {interactive: true}
 			});	
 		});
+		
+		socket.emit("resultGetActualiteEntreprise", function (value) {
+			$('#texte_actualites_entreprise').html(value);
+		});
 			
 		var currentMonth=(new Date()).getMonth() ;
 		var currentDay=(new Date()).getDate();
@@ -434,5 +438,6 @@ $(document).on("pageshow", "#Entreprise", function() {
 	socket.emit("getNombreTitresJoueurEntreprise",idJoueur,$('#entreprise_active').data('id_entreprise')); 
 
 	socket.emit("getCoursEntreprise", $('#entreprise_active').data('id_entreprise'));
+	socket.emit("getActualiteEntreprise", $('#entreprise_active').data('id_entreprise'));
 
 });

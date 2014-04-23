@@ -35,6 +35,7 @@ $(document).on("pageinit", "#emprunt", function() {
 			if ($('#bmcprofil').data("isAtBMC")) {
 				socket.emit("setEmprunt", h);
 				alert("Emprunt effectué");
+				socket.emit('getArgentDisponibleJoueur',idJoueur);
 			}
 			else {
 				alert('Vous devez vous rendre à la BMC pour effectuer un emprunt');

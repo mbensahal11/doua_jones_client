@@ -25,6 +25,13 @@ function onDeviceReady() {
 				window.history.back();
 			}
         }, false );
+		
+	jQuery("#CIBLE").keyup(function(event) {
+		name = jQuery("#choix_description").val();
+		var reg=new RegExp('(")', "g");
+		name = name.replace(reg,"'");
+		jQuery("#choix_description").val(name);
+		});
 	}
 
 $(document).on("pageinit", "#Accueil_jeu", function() { 
@@ -53,5 +60,7 @@ $(document).on("pageinit", "#Accueil_jeu", function() {
 	
 });
 $(document).on("pageshow", "#Accueil_jeu", function() { 
+	var socket=io.connect(adresse_serveur);
 	$.mobile.silentScroll(0);
+	socket.emit('getArgentDisponibleJoueur',idJoueur);
 });

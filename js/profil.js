@@ -103,10 +103,10 @@ $(document).on("pageinit", "#profil_joueur", function() {
 				color = "#ff0000";
 			}
 			else if (membre.statut_societe == "Membre") {
-				color = "#e1533c";
+				color = "#31748f";
 			}
 			else {
-				color = "#31748f" ;
+				color = "#e1533c" ;
 			}
 			$('<div data-id='+membre.idJoueur+'>')
 			.css('display','inline-block')
@@ -526,7 +526,7 @@ $(document).on("pageinit", "#profil_joueur", function() {
 				$('#nommerVicePresident').show();
 			}
 			$('#choixActionClicMembre').popup('close');
-			setTimeout( function(){ $("#choixChangerStatut").popup("open"); }, 100 );
+			setTimeout( function(){ $("#choixChangerStatut").popup("open"); }, 200 );
 		});
 		
 		//retour depuis changer statut
@@ -534,7 +534,7 @@ $(document).on("pageinit", "#profil_joueur", function() {
 			event.preventDefault();
 			event.stopImmediatePropagation();
 			$('#choixChangerStatut').popup('close');
-			setTimeout( function(){ $("#choixActionClicMembre").popup("open"); }, 100 );
+			setTimeout( function(){ $("#choixActionClicMembre").popup("open"); }, 200 );
 		});
 		
 		$( "#nommerPresident").on("click", function(event) {
@@ -543,7 +543,7 @@ $(document).on("pageinit", "#profil_joueur", function() {
 			$('#choixChangerStatut').popup('close');
 			$("#confirmationChangerMembres").data("action", "nommerPresident");
 			$("#divConfirmationChangerMembres").text('Etes-vous sûr de vouloir nommer '+$('#choixActionClicMembrePseudo').text()+' Président? Vous deviendrez Vice-Président');
-			setTimeout( function(){ $("#confirmationChangerMembres").popup("open"); }, 100 );
+			setTimeout( function(){ $("#confirmationChangerMembres").popup("open"); }, 200 );
 		});
 		
 		$( "#nommerVicePresident").on("click", function(event) {
@@ -552,7 +552,7 @@ $(document).on("pageinit", "#profil_joueur", function() {
 			$('#choixChangerStatut').popup('close');
 			$("#confirmationChangerMembres").data("action", "nommerVicePresident");
 			$("#divConfirmationChangerMembres").text('Etes-vous sûr de vouloir nommer '+$('#choixActionClicMembrePseudo').text()+' Vice-Président?');
-			setTimeout( function(){ $("#confirmationChangerMembres").popup("open"); }, 100 );
+			setTimeout( function(){ $("#confirmationChangerMembres").popup("open"); }, 200 );
 		});
 		
 		$( "#retirerTitreVicePresident").on("click", function(event) {
@@ -561,7 +561,7 @@ $(document).on("pageinit", "#profil_joueur", function() {
 			$('#choixChangerStatut').popup('close');
 			$("#confirmationChangerMembres").data("action", "retirerTitreVicePresident");
 			$("#divConfirmationChangerMembres").text('Etes-vous sûr de vouloir retirer le titre de Vice-Président à '+$('#choixActionClicMembrePseudo').text()+'? Il restera membre.');
-			setTimeout( function(){ $("#confirmationChangerMembres").popup("open"); }, 100 );
+			setTimeout( function(){ $("#confirmationChangerMembres").popup("open"); }, 200 );
 		});
 		
 		$( "#exclureMembre").on("click", function(event) {
@@ -570,7 +570,7 @@ $(document).on("pageinit", "#profil_joueur", function() {
 			$('#choixActionClicMembre').popup('close');
 			$("#confirmationChangerMembres").data("action", "exclureMembre");
 			$("#divConfirmationChangerMembres").text('Etes-vous sûr de vouloir exclure '+$('#choixActionClicMembrePseudo').text()+' ?');
-			setTimeout( function(){ $("#confirmationChangerMembres").popup("open"); }, 100 );
+			setTimeout( function(){ $("#confirmationChangerMembres").popup("open"); }, 200 );
 		});
 			
 		$( "#confirmerChangerMembres").on("click", function(event) {

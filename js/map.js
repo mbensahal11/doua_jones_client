@@ -1064,9 +1064,11 @@ function initialize() {
 			teleportation : teleportation
 			});
 			
+			
 		}
 		socket.on('resultSetCheckin', function (result) {
 			alert(result);
+			socket.emit('getArgentDisponibleJoueur',idJoueur);
 			});
 			
 		var ok_ordre = false

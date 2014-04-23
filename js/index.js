@@ -1,4 +1,4 @@
-/*$(document).on("pageinit", "#inscription", function() {
+/*$(document).on("pageinit", "#connexion", function() {
 	
 
 	var socket = io.connect(adresse_serveur);

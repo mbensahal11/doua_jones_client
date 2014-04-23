@@ -157,10 +157,10 @@ $(document).on("pageinit", "#profil_exterieur_joueur", function() {
 				color = "#ff0000";
 			}
 			else if (membre.statut_societe == "Membre") {
-				color = "#e1533c";
+				color = "#31748f";
 			}
 			else {
-				color = "#31748f" ;
+				color =  "#e1533c";
 			}
 			$('<div data-id='+membre.idJoueur+'>')
 			.css('display','inline-block')
