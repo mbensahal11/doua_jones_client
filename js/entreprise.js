@@ -78,7 +78,7 @@ socket.on('resultGetNombreTitresJoueurEntreprise', function(data) {
 			});	
 		});
 		
-		socket.emit("resultGetActualiteEntreprise", function (value) {
+		socket.on("resultGetActualiteEntreprise", function (value) {
 			$('#texte_actualites_entreprise').html(value);
 		});
 			
