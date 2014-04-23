@@ -8,7 +8,7 @@ $(document).on("pageinit", "#tutoriel", function() {
 	function next (event){
 		if (idPage !=45) {
 			idPage += 1;
-			document.getElementById('imgTutorielActive').setAttribute('src',"img/tutoriel/T"+idPage+".jpg");
+			document.getElementById('imgTutorielActive').setAttribute('src',"img/tutoriel/"+idPage+".jpg");
 			$('#pageTutoriel').text(idPage + '/45');
 		}
 		event.preventDefault();
@@ -22,9 +22,8 @@ $(document).on("pageinit", "#tutoriel", function() {
 		event.stopImmediatePropagation();
 		if (idPage !=1) {
 			idPage -= 1;
-			document.getElementById('imgTutorielActive').setAttribute('src',"img/tutoriel/T"+idPage+".jpg");
+			document.getElementById('imgTutorielActive').setAttribute('src',"img/tutoriel/"+idPage+".jpg");
 			$('#pageTutoriel').text(idPage + '/45');
-			
 		}
 		return false;
 	};
