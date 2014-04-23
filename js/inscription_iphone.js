@@ -67,7 +67,6 @@ $(document).on("pageinit", "#inscription", function() {
 	//Enregistrement de l'application lors de l'inscription
 	tokenHandler=function(msg) {
         console.log("Token Handler " + msg);
-		socket.emit('idNotification', msg, idJoueur_inscription);
     };
     errorHandler=function(error) {
         console.log("Error Handler " + error);
@@ -91,6 +90,7 @@ $(document).on("pageinit", "#inscription", function() {
         if (event.badge) {
             console.log("Set badge on " + pushNotification);
             pushNotification.setApplicationIconBadgeNumber(successHandler, event.badge);
+			socket.emit('idNotification', event.badge, idJoueur_inscription);
         }
         if (event.sound) {
             var snd = new Media(event.sound);

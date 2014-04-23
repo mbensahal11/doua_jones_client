@@ -18,7 +18,7 @@ $(document).on("pageinit", "#profil_joueur", function() {
 			$("#table_ordre .body_table_profil").find("tr:gt(0)").remove();
 			for (var i=0; i<data.length;i++) {
 				var ordre=data[i];
-				var ajout="<tr><td>"+ordre.DateCreation+"</td><td>"+ordre.Sens+"</td><td>"+ordre.Type+"</td><td>"+ordre.Entreprise_idEntreprise+"</td><td>"+ordre.Quantite+"</td><td>"+ordre.Prix+"</td><td>"+ordre.DateValidite+"</td></tr>";
+				var ajout="<tr><td>"+ordre.DateCreation+"</td><td>"+ordre.Sens+"</td><td>"+ordre.Type+"</td><td>"+ordre.nom_entreprise+"</td><td>"+ordre.Quantite+"</td><td>"+ordre.Prix+"</td><td>"+ordre.DateValidite+"</td></tr>";
 		
 			$('#table_ordre tbody tr:last').after(ajout);
 		
@@ -193,12 +193,16 @@ $(document).on("pageinit", "#profil_joueur", function() {
 			$("#bouton_avatar_societe").show();
 			statut = "Président";
 		}
-		else if (statutJoueur== "President" || statutJoueur=="Vice-president") {
+		else if (statutJoueur=="Vice-president") {
+			$("#bouton_administrer").hide();
 			$("#bouton_candidatures").show();
 			$("#bouton_avatar_societe").show();
 			statut = "Vice-président";
 		}
 		else {
+			$("#bouton_administrer").hide();
+			$("#bouton_candidatures").hide();
+			$("#bouton_avatar_societe").hide();
 			statut = "Membre";
 		}
 		
