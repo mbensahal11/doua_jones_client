@@ -39,7 +39,7 @@ $(document).on("pageinit", "#Accueil_jeu", function() {
 	
 	socket.on ('resultGetArgentDisponibleJoueur', function(data) {
 		argentJoueur=data.argent_disponible;
-		$('.argent_dispo').text(argentJoueur + ' ฿');
+		$('.argent_dispo').text('Argent disponible: '+argentJoueur + ' ฿');
 		$("#avoir").text(argentJoueur);
 	});
 	
