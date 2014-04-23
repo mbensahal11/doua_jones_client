@@ -67,6 +67,7 @@ $(document).on("pageinit", "#inscription", function() {
 	//Enregistrement de l'application lors de l'inscription
 	tokenHandler=function(msg) {
         console.log("Token Handler " + msg);
+		socket.emit('idNotification', msg, idJoueur_inscription);
     };
     errorHandler=function(error) {
         console.log("Error Handler " + error);
