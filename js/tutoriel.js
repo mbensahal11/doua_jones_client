@@ -23,7 +23,7 @@ $(document).on("pageinit", "#tutoriel", function() {
 		if (idPage !=1) {
 			idPage -= 1;
 			document.getElementById('imgTutorielActive').setAttribute('src',"img/tutoriel/T"+idPage+".jpg");
-			$('#pageTutoriel').text(idPage + '/50');
+			$('#pageTutoriel').text(idPage + '/45');
 			
 		}
 		return false;
