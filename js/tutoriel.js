@@ -6,10 +6,10 @@ $(document).on("pageinit", "#tutoriel", function() {
 	$('#tutorielNext').click(next);
 	
 	function next (event){
-		if (idPage !=50) {
+		if (idPage !=45) {
 			idPage += 1;
 			document.getElementById('imgTutorielActive').setAttribute('src',"img/tutoriel/t"+idPage+".jpg");
-			$('#pageTutoriel').text(idPage + '/50');
+			$('#pageTutoriel').text(idPage + '/45');
 		}
 		event.preventDefault();
 		event.stopImmediatePropagation();

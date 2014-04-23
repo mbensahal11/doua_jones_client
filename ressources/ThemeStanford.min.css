@@ -35,9 +35,7 @@ marquee {
 	color: #00FF00;
 	font-weight: bold;
 	font-size: small;
-	border-right:1px solid #d2bd86 ;
 	border-bottom:1px solid #d2bd86 ;
-	border-left:1px solid #d2bd86 ;
 }
 
 img[alt="curve"] {

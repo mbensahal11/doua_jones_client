@@ -47,7 +47,7 @@
     <script src="js/boutique.js"></script>
     <script src="js/connexion.js"></script>
     <script src="js/emprunt.js"></script>
-    <script src="js/inscription.js"></script>
+    <script src="js/inscription_iphone.js"></script>
     <script src="js/tutoriel.js"></script>
     <script src="js/profil.js"></script>
     <script src="js/aide.js"></script>
@@ -63,7 +63,7 @@
     
  <!-- Socket io-->
  
- 	<script type="text/javascript" src= "http://88.172.179.93:5050/socket.io/socket.io.js"></script>
+ 	<script type="text/javascript" src= "http://giserv5.insa-lyon.fr:15550/socket.io/socket.io.js"></script>
     
     
  <!-- Fichiers css -->
@@ -368,7 +368,7 @@ Bienvenue apprentis traders !
                         <div class="ui-block-b" id="affiche_score"></div>                                                          
                     </div>
                 </div>
-				<h3> bancaire</h3>
+				<h3> Statut bancaire</h3>
                 <div id="infos_bancaires" class="tdb">
                     <div class="ui-grid-a">
                         <div class="ui-block-a" style="padding-left:10%">Compte en banque ฿</div>
@@ -377,7 +377,7 @@ Bienvenue apprentis traders !
                         <div class="ui-block-b" id="affiche_argent"></div>
                     </div>
                 </div>  
-				<h3> d'investisseur</h3>
+				<h3> Statut d'investisseur</h3>
                 <div id="infos_finance" class="tdb">
                     <div class="ui-grid-a">
                         <div class="ui-block-a" style="padding-left:10%">Actions achetées</div>
@@ -390,7 +390,7 @@ Bienvenue apprentis traders !
                         <div class="ui-block-b" id="affiche_ordre"></div>                        
                     </div>
                 </div>    
-				<h3> d'emprunteur</h3>
+				<h3> Statut d'emprunteur</h3>
                 <div id="infos_emprunts" class="tdb">
                     <div class="ui-grid-a">
                         <div class="ui-block-a" style="padding-left:10%"></div>
@@ -656,7 +656,7 @@ Bienvenue apprentis traders !
     </select>
         <div style="width:95%; margin:auto; display:none" id="affiche_objets">
 			<a href="#" style="display:inline-block; width:25%" id="fleche_gauche"><img src="img/icon-arrow-left.png"/></a>   
-			<img src="" style="height:40%; display:inline-block; width:47%" id="image_objets"/>
+			<img src="" style="height:40%; display:inline-block; width:47%; max-height:280px" id="image_objets"/>
 			<a href="#" style="display:inline-block; width:25%; text-align:right" id="fleche_droite"><img src="img/icon-arrow-right.png" /></a> 
 			<div style="text-align:center" id="description_item">
  			</div>           
@@ -1179,7 +1179,7 @@ margin: 0 auto; margin-top:4px ">
                         <div class="ui-block-b" id="prix_item">
                         </div>                        
                     </div>
-                    <img src="" style="display:block; margin-right:auto; margin-left:auto; width:80%; margin-bottom:15px;" id="image_item">
+                    <img src="" style="display:block; margin-right:auto; margin-left:auto; width:80%; max-height:280px; margin-bottom:15px;" id="image_item">
                     <div style="display:none" id="div_acheter_item">
                     <input type="submit" value="Acheter" id="acheter_item" / >
                     </div>
@@ -1340,7 +1340,7 @@ margin: 0 auto; margin-top:4px ">
         </select>
             <div style="width:95%; margin:auto; display:none" id="affiche_objets_exterieur">
                 <a href="#" style="display:inline-block; width:25%" id="fleche_gauche_exterieur"><img src="img/icon-arrow-left.png"/></a>   
-                <img src="" style="height:40%; display:inline-block; width:47%" id="image_objets_exterieur"/>
+                <img src="" style="height:40%; display:inline-block; width:47%; max-height:280px" id="image_objets_exterieur"/>
                 <a href="#" style="display:inline-block; width:25%; text-align:right" id="fleche_droite_exterieur"><img src="img/icon-arrow-right.png" /></a> 
                 <div style="text-align:center" id="description_item_exterieur">
                 </div>           

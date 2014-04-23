@@ -484,7 +484,7 @@ function initialize() {
 						 //On initialise l'image à null, on l'a crée ligne 789
 						 bounds : null,
 						 Overlay : null,
-						 texteProfil : "« Notre clientèle attende de nous une fiabilité, une ponctualité et une qualité de livraison exceptionnelles. » sont des paroles du président de Total Logistics et son entreprise a su convaincre totalement ses clients. Grâce à son Lean Management, Total Logistics connecte toute la France et ouvre des portes au monde pour les produits français."
+						 texteProfil : "« Notre clientèle attend de nous une fiabilité, une ponctualité et une qualité de livraison exceptionnelles. » sont les paroles du président de Total Logistics qui su convaincre totalement ses clients. Grâce à son Lean Management, Total Logistics connecte toute la France et ouvre des portes au monde entier pour les produits français."
 						 };
 		Entreprise[1] = {Objet :BMC,
 						 nom : "Banque Mondiale du Commerce",
@@ -494,7 +494,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78279984683528,4.876861859416181),
 						 bounds : null,
 						 Overlay : null,
-						 texteProfil : "La Banque Mondiale du Commerce est le cœur financier de la région. Elle est un pilier monétaire important aux entreprises environnantes et de nombreux citoyens lui confient ses épargnes. Durement frappée par la crise économique en 2008, la banque s’est bien reposée et planifie d’intensifier ses affaires internationales dans un avenir proche."
+						 texteProfil : "La Banque Mondiale du Commerce est le cœur financier de la région. Elle est un pilier monétaire important aux entreprises environnantes et de nombreux citoyens lui confient ses épargnes. Durement frappée par la crise économique en 2008, la banque s’est bien remise et planifie d’intensifier ses affaires internationales dans un avenir proche."
 						 };
 		Entreprise[2] = {Objet :GEN,
 						 nom : "Green Energy & Co",
@@ -504,7 +504,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78324502874469,4.873439360713178),
 						 bounds : null,
 						 Overlay : null,
-						 texteProfil : ""
+						 texteProfil : "Approvisionner l’électricité dans la région et avoir un impact positif sur la préservation de l’environnement, impossible ? Pourtant, Green Energy & Co. le fait. Sa production est basée sur des ressources naturelles et toutes ses pratiques visent une vraie durabilité."
 						 };
 		Entreprise[3] = {Objet :TC,
 						 nom : "Blue Telecom",
@@ -514,7 +514,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78391653590745,4.87362711534422),
 						 bounds : null,
 						 Overlay : null,
-						 texteProfil : ""
+						 texteProfil : "Blue Telecom est leader sur le marché français des télécommunications. L’entreprise dynamique offre des supports filaires, optiques, radio à des prix défiant toute concurrence. Les particuliers peuvent eux aussi profiter de solutions multimédia inventives. Toutes les grandes entreprises laissent installer leurs intranets par Blue Telecom..."
 						 };
 		Entreprise[4] = {Objet :GE,
 						 nom : "Genius Electrics",
@@ -524,7 +524,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78348445283917,4.872044612025434),
 						 bounds : null,
 						 Overlay : null,
-						 texteProfil : ""
+						 texteProfil : "Genius Electrics sert actuellement un quart du marché de l’installation électrique. Ses systèmes électroniques intégrés sont très prisés et les nouveautés du secteur télécommunications viennent d’être lancées. L’augmentation visée de leur part de marché semble tout à fait réaliste dans les prochaines années."
 						 };
 		Entreprise[5] = {Objet :Rotonde,
 						 nom : "Brodewei",
@@ -534,7 +534,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78416156854144,4.874286938761884),
 						 bounds : null,
 						 Overlay : null,
-						 texteProfil : ""
+						 texteProfil : "Depuis la rénovation du bâtiment, le Broodewei illustre parfaitement par son apparence la magnificence qu’on pouvait admirer depuis plusieurs années déjà. Tous les spectacles, que ce soir du théâtre, une bonne comédie musicale ou bien même un fameux opéra, ont toujours été recommandés par des critiques les plus durs. Les billets se font rares ! Mais les soirées passées au Broodewei sont inoubliables..."
 						 };
 		Entreprise[6] = {Objet :EFI,
 						 nom : "Hill Tone",
@@ -544,7 +544,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.784816230599766,4.871615458583051),
 						 bounds : null,
 						 Overlay : null,
-						 texteProfil : ""
+						 texteProfil : "Vous avez toujours voulu vivre comme Louis XIV? Un séjour au Hill Tone est le luxe à l’état pur. Dans les chambres on trouve un équipement moderne et agréable. Chaque hôtel de la chaîne possède un restaurant gastronomique et un spa. Présente partout dans le monde et adaptée aux différentes cultures, la chaîne d’hôtels Hill Tone offre tout le luxe possible pour faire de votre séjour un moment inoubliable."
 						 };
 						 
 		Entreprise[7] = {Objet :CB,
@@ -555,7 +555,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78548210754941,4.874764371966535),
 						 bounds : null,
 						 Overlay : null,
-						 texteProfil : ""
+						 texteProfil : "L’association nationale du tennis a depuis peu décidé de s’établir au Wilbedon & Co. Cette entreprise a mis en lumière la plupart des plus grands athlètes célèbres du monde du tennis. Grâce aux nombreux investisseurs, le Wilbedon & Co est une entreprise avec beaucoup de succès."
 						 };
 						 
 		Entreprise[8] = {Objet :Humas,
@@ -566,7 +566,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78377250859037,4.875472475146466),
 						 bounds : null,
 						 Overlay : null,
-						 texteProfil : ""
+						 texteProfil : "Le Center Park est le plus grand fournisseur de services de ressources humaines du pays. Caractérisé par une grande connaissance des entreprises et des hommes, les agents du Center Park ne cherchent jamais longtemps une solution pour un problème de management. Leurs services sont fortement demandés, mais il ne faut pas être trop pressés…"
 						 };
 						 
 		Entreprise[9] = {Objet :Kfet,
@@ -577,7 +577,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78450573469595,4.8758694420806705),
 						 bounds : null,
 						 Overlay : null,
-						 texteProfil : ""
+						 texteProfil : "Le centre de loisirs est un lieu de rencontre pour les jeunes et les seniors. En plus du cinéma, le bowling, les caféterias, les restaurants et autre convivialité, il y a toujours des animations ou des expositions organisées par les associations étudiantes."
 						 };
 						 
 		Entreprise[10] = {Objet :BS,
@@ -588,7 +588,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78244444695973,4.8735466490737736),
 						 bounds : null,
 						 Overlay : null,
-						 texteProfil : ""
+						 texteProfil : "Biotech est le plus grand centre de recherche de biochimie et phamarcologie de France. Les dernières recherches en matière de biologie moléculaire ont déjà suscité beaucoup d’intérêt à l’international. C’est pour cette raison que Biotech est devenu un nom très réputé. Leur crédo “la nature comme modèle” plaît aux investisseurs et Biotech vise une augmentation du capital dans les prochains mois, grâce à son ingénierie des systèmes naturels."
 						 };
 						 
 		Entreprise[11] = {Objet :IF,
@@ -599,7 +599,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78188889630108,4.872978020762616),
 						 bounds : null,
 						 Overlay : null,
-						 texteProfil : ""
+						 texteProfil : "Lorsque un investisseur cherche une entreprise en pleine expansion sans aucun risque, I-Tech est une parfaite alternative. Cela fait à peine 10 ans que ses créateurs ont commencé à développer des logiciels systèmes et réseaux dans un garage. Aujourd’hui, l’entreprise est cotée en bourse et elle fournit des produits d’informatique décisionnelle et des systèmes d’information pour des projets industriels."
 						 };
 						 
 		Entreprise[12] = {Objet :Beurk,
@@ -610,7 +610,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78132585783069,4.873951662635022),
 						 bounds : null,
 						 Overlay : null,
-						 texteProfil: "Même si Miam Inc. est la plus grande chaîne de pizzeria du pays, son cadre authentique rappelle toujours la convivialité que l’on retrouve dans les ruelles de Naples. Les responsables sont surtout contents que l’expansion dans le marché européen se soit conclue avec succès. Même en Italie, on peut désormais trouver des restaurants de Miam Inc."
+						 texteProfil: "Même si Miam Inc. est la plus grande chaîne de pizzeria du pays, son cadre authentique rappelle toujours la convivialité que l’on retrouve dans les ruelles de Naples. Les responsables sont contents que leur expansion au sein du marché européen se soit conclue avec succès. Même en Italie, on peut désormais trouver des restaurants de Miam Inc !"
 						 };
 						 
 		Entreprise[13] = {Objet :CD,
@@ -621,7 +621,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.780392436012725,4.873962391471082),
 						 bounds : null,
 						 Overlay : null,
-						 texteProfil : ""
+						 texteProfil : "La société officielle du logement offre un espace de vie à de nombreuses citoyens. Grâce à un loyer bas et un bon entretien, Companule est très populaire pour ses locataires. Des nouveaux projets de construction ont même suscité beaucoup d’intérêt pour les investisseurs."
 						 };
 						 
 		Entreprise[14] = {Objet :GCU,
@@ -632,7 +632,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78422703509279,4.877229322051221),
 						 bounds : null,
 						 Overlay : null,
-						 texteProfil : ""
+						 texteProfil : "Même si la plupart des gens ne connaissent pas Leonard Construction, ils contemplent tous les jours leur infrastructures et ouvrages d’art - tout à fait inconsciemment. Leonard Construction apporte une contribution essentielle à l'embellissement de la région année après année. Tous les projets entamés par l’entreprise transforment le quotidien en or, pierre ou matériaux modernes."
 						 };
 						 
 		Entreprise[15] = {Objet :GMC,
@@ -643,7 +643,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78311596376634,4.875700462912732),
 						 bounds : null,
 						 Overlay : null,
-						 texteProfil: "Depuis plus de 50 ans Mech. Entreprise produit des pièces en acier d’exception. C’est une PME familiale reconnue pour ses valeurs et ses traditions. L’entreprise évolue avec le temps, en utilisant des simulations numériques modernes et une automatique industrielle.  Ses clients la récompensent par une fidélité durable."
+						 texteProfil: "Depuis plus de 50 ans, Mech. Entreprise produit des pièces d’exception en acier. C’est une PME familiale reconnue pour ses valeurs et ses traditions. L’entreprise évolue avec le temps, en utilisant des simulations numériques modernes et une automatique industrielle.  Ses clients la récompensent par une fidélité durable."
 						 };
 						 
 		Entreprise[16] = {Objet :Dir,
@@ -655,7 +655,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.783606034993184,4.878709901427442),
 						 bounds : null,
 						 Overlay : null,
-						 texteProfil : ""
+						 texteProfil : "La Doua Postal est une nouvel alternative au service de livraison national. Grâce à un réseau étroit et une bonne administration, les retards n’existent plus ! Qui l’aurait cru? Leurs service sont rendus à des prix abordables, car la direction financière de cette société a inventé un système révolutionnaire de comptabilité dans lequel tous les acteurs profitent d’une répartition des coûts plus juste. Enfin une vraie révolution dans le service postal !"
 						 };
 						 
 		Entreprise[17] = {Objet :Capelle,
@@ -666,7 +666,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78373322834793,4.8803138624183475),
 						 bounds : null,
 						 Overlay : null,
-						 texteProfil : ""
+						 texteProfil : "Au début du projet du Palais des Congrès, la plupart des gens étaient mitigés quant à l’utilité de ce lieu. Tous les doutes se sont finalement relevé infondés. C’est l’endroit où se tiennent les évènements phare de l’année, grâce à quoi le Palais fait  beaucoup de bénéfices. Ce concept serait même bientôt repris dans d’autres villes du monde..."
 						 };
 						 
 		Entreprise[18] = {Objet :CDS,
@@ -677,7 +677,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.785532609127586,4.878135908698255),
 						 bounds : null,
 						 Overlay : null,
-						 texteProfil : ""
+						 texteProfil : "Cette chaîne de fitness est tellement plébiscitée que les files d’attente devant les salles de sport deviennent indécentes. Son programme offre un choix tellement large d’activités sportives qu’à première vue, on ne sait plus où donner de la tête. De plus, ses transmissions des plus grands matchs en direct sont suivies par un grand nombre de fans."
 						 };
 						 
 		Entreprise[19] = {Objet :GJ,
@@ -688,7 +688,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78630696094315,4.879273165320569),
 						 bounds : null,
 						 Overlay : null,
-						 texteProfil : ""
+						 texteProfil : "Orpiste est l’exemple parfait d’une entreprise qui a bien profité du boom immobilier. La société immobilière fait le commerce des bâtiments de plusieurs millions d’euros ! Leur slogan initial “un toit sur votre tête” n’est plus pertinent, car Orpiste ne fournis plus à l’heure actuelle de logements pour les particuliers. Ses toits couvrent désormais des gratte-ciels, des stades ou des centres commerciaux."
 						 };
 						 
 		Entreprise[20] = {Objet :GMD,
@@ -699,7 +699,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78542412419778,4.881633509253675),
 						 bounds : null,
 						 Overlay : null,
-						 texteProfil : ""
+						 texteProfil : "Le fabricant de turbines s’est fermement établi comme l’un des leaders mondiaux du marché. Ses compétences en matière de résistance des matériaux et de mécanique des fluides sont très fortement demandée dans la construction de centrales électriques. Une nouvelle génération de turbines anti-vibrations va bientôt lui donner l’accès au marché de l’aéronautique."
 						 };
 						 
 		Entreprise[21] = {Objet :Trav,
@@ -710,7 +710,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78408487905373,4.882805634593183),
 						 bounds : null,
 						 Overlay : null,
-						 texteProfil : ""
+						 texteProfil : "Dans les bâtiments du Lion Formation on acquiert toute sorte de compétences. L’établissement le plus prestigieux de la région offre le choix entre plusieurs filières différentes. Si vous vous intéressez à la physique, aux langues ou aux cultures étrangères, vous trouverez le cursus qu’il vous faut au Lion Formation."
 						 }; 
 						 
 		Entreprise[22] = {Objet :Fermat,
@@ -722,7 +722,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78535491818525,4.882714439486676),
 						 bounds : null,
 						 Overlay : null,
-						 texteProfil : ""
+						 texteProfil : "Pedro de Fermat, ou l’entreprise qui aide tout élève à réussir son apprentissage. Grâce à son soutien scolaire et ses professeurs d’une qualité rare, l’entreprise connait énormément de succès auprès des étudiants en classe préparatoire. Tous sont habitués à arpenter ses salles de travail. Sans cette entreprise, le métier d’ingénieur se perd…"
 						 }; 
 						 
 		Entreprise[23] = {Objet :batAB,
@@ -733,7 +733,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78436732030299,4.88411455259245),
 						 bounds : null,
 						 Overlay : null,
-						 texteProfil : ""
+						 texteProfil : "Formula One. Ce nom doux qui nous rappelle les circuits automobiles n’est que trop modeste pour désigner ces hotels qui fleurissent aux abords du campus. Dignes des plus grands, c’est avec une simplicité et une convivialité débordante qu’ils accueillent leurs hôtes, en toute intimité."
 						 };
 						 
 						 
@@ -745,7 +745,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78557188810294,4.883288432215863),
 						 bounds : null,
 						 Overlay : null,
-						 texteProfil : ""
+						 texteProfil : "Dans l’opinion commune, le Badison Square Garden est uniquement populaire pour ses évènements sportifs. Mais le BSG a bien plus à offrir que le sport. Des concerts des plus grands groupes de rock ont y lieu, ainsi que de grands spectacles ou des galas. Il n’y a plus un soir durant lesquelles les lumières restent éteintes !"
 						 };
 						 
 		Entreprise[25] = {Objet :SGM,
@@ -756,7 +756,7 @@ function initialize() {
 						 neBound : new google.maps.LatLng(45.78269509763412,4.87238793477934),
 						 bounds : null,
 						 Overlay : null,
-						 texteProfil : ""
+						 texteProfil : "D’un petit bureau d’études, SO Tech Materials s’est métamorphosée en compagnie internationale et les commandes arrivent par milliers. SO Tech Materials résoud à la fois des problèmes mathématiques et statistiques mais aussi des questions d'ingénierie des matériaux. L’entreprise fournit des expertises excellentes en matière d’analyse des matériaux. Leurs laboratoires de recherche structurale et micro-structurale sont les plus modernes et avancés au monde."
 						 };
 
 	 

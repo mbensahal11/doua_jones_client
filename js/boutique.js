@@ -34,7 +34,7 @@ $(document).on("pageinit", "#boutique", function() {
 	
 		
 		$(document).on("change","#boutique_obj", function() {
-			src="img/boutique"+$('#boutique_obj option:selected').text()+".jpg";
+			src="img/boutique/"+$('#boutique_obj option:selected').text()+".png";
 			$("#image_item").prop("src",src).show();
 			$("#prix_item").text($('#boutique_obj option:selected').data("prix"));
 			if (argentJoueur>=$('#boutique_obj option:selected').data("prix")) {
@@ -53,21 +53,17 @@ $(document).on("pageinit", "#boutique", function() {
 			//si le joueur ne se trouve pas à la BMC, il ne peut pas acheter d'items
 			var argentDisp;
 			argentDisp=argentJoueur;
-			if ($('#bmcprofil').data("isAtBMC")) {
-				if (argentDisp>=$('#boutique_obj option:selected').data("prix")) {
-				$("#div_acheter_item").hide(); //empêcher d'acheter plusieurs fois
-				var data={idObjet:$('#boutique_obj option:selected').data("idObjet"), idJoueur:idJoueur, type:"collection", prix:$('#boutique_obj option:selected').data("prix") };
-				socket.emit('setBuyObject',data);
-				argentDisp=argentDisp-$('#boutique_obj option:selected').data("prix");
+			if (argentDisp>=$('#boutique_obj option:selected').data("prix")) {
+			$("#div_acheter_item").hide(); //empêcher d'acheter plusieurs fois
+			var data={idObjet:$('#boutique_obj option:selected').data("idObjet"), idJoueur:idJoueur, type:"collection", prix:$('#boutique_obj option:selected').data("prix") };
+			socket.emit('setBuyObject',data);
+			argentDisp=argentDisp-$('#boutique_obj option:selected').data("prix");
 $("#avoir").text(argentDisp);
-				} 
-				socket.emit('getArgentDisponibleJoueur',data.idJoueur);
-				$.mobile.changePage("#boutique");
-			}
-				else {
-					alert('Vous devez vous rendre à la BMC pour acheter un item');
-				}
-				return false;
+			} 
+			socket.emit('getArgentDisponibleJoueur',data.idJoueur);
+			$.mobile.changePage("#boutique");
+
+			return false;
 		});			
 	
 		$(document).on("click","#acheter_atout", function(event) {

@@ -428,7 +428,7 @@ $(document).on("pageinit", "#profil_joueur", function() {
 			idObj=0;	
 			module = listeObjets[idMod-1];
 			if (module.length!=0) {
-				var src="img/"+module[idObj].nom+".png";
+				var src="img/boutique/"+module[idObj].nom+".png";
 				$("#image_objets").prop("src",src);
 				$("#description_item").text(module[idObj].nom);
 				$("#affiche_objets").show();
@@ -447,7 +447,7 @@ $(document).on("pageinit", "#profil_joueur", function() {
 			module=listeObjets[idMod-1];
 			idObj=0;
 			if (module.length!=0) {
-				var src="img/"+module[idObj].nom+".png";
+				var src="img/boutique/"+module[idObj].nom+".png";
 				$("#image_objets").prop("src",src);
 				$("#description_item").text(module[idObj].nom);
 				$("#affiche_objets").show();
@@ -465,12 +465,12 @@ $(document).on("pageinit", "#profil_joueur", function() {
 			event.stopImmediatePropagation();		
 			if (idObj!=0) {
 				idObj--;
-				var src="img/"+module[idObj].nom+".png";
+				var src="img/boutique/"+module[idObj].nom+".png";
 				$("#image_objets").prop("src",src);
 				$("#description_item").text(module[idObj].nom);
 			}  else {
 				idObj=module.length-1 ;
-				var src="img/"+module[idObj].nom+".png";
+				var src="img/boutique/"+module[idObj].nom+".png";
 				$("#image_objets").prop("src",src);
 				$("#description_item").text(module[idObj].nom);
 			} 
@@ -482,12 +482,12 @@ $(document).on("pageinit", "#profil_joueur", function() {
 			event.stopImmediatePropagation();
 			if (idObj!=module.length-1) {
 				idObj++;
-				var src="img/"+module[idObj].nom+".png";
+				var src="img/boutique/"+module[idObj].nom+".png";
 				$("#image_objets").prop("src",src);
 				$("#description_item").text(module[idObj].nom);
 			} else {
 				idObj=0 ;
-				var src="img/"+module[idObj].nom+".png";
+				var src="img/boutique/"+module[idObj].nom+".png";
 				$("#image_objets").prop("src",src);
 				$("#description_item").text(module[idObj].nom);			
 			}
