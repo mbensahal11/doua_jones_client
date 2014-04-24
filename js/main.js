@@ -4,7 +4,7 @@ var hasscrolledchatglobal;
 var idJoueur;
 var pseudo;
 var idSociete;
-var statutJoueur
+var statutJoueur;
 var hasscrolledmessagerie;
 var devicePlatform;
 var argentJoueur=0;

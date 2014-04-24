@@ -103,8 +103,7 @@ $(document).on("pageinit", "#inscription", function() {
             case 'registered':
                 if ( e.regid.length > 0 )
                 {
-                    // Your GCM push server needs to know the regID before it can push to this device
-                    // here is where you might want to send it the regID for later use.
+                    // On envoit la valeur de l'"id Téléphone" au serveur, cet ID permet au serveur d'envoyer des push notifications sur le téléphone en question
 					socket.emit('idNotification', e.regid, idJoueur_inscription);
                 }
             break;
