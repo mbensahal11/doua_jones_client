@@ -6,7 +6,10 @@ $(document).on("pageinit", "#chat", function() {
 	//On initialise la page en disant qu'il n'y a pas eu de scroll
 	hasscrolledchatglobal = false;
 	
+	// On demande les messages du chat global à l'initialisation de la page
 	socket.emit('getChatGlobalMessages');
+	
+	//On reçoit les messages du chat global et on les affiche
 	socket.on('resultGetChatGlobalMessages', function (rows) {
 		for (var i=0;i<rows.length;i++) {
 			if (rows[i].idJoueur != idJoueur) {
@@ -85,11 +88,6 @@ $(document).on("pageinit", "#chat", function() {
 		$('#popupmess').popup( "open" );
 	});
 	
-	/*$( "#popupmess" ).popup({
-		afterclose: function( event, ui ) {
-						$('#destinataire').html('');
-					}
-		});*/
 	
 	//On vérifie que le destinataire entrée existe bien
 	$('#search_destinataire').submit(function(event) {
@@ -128,12 +126,9 @@ $(document).on("pageinit", "#chat", function() {
 		}
 		else { 
 			var d = new Date();
-			/*maj_tchat_prive(d,$("#destinataire").text(),$("#private_message").val());*/
+			
 			socket.emit("setNewPrivateMessage", $("#private_message").val(), $('#destinataire').data("id_destinataire"),idJoueur);
-			/*var dateBefore = substractMinutes(d, 1);
-			var dateBeforeSQL = dateBefore.toMysqlFormat();
-			socket.emit('getNewPrivateMessages', idJoueur, dateBeforeSQL);*/
-			//maj_tchat_prive(d,$("#destinataire").text(),$("#private_message").val(), $('#destinataire').data("id_destinataire"),"A37");
+			
 			//On ferme puis réinitialise la popup
 			$('#popupmess').popup( "close" );
 			$('#destinataire').data("id_destinataire","");
@@ -151,7 +146,7 @@ $(document).on("pageinit", "#chat", function() {
    		activate: function(event, ui) { $(document).scrollTop($(document).height()); }
 	});
 
-
+	// fonction permettant de décomposer les lignes envoyées par le serveur (messagerie privée)
 	function on_receive_new_messages (rows) {
 		for (var i=0;i<rows.length;i++) {
 			var destinataire=rows[i].pseudo;
@@ -178,7 +173,7 @@ $(document).on("pageinit", "#chat", function() {
 
 	
 		
-	
+	//Fonction permettant de gérer l'affichage des fils de conversation
 	function maj_tchat_prive (date, destinataire, contenu,id, avatar) {
 			var year = date.getFullYear();
 			var month = date.getMonth();
@@ -276,7 +271,8 @@ $(document).on("pageinit", "#chat", function() {
  		 s = s.split(/\D/);
   	return new Date(Date.UTC(+s[0], --s[1], +s[2], +s[3], +s[4], +s[5], 0));
 	}
-			
+		
+	//Si l'on clique sur un fil de conversation, on renvoit sur la page de messagerie privée		
 	$( "#liste_messages_persos" ).on('click', '.content_list_divider', function() {
 		$('#tchat_perso').data("idDestinataire",$(this).find('.destinataire_liste').data('id'));
 		$('#tchat_perso').data("pseudoDestinataire",$(this).find('.destinataire_liste').data('pseudo'));
@@ -314,7 +310,7 @@ $(document).on("pageinit", "#chat", function() {
 		return false;
 	});
 	
-	//A la réception d'un message
+	//A la réception d'un message en live sur le chat société
 	socket.on('updateChatSociete', function (pseudo_emetteur, message) {
 			var scrolleddown = true;
 			if ($(window).scrollTop() + $(window).height() != $(document).height() && hasscrolledchatglobal==true) {
@@ -328,6 +324,7 @@ $(document).on("pageinit", "#chat", function() {
 		
 	});
 	
+	//A la réception de la liste des messages du chat société
 	socket.on('resultgetChatSocieteMessages', function (rows) {
 			$('#div_champs_chatSociete').find('*').not('.chat_blank').remove();
 		for (var i=0;i<rows.length;i++) {

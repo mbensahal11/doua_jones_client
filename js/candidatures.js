@@ -14,6 +14,7 @@ $(document).on("pageinit", "#candidatures", function() {
 	var idCandidat;
 	var pseudoCandidat;
 
+	//On reçoit les demandes de candidatures
 	socket.on("resultGetDemandesAjoutSociete", function(data) {
 		
 		$("#contenu_candidats").empty();	
@@ -29,7 +30,7 @@ $(document).on("pageinit", "#candidatures", function() {
 		
 	});
 	
-	
+	//On rafraichit la liste après que le serveur ait traité la demande d'acceptation d'un membre
 	socket.on('resultSetAccepterDemandeMembre',function(data) {
 		alert(data.message);
 		if (data.erreur==false) {
@@ -44,6 +45,7 @@ $(document).on("pageinit", "#candidatures", function() {
 		pseudoCandidat= $(this).find('#pseudo_candidat').text();
 	});
 	
+	//Lorsque l'on clique sur "voir_profil", on nous renvoit vers la page profil extérieure
 	$("#voir_profil_candidature").on("click", function() {
 		$('#profil_exterieur_joueur').data("idJoueur",idCandidat);
 		$("#titre_profil_exterieur_joueur").text(pseudoCandidat);
@@ -51,7 +53,7 @@ $(document).on("pageinit", "#candidatures", function() {
 	});
 	
 	
-	
+	//Fonction appelée quand on clique sur "accepter joueur".
 	$(document).on("click","#accepter_joueur", function(event) {
 		event.preventDefault();
 		event.stopImmediatePropagation();
@@ -60,7 +62,7 @@ $(document).on("pageinit", "#candidatures", function() {
 	});	
 	
 	
-	
+	//fonction appelée lors du refus d'accepter le joueur
 	$(document).on("click","#refuser_joueur", function(event) {
 		event.preventDefault();
 		event.stopImmediatePropagation();

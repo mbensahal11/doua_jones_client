@@ -1,5 +1,9 @@
 // JavaScript Document
 
+//Version pipée de la carte à travers laquelle le joueur ne subit pas le phénomène de géolocalisation (i.e il peut se checker et acheter où il veut).
+
+
+
 //On attend le chargement de la page avant de lancer la fonction d'initialisation
 $(document).on("pageshow", "#map", function() {
 	if ($("#map-canvas").html() === '') {
@@ -788,6 +792,8 @@ function initialize() {
   	function onSuccess(position) { 
 		coordonnees_joueur.latitude = position.coords.latitude;  	
 		coordonnees_joueur.longitude = position.coords.longitude;
+		
+		//coordonnées de la BMC
 		/*coordonnees_joueur.latitude = 45.782549;  	
 		coordonnees_joueur.longitude = 4.876893;*/
  		position_joueur = new google.maps.LatLng(coordonnees_joueur.latitude, coordonnees_joueur.longitude);
@@ -897,7 +903,7 @@ function initialize() {
 
 		function show_myInfowindow(entreprise,position) {
 			infowindow.close(map);
-			content_infowindow = '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>'+entreprise.nom+'</b><br/></center><button id="checkin" disabled>Check-in</button><button id="info">Fiche entreprise</button></div>'
+			content_infowindow = '<div style="line-height:1.35;overflow:hidden;white-space:nowrap"><center class="departement"><b>'+entreprise.nom+'</b><br/></center><button id="checkin">Check-in</button><button id="info">Fiche entreprise</button></div>'
 			$('#infowindow_content').html(content_infowindow);
 			infowindow.setContent($('#infowindow_content').html());
 			// Replace our Info Window's position
@@ -1124,12 +1130,14 @@ function initialize() {
 			$(document).on("pagebeforeshow", "#Entreprise", function() {
 				$( "#tabs_entreprise" ).tabs({ active: 1 });
 				
-				if (ok_ordre==false) {	
+				
+				//On autorise à passer un ordre quel que soit  le lieu
+				/*if (ok_ordre==false) {	
 					$("#tabs_entreprise").tabs("option", "disabled", [2]);
 				}
-				else {
+				else {*/
 					$( "#tabs_entreprise" ).tabs( "enable", 2 );
-				}
+				//}
 				
 				//On affiche l'onglet profil par défaut
 				
