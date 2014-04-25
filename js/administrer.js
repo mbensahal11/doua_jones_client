@@ -16,6 +16,7 @@ $(document).on("pageinit", "#administrer", function() {
 	var nbEntrepRecu=0;
 	
 	//Renvoie les entreprises dans lesquelles les sociétés sont majoritaires (Le select s'affiche même si pas président ->erreur)
+	//autre erreur : lors de la deuxieme entrée dans le socket, la page n'est pas réinitialisée
 	socket.on('resultGetEntrepriseSocieteMajoritaire', function(data) {	
 
 //Je mets toutes les entreprises dans un tableau
